@@ -6,6 +6,7 @@ export interface Props {
   side: "left" | "right";
   dark?: boolean;
   figTag: string;
+  heroImage?: string;
   metaLeft: string;
   metaRight: string;
   title: string;
@@ -13,11 +14,11 @@ export interface Props {
   kpis?: { k: string; v: string; accent?: boolean }[];
   chips: string[];
 }
-const { href, side, dark = false, figTag, metaLeft, metaRight, title, desc, kpis, chips } = Astro.props;
+const { href, side, dark = false, figTag, heroImage, metaLeft, metaRight, title, desc, kpis, chips } = Astro.props;
 ---
 
 <a class={`project ${side === "right" ? "right" : ""}`} href={href}>
-  <PlaceholderFigure tag={figTag} minHeight="340px" dark={dark} class="img" />
+  <PlaceholderFigure tag={figTag} imagePath={heroImage} minHeight="340px" dark={dark} class="img" />
   <div class="body">
     <div class="top">
       <span>{metaLeft}</span>

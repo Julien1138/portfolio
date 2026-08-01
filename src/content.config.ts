@@ -106,6 +106,10 @@ const projects = defineCollection({
     role: z.string(),
     figTag: z.string(),
     cornerLabel: z.string(),
+    // Path relative to /src, e.g. "/src/assets/images/projets/p-01/photo.jpg" —
+    // resolved at build time via import.meta.glob in ProjectFigure. Falls back
+    // to the hatched PlaceholderFigure when absent.
+    heroImage: z.string().optional(),
     deepDive: z
       .object({
         metaTop: z.string(),

@@ -51,7 +51,7 @@ const dd = d.deepDive;
     </header>
 
     <div class="hero-fig-wrap">
-      <PlaceholderFigure tag={dd ? dd.heroFigTag : d.figTag} minHeight="320px" />
+      <PlaceholderFigure tag={dd ? dd.heroFigTag : d.figTag} imagePath={d.heroImage} minHeight="320px" />
       {dd && (
         <p class="fig-caption">
           <span class="ref">{dd.figCaptionRef}</span>

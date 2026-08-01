@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
 export interface Props {
   href: string;
   side: "left" | "right";
   bigNum: string;
   figTag: string;
+  heroImage?: string;
   cornerLabel: string;
   ref: string;
   category: string;
@@ -16,17 +19,27 @@ export interface Props {
   tag: string; // filter tag, e.g. "iot"
   yearStart: number;
 }
-const { href, side, bigNum, figTag, cornerLabel, ref, category, period, title, lede, kpis, chips, role, tag, yearStart } =
+const { href, side, bigNum, figTag, heroImage, cornerLabel, ref, category, period, title, lede, kpis, chips, role, tag, yearStart } =
   Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}",
+  { eager: true }
+);
+const resolved = heroImage ? images[heroImage]?.default : undefined;
 ---
 
 <li>
   <a href={href} class={`pcard ${side}`} data-tag={tag} data-category={category} data-year-start={yearStart}>
     <div class="fig">
       <span class="bignum">{bigNum}</span>
-      <div class="inner">
-        <span class="tag">{figTag}</span>
-      </div>
+      {resolved ? (
+        <Image src={resolved} alt={figTag} width={900} class="fig-photo" />
+      ) : (
+        <div class="inner">
+          <span class="tag">{figTag}</span>
+        </div>
+      )}
       <span class="corner">{cornerLabel}</span>
     </div>
     <div class="body">
@@ -99,6 +112,14 @@ const { href, side, bigNum, figTag, cornerLabel, ref, category, period, title, l
     background:
       repeating-linear-gradient(135deg, transparent 0 14px, rgba(239, 233, 214, 0.05) 14px 15px),
       var(--paper-3);
+  }
+  .pcard .fig-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .pcard .fig .bignum {
     position: absolute;
