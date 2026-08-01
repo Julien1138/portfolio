@@ -1,0 +1,158 @@
+{
+  "ref": "R-02",
+  "title": "Expert FPGA & électronique numérique",
+  "client": "JCDecaux",
+  "domain": "Affichage urbain LED",
+  "period": "2014 — 2018",
+  "years": "~4 ans",
+  "order": 2,
+  "lede": "Concevoir et faire évoluer les architectures FPGA qui pilotent les matrices LED d'affichage urbain — un travail de bas niveau dont la qualité se voit, <em>littéralement, de loin</em>.",
+  "metaStrip": [
+    { "k": "Entreprise", "v": "JCDecaux" },
+    { "k": "Domaine", "v": "Affichage urbain LED" },
+    { "k": "Rôle", "v": "Expert FPGA · électro num.", "accent": true },
+    { "k": "Projets", "v": "Multiples · plusieurs gén." },
+    { "k": "Lecture", "v": "~ 5 min" }
+  ],
+  "chips": ["VHDL", "Verilog", "Lattice", "Xilinx", "pipelines", "horloges multi-domaines", "BRAM", "gamma LUT", "scan matriciel", "industrialisation"],
+  "ledHero": true,
+  "sections": [
+    {
+      "type": "prose",
+      "heading": "Contexte.",
+      "num": "§ 01 — Contexte",
+      "paragraphs": [
+        { "lead": true, "html": "Chez JCDecaux, j'ai travaillé sur de nombreux projets de pilotage de matrices LED destinées à l'affichage urbain — visibles à grande échelle, déployées dans des environnements contraints." },
+        { "html": "Monochromes ou couleur, de tailles et résolutions variables, ces systèmes avaient un point commun : la nécessité d'un fonctionnement parfaitement <span class=\"hl\">fiable, synchronisé et maintenable sur le long terme</span>." },
+        { "html": "L'affichage LED en milieu urbain est un domaine où les contraintes physiques et industrielles s'imposent fortement. Les produits sont exposés en continu, soumis aux conditions extérieures, et toute défaillance est immédiatement visible. Dans ce contexte, la programmation FPGA n'est pas un simple exercice de performance — c'est <b>un élément central de la qualité perçue</b> du produit final." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Le rôle — expert électronique numérique & FPGA.",
+      "num": "§ 02 — Rôle",
+      "paragraphs": [
+        { "html": "Mon rôle consistait à concevoir et faire évoluer des architectures FPGA capables de piloter efficacement des matrices LED complexes. Il ne s'agissait pas seulement de « faire afficher des pixels », mais de maîtriser l'ensemble de la chaîne numérique : génération des trames, synchronisation temporelle, gestion des horloges, pipelines de données, et optimisation des ressources logiques." },
+        { "html": "Chaque projet apportait ses spécificités, mais reposait sur des principes architecturaux communs. Cette répétition dans la diversité m'a permis de consolider une expertise profonde, orientée <b>robustesse</b> et <b>reproductibilité</b>." }
+      ]
+    },
+    {
+      "type": "pipeline",
+      "figLabel": "FIG. 02 · Pipeline FPGA — chaîne numérique typique",
+      "sub": "6 étages · pipelined",
+      "stages": [
+        { "num": "01 · SOURCE", "t": "Trame entrante", "d": "HDMI / SPI" },
+        { "num": "02 · DECODE", "t": "Découpage", "d": "lignes / pixels" },
+        { "num": "03 · BUFFER", "t": "Double buffer", "d": "BRAM" },
+        { "num": "04 · GAMMA", "t": "Correction γ", "d": "LUT couleur" },
+        { "num": "05 · TIMING", "t": "Horloges", "d": "domaines clk" },
+        { "num": "06 · DRIVE", "t": "Scan matrice", "d": "rows × cols" }
+      ],
+      "axis": ["← entrée vidéo", "traitement numérique", "sortie matrice LED →"]
+    },
+    {
+      "type": "prose",
+      "heading": "Variabilité, invariants.",
+      "num": "§ 03 — Architecture",
+      "paragraphs": [
+        { "html": "Les projets couvraient aussi bien des écrans monochromes à forte lisibilité que des écrans couleur nécessitant une gestion fine des niveaux de luminosité, sur plusieurs générations de cartes électroniques et résolutions très variables." },
+        { "html": "Malgré cette diversité, les problématiques fondamentales restaient identiques : garantir un affichage stable, sans scintillement, avec un timing précis, tout en restant dans des contraintes strictes de ressources FPGA et de coûts industriels. Cette constance des invariants m'a conduit à développer des <span class=\"hl\">architectures modulaires et réutilisables</span>." }
+      ]
+    },
+    {
+      "type": "vimatrix",
+      "varTitle": "Ce qui change.",
+      "varItems": [
+        { "n": "δ.1", "html": "type de LED (mono / couleur)" },
+        { "n": "δ.2", "html": "profondeur de couleur" },
+        { "n": "δ.3", "html": "fréquence de rafraîchissement" },
+        { "n": "δ.4", "html": "résolution & taille matrice" },
+        { "n": "δ.5", "html": "générations de cartes" },
+        { "n": "δ.6", "html": "contraintes de coût" }
+      ],
+      "invTitle": "Ce qui ne change jamais.",
+      "invItems": [
+        { "n": "i.1", "html": "stabilité d'affichage (zéro scintillement)" },
+        { "n": "i.2", "html": "précision du timing" },
+        { "n": "i.3", "html": "fiabilité terrain (24/7, années)" },
+        { "n": "i.4", "html": "frugalité ressources FPGA" },
+        { "n": "i.5", "html": "maintenabilité long terme" },
+        { "n": "i.6", "html": "reproductibilité industrielle" }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Contraintes fortes & arbitrages.",
+      "num": "§ 04 — Trade-offs",
+      "paragraphs": [
+        { "html": "Le pilotage de matrices LED impose des contraintes sévères, qui ont guidé l'ensemble de mes choix techniques. Voici les cinq qui revenaient à chaque projet, avec, en marge, l'arbitrage que j'ai fini par adopter par défaut." }
+      ]
+    },
+    {
+      "type": "constraints",
+      "rows": [
+        { "id": "C-01", "head": "Timing & synchronisation", "desc": "Précision des horloges et stabilité des pipelines de traitement.", "arbK": "Arbitrage type", "arbV": "Domaines d'horloge isolés, FIFO inter-domaine systématique." },
+        { "id": "C-02", "head": "Bande passante", "desc": "Acheminement des données vidéo sans goulot d'étranglement.", "arbK": "Arbitrage type", "arbV": "Double buffer + scan parallèle plutôt que mono-pipeline." },
+        { "id": "C-03", "head": "Ressources FPGA", "desc": "Compromis qualité ↔ occupation logique permanent.", "arbK": "Arbitrage type", "arbV": "Réutilisation BRAM > LUT, fonctionnalités justifiées une à une." },
+        { "id": "C-04", "head": "Fiabilité terrain", "desc": "Fonctionnement continu pendant des années, sans intervention.", "arbK": "Arbitrage type", "arbV": "Watchdog matériel, recovery autonome, état restauré." },
+        { "id": "C-05", "head": "Maintenabilité", "desc": "Architecture compréhensible et évolutive pour les équipes futures.", "arbK": "Arbitrage type", "arbV": "Découpage fonctionnel clair, conventions de nommage strictes." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Décisions techniques récurrentes.",
+      "num": "§ 05 — Patterns",
+      "paragraphs": [
+        { "html": "Sur ces projets, mes décisions portaient notamment sur la structuration des pipelines de traitement, la gestion fine des horloges et des domaines d'horloge, l'optimisation des flux pour limiter la consommation de ressources, la capacité à faire évoluer un design existant sans régression visible, et la clarté du découpage fonctionnel pour faciliter la maintenance." }
+      ]
+    },
+    {
+      "type": "decisions",
+      "items": [
+        { "num": "D-01 · Pipelines", "t": "Découpage en étages courts", "d": "Latence prévisible, FIFO inter-domaine, registres pipelinés à chaque étage." },
+        { "num": "D-02 · Horloges", "t": "CDC explicite et documenté", "d": "Aucune traversée implicite entre domaines, marquage des chemins faux." },
+        { "num": "D-03 · Mémoire", "t": "BRAM avant LUT, toujours", "d": "Tables & buffers en mémoire bloc, logique LUT réservée au combinatoire." },
+        { "num": "D-04 · Évolutivité", "t": "Paramètres au top-level", "d": "Génériques VHDL pour résolution, scan, profondeur — pas de magic numbers." },
+        { "num": "D-05 · Découpage", "t": "Un module = une responsabilité", "d": "Frontières alignées sur les rôles fonctionnels, pas sur les fichiers historiques." },
+        { "num": "D-06 · Test", "t": "Bancs de simu en pyramide", "d": "Tests unitaires par module, intégration, puis cosimulation hardware-in-the-loop." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "",
+      "num": "",
+      "paragraphs": [
+        { "html": "Ces choix étaient rarement spectaculaires, mais toujours guidés par une logique de <span class=\"hl\">pérennité industrielle</span>." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Apports & héritage dans mon parcours.",
+      "num": "§ 06 — Héritage",
+      "paragraphs": [
+        { "lead": true, "html": "Cette expérience chez JCDecaux a profondément structuré mon approche actuelle de l'ingénierie. Elle m'a appris trois choses qui orientent encore aujourd'hui mes décisions d'architecte." }
+      ]
+    },
+    {
+      "type": "takeaway",
+      "cards": [
+        { "n": "01", "t": "Les contraintes matérielles", "d": "…sont souvent des alliées pour concevoir des architectures simples et solides." },
+        { "n": "02", "t": "Un système visible par tous", "d": "…impose un niveau d'exigence élevé — il n'y a pas de « presque OK »." },
+        { "n": "03", "t": "La rigueur dans le bas niveau", "d": "…conditionne la qualité de tout ce qui se construit par-dessus." }
+      ]
+    },
+    {
+      "type": "pull",
+      "body": "« Ce socle FPGA et électronique numérique explique en grande partie mon orientation ultérieure vers des rôles d'architecte et de responsable système : penser le système dans son ensemble, anticiper les évolutions, et concevoir des solutions fiables dans la durée. »",
+      "sig": "— Julien Aupart · note d'auteur"
+    },
+    {
+      "type": "prose",
+      "heading": "Positionnement de la fiche.",
+      "num": "§ 07 — Lecture",
+      "paragraphs": [
+        { "html": "Cette fiche ne vise pas à détailler chaque projet individuellement, mais à rendre lisible une expertise construite sur la <b>répétition de projets concrets, industriels et contraints</b>. Elle constitue un socle technique fort, sur lequel se sont appuyés mes rôles ultérieurs en architecture logicielle, systèmes embarqués et conception de produits complets." }
+      ]
+    }
+  ]
+}

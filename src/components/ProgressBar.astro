@@ -1,0 +1,36 @@
+---
+// Thin reading-progress bar for long-form pages (deep-dive, role, about).
+---
+
+<div id="progress"><div class="bar"></div></div>
+
+<style>
+  #progress {
+    position: fixed;
+    top: 0; left: var(--rail); right: 0;
+    height: 2px;
+    background: transparent;
+    z-index: 50;
+  }
+  #progress .bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 80ms linear;
+  }
+  @media (max-width: 760px) {
+    #progress { left: 0; }
+  }
+</style>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('#progress .bar');
+  function onScroll() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (bar) bar.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

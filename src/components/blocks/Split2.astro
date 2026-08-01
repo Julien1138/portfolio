@@ -1,0 +1,75 @@
+---
+import PlaceholderFigure from "../PlaceholderFigure.astro";
+
+export interface Props {
+  figTag: string;
+  panelK: string;
+  panelTitle: string;
+  items: string[];
+}
+const { figTag, panelK, panelTitle, items } = Astro.props;
+---
+
+<div class="split2">
+  <PlaceholderFigure tag={figTag} minHeight="240px" />
+  <div class="panel">
+    <span class="k">{panelK}</span>
+    <h4>{panelTitle}</h4>
+    <ul>
+      {items.map((it) => <li set:html={it} />)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .split2 {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+    max-width: var(--maxw);
+  }
+  .split2 .panel {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 22px 22px 24px;
+  }
+  .split2 .panel .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .split2 .panel h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 12px;
+  }
+  .split2 .panel ul {
+    margin: 0; padding: 0; list-style: none;
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .split2 .panel li {
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--rule-2);
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .split2 .panel li:last-child { border-bottom: none; }
+  .split2 .panel li::before {
+    content: "—";
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .split2 { grid-template-columns: 1fr; }
+  }
+</style>

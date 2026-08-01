@@ -1,0 +1,56 @@
+---
+// "## Heading § 01 — Sub" row used on long-form doc pages
+// (deep-dive, role, about).
+export interface Props {
+  title: string;
+  num: string; // "§ 01"
+  sub?: string;
+}
+const { title, num, sub } = Astro.props;
+---
+
+<div class="h2-row">
+  <span class="mark">##</span>
+  <h2>{title}</h2>
+  {sub && <span class="sub">{sub}</span>}
+  <span class="num">{num}</span>
+</div>
+
+<style>
+  .h2-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 24px;
+  }
+  .h2-row .mark {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .h2-row h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .h2-row .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    margin-left: 4px;
+  }
+  .h2-row .num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-left: auto;
+  }
+</style>

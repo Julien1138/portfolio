@@ -1,0 +1,1395 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>R-02 · JCDecaux — Expert FPGA &amp; électronique numérique · Jean Dupont</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:        #F5F1E8;
+    --paper-2:      #EDE7D7;
+    --paper-3:      #E5DEC9;
+    --ink:          #1A1814;
+    --ink-2:        #3D3A33;
+    --ink-3:        #5F594E;
+    --ink-soft:     #8A8478;
+    --rule:         #D4CDB8;
+    --rule-2:       #C9C0A6;
+    --accent:       #C45A2C;
+    --accent-2:     #A14722;
+    --accent-soft:  #F4E4D6;
+    --green:        #5E7A4F;
+
+    --strip-bg:     var(--ink);
+    --strip-fg:     var(--paper);
+    --strip-muted:  #B8B0A0;
+
+    --led-bg:       #15120D;
+    --led-inner:    #1f1d18;
+    --led-border:   #2c2922;
+    --led-amber:    #E8A232;
+    --led-dim:      #3a3a3a;
+
+    --sans:  "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --serif: "Source Serif 4", ui-serif, Georgia, serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+
+    --rail:  204px;
+    --maxw:  960px;
+    --prose: 680px;
+  }
+
+  /* DARK */
+  body[data-theme="dark"] {
+    --paper:        #16140F;
+    --paper-2:      #1E1B14;
+    --paper-3:      #26221A;
+    --ink:          #EFE9D6;
+    --ink-2:        #CFC8B2;
+    --ink-3:        #A39C84;
+    --ink-soft:     #6F6952;
+    --rule:         #2C281D;
+    --rule-2:       #3A3527;
+    --accent:       #E68B4E;
+    --accent-2:     #F0A268;
+    --accent-soft:  #3A2718;
+    --green:        #8FA77A;
+    --strip-bg:     #0E0C08;
+    --strip-fg:     #EFE9D6;
+    --strip-muted:  #6F6952;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Reading progress bar */
+  #progress {
+    position: fixed;
+    top: 0; left: var(--rail); right: 0;
+    height: 2px;
+    background: transparent;
+    z-index: 50;
+  }
+  #progress .bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 80ms linear;
+  }
+
+  /* ─────────── SIDE RAIL ─────────── */
+  .rail {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: var(--rail);
+    border-right: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 28px 22px 22px;
+    display: flex; flex-direction: column;
+    z-index: 10;
+  }
+  .rail .mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .rail .mark .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .rail .mark-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .rail nav {
+    margin-top: 56px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .rail nav a {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    align-items: center;
+    padding: 7px 0 7px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-left: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease;
+  }
+  .rail nav a .num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .rail nav a:hover { color: var(--ink); }
+  .rail nav a.active { color: var(--ink); border-left-color: var(--accent); }
+  .rail nav a.active .num { color: var(--accent); }
+  .rail .grow { flex: 1; }
+  .rail .status {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+  .rail .status .ok { color: var(--green); }
+  .rail .status .ok::before { content: "●"; margin-right: 6px; }
+
+  /* ─────────── LAYOUT ─────────── */
+  main {
+    margin-left: var(--rail);
+    min-height: 100vh;
+  }
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 56px;
+  }
+
+  /* ─────────── DATASHEET STRIP ─────────── */
+  .strip {
+    background: var(--strip-bg);
+    color: var(--strip-fg);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 0;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 56px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .strip .muted { color: var(--strip-muted); }
+  .strip .sep { opacity: 0.4; }
+
+  /* ─────────── HEADER ─────────── */
+  .breadcrumb {
+    padding-top: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .breadcrumb .here { color: var(--ink); }
+  .breadcrumb .sep { color: var(--ink-soft); margin: 0 6px; }
+
+  .doc-header {
+    padding: 28px 0 0;
+  }
+  .doc-header .meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .doc-header h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(44px, 5.6vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+    max-width: 820px;
+  }
+  .doc-header h1 .amp { color: var(--accent); font-style: italic; font-family: var(--serif); font-weight: 500; }
+  .doc-header .lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin: 0;
+    max-width: 720px;
+  }
+  .doc-header .lede em {
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* meta strip */
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 32px;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta-strip .cell {
+    padding: 16px 18px 16px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .meta-strip .cell:last-child { border-right: none; padding-right: 0; }
+  .meta-strip .cell:not(:first-child) { padding-left: 18px; }
+  .meta-strip .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .meta-strip .v {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .meta-strip .v.accent { color: var(--accent); }
+
+  /* chip row */
+  .chip-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 24px;
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+  }
+
+  /* ─────────── HERO FIGURE — LED matrix ─────────── */
+  .led-hero {
+    margin: 40px 0 8px;
+    background: var(--led-bg);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .led-hero svg { display: block; width: 100%; height: auto; }
+  .led-hero .corner {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--strip-muted);
+    opacity: 0.7;
+  }
+  .led-hero .corner.tl { top: 10px; left: 12px; }
+  .led-hero .corner.tr { top: 10px; right: 12px; }
+  .led-hero .corner.bl { bottom: 10px; left: 12px; }
+  .led-hero .corner.br { bottom: 10px; right: 12px; }
+  .fig-caption {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    margin: 8px 0 0;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .fig-caption .ref {
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─────────── SECTIONS / PROSE ─────────── */
+  .section { margin-top: 64px; }
+  .section .h2-row {
+    display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 24px;
+  }
+  .section .h2-row .mark {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .section .h2-row h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .section .h2-row .num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-left: auto;
+  }
+
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+    max-width: var(--prose);
+    text-wrap: pretty;
+  }
+  .prose p.lead {
+    font-size: 20px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .prose p b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .prose .hl {
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  body[data-theme="dark"] .prose .hl { color: var(--accent-2); }
+
+  /* ─────────── PIPELINE DIAGRAM ─────────── */
+  .pipeline {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+  .pipeline .ph {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .pipeline .ph .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .pipeline .ph .ref { color: var(--accent); }
+  .pipeline .grid {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    align-items: stretch;
+  }
+  .pipeline .stage {
+    grid-column: span 2;
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+    padding: 14px 12px 13px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .pipeline .arr {
+    grid-column: span 1;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .pipeline .stage .num {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .pipeline .stage .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .pipeline .stage .d {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .pipeline .axis {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px dotted var(--rule-2);
+    display: flex; justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─────────── VAR / INVARIANTS SPLIT ─────────── */
+  .vimatrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 24px;
+    border: 1px solid var(--rule);
+  }
+  .vimatrix .col { padding: 24px 24px 26px; position: relative; }
+  .vimatrix .col.var { background: var(--paper-2); border-right: 1px solid var(--rule); }
+  .vimatrix .col.inv { background: var(--accent-soft); }
+  body[data-theme="dark"] .vimatrix .col.inv { background: var(--accent-soft); }
+  .vimatrix .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .vimatrix .col.inv .k { color: var(--accent-2); }
+  body[data-theme="dark"] .vimatrix .col.inv .k { color: var(--accent); }
+  .vimatrix .col h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .vimatrix ul { list-style: none; margin: 0; padding: 0; }
+  .vimatrix li {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    color: var(--ink-2);
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-2);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: baseline;
+    gap: 4px;
+  }
+  body[data-theme="dark"] .vimatrix li { color: var(--ink-2); }
+  .vimatrix li:last-child { border-bottom: none; }
+  .vimatrix li .n {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .vimatrix .col.inv li .n { color: var(--accent-2); }
+  body[data-theme="dark"] .vimatrix .col.inv li .n { color: var(--accent); }
+
+  /* ─────────── CONSTRAINTS LIST ─────────── */
+  .constraints {
+    margin-top: 24px;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .constraints .row {
+    display: grid;
+    grid-template-columns: 56px 1.1fr 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .constraints .row:last-child { border-bottom: none; }
+  .constraints .row .id {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .constraints .row .head {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .constraints .row .desc {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 380px;
+  }
+  .constraints .row .arb {
+    border-left: 2px solid var(--accent);
+    padding: 0 0 0 16px;
+  }
+  .constraints .row .arb .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .constraints .row .arb .v {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  /* ─────────── DECISIONS GRID (small row callouts) ─────────── */
+  .decisions {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .decisions .d {
+    padding: 18px 20px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .decisions .d:nth-child(2n) { border-right: none; }
+  .decisions .d:nth-last-child(-n+2) { border-bottom: none; }
+  .decisions .d .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .decisions .d .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    margin-bottom: 4px;
+  }
+  .decisions .d .d-desc {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  /* ─────────── TAKEAWAY CARDS ─────────── */
+  .takeaway {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .takeaway .card {
+    padding: 26px 22px 24px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .takeaway .card .n {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+  }
+  .takeaway .card .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .takeaway .card .d {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+
+  /* ─────────── PULLQUOTE ─────────── */
+  .pull {
+    margin: 32px 0 0;
+    padding: 24px 28px 26px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--accent);
+    max-width: 760px;
+  }
+  .pull .body {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .pull .sig {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 12px;
+  }
+
+  /* ─────────── RELATED ROLES FOOTER ─────────── */
+  .related {
+    margin: 56px 0 0;
+    padding: 22px 0 0;
+    border-top: 1.5px solid var(--ink);
+  }
+  .related .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .related .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .related a.role {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 16px 18px 18px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .related a.role:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .related a.role .ref {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .related a.role .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .related a.role .yrs {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .related a.role.current {
+    background: var(--ink);
+    border-color: var(--ink);
+    pointer-events: none;
+  }
+  .related a.role.current .ref { color: var(--accent-2); }
+  .related a.role.current .t { color: var(--paper); }
+  .related a.role.current .yrs { color: var(--strip-muted); }
+  body[data-theme="dark"] .related a.role.current { background: var(--paper-3); border-color: var(--rule-2); }
+  body[data-theme="dark"] .related a.role.current .t { color: var(--ink); }
+
+  /* ─────────── FOOTER ─────────── */
+  footer.bot {
+    border-top: 1.5px solid var(--ink);
+    margin-top: 56px;
+    padding: 18px 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  footer.bot .inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 56px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  footer.bot .center { text-align: center; }
+  footer.bot a { color: var(--ink); }
+
+  /* ─────────── RESPONSIVE ─────────── */
+  @media (max-width: 1100px) {
+    .meta-strip { grid-template-columns: repeat(3, 1fr); }
+    .meta-strip .cell:nth-child(3) { border-right: none; }
+    .meta-strip .cell:nth-child(4) { padding-left: 0; }
+    .pipeline .grid { grid-template-columns: 1fr; }
+    .pipeline .stage, .pipeline .arr { grid-column: 1; }
+    .pipeline .arr { transform: rotate(90deg); padding: 6px 0; }
+    .vimatrix { grid-template-columns: 1fr; }
+    .vimatrix .col.var { border-right: none; border-bottom: 1px solid var(--rule); }
+    .takeaway { grid-template-columns: 1fr; }
+    .related .grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .rail { display: none; }
+    main { margin-left: 0; }
+    #progress { left: 0; }
+    .container, .strip-inner, footer.bot .inner { padding: 0 24px; }
+    .doc-header h1 { font-size: 40px; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-strip .cell { border-right: none; padding-right: 0 !important; padding-left: 0 !important; padding-top: 12px; padding-bottom: 12px; border-bottom: 1px dotted var(--rule); }
+    .constraints .row { grid-template-columns: 1fr; gap: 10px; }
+    .constraints .row .arb { padding-left: 14px; }
+    .decisions { grid-template-columns: 1fr; }
+    .decisions .d { border-right: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div id="progress"><div class="bar"></div></div>
+
+  <!-- ─────────── SIDE RAIL ─────────── -->
+  <aside class="rail" aria-label="Navigation">
+    <div>
+      <div class="mark"><span class="dot"></span>JD.ENG</div>
+      <div class="mark-sub">PORTFOLIO · v2.6</div>
+    </div>
+    <nav>
+      <a href="#"><span class="num">01</span><span>Index</span></a>
+      <a href="#"><span class="num">02</span><span>Projets</span></a>
+      <a href="#" class="active"><span class="num">03</span><span>Rôles</span></a>
+      <a href="#"><span class="num">04</span><span>Parcours</span></a>
+      <a href="#"><span class="num">05</span><span>Stack</span></a>
+      <a href="#"><span class="num">06</span><span>Contact</span></a>
+    </nav>
+    <div class="grow"></div>
+    <div class="status">
+      <div class="ok">DISPONIBLE Q3 2026</div>
+      <div>Lyon · remote EU</div>
+      <div>maj. 12.05.2026</div>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- ─────────── DATASHEET STRIP ─────────── -->
+    <div class="strip">
+      <div class="strip-inner">
+        <span><span class="muted">FICHE</span> &nbsp; R-02 / RÔLE</span>
+        <span class="sep">·</span>
+        <span><span class="muted">CLIENT</span> JCDecaux</span>
+        <span class="sep">·</span>
+        <span><span class="muted">PÉRIODE</span> 2014 — 2018</span>
+        <span class="sep">·</span>
+        <span><span class="muted">PAGE</span> 04b / 04b</span>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- ─────────── HEADER ─────────── -->
+      <nav class="breadcrumb" aria-label="Fil d'ariane">
+        <span>rôles</span>
+        <span class="sep">/</span>
+        <span class="here">JCDecaux · Expert FPGA &amp; électronique numérique</span>
+      </nav>
+
+      <header class="doc-header">
+        <div class="meta-top">R-02 · Rôle · JCDecaux · ~4 ans</div>
+        <h1>Expert FPGA <span class="amp">&amp;</span> électronique numérique.</h1>
+        <p class="lede">
+          Concevoir et faire évoluer les architectures FPGA qui pilotent les
+          matrices LED d'affichage urbain — un travail de bas niveau dont la
+          qualité se voit, <em>littéralement, de loin</em>.
+        </p>
+
+        <div class="meta-strip">
+          <div class="cell"><span class="k">Entreprise</span><span class="v">JCDecaux</span></div>
+          <div class="cell"><span class="k">Domaine</span><span class="v">Affichage urbain LED</span></div>
+          <div class="cell"><span class="k">Rôle</span><span class="v accent">Expert FPGA · électro num.</span></div>
+          <div class="cell"><span class="k">Projets</span><span class="v">Multiples · plusieurs gén.</span></div>
+          <div class="cell"><span class="k">Lecture</span><span class="v">~ 5 min</span></div>
+        </div>
+
+        <div class="chip-row">
+          <span class="chip">VHDL</span>
+          <span class="chip">Verilog</span>
+          <span class="chip">Lattice</span>
+          <span class="chip">Xilinx</span>
+          <span class="chip">pipelines</span>
+          <span class="chip">horloges multi-domaines</span>
+          <span class="chip">BRAM</span>
+          <span class="chip">gamma LUT</span>
+          <span class="chip">scan matriciel</span>
+          <span class="chip">industrialisation</span>
+        </div>
+      </header>
+
+      <!-- ─────────── HERO FIG — LED matrix ─────────── -->
+      <figure style="margin: 0;">
+        <div class="led-hero" aria-hidden="true">
+          <span class="corner tl">MATRIX · 60 × 14</span>
+          <span class="corner tr">RGB · 8-BIT</span>
+          <span class="corner bl">SCAN 1/16</span>
+          <span class="corner br">REFRESH 1.92 KHz</span>
+          <svg viewBox="0 0 720 168" preserveAspectRatio="xMidYMid meet" id="led-matrix">
+            <!-- circles generated client-side -->
+          </svg>
+        </div>
+        <figcaption class="fig-caption">
+          <span class="ref">FIG. 01</span>
+          Matrice LED stylisée — illustration du domaine, scan ligne par ligne, pixels actifs sur trame de test.
+        </figcaption>
+      </figure>
+
+      <!-- ─────────── §01 CONTEXTE ─────────── -->
+      <section class="section prose" id="contexte">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Contexte.</h2>
+          <span class="num">§ 01 — Contexte</span>
+        </div>
+        <p class="lead">
+          Chez JCDecaux, j'ai travaillé sur de nombreux projets de pilotage de
+          matrices LED destinées à l'affichage urbain — visibles à grande
+          échelle, déployées dans des environnements contraints.
+        </p>
+        <p>
+          Monochromes ou couleur, de tailles et résolutions variables, ces
+          systèmes avaient un point commun : la nécessité d'un fonctionnement
+          parfaitement <span class="hl">fiable, synchronisé et maintenable sur
+          le long terme</span>.
+        </p>
+        <p>
+          L'affichage LED en milieu urbain est un domaine où les contraintes
+          physiques et industrielles s'imposent fortement. Les produits sont
+          exposés en continu, soumis aux conditions extérieures, et toute
+          défaillance est immédiatement visible. Dans ce contexte, la
+          programmation FPGA n'est pas un simple exercice de performance —
+          c'est <b>un élément central de la qualité perçue</b> du produit
+          final.
+        </p>
+      </section>
+
+      <!-- ─────────── §02 LE RÔLE ─────────── -->
+      <section class="section prose" id="role">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Le rôle — expert électronique numérique &amp; FPGA.</h2>
+          <span class="num">§ 02 — Rôle</span>
+        </div>
+        <p>
+          Mon rôle consistait à concevoir et faire évoluer des architectures
+          FPGA capables de piloter efficacement des matrices LED complexes. Il
+          ne s'agissait pas seulement de « faire afficher des pixels », mais
+          de maîtriser l'ensemble de la chaîne numérique : génération des
+          trames, synchronisation temporelle, gestion des horloges, pipelines
+          de données, et optimisation des ressources logiques.
+        </p>
+        <p>
+          Chaque projet apportait ses spécificités, mais reposait sur des
+          principes architecturaux communs. Cette répétition dans la diversité
+          m'a permis de consolider une expertise profonde, orientée
+          <b>robustesse</b> et <b>reproductibilité</b>.
+        </p>
+
+        <!-- Pipeline diagram -->
+        <div class="pipeline" role="figure" aria-label="Pipeline FPGA — chaîne numérique typique">
+          <div class="ph">
+            <span class="lbl"><span class="ref">FIG. 02</span> &nbsp; Pipeline FPGA — chaîne numérique typique</span>
+            <span class="lbl">6 étages · pipelined</span>
+          </div>
+          <div class="grid">
+            <div class="stage"><span class="num">01 · SOURCE</span><span class="t">Trame entrante</span><span class="d">HDMI / SPI</span></div>
+            <div class="arr">→</div>
+            <div class="stage"><span class="num">02 · DECODE</span><span class="t">Découpage</span><span class="d">lignes / pixels</span></div>
+            <div class="arr">→</div>
+            <div class="stage"><span class="num">03 · BUFFER</span><span class="t">Double buffer</span><span class="d">BRAM</span></div>
+            <div class="arr">→</div>
+            <div class="stage"><span class="num">04 · GAMMA</span><span class="t">Correction γ</span><span class="d">LUT couleur</span></div>
+            <div class="arr">→</div>
+            <div class="stage"><span class="num">05 · TIMING</span><span class="t">Horloges</span><span class="d">domaines clk</span></div>
+            <div class="arr">→</div>
+            <div class="stage"><span class="num">06 · DRIVE</span><span class="t">Scan matrice</span><span class="d">rows × cols</span></div>
+          </div>
+          <div class="axis">
+            <span>← entrée vidéo</span>
+            <span>traitement numérique</span>
+            <span>sortie matrice LED →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── §03 VARIABILITÉ ─────────── -->
+      <section class="section prose" id="variabilite">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Variabilité, invariants.</h2>
+          <span class="num">§ 03 — Architecture</span>
+        </div>
+        <p>
+          Les projets couvraient aussi bien des écrans monochromes à forte
+          lisibilité que des écrans couleur nécessitant une gestion fine des
+          niveaux de luminosité, sur plusieurs générations de cartes
+          électroniques et résolutions très variables.
+        </p>
+        <p>
+          Malgré cette diversité, les problématiques fondamentales restaient
+          identiques : garantir un affichage stable, sans scintillement, avec
+          un timing précis, tout en restant dans des contraintes strictes de
+          ressources FPGA et de coûts industriels. Cette constance des
+          invariants m'a conduit à développer des
+          <span class="hl">architectures modulaires et réutilisables</span>.
+        </p>
+
+        <div class="vimatrix">
+          <div class="col var">
+            <span class="k">Variabilité des projets</span>
+            <h4>Ce qui change.</h4>
+            <ul>
+              <li><span class="n">δ.1</span><span>type de LED (mono / couleur)</span></li>
+              <li><span class="n">δ.2</span><span>profondeur de couleur</span></li>
+              <li><span class="n">δ.3</span><span>fréquence de rafraîchissement</span></li>
+              <li><span class="n">δ.4</span><span>résolution &amp; taille matrice</span></li>
+              <li><span class="n">δ.5</span><span>générations de cartes</span></li>
+              <li><span class="n">δ.6</span><span>contraintes de coût</span></li>
+            </ul>
+          </div>
+          <div class="col inv">
+            <span class="k">Invariants architecturaux</span>
+            <h4>Ce qui ne change jamais.</h4>
+            <ul>
+              <li><span class="n">i.1</span><span>stabilité d'affichage (zéro scintillement)</span></li>
+              <li><span class="n">i.2</span><span>précision du timing</span></li>
+              <li><span class="n">i.3</span><span>fiabilité terrain (24/7, années)</span></li>
+              <li><span class="n">i.4</span><span>frugalité ressources FPGA</span></li>
+              <li><span class="n">i.5</span><span>maintenabilité long terme</span></li>
+              <li><span class="n">i.6</span><span>reproductibilité industrielle</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── §04 CONTRAINTES ─────────── -->
+      <section class="section prose" id="contraintes">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Contraintes fortes &amp; arbitrages.</h2>
+          <span class="num">§ 04 — Trade-offs</span>
+        </div>
+        <p>
+          Le pilotage de matrices LED impose des contraintes sévères, qui ont
+          guidé l'ensemble de mes choix techniques. Voici les cinq qui
+          revenaient à chaque projet, avec, en marge, l'arbitrage que j'ai
+          fini par adopter par défaut.
+        </p>
+
+        <div class="constraints">
+          <div class="row">
+            <span class="id">C-01</span>
+            <div>
+              <h4 class="head">Timing &amp; synchronisation</h4>
+              <p class="desc">Précision des horloges et stabilité des pipelines de traitement.</p>
+            </div>
+            <div class="arb">
+              <span class="k">Arbitrage type</span>
+              <span class="v">Domaines d'horloge isolés, FIFO inter-domaine systématique.</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="id">C-02</span>
+            <div>
+              <h4 class="head">Bande passante</h4>
+              <p class="desc">Acheminement des données vidéo sans goulot d'étranglement.</p>
+            </div>
+            <div class="arb">
+              <span class="k">Arbitrage type</span>
+              <span class="v">Double buffer + scan parallèle plutôt que mono-pipeline.</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="id">C-03</span>
+            <div>
+              <h4 class="head">Ressources FPGA</h4>
+              <p class="desc">Compromis qualité ↔ occupation logique permanent.</p>
+            </div>
+            <div class="arb">
+              <span class="k">Arbitrage type</span>
+              <span class="v">Réutilisation BRAM &gt; LUT, fonctionnalités justifiées une à une.</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="id">C-04</span>
+            <div>
+              <h4 class="head">Fiabilité terrain</h4>
+              <p class="desc">Fonctionnement continu pendant des années, sans intervention.</p>
+            </div>
+            <div class="arb">
+              <span class="k">Arbitrage type</span>
+              <span class="v">Watchdog matériel, recovery autonome, état restauré.</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="id">C-05</span>
+            <div>
+              <h4 class="head">Maintenabilité</h4>
+              <p class="desc">Architecture compréhensible et évolutive pour les équipes futures.</p>
+            </div>
+            <div class="arb">
+              <span class="k">Arbitrage type</span>
+              <span class="v">Découpage fonctionnel clair, conventions de nommage strictes.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── §05 DÉCISIONS ─────────── -->
+      <section class="section prose" id="decisions">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Décisions techniques récurrentes.</h2>
+          <span class="num">§ 05 — Patterns</span>
+        </div>
+        <p>
+          Sur ces projets, mes décisions portaient notamment sur la
+          structuration des pipelines de traitement, la gestion fine des
+          horloges et des domaines d'horloge, l'optimisation des flux pour
+          limiter la consommation de ressources, la capacité à faire évoluer
+          un design existant sans régression visible, et la clarté du
+          découpage fonctionnel pour faciliter la maintenance.
+        </p>
+
+        <div class="decisions">
+          <div class="d">
+            <span class="num">D-01 · Pipelines</span>
+            <div class="t">Découpage en étages courts</div>
+            <div class="d-desc">Latence prévisible, FIFO inter-domaine, registres pipelinés à chaque étage.</div>
+          </div>
+          <div class="d">
+            <span class="num">D-02 · Horloges</span>
+            <div class="t">CDC explicite et documenté</div>
+            <div class="d-desc">Aucune traversée implicite entre domaines, marquage des chemins faux.</div>
+          </div>
+          <div class="d">
+            <span class="num">D-03 · Mémoire</span>
+            <div class="t">BRAM avant LUT, toujours</div>
+            <div class="d-desc">Tables &amp; buffers en mémoire bloc, logique LUT réservée au combinatoire.</div>
+          </div>
+          <div class="d">
+            <span class="num">D-04 · Évolutivité</span>
+            <div class="t">Paramètres au top-level</div>
+            <div class="d-desc">Génériques VHDL pour résolution, scan, profondeur — pas de magic numbers.</div>
+          </div>
+          <div class="d">
+            <span class="num">D-05 · Découpage</span>
+            <div class="t">Un module = une responsabilité</div>
+            <div class="d-desc">Frontières alignées sur les rôles fonctionnels, pas sur les fichiers historiques.</div>
+          </div>
+          <div class="d">
+            <span class="num">D-06 · Test</span>
+            <div class="t">Bancs de simu en pyramide</div>
+            <div class="d-desc">Tests unitaires par module, intégration, puis cosimulation hardware-in-the-loop.</div>
+          </div>
+        </div>
+
+        <p style="margin-top: 24px;">
+          Ces choix étaient rarement spectaculaires, mais toujours guidés par
+          une logique de <span class="hl">pérennité industrielle</span>.
+        </p>
+      </section>
+
+      <!-- ─────────── §06 APPORTS ─────────── -->
+      <section class="section prose" id="apports">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Apports &amp; héritage dans mon parcours.</h2>
+          <span class="num">§ 06 — Héritage</span>
+        </div>
+        <p class="lead">
+          Cette expérience chez JCDecaux a profondément structuré mon approche
+          actuelle de l'ingénierie. Elle m'a appris trois choses qui orientent
+          encore aujourd'hui mes décisions d'architecte.
+        </p>
+
+        <div class="takeaway">
+          <div class="card">
+            <div class="n">01</div>
+            <div class="t">Les contraintes matérielles</div>
+            <div class="d">…sont souvent des alliées pour concevoir des architectures simples et solides.</div>
+          </div>
+          <div class="card">
+            <div class="n">02</div>
+            <div class="t">Un système visible par tous</div>
+            <div class="d">…impose un niveau d'exigence élevé — il n'y a pas de « presque OK ».</div>
+          </div>
+          <div class="card">
+            <div class="n">03</div>
+            <div class="t">La rigueur dans le bas niveau</div>
+            <div class="d">…conditionne la qualité de tout ce qui se construit par-dessus.</div>
+          </div>
+        </div>
+
+        <div class="pull">
+          <p class="body">
+            « Ce socle FPGA et électronique numérique explique en grande
+            partie mon orientation ultérieure vers des rôles d'architecte et
+            de responsable système : penser le système dans son ensemble,
+            anticiper les évolutions, et concevoir des solutions fiables dans
+            la durée. »
+          </p>
+          <div class="sig">— Jean Dupont · note d'auteur</div>
+        </div>
+      </section>
+
+      <!-- ─────────── §07 POSITIONNEMENT ─────────── -->
+      <section class="section prose" id="positionnement">
+        <div class="h2-row">
+          <span class="mark">##</span>
+          <h2>Positionnement de la fiche.</h2>
+          <span class="num">§ 07 — Lecture</span>
+        </div>
+        <p>
+          Cette fiche ne vise pas à détailler chaque projet individuellement,
+          mais à rendre lisible une expertise construite sur la
+          <b>répétition de projets concrets, industriels et contraints</b>.
+          Elle constitue un socle technique fort, sur lequel se sont appuyés
+          mes rôles ultérieurs en architecture logicielle, systèmes embarqués
+          et conception de produits complets.
+        </p>
+      </section>
+
+      <!-- ─────────── RELATED ROLES ─────────── -->
+      <section class="related" aria-label="Autres rôles">
+        <div class="k">Autres rôles &nbsp;·&nbsp; parcours non linéaire</div>
+        <div class="grid">
+          <a class="role" href="#">
+            <span class="ref">← R-01 · 2009 → 2011</span>
+            <span class="t">Junior firmware</span>
+            <span class="yrs">Premiers MCU, premières specs</span>
+          </a>
+          <a class="role current" href="#" aria-current="page">
+            <span class="ref">R-02 · 2014 → 2018 · vous êtes ici</span>
+            <span class="t">Expert FPGA &amp; électro num.</span>
+            <span class="yrs">JCDecaux · affichage urbain LED</span>
+          </a>
+          <a class="role" href="#">
+            <span class="ref">R-03 · 2018 → 2021 →</span>
+            <span class="t">Senior medtech</span>
+            <span class="yrs">IEC 62304, dispositifs cliniques</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ─────────── FOOTER ─────────── -->
+    <footer class="bot">
+      <div class="inner">
+        <span>© 2026 · Jean Dupont</span>
+        <span class="center">Fiche rôle compilée avec soin · maj. 12.05.2026</span>
+        <a href="#top">↑ Haut</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ─────────── TWEAKS PANEL ─────────── -->
+  <style>
+    #tweaks-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 260px;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--rule-2);
+      border-radius: 4px;
+      box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.18), 0 2px 6px -2px rgba(0, 0, 0, 0.08);
+      font-family: var(--sans);
+      font-size: 13px;
+      z-index: 100;
+      display: none;
+      overflow: hidden;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+    }
+    #tweaks-panel.open { display: block; }
+    #tweaks-panel .tp-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper-2);
+    }
+    #tweaks-panel .tp-title {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    #tweaks-panel .tp-close {
+      background: none; border: none; cursor: pointer;
+      color: var(--ink-soft); font-size: 16px; line-height: 1;
+      padding: 2px 6px; border-radius: 2px;
+      transition: color 150ms ease, background 150ms ease;
+    }
+    #tweaks-panel .tp-close:hover { color: var(--ink); background: var(--paper-3); }
+    #tweaks-panel .tp-section { padding: 14px 14px 16px; }
+    #tweaks-panel .tp-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    #tweaks-panel .tp-label { font-family: var(--sans); font-size: 13px; color: var(--ink-2); }
+    #tweaks-panel .tp-toggle {
+      position: relative; width: 38px; height: 22px;
+      background: var(--rule-2); border-radius: 11px;
+      border: none; cursor: pointer; padding: 0;
+      transition: background 200ms ease; flex-shrink: 0;
+    }
+    #tweaks-panel .tp-toggle::after {
+      content: ""; position: absolute;
+      top: 2px; left: 2px;
+      width: 18px; height: 18px;
+      background: var(--paper); border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+      transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #tweaks-panel .tp-toggle[aria-checked="true"] { background: var(--accent); }
+    #tweaks-panel .tp-toggle[aria-checked="true"]::after { transform: translateX(16px); }
+    #tweaks-panel .tp-note {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--ink-soft); letter-spacing: 0.05em;
+      margin-top: 8px; line-height: 1.5;
+    }
+  </style>
+
+  <div id="tweaks-panel" role="dialog" aria-label="Tweaks">
+    <div class="tp-head">
+      <span class="tp-title">Tweaks</span>
+      <button class="tp-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="tp-section">
+      <div class="tp-row">
+        <label class="tp-label" for="tp-dark">Thème sombre</label>
+        <button id="tp-dark" class="tp-toggle" role="switch" aria-checked="false" aria-label="Basculer le thème sombre"></button>
+      </div>
+      <div class="tp-note">Bascule la palette papier ↔ sombre. La donnée persiste.</div>
+    </div>
+  </div>
+
+  <script>
+    // ─── Build LED matrix figure ─────────────────────────────────
+    (function buildLed() {
+      const svg = document.getElementById('led-matrix');
+      if (!svg) return;
+      const cols = 60, rows = 14, cell = 12;
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#C45A2C';
+      const amber  = '#E8A232';
+      const dim    = '#3a3a3a';
+      // helper to decide if a pixel is lit; mix two cheap seeds for a typographic feel
+      function on(x, y) {
+        return ((x * 31 + y * 17) % 11 === 0) || ((x + y) % 23 === 0);
+      }
+      let out = '';
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const lit = on(x, y);
+          const band = y >= 4 && y <= 9;
+          const fill = lit ? (band ? accent : amber) : dim;
+          const r = lit ? (band ? 3.2 : 2.4) : 1.4;
+          const op = lit ? 0.95 : 0.42;
+          const cx = x * cell + cell / 2;
+          const cy = y * cell + cell / 2;
+          out += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" opacity="${op}"/>`;
+        }
+      }
+      svg.innerHTML = out;
+    })();
+
+    // ─── Reading progress ────────────────────────────────────────
+    (function progress() {
+      const bar = document.querySelector('#progress .bar');
+      if (!bar) return;
+      function tick() {
+        const h = document.documentElement;
+        const max = (h.scrollHeight - h.clientHeight);
+        const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+        bar.style.width = pct + '%';
+      }
+      document.addEventListener('scroll', tick, { passive: true });
+      tick();
+    })();
+
+    // ─── Tweaks panel — host protocol ────────────────────────────
+    (function () {
+      const TWEAKS = /*EDITMODE-BEGIN*/{
+        "darkMode": false
+      }/*EDITMODE-END*/;
+
+      const state = Object.assign({}, TWEAKS);
+      const panel  = document.getElementById('tweaks-panel');
+      const toggle = document.getElementById('tp-dark');
+      const close  = panel.querySelector('.tp-close');
+
+      function applyTheme() {
+        document.body.dataset.theme = state.darkMode ? 'dark' : 'light';
+        toggle.setAttribute('aria-checked', state.darkMode ? 'true' : 'false');
+      }
+      applyTheme();
+
+      function showPanel() { panel.classList.add('open'); }
+      function hidePanel() {
+        panel.classList.remove('open');
+        try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (_) {}
+      }
+
+      window.addEventListener('message', function (e) {
+        const data = e && e.data;
+        if (!data || typeof data !== 'object') return;
+        if (data.type === '__activate_edit_mode')   showPanel();
+        if (data.type === '__deactivate_edit_mode') panel.classList.remove('open');
+      });
+
+      try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (_) {}
+
+      toggle.addEventListener('click', function () {
+        state.darkMode = !state.darkMode;
+        applyTheme();
+        try {
+          window.parent.postMessage({
+            type: '__edit_mode_set_keys',
+            edits: { darkMode: state.darkMode }
+          }, '*');
+        } catch (_) {}
+      });
+
+      close.addEventListener('click', hidePanel);
+    })();
+  </script>
+</body>
+</html>

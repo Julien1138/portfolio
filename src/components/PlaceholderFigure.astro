@@ -1,0 +1,67 @@
+---
+// Hatched placeholder box standing in for a real photo/screenshot,
+// per README: "Prévoir des slots d'image réels ... à la place des
+// placeholders lors de l'implémentation." Swap for a real <img> later.
+export interface Props {
+  tag: string;
+  minHeight?: string;
+  dark?: boolean;
+  class?: string;
+}
+const { tag, minHeight = "240px", dark = false, class: className = "" } = Astro.props;
+---
+
+<div class={`ph-fig ${dark ? "ph-fig--dark" : ""} ${className}`} style={`min-height:${minHeight}`}>
+  <div class="ph-fig-inner">
+    <span class="tag">{tag}</span>
+  </div>
+</div>
+
+<style>
+  .ph-fig {
+    position: relative;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .ph-fig-inner {
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--rule-2);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgba(26, 24, 20, 0.04) 14px 15px),
+      var(--paper-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  :global(html[data-theme="dark"]) .ph-fig-inner {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgba(239, 233, 214, 0.05) 14px 15px),
+      var(--paper-3);
+  }
+  .ph-fig-inner .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 6px 12px;
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+  }
+
+  .ph-fig--dark {
+    background: var(--fpga-bg);
+  }
+  .ph-fig--dark .ph-fig-inner {
+    background: var(--fpga-inner);
+    border-color: var(--fpga-border);
+    color: var(--accent);
+  }
+  .ph-fig--dark .ph-fig-inner .tag {
+    background: var(--fpga-bg);
+    color: var(--accent);
+    border-color: var(--fpga-border);
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+export interface Item {
+  ref: string;
+  title: string;
+  sub: string;
+  href: string;
+  current?: boolean;
+}
+export interface Props {
+  label: string;
+  items: Item[];
+}
+const { label, items } = Astro.props;
+---
+
+<section class="related" aria-label={label}>
+  <div class="k">{label}</div>
+  <div class="grid">
+    {items.map((it) => (
+      <a class={`card ${it.current ? "current" : ""}`} href={it.href} aria-current={it.current ? "page" : undefined}>
+        <span class="ref">{it.ref}</span>
+        <span class="t">{it.title}</span>
+        <span class="d">{it.sub}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .related {
+    margin: 56px 0 0;
+    padding: 22px 0 0;
+    border-top: 1.5px solid var(--ink);
+  }
+  .related .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .related .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+  .related a.card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 18px 18px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    transition: background 150ms ease, border-color 150ms ease;
+  }
+  .related a.card:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .related a.card .ref {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .related a.card .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .related a.card .d {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .related a.card.current {
+    background: var(--ink);
+    border-color: var(--ink);
+    pointer-events: none;
+  }
+  .related a.card.current .ref { color: var(--accent-2); }
+  .related a.card.current .t { color: var(--paper); }
+  .related a.card.current .d { color: var(--strip-muted); }
+  :global(html[data-theme="dark"]) .related a.card.current {
+    background: var(--paper-3);
+    border-color: var(--rule-2);
+  }
+  :global(html[data-theme="dark"]) .related a.card.current .t { color: var(--ink); }
+
+  @media (max-width: 1100px) {
+    .related .grid { grid-template-columns: 1fr; }
+  }
+</style>

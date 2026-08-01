@@ -1,0 +1,117 @@
+---
+export interface Stage {
+  num: string;
+  t: string;
+  d: string;
+}
+export interface Props {
+  figLabel: string;
+  sub: string;
+  stages: Stage[];
+  axis: [string, string, string];
+}
+const { figLabel, sub, stages, axis } = Astro.props;
+---
+
+<div class="pipeline" role="figure" aria-label="Pipeline — chaîne numérique typique">
+  <div class="ph">
+    <span class="lbl"><span class="ref">{figLabel}</span></span>
+    <span class="lbl">{sub}</span>
+  </div>
+  <div class="grid">
+    {stages.map((stage, i) => (
+      <>
+        <div class="stage">
+          <span class="num">{stage.num}</span>
+          <span class="t">{stage.t}</span>
+          <span class="d">{stage.d}</span>
+        </div>
+        {i < stages.length - 1 && <div class="arr">→</div>}
+      </>
+    ))}
+  </div>
+  <div class="axis">
+    <span>{axis[0]}</span>
+    <span>{axis[1]}</span>
+    <span>{axis[2]}</span>
+  </div>
+</div>
+
+<style>
+  .pipeline {
+    margin-top: 24px;
+    max-width: var(--maxw);
+    padding: 24px;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+  .pipeline .ph {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 18px;
+  }
+  .pipeline .ph .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .pipeline .ph .ref { color: var(--accent); }
+  .pipeline .grid {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    align-items: stretch;
+  }
+  .pipeline .stage {
+    grid-column: span 2;
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+    padding: 14px 12px 13px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .pipeline .arr {
+    grid-column: span 1;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .pipeline .stage .num {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .pipeline .stage .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .pipeline .stage .d {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .pipeline .axis {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px dotted var(--rule-2);
+    display: flex; justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1100px) {
+    .pipeline .grid { grid-template-columns: 1fr; }
+    .pipeline .stage, .pipeline .arr { grid-column: 1; }
+    .pipeline .arr { transform: rotate(90deg); padding: 6px 0; }
+  }
+</style>

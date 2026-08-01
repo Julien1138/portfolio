@@ -1,0 +1,23 @@
+[
+  { "id": "emb-01", "family": "EMB", "ref": "EMB-01", "category": "Langages bas-niveau", "critical": true, "detail": "C, C++17, assembleur ARM ponctuel, scripts Python pour outillage", "since": 2009, "years": 17, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "emb-02", "family": "EMB", "ref": "EMB-02", "category": "RTOS & bare-metal", "critical": false, "detail": "FreeRTOS, Zephyr (lecture), bare-metal cooperative loop", "since": 2012, "years": 14, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "emb-03", "family": "EMB", "ref": "EMB-03", "category": "MCU & SoC", "critical": true, "detail": "ESP32 (S3 / C3), STM32 (F0 / F4 / H7), Nordic nRF52, RP2040", "since": 2009, "years": 17, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "emb-04", "family": "EMB", "ref": "EMB-04", "category": "Logique programmable", "critical": false, "detail": "VHDL, Verilog (lecture), Lattice ECP5, Xilinx 7-series, simulation GHDL", "since": 2017, "years": 9, "maturity": 4, "lastUsage": "weekly", "lastYear": 2025 },
+  { "id": "emb-05", "family": "EMB", "ref": "EMB-05", "category": "Bus & protocoles", "critical": false, "detail": "UART, SPI, I²C, CAN, Modbus RTU/TCP, MQTT, LoRaWAN", "since": 2009, "years": 17, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "emb-06", "family": "EMB", "ref": "EMB-06", "category": "Sécurité embarquée", "critical": false, "detail": "mbedTLS, OTA signée, secure boot ESP32, clés HSM en provisioning", "since": 2020, "years": 6, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+
+  { "id": "bck-01", "family": "BCK", "ref": "BCK-01", "category": "API & frameworks", "critical": true, "detail": "Symfony 6/7, API Platform, NestJS, FastAPI ponctuel", "since": 2014, "years": 12, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "bck-02", "family": "BCK", "ref": "BCK-02", "category": "Bases & séries temp.", "critical": true, "detail": "PostgreSQL 16, TimescaleDB, Redis, MariaDB legacy", "since": 2014, "years": 12, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "bck-03", "family": "BCK", "ref": "BCK-03", "category": "Messaging & bus", "critical": false, "detail": "MQTT, AMQP / RabbitMQ, Symfony Messenger, NATS (POC)", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+
+  { "id": "frt-01", "family": "FRT", "ref": "FRT-01", "category": "SPA & framework", "critical": false, "detail": "Vue 3 (Pinia, Composition), React 18, TypeScript", "since": 2017, "years": 9, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "frt-02", "family": "FRT", "ref": "FRT-02", "category": "Build & bundling", "critical": false, "detail": "Vite, Webpack (legacy), Astro, esbuild", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "frt-03", "family": "FRT", "ref": "FRT-03", "category": "Style & design tokens", "critical": false, "detail": "Tailwind, SCSS modules, tokens JSON, design-systems légers", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+
+  { "id": "inf-01", "family": "INF", "ref": "INF-01", "category": "Containers & orchestration", "critical": false, "detail": "Docker, Compose, multi-stage builds, Kubernetes (light), ArgoCD", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "inf-02", "family": "INF", "ref": "INF-02", "category": "CI/CD", "critical": false, "detail": "GitLab CI, GitHub Actions, pipelines signés / reproductibles", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "inf-03", "family": "INF", "ref": "INF-03", "category": "Observabilité", "critical": false, "detail": "Prometheus, Grafana, Loki, OpenTelemetry, dashboards ad-hoc", "since": 2021, "years": 5, "maturity": 3, "lastUsage": "weekly", "lastYear": 2026 },
+  { "id": "inf-04", "family": "INF", "ref": "INF-04", "category": "OS & système", "critical": false, "detail": "Linux (Debian / Alpine), systemd, scripts shell, Ansible léger", "since": 2009, "years": 17, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+
+  { "id": "mth-01", "family": "MTH", "ref": "MTH-01", "category": "Spec-driven & audits", "critical": true, "detail": "Traçabilité spec → code → test, ADR, IEC 62304, audits internes", "since": 2014, "years": 12, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 }
+]

@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
+
+const roles = (await getCollection("roles")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Rôles — Jean Dupont"
+  active={3}
+  container="doc"
+  stripFields={[
+    { label: "FICHE", value: "JD-ENG / RÔLES" },
+    { label: "SECTION", value: "03 — RÔLES" },
+    { label: "VUE", value: "CARTES" },
+    { label: "PAGE", value: "01 / 01" },
+  ]}
+>
+  <div class="container">
+    <header class="page-head">
+      <div class="meta-top">§ 03 · Rôles — expertise transversale</div>
+      <h1>Un métier, plusieurs casquettes.</h1>
+      <p class="lede">
+        Chaque rôle regroupe <em>plusieurs projets sous un même client ou une même expertise</em> —
+        une lecture par posture plutôt que par mission ponctuelle.
+      </p>
+    </header>
+
+    <div class="roles-grid">
+      <RelatedGrid
+        label={`${roles.length} rôles documentés`}
+        items={roles.map((r) => ({
+          ref: `${r.data.ref} · ${r.data.period}`,
+          title: r.data.title,
+          sub: `${r.data.client} · ${r.data.domain}`,
+          href: `/roles/${r.id}/`,
+        }))}
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head { padding: 44px 0 0; }
+  .page-head .meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .page-head h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(44px, 5.6vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+  }
+  .page-head .lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin: 0;
+    max-width: 660px;
+  }
+  .page-head .lede :global(em) { color: var(--ink); font-style: italic; font-weight: 500; }
+
+  .roles-grid { margin-top: 8px; padding-bottom: 40px; }
+  .roles-grid :global(.related) { border-top: none; margin-top: 0; padding-top: 0; }
+
+  @media (max-width: 760px) {
+    .page-head h1 { font-size: 40px; }
+    .page-head .lede { font-size: 17px; }
+  }
+</style>

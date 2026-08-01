@@ -1,0 +1,32 @@
+---
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+export interface Props {
+  crumbs: Crumb[]; // last item is "here" (no href)
+}
+const { crumbs } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label="Fil d'ariane">
+  {crumbs.map((c, i) => (
+    <>
+      {i > 0 && <span class="sep">/</span>}
+      {c.href ? <a href={c.href}>{c.label}</a> : <span class="here">{c.label}</span>}
+    </>
+  ))}
+</nav>
+
+<style>
+  .breadcrumb {
+    padding-top: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .breadcrumb .here { color: var(--ink); }
+  .breadcrumb .sep { color: var(--ink-soft); margin: 0 6px; }
+  .breadcrumb a:hover { color: var(--ink); }
+</style>

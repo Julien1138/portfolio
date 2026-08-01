@@ -1,0 +1,36 @@
+---
+export interface Props {
+  as?: "span" | "li";
+  tone?: "default" | "accent" | "fill";
+  class?: string;
+}
+const { as: Tag = "span", tone = "default", class: className = "" } = Astro.props;
+---
+
+<Tag class={`chip ${tone !== "default" ? `chip--${tone}` : ""} ${className}`}>
+  <slot />
+</Tag>
+
+<style>
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .chip--accent {
+    background: var(--accent-soft);
+    color: var(--accent-2);
+    border-color: var(--accent);
+  }
+  .chip--fill {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+</style>

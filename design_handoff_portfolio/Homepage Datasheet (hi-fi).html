@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jean Dupont — Architecte système</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:        #F5F1E8;
+    --paper-2:      #EDE7D7;
+    --paper-3:      #E5DEC9;
+    --ink:          #1A1814;
+    --ink-2:        #3D3A33;
+    --ink-3:        #5F594E;
+    --ink-soft:     #8A8478;
+    --rule:         #D4CDB8;
+    --rule-2:       #C9C0A6;
+    --accent:       #C45A2C;
+    --accent-2:     #A14722;
+    --accent-soft:  #F4E4D6;
+    --green:        #5E7A4F;
+
+    /* Surface tokens that may override defaults per-theme */
+    --strip-bg:     var(--ink);
+    --strip-fg:     var(--paper);
+    --strip-muted:  #B8B0A0;
+    --bom-head-bg:  var(--ink);
+    --bom-head-fg:  var(--paper);
+    --portrait-bg:  #EDE7D7;
+    --portrait-fg:  #1A1814;
+    --hatch-color:  #1A1814;
+    --fpga-bg:      #1A1814;
+    --fpga-inner:   #1f1d18;
+    --fpga-border:  #2c2922;
+
+    --sans:  "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --serif: "Source Serif 4", "Source Serif Pro", ui-serif, Georgia, serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+
+    --rail:  204px;
+    --maxw:  1180px;
+  }
+
+  /* ────── DARK THEME ────── */
+  body[data-theme="dark"] {
+    --paper:        #16140F;
+    --paper-2:      #1E1B14;
+    --paper-3:      #26221A;
+    --ink:          #EFE9D6;
+    --ink-2:        #CFC8B2;
+    --ink-3:        #A39C84;
+    --ink-soft:     #6F6952;
+    --rule:         #2C281D;
+    --rule-2:       #3A3527;
+    --accent:       #E68B4E;
+    --accent-2:     #F0A268;
+    --accent-soft:  #3A2718;
+    --green:        #8FA77A;
+
+    --strip-bg:     #0E0C08;
+    --strip-fg:     #EFE9D6;
+    --strip-muted:  #6F6952;
+    --bom-head-bg:  #0E0C08;
+    --bom-head-fg:  #EFE9D6;
+    --portrait-bg:  #26221A;
+    --portrait-fg:  #EFE9D6;
+    --hatch-color:  #EFE9D6;
+    --fpga-bg:      #0E0C08;
+    --fpga-inner:   #16140F;
+    --fpga-border:  #2C281D;
+  }
+  body[data-theme="dark"] .project .img-inner {
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 14px,
+        rgba(239, 233, 214, 0.05) 14px 15px
+      ),
+      var(--paper-3);
+  }
+  body[data-theme="dark"] .hero p.lead em.hl {
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    color: var(--accent-2);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  body {
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ────────────────────────────────────────────────────────────
+     SIDE RAIL
+     ──────────────────────────────────────────────────────────── */
+  .rail {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--rail);
+    border-right: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 28px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+  }
+  .rail .mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rail .mark .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .rail .mark-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .rail nav {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rail nav a {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    align-items: center;
+    padding: 7px 0 7px 10px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-left: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+  }
+  .rail nav a .num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .rail nav a:hover { color: var(--ink); }
+  .rail nav a.active {
+    color: var(--ink);
+    border-left-color: var(--accent);
+  }
+  .rail nav a.active .num { color: var(--accent); }
+  .rail .grow { flex: 1; }
+  .rail .status {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+  .rail .status .ok {
+    color: var(--green);
+  }
+  .rail .status .ok::before {
+    content: "●";
+    margin-right: 6px;
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     LAYOUT
+     ──────────────────────────────────────────────────────────── */
+  main {
+    margin-left: var(--rail);
+    min-height: 100vh;
+  }
+  .page {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     DATASHEET HEADER STRIP
+     ──────────────────────────────────────────────────────────── */
+  .strip {
+    background: var(--strip-bg);
+    color: var(--strip-fg);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 0;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .strip span.sep { opacity: 0.4; }
+  .strip span.muted { color: var(--strip-muted); }
+
+  /* ────────────────────────────────────────────────────────────
+     HERO (datasheet identity)
+     ──────────────────────────────────────────────────────────── */
+  .hero {
+    border-bottom: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 0;
+  }
+  .hero-left {
+    padding: 56px 60px 56px 0;
+    border-right: 1px solid var(--rule);
+    padding-right: 56px;
+  }
+  .hero-right {
+    padding: 56px 0 56px 56px;
+  }
+  .field-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(58px, 7vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .hero h1 .last { color: var(--accent); }
+  .hero .role {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink-2);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .hero .role b {
+    font-weight: 500;
+    font-style: normal;
+    color: var(--ink);
+  }
+  .hero p.lead {
+    margin: 28px 0 0;
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 520px;
+    text-wrap: pretty;
+  }
+  .hero p.lead em.hl {
+    font-style: normal;
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  .portrait-wrap {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .portrait {
+    width: 112px; height: 112px;
+    border-radius: 2px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule-2);
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .portrait svg { display: block; width: 100%; height: 100%; }
+  .portrait::after {
+    content: "";
+    position: absolute; inset: 0;
+    box-shadow: inset 0 -28px 32px -20px rgba(26, 24, 20, 0.15);
+    pointer-events: none;
+  }
+  .portrait-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+  }
+  .portrait-meta b { color: var(--ink); font-weight: 500; }
+
+  /* Characteristics table */
+  .specs {
+    font-family: var(--mono);
+    font-size: 12.5px;
+  }
+  .specs .row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--rule-2);
+    align-items: baseline;
+  }
+  .specs .row:last-child { border-bottom: none; }
+  .specs .k {
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+  }
+  .specs .v { color: var(--ink); }
+  .specs .v.accent { color: var(--accent); }
+  .specs .v .badge {
+    display: inline-block;
+    padding: 1px 7px;
+    background: var(--accent-soft);
+    color: var(--accent-2);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    margin-left: 6px;
+    border-radius: 2px;
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     SECTION HEADER
+     ──────────────────────────────────────────────────────────── */
+  section.block { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  section.block:last-of-type { border-bottom: none; }
+  .section-head {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-head h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1;
+  }
+  .section-head .kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  /* ────────────────────────────────────────────────────────────
+     BOM (stack matrix)
+     ──────────────────────────────────────────────────────────── */
+  .bom-intro {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    max-width: 640px;
+    margin: 0 0 22px;
+  }
+  table.bom {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  table.bom thead th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bom-head-fg);
+    background: var(--bom-head-bg);
+    font-weight: 500;
+  }
+  table.bom thead th:first-child { padding-left: 18px; }
+  table.bom tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: baseline;
+  }
+  table.bom tbody td:first-child { padding-left: 18px; }
+  table.bom tbody tr:nth-child(even) td { background: var(--paper-2); }
+  table.bom tbody tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+  table.bom tbody tr:hover td { background: var(--accent-soft); }
+  td.ref { color: var(--accent); letter-spacing: 0.08em; }
+  td.cat { color: var(--ink); font-weight: 500; font-family: var(--sans); font-size: 13.5px; }
+  td.det { color: var(--ink-3); }
+  td.yrs { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  td.lvl { color: var(--ink); }
+  .bars { display: inline-flex; gap: 2px; vertical-align: -1px; }
+  .bars span {
+    display: inline-block;
+    width: 8px; height: 11px;
+    background: var(--ink);
+  }
+  .bars span.off { background: var(--rule); }
+
+  /* ────────────────────────────────────────────────────────────
+     PROJECT CARDS (alternated)
+     ──────────────────────────────────────────────────────────── */
+  .projects { display: flex; flex-direction: column; gap: 0; }
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule);
+    align-items: stretch;
+  }
+  .project:last-child { border-bottom: 1px solid var(--rule); }
+  .project.right { grid-template-columns: 1fr 1fr; }
+  .project .img {
+    background: var(--paper-2);
+    border-right: 1px solid var(--rule);
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+  }
+  .project.right .img {
+    order: 2;
+    border-right: none;
+    border-left: 1px solid var(--rule);
+  }
+  .project .img-inner {
+    position: absolute;
+    inset: 24px;
+    border: 1px solid var(--rule-2);
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 14px,
+        rgba(26, 24, 20, 0.04) 14px 15px
+      ),
+      var(--paper-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .project .img-inner .tag {
+    background: var(--paper);
+    padding: 5px 10px;
+    border: 1px solid var(--rule-2);
+  }
+  .project .body {
+    padding: 48px 48px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .project .body .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .project .body .top .meta-r { color: var(--ink-soft); }
+  .project h3 {
+    margin: 14px 0 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+  .project p.desc {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 22px;
+    max-width: 520px;
+  }
+  .project .kpis {
+    display: flex;
+    gap: 28px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+  .project .kpi { display: flex; flex-direction: column; gap: 2px; }
+  .project .kpi .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .project .kpi .v {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .project .kpi .v.accent { color: var(--accent); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+  }
+  .project .more {
+    margin-top: auto;
+    padding-top: 22px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .project .more .arrow {
+    transition: transform 200ms ease;
+    display: inline-block;
+  }
+  .project:hover .more { color: var(--accent); }
+  .project:hover .more .arrow { transform: translateX(4px); }
+  .project:hover .img-inner { background-color: var(--accent-soft); }
+
+  /* Custom hero-image SVGs per project */
+  .img-iot { background: linear-gradient(180deg, var(--paper-3) 0%, var(--paper-2) 100%); }
+  .img-saas { background: var(--paper-2); }
+  .img-fpga { background: var(--fpga-bg); }
+
+  /* ────────────────────────────────────────────────────────────
+     CTA / CONTACT
+     ──────────────────────────────────────────────────────────── */
+  .cta {
+    padding: 80px 0 96px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .cta h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0;
+    max-width: 540px;
+  }
+  .cta h2 .em { color: var(--accent); font-style: italic; font-family: var(--serif); font-weight: 500; }
+  .cta p {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin: 22px 0 0;
+    max-width: 480px;
+  }
+  .cta-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .cta-links a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    transition: color 150ms ease, padding-left 150ms ease;
+  }
+  .cta-links a:first-child { border-top: 1px solid var(--rule); }
+  .cta-links a .k {
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cta-links a:hover { color: var(--accent); padding-left: 4px; }
+  .cta-links a:hover .k { color: var(--accent); }
+
+  /* ────────────────────────────────────────────────────────────
+     FOOTER
+     ──────────────────────────────────────────────────────────── */
+  footer.bot {
+    border-top: 1.5px solid var(--ink);
+    padding: 18px 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  footer.bot .inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  footer.bot .center { text-align: center; }
+  footer.bot a { color: var(--ink); }
+
+  /* ────────────────────────────────────────────────────────────
+     RESPONSIVE
+     ──────────────────────────────────────────────────────────── */
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 48px 0; border-right: none; border-bottom: 1px solid var(--rule); padding-right: 0; }
+    .hero-right { padding: 48px 0; }
+    .project, .project.right { grid-template-columns: 1fr; }
+    .project .img { border-right: none; border-bottom: 1px solid var(--rule); min-height: 240px; }
+    .project.right .img { order: 0; border-left: none; border-bottom: 1px solid var(--rule); }
+    .cta { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 760px) {
+    .rail { display: none; }
+    main { margin-left: 0; }
+    .page, .strip-inner, footer.bot .inner { padding: 0 24px; }
+    .hero h1 { font-size: 52px; }
+    .section-head { grid-template-columns: 1fr; gap: 6px; }
+    .section-head h2 { font-size: 26px; }
+    .project .body { padding: 28px 24px; }
+    .project .kpis { gap: 18px; flex-wrap: wrap; }
+    .cta h2 { font-size: 36px; }
+    table.bom { font-size: 11px; }
+    table.bom thead th:nth-child(3),
+    table.bom tbody td:nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ─────────── SIDE RAIL ─────────── -->
+  <aside class="rail" aria-label="Navigation">
+    <div>
+      <div class="mark"><span class="dot"></span>JD.ENG</div>
+      <div class="mark-sub">PORTFOLIO · v2.6</div>
+    </div>
+    <nav>
+      <a href="#" class="active"><span class="num">01</span><span>Index</span></a>
+      <a href="#projects"><span class="num">02</span><span>Projets</span></a>
+      <a href="#"><span class="num">03</span><span>Rôles</span></a>
+      <a href="#"><span class="num">04</span><span>Parcours</span></a>
+      <a href="#"><span class="num">05</span><span>Stack</span></a>
+      <a href="#"><span class="num">06</span><span>Contact</span></a>
+    </nav>
+    <div class="grow"></div>
+    <div class="status">
+      <div class="ok">DISPONIBLE Q3 2026</div>
+      <div>Lyon · remote EU</div>
+      <div>maj. 12.05.2026</div>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- ─────────── DATASHEET HEADER STRIP ─────────── -->
+    <div class="strip">
+      <div class="strip-inner">
+        <span><span class="muted">FICHE</span> &nbsp; JD-ENG / ARCHITECTE</span>
+        <span class="sep">·</span>
+        <span><span class="muted">RÉV</span> 2.6 — 2026.05</span>
+        <span class="sep">·</span>
+        <span><span class="muted">DOC</span> PORTFOLIO / HOME</span>
+        <span class="sep">·</span>
+        <span><span class="muted">PAGE</span> 01 / 01</span>
+      </div>
+    </div>
+
+    <!-- ─────────── HERO ─────────── -->
+    <div class="page">
+      <header class="hero">
+
+        <div class="hero-left">
+          <span class="field-label">Désignation</span>
+          <h1>Jean&nbsp;<span class="last">Dupont.</span></h1>
+          <div class="role">
+            <b>Architecte système &amp; embarqué.</b> Du capteur au dashboard —
+            une seule pile, conçue pour durer.
+          </div>
+          <p class="lead">
+            Ingénieur indépendant depuis quinze ans. Je conçois, code et industrialise
+            des systèmes complexes : firmware temps réel, électronique numérique, FPGA,
+            backend SaaS, interfaces métier. <em class="hl">Je prends la responsabilité
+            de la chaîne entière</em>, du transistor au pixel.
+          </p>
+
+          <div class="portrait-wrap">
+            <div class="portrait" aria-label="Portrait">
+              <!-- Stylized portrait placeholder -->
+              <svg viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+                    <line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width="0.6" opacity="0.18"/>
+                  </pattern>
+                </defs>
+                <rect width="112" height="112" fill="var(--portrait-bg)"/>
+                <rect width="112" height="112" fill="url(#hatch)" style="color: var(--hatch-color);"/>
+                <circle cx="56" cy="46" r="18" fill="var(--portrait-fg)"/>
+                <path d="M22 112 C 22 82, 38 70, 56 70 C 74 70, 90 82, 90 112 Z" fill="var(--portrait-fg)"/>
+                <circle cx="56" cy="46" r="18" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+              </svg>
+            </div>
+            <div class="portrait-meta">
+              <b>JEAN DUPONT</b><br/>
+              Lyon, France · b. 1986<br/>
+              Indépendant depuis 2014
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <span class="field-label">Caractéristiques</span>
+          <div class="specs">
+            <div class="row"><span class="k">Expérience</span><span class="v">15 ans <span class="badge">depuis 2009</span></span></div>
+            <div class="row"><span class="k">Domaines</span><span class="v">Hardware · Embarqué · FPGA · Backend · Frontend</span></div>
+            <div class="row"><span class="k">Rôles</span><span class="v">Architect · Tech Lead · CTO intérim</span></div>
+            <div class="row"><span class="k">Langages</span><span class="v">C, C++, VHDL, TypeScript, PHP, Python</span></div>
+            <div class="row"><span class="k">Plateformes</span><span class="v">ESP32, STM32, FPGA Lattice/Xilinx, Linux</span></div>
+            <div class="row"><span class="k">Frameworks</span><span class="v">Symfony / API Platform, Vue 3, Astro, Tailwind</span></div>
+            <div class="row"><span class="k">Méthodes</span><span class="v">Spec-driven, traçabilité, IEC 62304, audits</span></div>
+            <div class="row"><span class="k">Industries</span><span class="v">IoT industriel, medtech, affichage, ERP B2B</span></div>
+            <div class="row"><span class="k">Localisation</span><span class="v">Lyon · remote Europe</span></div>
+            <div class="row"><span class="k">Disponibilité</span><span class="v accent">Q3 2026 — missions ≥ 3 mois</span></div>
+            <div class="row"><span class="k">Langues</span><span class="v">Français · Anglais (C1)</span></div>
+          </div>
+        </div>
+
+      </header>
+
+      <!-- ─────────── STACK BOM ─────────── -->
+      <section class="block" id="stack">
+        <div class="section-head">
+          <span class="num">§ 01 — Stack</span>
+          <h2>Bill of materials.</h2>
+          <span class="kicker">vue ingénieur, par catégorie</span>
+        </div>
+        <p class="bom-intro">
+          La stack que j'opère quotidiennement, exprimée comme une BOM —
+          chaque ligne porte une référence, des composants concrets, et la
+          maturité que j'ai dessus. Tout ce qui est listé tourne en production
+          sur au moins un projet actif.
+        </p>
+        <table class="bom">
+          <thead>
+            <tr>
+              <th>Réf.</th>
+              <th>Catégorie</th>
+              <th>Composants</th>
+              <th>Années</th>
+              <th>Maturité</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="ref">EMB-01</td><td class="cat">Embarqué temps réel</td><td class="det">C, C++17, FreeRTOS, ESP-IDF, mbedTLS</td><td class="yrs">12</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span></span></span></td></tr>
+            <tr><td class="ref">EMB-02</td><td class="cat">Logique programmable</td><td class="det">VHDL, Verilog (lecture), Lattice ECP5, Xilinx 7-series</td><td class="yrs">8</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span class="off"></span></span></td></tr>
+            <tr><td class="ref">EMB-03</td><td class="cat">MCU bare-metal</td><td class="det">STM32 (F0/F4/H7), Nordic nRF52, ESP32-S3</td><td class="yrs">12</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span></span></span></td></tr>
+            <tr><td class="ref">BCK-01</td><td class="cat">API &amp; backend</td><td class="det">Symfony, API Platform, Node, NestJS</td><td class="yrs">10</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span></span></span></td></tr>
+            <tr><td class="ref">BCK-02</td><td class="cat">Bases &amp; séries temp.</td><td class="det">PostgreSQL 16, TimescaleDB, Redis, MariaDB</td><td class="yrs">10</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span class="off"></span></span></td></tr>
+            <tr><td class="ref">FRT-01</td><td class="cat">SPA modernes</td><td class="det">Vue 3 + Pinia, React, TypeScript, Astro</td><td class="yrs">9</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span class="off"></span></span></td></tr>
+            <tr><td class="ref">INF-01</td><td class="cat">Containers &amp; CI</td><td class="det">Docker, Compose, GitLab CI, GitHub Actions</td><td class="yrs">8</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span class="off"></span></span></td></tr>
+            <tr><td class="ref">INF-02</td><td class="cat">Observabilité</td><td class="det">Prometheus, Grafana, Loki, OpenTelemetry</td><td class="yrs">5</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span class="off"></span><span class="off"></span></span></td></tr>
+            <tr><td class="ref">MTH-01</td><td class="cat">Méthode &amp; qualité</td><td class="det">Spec-driven, traçabilité, IEC 62304, ADR, audits</td><td class="yrs">8</td><td class="lvl"><span class="bars"><span></span><span></span><span></span><span></span><span class="off"></span></span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ─────────── PROJECTS ─────────── -->
+      <section class="block" id="projects" style="padding-top: 56px;">
+        <div class="section-head">
+          <span class="num">§ 02 — Projets</span>
+          <h2>Sélection — 3 systèmes.</h2>
+          <span class="kicker">cliquer pour le récit complet</span>
+        </div>
+
+        <div class="projects">
+
+          <!-- Project 1 -->
+          <a class="project" href="#">
+            <div class="img img-iot">
+              <div class="img-inner">
+                <span class="tag">P-01 · capture terrain</span>
+              </div>
+            </div>
+            <div class="body">
+              <div class="top">
+                <span>P-01 · IoT industriel</span>
+                <span class="meta-r">2024 — 2026 · en cours</span>
+              </div>
+              <h3>Plateforme de monitoring industriel</h3>
+              <p class="desc">
+                12 000 capteurs ESP32 supervisés en temps réel, du firmware OTA
+                signé jusqu'au dashboard métier. Une plateforme bout-en-bout,
+                opérée on-prem, conçue pour ne réveiller personne à 3 h du matin.
+              </p>
+              <div class="kpis">
+                <div class="kpi"><span class="k">Échelle</span><span class="v accent">12 k devices</span></div>
+                <div class="kpi"><span class="k">Uptime</span><span class="v">99.97 %</span></div>
+                <div class="kpi"><span class="k">Interventions</span><span class="v">−92 %</span></div>
+              </div>
+              <div class="chips">
+                <span class="chip">ESP32</span>
+                <span class="chip">FreeRTOS</span>
+                <span class="chip">MQTT</span>
+                <span class="chip">TimescaleDB</span>
+                <span class="chip">Vue 3</span>
+                <span class="chip">Docker</span>
+              </div>
+              <span class="more">Lire le récit complet <span class="arrow">→</span></span>
+            </div>
+          </a>
+
+          <!-- Project 2 -->
+          <a class="project right" href="#">
+            <div class="img img-saas">
+              <div class="img-inner">
+                <span class="tag">P-02 · interface ERP</span>
+              </div>
+            </div>
+            <div class="body">
+              <div class="top">
+                <span>P-02 · SaaS / Backend</span>
+                <span class="meta-r">2023 — 2025</span>
+              </div>
+              <h3>ERP SaaS multi-tenant pour la logistique</h3>
+              <p class="desc">
+                Refonte d'un monolithe legacy en architecture modulaire multi-tenant.
+                Quarante modules métier, 200 utilisateurs simultanés, isolation forte
+                par client — sans changer le cluster PostgreSQL.
+              </p>
+              <div class="kpis">
+                <div class="kpi"><span class="k">Modules</span><span class="v accent">40+</span></div>
+                <div class="kpi"><span class="k">Tps. réponse</span><span class="v">−68 %</span></div>
+                <div class="kpi"><span class="k">Users actifs</span><span class="v">200 / jour</span></div>
+              </div>
+              <div class="chips">
+                <span class="chip">Symfony</span>
+                <span class="chip">API Platform</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Redis</span>
+                <span class="chip">Vue 3</span>
+              </div>
+              <span class="more">Lire le récit complet <span class="arrow">→</span></span>
+            </div>
+          </a>
+
+          <!-- Project 3 -->
+          <a class="project" href="#">
+            <div class="img img-fpga">
+              <div class="img-inner" style="background: var(--fpga-inner); color: var(--accent); border-color: var(--fpga-border);">
+                <span class="tag" style="background: var(--fpga-bg); color: var(--accent); border-color: var(--fpga-border);">P-03 · pipeline FPGA</span>
+              </div>
+            </div>
+            <div class="body">
+              <div class="top">
+                <span>P-03 · FPGA / Vision</span>
+                <span class="meta-r">2024 — 2025</span>
+              </div>
+              <h3>Pipeline vision haute fréquence</h3>
+              <p class="desc">
+                Capture caméra industrielle et prétraitement FPGA, avec remontée
+                temps réel vers un host C++. Latence end-to-end ramenée de 60 à
+                4 millisecondes, charge CPU divisée par quinze.
+              </p>
+              <div class="kpis">
+                <div class="kpi"><span class="k">Throughput</span><span class="v accent">240 fps</span></div>
+                <div class="kpi"><span class="k">Latence p95</span><span class="v">4 ms</span></div>
+                <div class="kpi"><span class="k">CPU host</span><span class="v">−93 %</span></div>
+              </div>
+              <div class="chips">
+                <span class="chip">VHDL</span>
+                <span class="chip">Lattice ECP5</span>
+                <span class="chip">C++</span>
+                <span class="chip">DMA</span>
+              </div>
+              <span class="more">Lire le récit complet <span class="arrow">→</span></span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ─────────── CONTACT / CTA ─────────── -->
+      <section class="cta" id="contact">
+        <div>
+          <h2>Discuter d'un <span class="em">système</span>.</h2>
+          <p>
+            Architecture, lead technique, audit, mission longue. Si vous avez
+            un système complexe à concevoir ou à reprendre, écrivez-moi —
+            réponse sous 48 h ouvrées.
+          </p>
+        </div>
+        <div class="cta-links">
+          <a href="mailto:hello@jdupont.eng"><span class="k">email</span><span>hello@jdupont.eng →</span></a>
+          <a href="#"><span class="k">linkedin</span><span>/in/jeandupont →</span></a>
+          <a href="#"><span class="k">github</span><span>@jdupont →</span></a>
+          <a href="#"><span class="k">cv</span><span>cv-2026.pdf →</span></a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ─────────── FOOTER ─────────── -->
+    <footer class="bot">
+      <div class="inner">
+        <span>© 2026 · Jean Dupont</span>
+        <span class="center">Fiche compilée avec soin · maj. 12.05.2026</span>
+        <a href="#top">↑ Haut</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ─────────── TWEAKS PANEL ─────────── -->
+  <style>
+    #tweaks-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 260px;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--rule-2);
+      border-radius: 4px;
+      box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.18), 0 2px 6px -2px rgba(0, 0, 0, 0.08);
+      font-family: var(--sans);
+      font-size: 13px;
+      z-index: 100;
+      display: none;
+      overflow: hidden;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+    }
+    #tweaks-panel.open { display: block; }
+    #tweaks-panel .tp-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper-2);
+    }
+    #tweaks-panel .tp-title {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    #tweaks-panel .tp-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1;
+      padding: 2px 6px;
+      border-radius: 2px;
+      transition: color 150ms ease, background 150ms ease;
+    }
+    #tweaks-panel .tp-close:hover {
+      color: var(--ink);
+      background: var(--paper-3);
+    }
+    #tweaks-panel .tp-section {
+      padding: 14px 14px 16px;
+    }
+    #tweaks-panel .tp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    #tweaks-panel .tp-label {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-2);
+    }
+    /* Toggle switch */
+    #tweaks-panel .tp-toggle {
+      position: relative;
+      width: 38px;
+      height: 22px;
+      background: var(--rule-2);
+      border-radius: 11px;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 200ms ease;
+      flex-shrink: 0;
+    }
+    #tweaks-panel .tp-toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 18px; height: 18px;
+      background: var(--paper);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+      transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #tweaks-panel .tp-toggle[aria-checked="true"] {
+      background: var(--accent);
+    }
+    #tweaks-panel .tp-toggle[aria-checked="true"]::after {
+      transform: translateX(16px);
+    }
+    #tweaks-panel .tp-note {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink-soft);
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+  </style>
+
+  <div id="tweaks-panel" role="dialog" aria-label="Tweaks">
+    <div class="tp-head">
+      <span class="tp-title">Tweaks</span>
+      <button class="tp-close" aria-label="Fermer">✕</button>
+    </div>
+    <div class="tp-section">
+      <div class="tp-row">
+        <label class="tp-label" for="tp-dark">Thème sombre</label>
+        <button id="tp-dark" class="tp-toggle" role="switch" aria-checked="false" aria-label="Basculer le thème sombre"></button>
+      </div>
+      <div class="tp-note">Bascule la palette papier ↔ sombre. La donnée persiste.</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // ─── Defaults — edited by the host on persist ─────────────────
+      const TWEAKS = /*EDITMODE-BEGIN*/{
+        "darkMode": false
+      }/*EDITMODE-END*/;
+
+      const state = Object.assign({}, TWEAKS);
+      const panel  = document.getElementById('tweaks-panel');
+      const toggle = document.getElementById('tp-dark');
+      const close  = panel.querySelector('.tp-close');
+
+      function applyTheme() {
+        document.body.dataset.theme = state.darkMode ? 'dark' : 'light';
+        toggle.setAttribute('aria-checked', state.darkMode ? 'true' : 'false');
+      }
+      applyTheme();
+
+      // ─── Panel show/hide + host protocol ─────────────────────────
+      function showPanel() { panel.classList.add('open'); }
+      function hidePanel() {
+        panel.classList.remove('open');
+        try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (_) {}
+      }
+
+      // 1) Register listener BEFORE announcing availability.
+      window.addEventListener('message', function (e) {
+        const data = e && e.data;
+        if (!data || typeof data !== 'object') return;
+        if (data.type === '__activate_edit_mode')   showPanel();
+        if (data.type === '__deactivate_edit_mode') panel.classList.remove('open');
+      });
+
+      // 2) Announce availability.
+      try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (_) {}
+
+      // ─── User interactions ───────────────────────────────────────
+      toggle.addEventListener('click', function () {
+        state.darkMode = !state.darkMode;
+        applyTheme();
+        try {
+          window.parent.postMessage({
+            type: '__edit_mode_set_keys',
+            edits: { darkMode: state.darkMode }
+          }, '*');
+        } catch (_) {}
+      });
+
+      close.addEventListener('click', hidePanel);
+    })();
+  </script>
+
+</body>
+</html>

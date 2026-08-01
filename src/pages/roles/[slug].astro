@@ -1,0 +1,125 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProgressBar from "../../components/ProgressBar.astro";
+import MetaStrip from "../../components/MetaStrip.astro";
+import ChipRow from "../../components/ChipRow.astro";
+import LedHero from "../../components/LedHero.astro";
+import PlaceholderFigure from "../../components/PlaceholderFigure.astro";
+import SectionRenderer from "../../components/blocks/SectionRenderer.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
+
+export async function getStaticPaths() {
+  const roles = await getCollection("roles");
+  return roles.map((r) => ({ params: { slug: r.id }, props: { role: r } }));
+}
+
+const { role } = Astro.props;
+const d = role.data;
+const titleParts = d.title.split(/(&)/);
+
+const allRoles = (await getCollection("roles")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title={`${d.ref} · ${d.client} — ${d.title} · Jean Dupont`}
+  active={3}
+  container="doc"
+  stripFields={[
+    { label: "FICHE", value: `${d.ref} / RÔLE` },
+    { label: "CLIENT", value: d.client },
+    { label: "PÉRIODE", value: d.period },
+    { label: "PAGE", value: "01 / 01" },
+  ]}
+>
+  <ProgressBar />
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Fil d'ariane">
+      <a href="/roles/">rôles</a>
+      <span class="sep">/</span>
+      <span class="here">{d.client} · {d.title}</span>
+    </nav>
+
+    <header class="doc-header">
+      <div class="meta-top">{d.ref} · Rôle · {d.client} · {d.years}</div>
+      <h1>
+        {titleParts.map((part) => (part === "&" ? <span class="amp">&amp;</span> : part))}
+      </h1>
+      <p class="lede" set:html={d.lede} />
+
+      <MetaStrip cells={d.metaStrip} />
+      <ChipRow chips={d.chips} class="header-chips" />
+    </header>
+
+    {d.ledHero ? (
+      <LedHero />
+    ) : (
+      <div class="hero-fig-wrap">
+        <PlaceholderFigure tag={`fig. 1 · ${d.client} · ${d.domain}`} minHeight="240px" />
+      </div>
+    )}
+
+    <SectionRenderer sections={d.sections} />
+
+    <RelatedGrid
+      label="Autres rôles · parcours non linéaire"
+      items={allRoles.map((r) => ({
+        ref: `${r.data.ref} · ${r.data.period}${r.id === role.id ? " · vous êtes ici" : ""}`,
+        title: r.data.title,
+        sub: `${r.data.client} · ${r.data.domain}`,
+        href: `/roles/${r.id}/`,
+        current: r.id === role.id,
+      }))}
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    padding-top: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .breadcrumb .here { color: var(--ink); }
+  .breadcrumb .sep { color: var(--ink-soft); margin: 0 6px; }
+  .breadcrumb a:hover { color: var(--ink); }
+
+  .doc-header { padding: 28px 0 0; }
+  .doc-header .meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .doc-header h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(44px, 5.6vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+    max-width: 820px;
+  }
+  .doc-header h1 .amp { color: var(--accent); font-style: italic; font-family: var(--serif); font-weight: 500; }
+  .doc-header .lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin: 0;
+    max-width: 720px;
+  }
+  .doc-header .lede :global(em) { color: var(--ink); font-style: italic; font-weight: 500; }
+  .header-chips { margin-top: 24px; }
+
+  .hero-fig-wrap { margin: 40px 0 8px; }
+
+  @media (max-width: 760px) {
+    .doc-header h1 { font-size: 40px; }
+  }
+</style>

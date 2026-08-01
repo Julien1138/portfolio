@@ -1,0 +1,30 @@
+{
+  "ref": "R-01",
+  "title": "Junior firmware",
+  "client": "PME hardware",
+  "domain": "Premiers MCU, premières specs",
+  "period": "2009 — 2011",
+  "years": "~2 ans",
+  "order": 1,
+  "lede": "Premiers projets STM32, schématique, layout PCB, firmware bas-niveau — l'école de la rigueur sur le bas niveau.",
+  "metaStrip": [
+    { "k": "Entreprise", "v": "PME hardware" },
+    { "k": "Domaine", "v": "Firmware & électronique" },
+    { "k": "Rôle", "v": "Ingénieur junior", "accent": true },
+    { "k": "Projets", "v": "3 produits" },
+    { "k": "Lecture", "v": "~ 2 min" }
+  ],
+  "chips": ["C · ARM Cortex-M", "STM32 SPL", "KiCad", "Oscilloscope"],
+  "ledHero": false,
+  "sections": [
+    {
+      "type": "prose",
+      "heading": "Premier poste.",
+      "num": "§ 01 — Contexte",
+      "paragraphs": [
+        { "lead": true, "html": "PME hardware, équipe de 4 personnes, sortie d'école. Premiers projets STM32, schématique, layout PCB, firmware bas-niveau." },
+        { "html": "Contenu détaillé à venir — cette fiche sera enrichie lors de la prochaine passe de contenu. Voir <a href=\"/parcours/\">le parcours complet</a> pour le contexte de ce poste." }
+      ]
+    }
+  ]
+}

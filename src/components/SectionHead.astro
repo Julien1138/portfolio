@@ -1,0 +1,54 @@
+---
+// "§ 01 — Section" / H2 / italic kicker header, used on datasheet-style
+// pages (home, stack).
+export interface Props {
+  num: string; // "§ 01 — Stack"
+  title: string;
+  kicker?: string;
+}
+const { num, title, kicker } = Astro.props;
+---
+
+<div class="section-head">
+  <span class="num">{num}</span>
+  <h2>{title}</h2>
+  {kicker && <span class="kicker">{kicker}</span>}
+</div>
+
+<style>
+  .section-head {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-head h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1;
+  }
+  .section-head .kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  @media (max-width: 760px) {
+    .section-head { grid-template-columns: 1fr; gap: 6px; }
+    .section-head h2 { font-size: 26px; }
+  }
+</style>

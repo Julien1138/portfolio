@@ -1,0 +1,29 @@
+---
+export interface Props {
+  chips: string[];
+  class?: string;
+}
+const { chips, class: className = "" } = Astro.props;
+---
+
+<div class={`chip-row ${className}`}>
+  {chips.map((c) => <span class="chip">{c}</span>)}
+</div>
+
+<style>
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+  }
+</style>

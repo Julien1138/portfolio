@@ -1,0 +1,89 @@
+---
+export interface Props {
+  rows: { id: string; head: string; desc: string; arbK: string; arbV: string }[];
+}
+const { rows } = Astro.props;
+---
+
+<div class="constraints">
+  {rows.map((r) => (
+    <div class="row">
+      <span class="id">{r.id}</span>
+      <div>
+        <h4 class="head">{r.head}</h4>
+        <p class="desc">{r.desc}</p>
+      </div>
+      <div class="arb">
+        <span class="k">{r.arbK}</span>
+        <span class="v">{r.arbV}</span>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .constraints {
+    margin-top: 24px;
+    max-width: var(--maxw);
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .constraints .row {
+    display: grid;
+    grid-template-columns: 56px 1.1fr 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .constraints .row:last-child { border-bottom: none; }
+  .constraints .row .id {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .constraints .row .head {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .constraints .row .desc {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 380px;
+  }
+  .constraints .row .arb {
+    border-left: 2px solid var(--accent);
+    padding: 0 0 0 16px;
+  }
+  .constraints .row .arb .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .constraints .row .arb .v {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  @media (max-width: 760px) {
+    .constraints .row { grid-template-columns: 1fr; gap: 10px; }
+    .constraints .row .arb { padding-left: 14px; }
+  }
+</style>

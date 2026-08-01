@@ -1,0 +1,37 @@
+---
+export interface Props {
+  note?: string;
+}
+const { note = "Fiche compilée avec soin · maj. 12.05.2026" } = Astro.props;
+---
+
+<footer class="bot">
+  <div class="container inner">
+    <span>© {new Date().getFullYear()} · Jean Dupont</span>
+    <span class="center">{note}</span>
+    <a href="#top">↑ Haut</a>
+  </div>
+</footer>
+
+<style>
+  footer.bot {
+    border-top: 1.5px solid var(--ink);
+    padding: 18px 0;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  footer.bot .inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  footer.bot .center { text-align: center; }
+  footer.bot a { color: var(--ink); }
+
+  @media (max-width: 760px) {
+    footer.bot .inner { flex-wrap: wrap; gap: 8px; }
+  }
+</style>

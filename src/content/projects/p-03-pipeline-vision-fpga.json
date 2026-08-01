@@ -1,0 +1,46 @@
+{
+  "ref": "P-03",
+  "title": "Pipeline vision FPGA — 60 → 240 fps",
+  "category": "FPGA · Embedded",
+  "tag": "fpga",
+  "period": "2024 — 2025",
+  "yearStart": 2024,
+  "order": 3,
+  "featured": true,
+  "variant": "dark",
+  "lede": "Capture caméra haute fréquence + prétraitement FPGA + remontée temps réel vers host C++. <em>Réduction de 60 → 4 ms de latence end-to-end</em>, CPU host quasi inactif pendant le pipeline.",
+  "kpis": [
+    { "k": "Cadence", "v": "240 fps", "s": "×4 vs. v1" },
+    { "k": "Latence E2E", "v": "4 ms", "s": "depuis 60 ms" },
+    { "k": "CPU host", "v": "−93 %", "s": "offload FPGA" }
+  ],
+  "chips": ["VHDL", "Lattice ECP5", "C++17", "DMA", "USB 3.0", "CMake"],
+  "role": "Architect FPGA + host",
+  "figTag": "fig. P-03 · pipeline FPGA · oscillo capture",
+  "cornerLabel": "P-03 / FPGA",
+  "deepDive": {
+    "metaTop": "P-03 · FPGA / Vision · 2024 — 2025",
+    "readTime": "~ 5 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2024 → 2025" },
+      { "k": "Rôle", "v": "Architect FPGA + host" },
+      { "k": "Équipe", "v": "1 archi" },
+      { "k": "Échelle", "v": "240 fps · 4 ms E2E", "accent": true },
+      { "k": "Lecture", "v": "~ 5 min" }
+    ],
+    "heroFigTag": "fig. 1 · pipeline FPGA · oscillo capture",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Vue d'ensemble — capture caméra, prétraitement FPGA, remontée host C++.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Un pipeline vision haute fréquence",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Capture caméra industrielle et prétraitement FPGA, avec remontée temps réel vers un host C++. Latence end-to-end ramenée de 60 à 4 millisecondes, charge CPU divisée par quinze." },
+          { "html": "Contenu détaillé à venir — cette fiche sera enrichie lors de la prochaine passe de contenu." }
+        ]
+      }
+    ]
+  }
+}

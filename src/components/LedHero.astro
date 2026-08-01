@@ -1,0 +1,79 @@
+---
+// Stylised LED matrix hero figure, generated at build time (deterministic
+// pseudo-pattern) — no client JS needed since the data never changes.
+const cols = 60;
+const rows = 14;
+const cell = 12;
+
+function isLit(x: number, y: number) {
+  return (x * 31 + y * 17) % 11 === 0 || (x + y) % 23 === 0;
+}
+
+const circles: string[] = [];
+for (let y = 0; y < rows; y++) {
+  for (let x = 0; x < cols; x++) {
+    const lit = isLit(x, y);
+    const band = y >= 4 && y <= 9;
+    const fill = lit ? (band ? "var(--accent)" : "var(--led-amber)") : "var(--led-dim)";
+    const r = lit ? (band ? 3.2 : 2.4) : 1.4;
+    const op = lit ? 0.95 : 0.42;
+    const cx = x * cell + cell / 2;
+    const cy = y * cell + cell / 2;
+    circles.push(`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" opacity="${op}"/>`);
+  }
+}
+const svgInner = circles.join("");
+const viewW = cols * cell;
+const viewH = rows * cell;
+---
+
+<figure class="ledfig">
+  <div class="led-hero" aria-hidden="true">
+    <span class="corner tl">MATRIX · 60 × 14</span>
+    <span class="corner tr">RGB · 8-BIT</span>
+    <span class="corner bl">SCAN 1/16</span>
+    <span class="corner br">REFRESH 1.92 KHz</span>
+    <svg viewBox={`0 0 ${viewW} ${viewH}`} preserveAspectRatio="xMidYMid meet" set:html={svgInner} />
+  </div>
+  <figcaption class="fig-caption">
+    <span class="ref">FIG. 01</span>
+    Matrice LED stylisée — illustration du domaine, scan ligne par ligne, pixels actifs sur trame de test.
+  </figcaption>
+</figure>
+
+<style>
+  .ledfig { margin: 0; }
+  .led-hero {
+    margin: 40px 0 8px;
+    background: var(--led-bg);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .led-hero svg { display: block; width: 100%; height: auto; }
+  .led-hero .corner {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--strip-muted);
+    opacity: 0.7;
+  }
+  .led-hero .corner.tl { top: 10px; left: 12px; }
+  .led-hero .corner.tr { top: 10px; right: 12px; }
+  .led-hero .corner.bl { bottom: 10px; left: 12px; }
+  .led-hero .corner.br { bottom: 10px; right: 12px; }
+  .fig-caption {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    margin: 8px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .fig-caption .ref { color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+</style>

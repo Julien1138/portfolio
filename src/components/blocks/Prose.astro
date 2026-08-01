@@ -1,0 +1,47 @@
+---
+import H2Row from "../H2Row.astro";
+
+export interface Props {
+  heading: string;
+  num: string;
+  paragraphs: { html: string; lead?: boolean }[];
+}
+const { heading, num, paragraphs } = Astro.props;
+---
+
+<section class="section prose">
+  {heading && <H2Row title={heading} num={num} />}
+  {paragraphs.map((p) => (
+    <p class={p.lead ? "lead" : ""} set:html={p.html} />
+  ))}
+</section>
+
+<style>
+  .section { margin-top: 56px; }
+  .prose p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+    max-width: var(--prose);
+    text-wrap: pretty;
+  }
+  .prose p.lead {
+    font-size: 20px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .prose p :global(b) { color: var(--ink); font-weight: 600; }
+  .prose p :global(em) { font-style: italic; }
+  .prose p :global(.hl) {
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  :global(html[data-theme="dark"]) .prose p :global(.hl) { color: var(--accent-2); }
+
+  @media (max-width: 760px) {
+    .prose p, .prose p.lead { font-size: 16px; }
+  }
+</style>

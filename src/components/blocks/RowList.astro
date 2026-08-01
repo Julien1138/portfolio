@@ -1,0 +1,47 @@
+---
+export interface Props {
+  rows: { t: string; d: string }[];
+}
+const { rows } = Astro.props;
+---
+
+<div class="rowlist">
+  {rows.map((r) => (
+    <div class="row">
+      <div class="t">{r.t}</div>
+      <div class="d">{r.d}</div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .rowlist {
+    margin-top: 8px;
+    max-width: var(--maxw);
+    border-top: 1px solid var(--rule);
+  }
+  .rowlist .row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    gap: 28px;
+  }
+  .rowlist .row .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+  }
+  .rowlist .row .d {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 900px) {
+    .rowlist .row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>

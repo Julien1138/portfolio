@@ -1,0 +1,14 @@
+---
+// Blocking, inline (not module) so it runs before first paint and
+// avoids a flash of the wrong theme. Sets the attribute on <html>
+// because global.css keys dark-theme overrides off html[data-theme].
+---
+<script is:inline>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    } catch (_) {}
+  })();
+</script>

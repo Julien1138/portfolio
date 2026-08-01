@@ -1,0 +1,99 @@
+[
+  {
+    "id": "2024-2026",
+    "yearRange": "2024 — 2026",
+    "span": "~ 2 ans",
+    "current": true,
+    "roleLine": "Indépendant · architecte système & CTO intérim",
+    "title": "Architecte indépendant — missions critiques.",
+    "setting": "Missions 3 à 12 mois · scale-ups B2B et industriels · grand-Est & remote EU.",
+    "desc": "Reprise et architecture de plateformes complexes — typiquement là où le système touche à la fois <b>hardware, data et produit</b>. Quand le tech leadership manque, je tiens le rôle de CTO intérim le temps de structurer l'équipe et de stabiliser la roadmap.",
+    "highlights": [
+      { "n": "H.1", "html": "<b>Plateforme IoT industrielle</b> — 10k devices, ingestion MQTT → TimescaleDB, OTA signé, dashboard temps réel. De zéro à prod en 9 mois." },
+      { "n": "H.2", "html": "<b>ERP SaaS multi-tenant</b> — audit + remédiation : isolation tenants, migration Postgres, x3 perf catalogue." },
+      { "n": "H.3", "html": "<b>CTO intérim · 5 mois</b> — structuration spec-driven, recrutement de 4 devs, mise en place de la traçabilité audit-ready." }
+    ],
+    "stack": ["ESP-IDF", "Symfony", "Vue 3", "Postgres + Timescale", "K8s", "GitLab CI"]
+  },
+  {
+    "id": "2021-2024",
+    "yearRange": "2021 — 2024",
+    "span": "~ 3 ans",
+    "current": false,
+    "roleLine": "Salarié · scale-up B2B série B · 35 pers.",
+    "title": "Lead architect — ERP SaaS & marketplace.",
+    "setting": "Équipe technique de 10 devs · produit B2B européen · stack Symfony / Vue 3.",
+    "desc": "Refonte de l'ERP en multi-tenant strict (isolation Postgres schema-per-tenant), mise en place de la marketplace, et surtout : <b>installation du spec-driven</b> dans une équipe qui ne l'avait jamais pratiqué. Le résultat : moins de régressions, des releases prévisibles, et une dette technique qui décroît au lieu de grossir.",
+    "highlights": [
+      { "n": "H.1", "html": "Refonte du modèle data <b>sans downtime</b> (dual-write, backfill, switch)." },
+      { "n": "H.2", "html": "Vélocité dev <b>×4</b> en 18 mois — mesurée sur le throughput tickets / sprint." },
+      { "n": "H.3", "html": "Mise en place CI/CD propre : lint, tests, build signé, déploiement progressif." },
+      { "n": "H.4", "html": "Mentorat actif — 3 juniors devenus seniors sur la période." }
+    ],
+    "stack": ["Symfony", "API Platform", "Vue 3 + Pinia", "PostgreSQL", "Redis", "GitLab CI"]
+  },
+  {
+    "id": "2018-2021",
+    "yearRange": "2018 — 2021",
+    "span": "~ 3 ans",
+    "current": false,
+    "roleLine": "Salarié · medtech · dispositif classe IIa",
+    "title": "Senior embedded engineer — dispositif médical.",
+    "setting": "PME 30 pers. · firmware sous IEC 62304 · audits ANSM et notifiés.",
+    "desc": "Firmware d'un dispositif médical classe IIa : qualité logicielle imposée par la norme (62304), traçabilité descendante stricte, <b>zéro régression tolérée</b>. En parallèle, conception du module vision : FPGA pour le pipeline capture + décodage propriétaire.",
+    "highlights": [
+      { "n": "H.1", "html": "<b>Mise au norme IEC 62304</b> + soutenance audit notifié, du premier coup." },
+      { "n": "H.2", "html": "Refonte de la stack capture vidéo — latence ÷3, occupation FPGA ÷2." },
+      { "n": "H.3", "html": "<b>0 régression critique</b> sur 3 ans en post-déploiement clinique." }
+    ],
+    "stack": ["STM32 H7", "FreeRTOS", "VHDL · Lattice", "C / C++17", "Unity (test)", "DOORS"]
+  },
+  {
+    "id": "2014-2018",
+    "yearRange": "2014 — 2018",
+    "span": "~ 4 ans",
+    "current": false,
+    "roleLine": "Salarié · agence R&D · multi-clients dont JCDecaux",
+    "title": "Ingénieur transverse — FPGA chez JCDecaux + full-stack.",
+    "setting": "Agence R&D · ~25 ingénieurs · mode régie longue chez les clients.",
+    "desc": "Période charnière : c'est là que ma double casquette <b>matériel + logiciel</b> s'est solidifiée. Chez JCDecaux, expertise FPGA pour les matrices LED urbaines (cf. fiche R-02). En parallèle, refontes backend Symfony et premiers front Vue 2 pour d'autres clients.",
+    "highlights": [
+      { "n": "H.1", "html": "<b>6+ générations</b> de cartes FPGA portées chez JCDecaux — librairie VHDL réutilisable." },
+      { "n": "H.2", "html": "Pipelines vidéo robustes : zéro scintillement, recovery autonome, watchdog matériel." },
+      { "n": "H.3", "html": "Côté web : 4 plateformes Symfony livrées, qualité tirée par les tests." }
+    ],
+    "stack": ["VHDL", "Lattice / Xilinx", "Symfony 3/4", "Vue 2", "MySQL"]
+  },
+  {
+    "id": "2011-2014",
+    "yearRange": "2011 — 2014",
+    "span": "~ 3 ans",
+    "current": false,
+    "roleLine": "Salarié · industriel IoT · compteurs énergie",
+    "title": "Ingénieur embarqué — IoT industriel, premières plateformes LoRa.",
+    "setting": "Industriel · ~80 pers. · compteurs énergétiques connectés, déploiement national.",
+    "desc": "Stack LoRa custom <em>avant</em> que LoRaWAN ne se stabilise. Firmware bas-niveau, protocoles radio propriétaires, bancs de test. Premier contact sérieux avec les contraintes <b>déploiement terrain à grande échelle</b> : variabilité des conditions, pas d'accès physique, OTA obligatoire.",
+    "highlights": [
+      { "n": "H.1", "html": "<b>5 000+ nœuds</b> déployés en France — taux de panne &lt; 0.4 % / an." },
+      { "n": "H.2", "html": "Stack radio custom + ECC en couche applicative — pré-LoRaWAN." },
+      { "n": "H.3", "html": "Certification <b>ATEX zone 2</b> obtenue (boîtier + firmware)." }
+    ],
+    "stack": ["STM32 F0/F4", "FreeRTOS", "LoRa (SX127x)", "Python (bancs)"]
+  },
+  {
+    "id": "2009-2011",
+    "yearRange": "2009 — 2011",
+    "span": "~ 2 ans",
+    "current": false,
+    "roleLine": "Salarié · PME hardware · premier poste",
+    "title": "Ingénieur junior — firmware & électronique.",
+    "setting": "PME hardware · équipe 4 personnes · sortie d'école.",
+    "desc": "Premiers projets STM32, schématique, layout PCB, firmware bas-niveau. <b>L'école de la rigueur</b> sur le bas-niveau : un bit oublié dans un registre, c'est trois jours de debug. Cette période m'a marqué — je vérifie toujours mes hypothèses au scope avant d'écrire des suppositions.",
+    "highlights": [
+      { "n": "H.1", "html": "<b>3 produits</b> sortis : bornes, capteurs industriels, télémétrie." },
+      { "n": "H.2", "html": "Premiers protocoles maison : I²C custom, framing tolérant aux erreurs." },
+      { "n": "H.3", "html": "Apprentissage du <b>spec → code → test</b> qui structure encore mon travail." }
+    ],
+    "stack": ["C · ARM Cortex-M", "STM32 SPL", "KiCad", "Oscilloscope"]
+  }
+]

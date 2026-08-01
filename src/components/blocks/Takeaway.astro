@@ -1,0 +1,60 @@
+---
+export interface Props {
+  cards: { n: string; t: string; d: string }[];
+}
+const { cards } = Astro.props;
+---
+
+<div class="takeaway">
+  {cards.map((c) => (
+    <div class="card">
+      <div class="n">{c.n}</div>
+      <div class="t">{c.t}</div>
+      <div class="d">{c.d}</div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .takeaway {
+    margin-top: 24px;
+    max-width: var(--maxw);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .takeaway .card {
+    padding: 26px 22px 24px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .takeaway .card .n {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+  }
+  .takeaway .card .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .takeaway .card .d {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 1100px) {
+    .takeaway { grid-template-columns: 1fr; }
+  }
+</style>

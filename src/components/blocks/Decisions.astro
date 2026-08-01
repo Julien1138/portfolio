@@ -1,0 +1,62 @@
+---
+export interface Props {
+  items: { num: string; t: string; d: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="decisions">
+  {items.map((it) => (
+    <div class="d">
+      <span class="num">{it.num}</span>
+      <div class="t">{it.t}</div>
+      <div class="d-desc">{it.d}</div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .decisions {
+    margin-top: 20px;
+    max-width: var(--maxw);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .decisions .d {
+    padding: 18px 20px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .decisions .d:nth-child(2n) { border-right: none; }
+  .decisions .d:nth-last-child(-n+2) { border-bottom: none; }
+  .decisions .d .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .decisions .d .t {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    margin-bottom: 4px;
+  }
+  .decisions .d .d-desc {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 760px) {
+    .decisions { grid-template-columns: 1fr; }
+    .decisions .d { border-right: none !important; }
+  }
+</style>

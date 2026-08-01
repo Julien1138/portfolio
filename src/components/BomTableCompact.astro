@@ -1,0 +1,78 @@
+---
+import MaturityBars from "./MaturityBars.astro";
+
+export interface Row {
+  ref: string;
+  cat: string;
+  detail: string;
+  years: number;
+  maturity: number;
+}
+export interface Props {
+  rows: Row[];
+}
+const { rows } = Astro.props;
+---
+
+<table class="bom">
+  <thead>
+    <tr>
+      <th>Réf.</th>
+      <th>Catégorie</th>
+      <th>Composants</th>
+      <th>Années</th>
+      <th>Maturité</th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((r) => (
+      <tr>
+        <td class="ref">{r.ref}</td>
+        <td class="cat">{r.cat}</td>
+        <td class="det">{r.detail}</td>
+        <td class="yrs">{r.years}</td>
+        <td class="lvl"><MaturityBars level={r.maturity} /></td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+  table.bom {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  table.bom thead th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bom-head-fg);
+    background: var(--bom-head-bg);
+    font-weight: 500;
+  }
+  table.bom thead th:first-child { padding-left: 18px; }
+  table.bom tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: baseline;
+  }
+  table.bom tbody td:first-child { padding-left: 18px; }
+  table.bom tbody tr:nth-child(even) td { background: var(--paper-2); }
+  table.bom tbody tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+  table.bom tbody tr:hover td { background: var(--accent-soft); }
+  td.ref { color: var(--accent); letter-spacing: 0.08em; }
+  td.cat { color: var(--ink); font-weight: 500; font-family: var(--sans); font-size: 13.5px; }
+  td.det { color: var(--ink-3); }
+  td.yrs { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  td.lvl { color: var(--ink); }
+
+  @media (max-width: 760px) {
+    table.bom { font-size: 11px; }
+    table.bom thead th:nth-child(3),
+    table.bom tbody td:nth-child(3) { display: none; }
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+export interface Cell {
+  k: string;
+  v: string;
+  accent?: boolean;
+}
+export interface Props {
+  cells: Cell[];
+}
+const { cells } = Astro.props;
+---
+
+<div class="meta-strip">
+  {cells.map((c) => (
+    <div class="cell">
+      <span class="k">{c.k}</span>
+      <span class={`v ${c.accent ? "accent" : ""}`}>{c.v}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 32px;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta-strip .cell {
+    padding: 16px 18px 16px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .meta-strip .cell:last-child { border-right: none; padding-right: 0; }
+  .meta-strip .cell:not(:first-child) { padding-left: 18px; }
+  .meta-strip .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .meta-strip .v {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .meta-strip .v.accent { color: var(--accent); }
+
+  @media (max-width: 1100px) {
+    .meta-strip { grid-template-columns: repeat(3, 1fr); }
+    .meta-strip .cell:nth-child(3) { border-right: none; }
+    .meta-strip .cell:nth-child(4) { padding-left: 0; }
+  }
+  @media (max-width: 760px) {
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-strip .cell {
+      border-right: none;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dotted var(--rule);
+    }
+  }
+</style>

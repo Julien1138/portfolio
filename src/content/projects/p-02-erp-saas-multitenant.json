@@ -1,0 +1,46 @@
+{
+  "ref": "P-02",
+  "title": "ERP SaaS multi-tenant — refonte modulaire",
+  "category": "SaaS · Backend",
+  "tag": "saas",
+  "period": "2023 — 2025",
+  "yearStart": 2023,
+  "order": 2,
+  "featured": true,
+  "variant": "default",
+  "lede": "Refonte d'un ERP monolithique en architecture modulaire multi-tenant. <em>40 modules métier, 200 utilisateurs simultanés</em>, isolation forte par client via row-level security PostgreSQL.",
+  "kpis": [
+    { "k": "Temps réponse", "v": "−68 %", "s": "p95 vs. legacy" },
+    { "k": "Modules", "v": "40", "s": "domaines métier" },
+    { "k": "Concurrents", "v": "200+", "s": "users / day" }
+  ],
+  "chips": ["Symfony 7", "API Platform", "PostgreSQL 16", "Redis", "Vue 3", "Pinia", "K8s"],
+  "role": "Tech Lead · équipe de 6",
+  "figTag": "fig. P-02 · modules ERP · matrice tenants",
+  "cornerLabel": "P-02 / SAAS",
+  "deepDive": {
+    "metaTop": "P-02 · SaaS / Backend · 2023 — 2025",
+    "readTime": "~ 5 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2023 → 2025" },
+      { "k": "Rôle", "v": "Tech Lead" },
+      { "k": "Équipe", "v": "équipe de 6" },
+      { "k": "Échelle", "v": "200+ users / jour", "accent": true },
+      { "k": "Lecture", "v": "~ 5 min" }
+    ],
+    "heroFigTag": "fig. 1 · modules ERP · matrice tenants",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Vue d'ensemble — matrice des modules métier et isolation par tenant.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Une refonte modulaire, sans interruption",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Refonte d'un ERP monolithique en architecture modulaire multi-tenant. <em>40 modules métier, 200 utilisateurs simultanés</em>, isolation forte par client via row-level security PostgreSQL." },
+          { "html": "Contenu détaillé à venir — cette fiche sera enrichie lors de la prochaine passe de contenu." }
+        ]
+      }
+    ]
+  }
+}

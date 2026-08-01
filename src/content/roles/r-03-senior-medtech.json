@@ -1,0 +1,30 @@
+{
+  "ref": "R-03",
+  "title": "Senior medtech",
+  "client": "PME medtech",
+  "domain": "IEC 62304, dispositifs cliniques",
+  "period": "2018 — 2021",
+  "years": "~3 ans",
+  "order": 3,
+  "lede": "Firmware d'un dispositif médical classe IIa : qualité logicielle imposée par la norme, traçabilité descendante stricte, zéro régression tolérée.",
+  "metaStrip": [
+    { "k": "Entreprise", "v": "PME medtech" },
+    { "k": "Domaine", "v": "Dispositif classe IIa" },
+    { "k": "Rôle", "v": "Senior embedded engineer", "accent": true },
+    { "k": "Projets", "v": "1 dispositif · plusieurs itérations" },
+    { "k": "Lecture", "v": "~ 2 min" }
+  ],
+  "chips": ["STM32 H7", "FreeRTOS", "VHDL · Lattice", "C / C++17", "Unity", "DOORS"],
+  "ledHero": false,
+  "sections": [
+    {
+      "type": "prose",
+      "heading": "Qualité logicielle sous contrainte normative.",
+      "num": "§ 01 — Contexte",
+      "paragraphs": [
+        { "lead": true, "html": "PME de 30 personnes, firmware sous IEC 62304, audits ANSM et notifiés. Mise au norme IEC 62304, refonte de la stack capture vidéo, zéro régression critique sur 3 ans." },
+        { "html": "Contenu détaillé à venir — cette fiche sera enrichie lors de la prochaine passe de contenu." }
+      ]
+    }
+  ]
+}

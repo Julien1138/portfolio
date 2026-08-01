@@ -1,0 +1,39 @@
+---
+export interface Props {
+  body: string;
+  sig: string;
+}
+const { body, sig } = Astro.props;
+---
+
+<div class="pull">
+  <p class="body">{body}</p>
+  <div class="sig">{sig}</div>
+</div>
+
+<style>
+  .pull {
+    margin: 32px 0 0;
+    padding: 24px 28px 26px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--accent);
+    max-width: 760px;
+  }
+  .pull .body {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .pull .sig {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 12px;
+  }
+</style>

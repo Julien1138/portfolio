@@ -1,0 +1,46 @@
+{
+  "ref": "P-05",
+  "title": "CTO intérim · scale-up B2B",
+  "category": "Lead · CTO intérim",
+  "tag": "lead",
+  "period": "2024 · 6 mois",
+  "yearStart": 2024,
+  "order": 5,
+  "featured": false,
+  "variant": "default",
+  "lede": "Six mois d'intérim CTO pendant une transition. Refonte de la roadmap technique, <em>recrutement de 3 seniors</em>, mise en place de l'observabilité et d'un process de release hebdomadaire.",
+  "kpis": [
+    { "k": "Équipe", "v": "10", "s": "devs · 3 produits" },
+    { "k": "Release", "v": "weekly", "s": "vs. quarterly" },
+    { "k": "Recrutement", "v": "+3", "s": "seniors · 6 mois" }
+  ],
+  "chips": ["gouvernance", "archi", "hiring", "observabilité", "OKR", "roadmap"],
+  "role": "CTO intérim · 10 devs",
+  "figTag": "fig. P-05 · roadmap · org chart",
+  "cornerLabel": "P-05 / LEAD",
+  "deepDive": {
+    "metaTop": "P-05 · Lead / CTO intérim · 2024 · 6 mois",
+    "readTime": "~ 4 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2024 · 6 mois" },
+      { "k": "Rôle", "v": "CTO intérim" },
+      { "k": "Équipe", "v": "10 devs · 3 produits" },
+      { "k": "Échelle", "v": "release hebdomadaire", "accent": true },
+      { "k": "Lecture", "v": "~ 4 min" }
+    ],
+    "heroFigTag": "fig. 1 · roadmap · org chart",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Vue d'ensemble — roadmap technique et organisation d'équipe pendant la mission.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Structurer une équipe en transition",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Six mois d'intérim CTO pendant une transition. Refonte de la roadmap technique, recrutement de 3 seniors, mise en place de l'observabilité et d'un process de release hebdomadaire." },
+          { "html": "Contenu détaillé à venir — cette fiche sera enrichie lors de la prochaine passe de contenu." }
+        ]
+      }
+    ]
+  }
+}

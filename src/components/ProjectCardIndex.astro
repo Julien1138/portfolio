@@ -1,0 +1,265 @@
+---
+export interface Props {
+  href: string;
+  side: "left" | "right";
+  bigNum: string;
+  figTag: string;
+  cornerLabel: string;
+  ref: string;
+  category: string;
+  period: string;
+  title: string;
+  lede: string;
+  kpis: { k: string; v: string; s?: string }[];
+  chips: string[];
+  role: string;
+  tag: string; // filter tag, e.g. "iot"
+  yearStart: number;
+}
+const { href, side, bigNum, figTag, cornerLabel, ref, category, period, title, lede, kpis, chips, role, tag, yearStart } =
+  Astro.props;
+---
+
+<li>
+  <a href={href} class={`pcard ${side}`} data-tag={tag} data-category={category} data-year-start={yearStart}>
+    <div class="fig">
+      <span class="bignum">{bigNum}</span>
+      <div class="inner">
+        <span class="tag">{figTag}</span>
+      </div>
+      <span class="corner">{cornerLabel}</span>
+    </div>
+    <div class="body">
+      <div class="meta">
+        <span>{ref}</span>
+        <span class="sep">·</span>
+        <span>{category}</span>
+        <span class="sep">·</span>
+        <span class="year">{period}</span>
+      </div>
+      <h2>{title}</h2>
+      <p class="lede" set:html={lede} />
+
+      <div class="kpis">
+        {kpis.map((k) => (
+          <div class="kpi">
+            <span class="k">{k.k}</span>
+            <span class="v">{k.v}</span>
+            <span class="s">{k.s}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="chip-row">
+        {chips.map((c) => <span class="chip">{c}</span>)}
+      </div>
+
+      <div class="bottom">
+        <span class="role"><span class="lbl">Rôle</span>{role}</span>
+        <span class="deep">read deep-dive</span>
+      </div>
+    </div>
+  </a>
+</li>
+
+<style>
+  .pcard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    position: relative;
+    transition: border-color 180ms ease;
+    overflow: hidden;
+  }
+  .pcard:hover { border-color: var(--accent); }
+  .pcard:hover .deep::after { transform: translateX(4px); }
+
+  .pcard.right .fig { order: 2; }
+  .pcard.right .body { order: 1; border-right: 1px solid var(--rule); border-left: none; }
+  .pcard.left .body { border-left: 1px solid var(--rule); border-right: none; }
+
+  .pcard .fig {
+    position: relative;
+    min-height: 380px;
+    background: var(--paper-2);
+    overflow: hidden;
+  }
+  .pcard .fig .inner {
+    position: absolute; inset: 18px;
+    border: 1px solid var(--rule-2);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgba(26, 24, 20, 0.04) 14px 15px),
+      var(--paper-3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  :global(html[data-theme="dark"]) .pcard .fig .inner {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgba(239, 233, 214, 0.05) 14px 15px),
+      var(--paper-3);
+  }
+  .pcard .fig .bignum {
+    position: absolute;
+    top: 22px; left: 26px;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--ink);
+    opacity: 0.10;
+    letter-spacing: -0.05em;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .pcard.right .fig .bignum { left: auto; right: 26px; }
+  .pcard .fig .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 6px 12px;
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+    z-index: 2;
+  }
+  .pcard .fig .corner {
+    position: absolute;
+    bottom: 26px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 2;
+  }
+  .pcard.left .fig .corner { right: 26px; }
+  .pcard.right .fig .corner { left: 26px; }
+
+  .pcard .body { padding: 28px 30px 26px; display: flex; flex-direction: column; min-width: 0; }
+  .pcard .body .meta {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .pcard .body .meta .sep { color: var(--ink-soft); opacity: 0.6; }
+  .pcard .body .meta .year { color: var(--ink-soft); }
+  .pcard .body h2 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .pcard .body .lede {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 4px;
+    text-wrap: pretty;
+  }
+  .pcard .body .lede :global(em) { color: var(--ink); font-weight: 500; font-style: italic; }
+
+  .pcard .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 18px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .pcard .kpis .kpi { padding: 14px 12px 14px 0; border-right: 1px dotted var(--rule-2); }
+  .pcard .kpis .kpi:nth-child(2) { padding-left: 14px; }
+  .pcard .kpis .kpi:last-child { border-right: none; padding-left: 14px; }
+  .pcard .kpis .k {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .pcard .kpis .v {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    color: var(--accent);
+  }
+  .pcard .kpis .s {
+    display: block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  .pcard .chip-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
+  .pcard .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+  }
+
+  .pcard .bottom {
+    margin-top: auto;
+    padding-top: 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .pcard .role {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-2);
+    letter-spacing: 0.06em;
+  }
+  .pcard .role .lbl {
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 9.5px;
+    margin-right: 6px;
+  }
+  .pcard .deep {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1.5px solid var(--accent);
+    padding: 0 0 2px;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color 150ms ease;
+  }
+  .pcard .deep::after { content: "→"; transition: transform 180ms ease; color: var(--accent); }
+  .pcard .deep:hover { color: var(--accent); }
+
+  @media (max-width: 980px) {
+    .pcard { grid-template-columns: 1fr; }
+    .pcard.right .fig { order: 0; }
+    .pcard.right .body, .pcard.left .body { border-left: none; border-right: none; border-top: 1px solid var(--rule); }
+    .pcard .fig { min-height: 220px; }
+    .pcard .fig .bignum { font-size: 72px; }
+  }
+  @media (max-width: 760px) {
+    .pcard .body { padding: 22px 22px 22px; }
+    .pcard .body h2 { font-size: 24px; }
+    .pcard .kpis { grid-template-columns: 1fr; }
+    .pcard .kpis .kpi { border-right: none; border-bottom: 1px dotted var(--rule-2); padding-left: 0 !important; }
+    .pcard .kpis .kpi:last-child { border-bottom: none; }
+  }
+</style>

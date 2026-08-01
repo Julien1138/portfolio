@@ -1,0 +1,68 @@
+---
+export interface Props {
+  items: { k: string; v: string; s?: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="kpis-big">
+  {items.map((it) => (
+    <div class="kpi">
+      <span class="k">{it.k}</span>
+      <span class="v">{it.v}</span>
+      {it.s && <span class="s">{it.s}</span>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .kpis-big {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 8px;
+    max-width: var(--maxw);
+    border: 1px solid var(--rule);
+  }
+  .kpis-big .kpi {
+    padding: 22px 20px 24px;
+    border-right: 1px solid var(--rule);
+  }
+  .kpis-big .kpi:last-child { border-right: none; }
+  .kpis-big .kpi .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .kpis-big .kpi .v {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 40px;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+  }
+  .kpis-big .kpi .s {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    margin-top: 8px;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .kpis-big { grid-template-columns: repeat(2, 1fr); }
+    .kpis-big .kpi:nth-child(2) { border-right: none; }
+    .kpis-big .kpi:nth-child(1), .kpis-big .kpi:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  }
+  @media (max-width: 760px) {
+    .kpis-big { grid-template-columns: 1fr; }
+    .kpis-big .kpi { border-right: none; border-bottom: 1px solid var(--rule); }
+    .kpis-big .kpi:last-child { border-bottom: none; }
+  }
+</style>

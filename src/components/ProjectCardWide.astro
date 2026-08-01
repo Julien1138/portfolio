@@ -1,0 +1,155 @@
+---
+import PlaceholderFigure from "./PlaceholderFigure.astro";
+
+export interface Props {
+  href: string;
+  side: "left" | "right";
+  dark?: boolean;
+  figTag: string;
+  metaLeft: string;
+  metaRight: string;
+  title: string;
+  desc: string;
+  kpis: { k: string; v: string; accent?: boolean }[];
+  chips: string[];
+}
+const { href, side, dark = false, figTag, metaLeft, metaRight, title, desc, kpis, chips } = Astro.props;
+---
+
+<a class={`project ${side === "right" ? "right" : ""}`} href={href}>
+  <PlaceholderFigure tag={figTag} minHeight="340px" dark={dark} class="img" />
+  <div class="body">
+    <div class="top">
+      <span>{metaLeft}</span>
+      <span class="meta-r">{metaRight}</span>
+    </div>
+    <h3>{title}</h3>
+    <p class="desc">{desc}</p>
+    <div class="kpis">
+      {kpis.map((k) => (
+        <div class="kpi">
+          <span class="k">{k.k}</span>
+          <span class={`v ${k.accent ? "accent" : ""}`}>{k.v}</span>
+        </div>
+      ))}
+    </div>
+    <div class="chips">
+      {chips.map((c) => <span class="chip">{c}</span>)}
+    </div>
+    <span class="more">Lire le récit complet <span class="arrow">→</span></span>
+  </div>
+</a>
+
+<style>
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule);
+    align-items: stretch;
+  }
+  .project:last-child { border-bottom: 1px solid var(--rule); }
+  .project :global(.img) {
+    border-right: 1px solid var(--rule);
+    border-radius: 0;
+  }
+  .project.right :global(.img) {
+    order: 2;
+    border-right: none;
+    border-left: 1px solid var(--rule);
+  }
+  .project .body {
+    padding: 48px 48px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .project .body .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .project .body .top .meta-r { color: var(--ink-soft); }
+  .project h3 {
+    margin: 14px 0 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+  .project p.desc {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 22px;
+    max-width: 520px;
+  }
+  .project .kpis {
+    display: flex;
+    gap: 28px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+  .project .kpi { display: flex; flex-direction: column; gap: 2px; }
+  .project .kpi .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .project .kpi .v {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .project .kpi .v.accent { color: var(--accent); }
+  .project .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .project .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+  }
+  .project .more {
+    margin-top: auto;
+    padding-top: 22px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .project .more .arrow {
+    transition: transform 200ms ease;
+    display: inline-block;
+  }
+  .project:hover .more { color: var(--accent); }
+  .project:hover .more .arrow { transform: translateX(4px); }
+
+  @media (max-width: 1100px) {
+    .project { grid-template-columns: 1fr; }
+    .project :global(.img) { border-right: none; border-bottom: 1px solid var(--rule); min-height: 240px !important; }
+    .project.right :global(.img) { order: 0; border-left: none; border-bottom: 1px solid var(--rule); }
+  }
+  @media (max-width: 760px) {
+    .project .body { padding: 28px 24px; }
+    .project .kpis { gap: 18px; flex-wrap: wrap; }
+  }
+</style>

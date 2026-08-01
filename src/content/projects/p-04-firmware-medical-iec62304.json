@@ -1,0 +1,46 @@
+{
+  "ref": "P-04",
+  "title": "Firmware médical · IEC 62304 Classe IIa",
+  "category": "Embedded · Audit",
+  "tag": "embedded",
+  "period": "2023 — 2024",
+  "yearStart": 2023,
+  "order": 4,
+  "featured": false,
+  "variant": "default",
+  "lede": "Firmware d'un dispositif médical de classe IIa, avec <em>traçabilité totale spec → code → test → audit</em>. Process IEC 62304 complet, équipe formée à la démarche spec-driven.",
+  "kpis": [
+    { "k": "Audit externe", "v": "OK", "s": "en 1 itération" },
+    { "k": "Couverture", "v": "100 %", "s": "exigences tracées" },
+    { "k": "Classe", "v": "IIa", "s": "IEC 62304" }
+  ],
+  "chips": ["STM32", "FreeRTOS", "C99", "Unity", "spec-driven", "DOORS"],
+  "role": "Embedded Lead · équipe de 4",
+  "figTag": "fig. P-04 · traçabilité spec → code → test",
+  "cornerLabel": "P-04 / EMBED",
+  "deepDive": {
+    "metaTop": "P-04 · Embedded / Audit · 2023 — 2024",
+    "readTime": "~ 5 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2023 → 2024" },
+      { "k": "Rôle", "v": "Embedded Lead" },
+      { "k": "Équipe", "v": "équipe de 4" },
+      { "k": "Échelle", "v": "Classe IIa · IEC 62304", "accent": true },
+      { "k": "Lecture", "v": "~ 5 min" }
+    ],
+    "heroFigTag": "fig. 1 · traçabilité spec → code → test",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Vue d'ensemble — matrice de traçabilité descendante, du besoin au test.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Un firmware sous contrainte normative",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Firmware d'un dispositif médical de classe IIa, avec traçabilité totale spec → code → test → audit. Process IEC 62304 complet, équipe formée à la démarche spec-driven." },
+          { "html": "Contenu détaillé à venir — cette fiche sera enrichie lors de la prochaine passe de contenu." }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+---
+export interface Props {
+  varTitle: string;
+  varItems: { n: string; html: string }[];
+  invTitle: string;
+  invItems: { n: string; html: string }[];
+}
+const { varTitle, varItems, invTitle, invItems } = Astro.props;
+---
+
+<div class="vimatrix">
+  <div class="col var">
+    <span class="k">Variabilité des projets</span>
+    <h4>{varTitle}</h4>
+    <ul>
+      {varItems.map((it) => <li><span class="n">{it.n}</span><span set:html={it.html} /></li>)}
+    </ul>
+  </div>
+  <div class="col inv">
+    <span class="k">Invariants architecturaux</span>
+    <h4>{invTitle}</h4>
+    <ul>
+      {invItems.map((it) => <li><span class="n">{it.n}</span><span set:html={it.html} /></li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .vimatrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 24px;
+    max-width: var(--maxw);
+    border: 1px solid var(--rule);
+  }
+  .vimatrix .col { padding: 24px 24px 26px; position: relative; }
+  .vimatrix .col.var { background: var(--paper-2); border-right: 1px solid var(--rule); }
+  .vimatrix .col.inv { background: var(--accent-soft); }
+  .vimatrix .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .vimatrix .col.inv .k { color: var(--accent-2); }
+  :global(html[data-theme="dark"]) .vimatrix .col.inv .k { color: var(--accent); }
+  .vimatrix .col h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .vimatrix ul { list-style: none; margin: 0; padding: 0; }
+  .vimatrix li {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    color: var(--ink-2);
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-2);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .vimatrix li:last-child { border-bottom: none; }
+  .vimatrix li .n {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .vimatrix .col.inv li .n { color: var(--accent-2); }
+  :global(html[data-theme="dark"]) .vimatrix .col.inv li .n { color: var(--accent); }
+
+  @media (max-width: 1100px) {
+    .vimatrix { grid-template-columns: 1fr; }
+    .vimatrix .col.var { border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+</style>

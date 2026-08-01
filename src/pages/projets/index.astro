@@ -1,0 +1,272 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCardIndex from "../../components/ProjectCardIndex.astro";
+
+const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const totalArchived = 10; // total projects on file, incl. unpublished ones not shown here
+
+const filters = [
+  { v: "all", label: "all" },
+  { v: "iot", label: "iot" },
+  { v: "saas", label: "saas" },
+  { v: "fpga", label: "fpga" },
+  { v: "embedded", label: "embedded" },
+  { v: "lead", label: "lead / cto" },
+];
+---
+
+<BaseLayout
+  title="Projets — Jean Dupont"
+  active={2}
+  container="index"
+  stripFields={[
+    { label: "FICHE", value: "JD-ENG / INDEX" },
+    { label: "SECTION", value: "02 — PROJETS" },
+    { label: "VUE", value: "CARTES" },
+    { label: "PAGE", value: "01 / 01" },
+  ]}
+>
+  <div class="container">
+    <header class="page-head">
+      <div class="meta-top">§ 02 · Projets — sélection</div>
+      <h1>Cinq projets, un fil rouge.</h1>
+      <p class="lede">
+        Du capteur au dashboard, du firmware à la gouvernance. <em>Sélection
+        des projets significatifs des cinq dernières années</em> —
+        cliquer une carte pour le deep-dive technique.
+      </p>
+    </header>
+
+    <div class="filterstrip" role="toolbar" aria-label="Filtres">
+      <span class="k">Filtres</span>
+      <div class="chips" id="filter-chips">
+        {filters.map((f) => (
+          <button class={`chip ${f.v === "all" ? "active" : ""}`} type="button" data-tag={f.v}>{f.label}</button>
+        ))}
+      </div>
+      <span class="grow"></span>
+      <div class="sort">
+        <span class="k" style="font-size:9.5px;">Tri</span>
+        <select aria-label="Tri" id="sort-select">
+          <option value="date-desc">date ▾ (récent)</option>
+          <option value="date-asc">date ▴ (ancien)</option>
+          <option value="domaine">domaine</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="count-line">
+      <span class="total"><b id="visible-count">{allProjects.length}</b> projets affichés · <span style="color:var(--ink-soft);">{totalArchived} total dans l'archive</span></span>
+      <span>2024 → 2026 · 18 mois cumulés</span>
+    </div>
+
+    <ol class="proj-list" id="proj-list">
+      {allProjects.map((p, i) => (
+        <ProjectCardIndex
+          href={`/projets/${p.id}/`}
+          side={i % 2 === 0 ? "left" : "right"}
+          bigNum={String(p.data.order).padStart(2, "0")}
+          figTag={p.data.figTag}
+          cornerLabel={p.data.cornerLabel}
+          ref={p.data.ref}
+          category={p.data.category}
+          period={p.data.period}
+          title={p.data.title}
+          lede={p.data.lede}
+          kpis={p.data.kpis}
+          chips={p.data.chips}
+          role={p.data.role}
+          tag={p.data.tag}
+          yearStart={p.data.yearStart}
+        />
+      ))}
+    </ol>
+
+    <div class="end-strip">
+      <span class="lbl"><b>// fin de la sélection</b> · {allProjects.length} projets sur {totalArchived} affichés</span>
+      <div class="actions">
+        <span class="chip tone-accent">voir l'archive complète →</span>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head { padding: 44px 0 0; }
+  .page-head .meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .page-head h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+  }
+  .page-head .lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin: 0;
+    max-width: 660px;
+  }
+  .page-head .lede :global(em) { color: var(--ink); font-style: italic; font-weight: 500; }
+
+  .filterstrip {
+    margin-top: 36px;
+    padding: 14px 0 12px;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .filterstrip .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .filterstrip .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filterstrip .grow { flex: 1; }
+  .filterstrip .sort { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; color: var(--ink-2); }
+  .filterstrip .sort select {
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--rule-2);
+    padding: 4px 22px 4px 8px;
+    border-radius: 2px;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+    background-position: calc(100% - 12px) 50%, calc(100% - 8px) 50%;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+    letter-spacing: 0.04em;
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--ink-2);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--ink); }
+  .chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .chip.tone-accent { color: var(--accent); border-color: var(--accent); }
+  :global(html[data-theme="dark"]) .chip.active { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+  .count-line {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .count-line .total { color: var(--ink); }
+  .count-line .total b { color: var(--accent); font-weight: 600; }
+
+  .proj-list {
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-bottom: 8px;
+  }
+
+  .end-strip {
+    margin: 48px 0 0;
+    padding: 22px 0;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .end-strip .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .end-strip .lbl b { color: var(--ink); font-weight: 600; }
+  .end-strip .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  @media (max-width: 760px) {
+    .page-head h1 { font-size: 40px; }
+    .page-head .lede { font-size: 17px; }
+  }
+</style>
+
+<script>
+  const chipsWrap = document.getElementById("filter-chips");
+  const sortSelect = document.getElementById("sort-select") as HTMLSelectElement | null;
+  const list = document.getElementById("proj-list");
+  const countEl = document.getElementById("visible-count");
+  if (!chipsWrap || !list) throw new Error("projects index: missing DOM nodes");
+
+  let activeTag = "all";
+
+  function applyFilter() {
+    const items = Array.from(list!.querySelectorAll<HTMLLIElement>("li"));
+    let visible = 0;
+    items.forEach((li) => {
+      const card = li.querySelector<HTMLAnchorElement>(".pcard");
+      const show = activeTag === "all" || card?.dataset.tag === activeTag;
+      li.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+    if (countEl) countEl.textContent = String(visible);
+  }
+
+  chipsWrap.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-tag]");
+    if (!btn) return;
+    chipsWrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+    btn.classList.add("active");
+    activeTag = btn.dataset.tag || "all";
+    applyFilter();
+  });
+
+  sortSelect?.addEventListener("change", () => {
+    const items = Array.from(list!.querySelectorAll<HTMLLIElement>("li"));
+    const dir = sortSelect.value;
+    items.sort((a, b) => {
+      const ca = a.querySelector<HTMLAnchorElement>(".pcard")!;
+      const cb = b.querySelector<HTMLAnchorElement>(".pcard")!;
+      if (dir === "domaine") {
+        return (ca.dataset.category || "").localeCompare(cb.dataset.category || "");
+      }
+      const ya = Number(ca.dataset.yearStart || 0);
+      const yb = Number(cb.dataset.yearStart || 0);
+      return dir === "date-asc" ? ya - yb : yb - ya;
+    });
+    items.forEach((li) => list!.appendChild(li));
+  });
+</script>

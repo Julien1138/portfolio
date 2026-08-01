@@ -1,0 +1,454 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHead from "../../components/SectionHead.astro";
+---
+
+<BaseLayout
+  title="Jean Dupont — Contact"
+  active={6}
+  container="wide"
+  stripFields={[
+    { label: "FICHE", value: "C-01 / CONTACT" },
+    { label: "RÉV", value: "1.0 — 2026.05" },
+    { label: "DOC", value: "PORTFOLIO / CONTACT" },
+    { label: "PAGE", value: "06 / 06" },
+  ]}
+  footerNote="Fiche compilée avec soin · maj. 12.05.2026"
+>
+  <div class="container">
+    <header class="hero">
+      <div>
+        <span class="field-label">Prise de contact</span>
+        <h1>Discuter d'un <span class="em">système.</span></h1>
+        <p class="lead">
+          Architecture, lead technique, audit, mission longue. Si vous avez
+          un système complexe à concevoir, reprendre ou stabiliser — <em class="hl">écrivez-moi
+          avec le contexte technique</em>. Réponse argumentée sous 48 h ouvrées, qu'on travaille ensemble ou pas.
+        </p>
+      </div>
+
+      <div class="meta-right">
+        <span class="field-label">État courant</span>
+        <div class="specs">
+          <div class="row"><span class="k">Statut</span><span class="v green">Disponible Q3 2026</span></div>
+          <div class="row"><span class="k">Capacité</span><span class="v">1 mission lead + 1 audit</span></div>
+          <div class="row"><span class="k">Durée min.</span><span class="v">≥ 3 mois (mission)</span></div>
+          <div class="row"><span class="k">TJM indic.</span><span class="v">800 — 1 100 € HT</span></div>
+          <div class="row"><span class="k">Localisation</span><span class="v">Lyon · remote EU</span></div>
+          <div class="row"><span class="k">Réponse</span><span class="v accent">≤ 48 h ouvrées</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="block" id="brief" style="padding-top: 56px;">
+      <SectionHead num="§ 01 — Brief" title="Coordonnées & message." kicker="deux entrées — l'une rapide, l'autre structurée" />
+
+      <div class="contact-grid">
+        <div class="col-coord">
+          <div class="col-title"><span>Coordonnées</span><span class="pill">DIRECT</span></div>
+          <div class="coord">
+            <a href="mailto:hello@jdupont.eng"><span class="k">Email</span><span class="v">hello@jdupont.eng</span><span class="arr">→</span></a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">/in/jeandupont</span><span class="arr">→</span></a>
+            <a href="https://github.com/" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="v">@jdupont</span><span class="arr">→</span></a>
+            <a href="#"><span class="k">Signal</span><span class="v">sur demande</span><span class="arr">→</span></a>
+            <a href="#"><span class="k">CV</span><span class="v">cv-jdupont-2026.pdf</span><span class="arr">→</span></a>
+            <div class="row"><span class="k">SIRET</span><span class="v">812 449 ••• 00021</span><span></span></div>
+          </div>
+          <div class="coord-foot">
+            <b>Préférence :</b> email pour un premier échange — joindre, si
+            vous l'avez, un brief technique court, un schéma système, ou
+            quelques lignes de contexte produit. Pas besoin de NDA pour
+            démarrer.
+          </div>
+        </div>
+
+        <div class="col-form">
+          <div class="col-title"><span>Brief structuré</span><span class="pill pill-muted">~ 3 min</span></div>
+
+          <form class="form" id="contact-form">
+            <div class="form-row split">
+              <div class="form-row">
+                <div class="lbl"><span>Nom</span><span class="opt">requis</span></div>
+                <input type="text" name="name" placeholder="Camille Lemoine" required />
+              </div>
+              <div class="form-row">
+                <div class="lbl"><span>Entreprise</span><span class="opt">optionnel</span></div>
+                <input type="text" name="company" placeholder="Acme Industries" />
+              </div>
+            </div>
+
+            <div class="form-row split">
+              <div class="form-row">
+                <div class="lbl"><span>Email</span><span class="opt">requis</span></div>
+                <input type="email" name="email" placeholder="c.lemoine@acme.fr" required />
+              </div>
+              <div class="form-row">
+                <div class="lbl"><span>Démarrage visé</span><span class="opt">optionnel</span></div>
+                <input type="text" name="start" placeholder="Q3 2026 · ou flexible" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="lbl"><span>Type de mission</span><span class="opt">un ou plusieurs</span></div>
+              <div class="chip-group">
+                <input type="checkbox" id="m-arch" name="mission" value="architecte" /><label for="m-arch">Architecte système</label>
+                <input type="checkbox" id="m-lead" name="mission" value="lead" /><label for="m-lead">Tech Lead</label>
+                <input type="checkbox" id="m-cto" name="mission" value="cto" /><label for="m-cto">CTO intérim</label>
+                <input type="checkbox" id="m-aud" name="mission" value="audit" /><label for="m-aud">Audit / due-dil</label>
+                <input type="checkbox" id="m-emb" name="mission" value="firmware" /><label for="m-emb">Firmware / FPGA</label>
+                <input type="checkbox" id="m-bck" name="mission" value="backend" /><label for="m-bck">Backend SaaS</label>
+                <input type="checkbox" id="m-oth" name="mission" value="autre" /><label for="m-oth">Autre</label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="lbl"><span>Contexte technique</span><span class="opt">court — ce qui compte</span></div>
+              <textarea name="context" placeholder="Ex. : monolithe Symfony 4 à reprendre, 60 k lignes, 3 devs internes, contraintes de migration en prod sans interruption — besoin d'un lead pour 6 mois."></textarea>
+            </div>
+
+            <div class="form-submit">
+              <div class="meta">
+                <b>Vos données :</b> envoyées par email chiffré, pas de tracker,
+                pas de CRM tiers. Réponse perso sous 48 h ouvrées.
+              </div>
+              <button class="submit" type="submit">
+                Envoyer le brief <span class="arr">→</span>
+              </button>
+            </div>
+            <p class="form-note" id="form-note" hidden>
+              Ce formulaire n'est pas encore relié à un service d'envoi — écrivez-moi directement à
+              <a href="mailto:hello@jdupont.eng">hello@jdupont.eng</a> en attendant.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="process">
+      <SectionHead num="§ 02 — Processus" title="De la réception à la mission." kicker="quatre étapes — pas de surprise" />
+      <div class="process">
+        <div class="step">
+          <div class="n">01 — Réception</div>
+          <div class="when">J + 0 → 2</div>
+          <h4>Lecture &amp; tri.</h4>
+          <p>
+            Je lis chaque brief moi-même. Si le périmètre est clair et la
+            compatibilité agenda OK, je réponds avec questions ciblées.
+            Sinon je vous oriente vers quelqu'un de plus pertinent.
+          </p>
+        </div>
+        <div class="step">
+          <div class="n">02 — Cadrage</div>
+          <div class="when">J + 3 → 7</div>
+          <h4>Appel 45 min.</h4>
+          <p>
+            Visio ou téléphone, pas de slide. On creuse l'enjeu réel,
+            je pose les vraies questions techniques, on évalue
+            honnêtement si je suis le bon profil pour ça.
+          </p>
+        </div>
+        <div class="step">
+          <div class="n">03 — Proposition</div>
+          <div class="when">J + 7 → 14</div>
+          <h4>Note d'intention.</h4>
+          <p>
+            Document court (4 — 6 pages) : compréhension du besoin,
+            approche proposée, jalons, TJM, ce que je ne ferai pas.
+            Discussion ouverte sur la suite.
+          </p>
+        </div>
+        <div class="step">
+          <div class="n">04 — Démarrage</div>
+          <div class="when">J + 30</div>
+          <h4>Contrat &amp; kick-off.</h4>
+          <p>
+            Contrat de prestation simple, kick-off d'une demi-journée
+            sur place ou en visio, accès aux dépôts et au contexte.
+            Premier livrable visible sous 15 jours.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="fit">
+      <SectionHead num="§ 03 — Compatibilité" title="Bon match, mauvais match." kicker="honnêteté avant le brief" />
+      <div class="fit">
+        <div class="good">
+          <h3>Ce qui marche bien</h3>
+          <ul>
+            <li><span class="glyph">+</span><span><b>Systèmes complets</b> à concevoir bout-en-bout — du capteur ou du transistor jusqu'à l'interface métier.</span></li>
+            <li><span class="glyph">+</span><span><b>Reprise de legacy</b> embarqué ou backend, avec dette technique documentée et équipe à reformer.</span></li>
+            <li><span class="glyph">+</span><span><b>Audit &amp; due-diligence</b> techniques avant rachat, levée, refonte — rapport écrit, défendable, sans langue de bois.</span></li>
+            <li><span class="glyph">+</span><span><b>Lead technique</b> sur une équipe de 3 à 8 ingénieurs, avec une vraie responsabilité d'architecture et de livraison.</span></li>
+            <li><span class="glyph">+</span><span><b>Industries exigeantes :</b> medtech, IoT industriel, énergie, affichage urbain — contraintes réelles, traçabilité requise.</span></li>
+          </ul>
+        </div>
+        <div class="bad">
+          <h3>Ce qui ne marche pas</h3>
+          <ul>
+            <li><span class="glyph">−</span><span><b>Pure dev front</b> sans dimension système — sites vitrine, e-commerce standard, intégrations CMS.</span></li>
+            <li><span class="glyph">−</span><span><b>Missions &lt; 3 mois</b> hors audits ponctuels — je préfère m'engager longtemps que d'enchaîner les sprints.</span></li>
+            <li><span class="glyph">−</span><span><b>Régies ouvertes</b> sans objectif technique défini ou sans interlocuteur technique côté client.</span></li>
+            <li><span class="glyph">−</span><span><b>Stacks JavaScript pures</b> en cœur de métier, sans dimension système — je les utilise, je ne les enseigne pas.</span></li>
+            <li><span class="glyph">−</span><span><b>Crypto, ad-tech, surveillance</b> grand public — choix personnel, je passe la main.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <SectionHead num="§ 04 — Questions fréquentes" title="Avant d'écrire." kicker="les six qui reviennent le plus" />
+      <div class="faq">
+        <details>
+          <summary><span>Comment se passe la facturation ?</span><span class="marker">+</span></summary>
+          <p class="a">
+            Facturation mensuelle à terme échu, TJM × jours réellement
+            travaillés. Pas d'astreinte facturée hors avenant signé.
+            Frais réels sur justificatifs, plafond convenu en amont.
+          </p>
+        </details>
+        <details>
+          <summary><span>Travaillez-vous à l'étranger ?</span><span class="marker">+</span></summary>
+          <p class="a">
+            Oui, en remote pour l'Europe (UTC−1 à UTC+3). Pour des missions
+            hors UE, sur site uniquement avec un cadrage clair des aspects
+            fiscaux et légaux côté client.
+          </p>
+        </details>
+        <details>
+          <summary><span>Acceptez-vous les NDA ?</span><span class="marker">+</span></summary>
+          <p class="a">
+            Volontiers, mais pas avant le premier échange. Les NDA très
+            restrictifs (non-concurrence longue, IP rétroactive)
+            demanderont une revue par mon conseil avant signature.
+          </p>
+        </details>
+        <details>
+          <summary><span>Pouvez-vous recruter / former une équipe ?</span><span class="marker">+</span></summary>
+          <p class="a">
+            Oui, dans le cadre d'une mission de lead ou CTO intérim. Je
+            participe aux entretiens techniques, j'aide à la structure
+            d'équipe et au plan de montée en compétences. Pas de chasse
+            de tête isolée.
+          </p>
+        </details>
+        <details>
+          <summary><span>Que livrez-vous concrètement ?</span><span class="marker">+</span></summary>
+          <p class="a">
+            Du code en production, des schémas système versionnés,
+            des ADR (Architecture Decision Records), des runbooks et
+            une documentation utilisable par l'équipe après mon départ.
+            Pas de slide-deck-only.
+          </p>
+        </details>
+        <details>
+          <summary><span>Comment se finit une mission ?</span><span class="marker">+</span></summary>
+          <p class="a">
+            Avec un dossier de passation écrit, deux semaines de
+            disponibilité réduite pour répondre aux questions, et un
+            point à 3 mois si l'équipe le souhaite. Sortie propre,
+            pas de dépendance entretenue.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="quote">
+        Un bon système se reconnaît à ceci : six mois après mon départ,
+        l'équipe continue d'en être fière, et personne ne se souvient
+        que j'y suis passé.
+      </p>
+      <div class="sig">
+        <div class="signature">Jean Dupont</div>
+        Lyon, 12 mai 2026<br />
+        Indépendant · SIRET 812 449 ••• 00021
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero { border-bottom: 1.5px solid var(--ink); padding: 64px 0 56px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; }
+  .field-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 14px; }
+  .hero h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(54px, 6.2vw, 84px); line-height: 0.98; letter-spacing: -0.035em; margin: 0; color: var(--ink); text-wrap: balance; }
+  .hero h1 .em { color: var(--accent); font-style: italic; font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em; }
+  .hero p.lead { margin: 26px 0 0; font-family: var(--serif); font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 540px; text-wrap: pretty; }
+  .hero p.lead :global(em.hl) {
+    font-style: normal;
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  :global(html[data-theme="dark"]) .hero p.lead :global(em.hl) { color: var(--accent-2); }
+  .hero .meta-right { border-left: 1px solid var(--rule); padding-left: 40px; }
+
+  .specs { font-family: var(--mono); font-size: 12.5px; }
+  .specs .row { display: grid; grid-template-columns: 110px 1fr; padding: 9px 0; border-bottom: 1px dotted var(--rule-2); align-items: baseline; }
+  .specs .row:last-child { border-bottom: none; }
+  .specs .k { color: var(--ink-soft); text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.1em; }
+  .specs .v { color: var(--ink); }
+  .specs .v.accent { color: var(--accent); }
+  .specs .v.green { color: var(--green); }
+  .specs .v.green::before { content: "●  "; }
+
+  section.block { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+  section.block:last-of-type { border-bottom: none; }
+
+  .contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; border: 1px solid var(--rule); background: var(--paper); }
+  .contact-grid > .col-coord { padding: 36px 38px; background: var(--paper-2); border-right: 1px solid var(--rule); }
+  .contact-grid > .col-form { padding: 36px 38px; }
+  .col-title { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 18px; display: flex; justify-content: space-between; align-items: baseline; }
+  .col-title .pill { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 2px; background: var(--accent-soft); color: var(--accent-2); }
+  .col-title .pill-muted { background: var(--paper-3); color: var(--ink-3); }
+
+  .coord { font-family: var(--mono); display: flex; flex-direction: column; }
+  .coord a, .coord .row { display: grid; grid-template-columns: 88px 1fr 18px; padding: 13px 0; border-bottom: 1px dotted var(--rule-2); align-items: baseline; transition: color 150ms ease, padding 150ms ease; }
+  .coord a:last-child, .coord .row:last-child { border-bottom: none; }
+  .coord .k { font-size: 10px; color: var(--ink-soft); letter-spacing: 0.14em; text-transform: uppercase; }
+  .coord .v { font-size: 14px; color: var(--ink); letter-spacing: 0.01em; word-break: break-all; }
+  .coord .arr { font-size: 13px; color: var(--ink-soft); text-align: right; transition: transform 180ms ease, color 150ms ease; }
+  .coord a:hover .v { color: var(--accent); }
+  .coord a:hover .arr { color: var(--accent); transform: translateX(3px); }
+
+  .coord-foot { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule-2); font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.04em; line-height: 1.6; }
+  .coord-foot b { color: var(--ink); font-weight: 500; }
+
+  .form { display: flex; flex-direction: column; gap: 18px; }
+  .form-row { display: flex; flex-direction: column; gap: 6px; }
+  .form-row.split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-row .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); display: flex; justify-content: space-between; align-items: baseline; }
+  .form-row .lbl .opt { font-size: 9.5px; color: var(--ink-soft); opacity: 0.7; letter-spacing: 0.08em; }
+  .form-row input, .form-row textarea {
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule-2);
+    padding: 7px 0 9px;
+    transition: border-color 150ms ease;
+    outline: none;
+  }
+  .form-row textarea { resize: vertical; min-height: 96px; font-family: var(--serif); font-size: 15px; line-height: 1.5; }
+  .form-row input:focus, .form-row textarea:focus { border-bottom-color: var(--accent); }
+  .form-row input::placeholder, .form-row textarea::placeholder { color: var(--ink-soft); opacity: 0.55; font-style: italic; }
+
+  .chip-group { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .chip-group input { display: none; }
+  .chip-group label {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em;
+    padding: 6px 12px; border: 1px solid var(--rule-2); background: var(--paper);
+    color: var(--ink-2); border-radius: 2px; cursor: pointer; transition: all 150ms ease; user-select: none;
+  }
+  .chip-group label:hover { border-color: var(--ink-3); color: var(--ink); }
+  .chip-group input:checked + label { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  :global(html[data-theme="dark"]) .chip-group input:checked + label { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+  .form-submit { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  .form-submit .meta { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.04em; line-height: 1.55; }
+  .form-submit .meta b { color: var(--ink); font-weight: 500; }
+  button.submit {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper); background: var(--ink); border: 1px solid var(--ink);
+    padding: 14px 24px; border-radius: 2px; cursor: pointer;
+    transition: background 150ms ease, color 150ms ease;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  button.submit:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.submit:hover .arr { transform: translateX(4px); }
+  button.submit .arr { transition: transform 180ms ease; display: inline-block; }
+  .form-note {
+    margin: 4px 0 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .form-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+  .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); }
+  .fit > div { padding: 32px 36px; }
+  .fit > .good { border-right: 1px solid var(--rule); }
+  .fit h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 18px; display: flex; align-items: center; gap: 10px; }
+  .fit .good h3 { color: var(--green); }
+  .fit .bad h3 { color: var(--accent-2); }
+  .fit h3::before { width: 8px; height: 8px; display: inline-block; content: ""; border-radius: 50%; }
+  .fit .good h3::before { background: var(--green); }
+  .fit .bad h3::before { background: var(--accent-2); }
+  .fit ul { margin: 0; padding: 0; list-style: none; font-family: var(--serif); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+  .fit li { padding: 11px 0; border-bottom: 1px dotted var(--rule-2); display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: baseline; }
+  .fit li:last-child { border-bottom: none; }
+  .fit li .glyph { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); }
+  .fit .good li .glyph { color: var(--green); }
+  .fit .bad li .glyph { color: var(--accent-2); }
+  .fit li :global(b) { color: var(--ink); font-weight: 500; font-family: var(--sans); }
+
+  .process { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); }
+  .step { padding: 28px 26px 30px; border-right: 1px solid var(--rule); position: relative; background: var(--paper); }
+  .step:last-child { border-right: none; }
+  .step .n { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
+  .step .when { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-soft); margin-bottom: 8px; text-transform: uppercase; }
+  .step h4 { font-family: var(--sans); font-weight: 600; font-size: 17px; letter-spacing: -0.01em; margin: 0 0 10px; line-height: 1.2; }
+  .step p { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+  .step::after {
+    content: "→"; position: absolute; top: 30px; right: -8px; width: 16px; height: 16px;
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
+    font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
+    display: flex; align-items: center; justify-content: center; z-index: 2;
+  }
+  .step:last-child::after { display: none; }
+
+  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+  .faq details { padding: 18px 0; border-bottom: 1px solid var(--rule); cursor: pointer; }
+  .faq details[open] summary .marker { transform: rotate(45deg); color: var(--accent); }
+  .faq summary {
+    list-style: none; display: grid; grid-template-columns: 1fr 18px; align-items: start; gap: 14px;
+    font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.35;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq .marker { font-family: var(--mono); font-size: 18px; color: var(--ink-soft); transition: transform 200ms ease, color 200ms ease; display: inline-block; line-height: 1; margin-top: 2px; }
+  .faq .a { font-family: var(--serif); font-size: 15px; line-height: 1.6; color: var(--ink-2); margin: 10px 0 2px; max-width: 460px; }
+
+  .closing { padding: 64px 0 80px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: end; }
+  .closing .quote { font-family: var(--serif); font-style: italic; font-size: 26px; line-height: 1.3; color: var(--ink); margin: 0; max-width: 540px; text-wrap: balance; }
+  .closing .quote::before { content: "\201C"; font-family: var(--serif); color: var(--accent); font-size: 80px; line-height: 0.4; margin-right: 4px; vertical-align: -22px; }
+  .closing .sig { text-align: right; font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; line-height: 1.7; }
+  .closing .sig .signature { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 32px; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 4px; }
+
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .hero .meta-right { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 32px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-grid > .col-coord { border-right: none; border-bottom: 1px solid var(--rule); }
+    .fit { grid-template-columns: 1fr; }
+    .fit > .good { border-right: none; border-bottom: 1px solid var(--rule); }
+    .process { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(2)::after { display: none; }
+    .step:nth-child(odd) { border-right: 1px solid var(--rule); }
+    .step:nth-child(even) { border-right: none; }
+    .step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .faq { grid-template-columns: 1fr; }
+    .closing { grid-template-columns: 1fr; gap: 36px; }
+    .closing .sig { text-align: left; }
+  }
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 48px; }
+    .contact-grid > div { padding: 26px 22px; }
+    .form-row.split { grid-template-columns: 1fr; }
+    .process { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--rule); }
+    .step:last-child { border-bottom: none; }
+    .step::after { display: none; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const note = document.getElementById("form-note");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    note?.removeAttribute("hidden");
+  });
+</script>

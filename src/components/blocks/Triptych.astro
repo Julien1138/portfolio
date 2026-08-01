@@ -1,0 +1,60 @@
+---
+export interface Props {
+  items: { num: string; title: string; text: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="triptych">
+  {items.map((it) => (
+    <div class="col">
+      <span class="num">{it.num}</span>
+      <h4>{it.title}</h4>
+      <p>{it.text}</p>
+    </div>
+  ))}
+</div>
+
+<style>
+  .triptych {
+    margin-top: 8px;
+    max-width: var(--maxw);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--rule);
+  }
+  .triptych .col {
+    padding: 22px 22px 24px;
+    border-right: 1px solid var(--rule);
+  }
+  .triptych .col:last-child { border-right: none; }
+  .triptych .col .num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .triptych .col h4 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 17px;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .triptych .col p {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .triptych { grid-template-columns: 1fr; }
+    .triptych .col { border-right: none; border-bottom: 1px solid var(--rule); }
+    .triptych .col:last-child { border-bottom: none; }
+  }
+</style>

@@ -1,0 +1,138 @@
+/* ============================================================
+   DESIGN TOKENS
+   Ported from design_handoff_portfolio/*.html — union of every
+   custom property used across the 7 hi-fi references.
+   ============================================================ */
+:root {
+  /* Paper / ink (light theme, default) */
+  --paper:        #F5F1E8;
+  --paper-2:      #EDE7D7;
+  --paper-3:      #E5DEC9;
+  --ink:          #1A1814;
+  --ink-2:        #3D3A33;
+  --ink-3:        #5F594E;
+  --ink-soft:     #8A8478;
+  --rule:         #D4CDB8;
+  --rule-2:       #C9C0A6;
+  --accent:       #C45A2C;
+  --accent-2:     #A14722;
+  --accent-soft:  #F4E4D6;
+  --green:        #5E7A4F;
+  --green-soft:   #DDE5D4;
+  --blue:         #3A6B8A;
+  --blue-soft:    #D9E3EB;
+  --violet:       #6B4F8A;
+  --violet-soft:  #E1D9EB;
+  --amber:        #B58A2A;
+  --red:          #A14722;
+
+  /* Surface tokens that may be overridden per-theme */
+  --strip-bg:     var(--ink);
+  --strip-fg:     var(--paper);
+  --strip-muted:  #B8B0A0;
+  --bom-head-bg:  var(--ink);
+  --bom-head-fg:  var(--paper);
+  --portrait-bg:  #EDE7D7;
+  --portrait-fg:  #1A1814;
+  --hatch-color:  #1A1814;
+  --fpga-bg:      #1A1814;
+  --fpga-inner:   #1f1d18;
+  --fpga-border:  #2c2922;
+  --code-bg:      #1A1814;
+  --code-fg:      #EFE9D6;
+  --code-muted:   #8A8478;
+  --code-accent:  #E68B4E;
+  --led-bg:       #15120D;
+  --led-inner:    #1f1d18;
+  --led-border:   #2c2922;
+  --led-amber:    #E8A232;
+  --led-dim:      #3a3a3a;
+
+  /* Type */
+  --sans:  "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --serif: "Source Serif 4", "Source Serif Pro", ui-serif, Georgia, serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+
+  /* Layout */
+  --rail:   204px;
+  --maxw:   1180px;
+  --pad:    60px;
+  --prose:  680px;
+}
+
+/* ────── DARK THEME ──────
+   Set on <html> by the inline init script (src/components/ThemeToggle.astro)
+   before first paint, to avoid a light-mode flash. */
+html[data-theme="dark"] {
+  --paper:        #16140F;
+  --paper-2:      #1E1B14;
+  --paper-3:      #26221A;
+  --ink:          #EFE9D6;
+  --ink-2:        #CFC8B2;
+  --ink-3:        #A39C84;
+  --ink-soft:     #6F6952;
+  --rule:         #2C281D;
+  --rule-2:       #3A3527;
+  --accent:       #E68B4E;
+  --accent-2:     #F0A268;
+  --accent-soft:  #3A2718;
+  --green:        #8FA77A;
+  --green-soft:   #232C1B;
+  --blue:         #6FA0BE;
+  --blue-soft:    #1B2630;
+  --violet:       #9C84BE;
+  --violet-soft:  #261E33;
+  --amber:        #D9B057;
+  --red:          #E68B4E;
+
+  --strip-bg:     #0E0C08;
+  --strip-fg:     #EFE9D6;
+  --strip-muted:  #6F6952;
+  --bom-head-bg:  #0E0C08;
+  --bom-head-fg:  #EFE9D6;
+  --portrait-bg:  #26221A;
+  --portrait-fg:  #EFE9D6;
+  --hatch-color:  #EFE9D6;
+  --fpga-bg:      #0E0C08;
+  --fpga-inner:   #16140F;
+  --fpga-border:  #2C281D;
+  --code-bg:      #0E0C08;
+  --code-fg:      #EFE9D6;
+  --code-muted:   #6F6952;
+  --code-accent:  #F0A268;
+}
+
+/* ────── CONTAINER WIDTH VARIANTS ──────
+   "wide"  → datasheet pages (home, stack, contact) : 1180px / 60px gutter
+   "doc"   → long-form doc pages (deep-dive, role, about) : 960px / 56px gutter
+   "index" → projects index : 1080px / 56px gutter
+*/
+body[data-container="doc"]   { --maxw: 960px;  --pad: 56px; }
+body[data-container="index"] { --maxw: 1080px; --pad: 56px; }
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 200ms ease, color 200ms ease;
+}
+body { min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent-soft); color: var(--ink); }
+
+/* Shared page container (see body[data-container] above for width) */
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+@media (max-width: 760px) {
+  .container { padding: 0 24px; }
+}

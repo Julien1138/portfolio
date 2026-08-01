@@ -1,0 +1,314 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHead from "../components/SectionHead.astro";
+import BomTableCompact from "../components/BomTableCompact.astro";
+import ProjectCardWide from "../components/ProjectCardWide.astro";
+
+const allProjects = await getCollection("projects");
+const featured = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const bomRows = [
+  { ref: "EMB-01", cat: "Embarqué temps réel", detail: "C, C++17, FreeRTOS, ESP-IDF, mbedTLS", years: 12, maturity: 5 },
+  { ref: "EMB-02", cat: "Logique programmable", detail: "VHDL, Verilog (lecture), Lattice ECP5, Xilinx 7-series", years: 8, maturity: 4 },
+  { ref: "EMB-03", cat: "MCU bare-metal", detail: "STM32 (F0/F4/H7), Nordic nRF52, ESP32-S3", years: 12, maturity: 5 },
+  { ref: "BCK-01", cat: "API & backend", detail: "Symfony, API Platform, Node, NestJS", years: 10, maturity: 5 },
+  { ref: "BCK-02", cat: "Bases & séries temp.", detail: "PostgreSQL 16, TimescaleDB, Redis, MariaDB", years: 10, maturity: 4 },
+  { ref: "FRT-01", cat: "SPA modernes", detail: "Vue 3 + Pinia, React, TypeScript, Astro", years: 9, maturity: 4 },
+  { ref: "INF-01", cat: "Containers & CI", detail: "Docker, Compose, GitLab CI, GitHub Actions", years: 8, maturity: 4 },
+  { ref: "INF-02", cat: "Observabilité", detail: "Prometheus, Grafana, Loki, OpenTelemetry", years: 5, maturity: 3 },
+  { ref: "MTH-01", cat: "Méthode & qualité", detail: "Spec-driven, traçabilité, IEC 62304, audits", years: 8, maturity: 4 },
+];
+---
+
+<BaseLayout
+  title="Jean Dupont — Architecte système"
+  active={1}
+  container="wide"
+  stripFields={[
+    { label: "FICHE", value: "JD-ENG / ARCHITECTE" },
+    { label: "RÉV", value: "1.0 — 2026.05" },
+    { label: "DOC", value: "PORTFOLIO / HOME" },
+    { label: "PAGE", value: "01 / 01" },
+  ]}
+>
+  <div class="container page-pad">
+    <header class="hero">
+      <div class="hero-left">
+        <span class="field-label">Désignation</span>
+        <h1>Jean&nbsp;<span class="last">Dupont.</span></h1>
+        <div class="role">
+          <b>Architecte système &amp; embarqué.</b> Du capteur au dashboard —
+          une seule pile, conçue pour durer.
+        </div>
+        <p class="lead">
+          Ingénieur indépendant depuis quinze ans. Je conçois, code et industrialise
+          des systèmes complexes : firmware temps réel, électronique numérique, FPGA,
+          backend SaaS, interfaces métier. <em class="hl">Je prends la responsabilité
+          de la chaîne entière</em>, du transistor au pixel.
+        </p>
+
+        <div class="portrait-wrap">
+          <div class="portrait" aria-label="Portrait">
+            <svg viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+                  <line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width="0.6" opacity="0.18"></line>
+                </pattern>
+              </defs>
+              <rect width="112" height="112" fill="var(--portrait-bg)"></rect>
+              <rect width="112" height="112" fill="url(#hatch)" style="color: var(--hatch-color);"></rect>
+              <circle cx="56" cy="46" r="18" fill="var(--portrait-fg)"></circle>
+              <path d="M22 112 C 22 82, 38 70, 56 70 C 74 70, 90 82, 90 112 Z" fill="var(--portrait-fg)"></path>
+              <circle cx="56" cy="46" r="18" fill="none" stroke="var(--accent)" stroke-width="1.2"></circle>
+            </svg>
+          </div>
+          <div class="portrait-meta">
+            <b>JEAN DUPONT</b><br />
+            Lyon, France · b. 1986<br />
+            Indépendant depuis 2014
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <span class="field-label">Caractéristiques</span>
+        <div class="specs">
+          <div class="row"><span class="k">Expérience</span><span class="v">15 ans <span class="badge">depuis 2009</span></span></div>
+          <div class="row"><span class="k">Domaines</span><span class="v">Hardware · Embarqué · FPGA · Backend · Frontend</span></div>
+          <div class="row"><span class="k">Rôles</span><span class="v">Architect · Tech Lead · CTO intérim</span></div>
+          <div class="row"><span class="k">Langages</span><span class="v">C, C++, VHDL, TypeScript, PHP, Python</span></div>
+          <div class="row"><span class="k">Plateformes</span><span class="v">ESP32, STM32, FPGA Lattice/Xilinx, Linux</span></div>
+          <div class="row"><span class="k">Frameworks</span><span class="v">Symfony / API Platform, Vue 3, Astro, Tailwind</span></div>
+          <div class="row"><span class="k">Méthodes</span><span class="v">Spec-driven, traçabilité, IEC 62304, audits</span></div>
+          <div class="row"><span class="k">Industries</span><span class="v">IoT industriel, medtech, affichage, ERP B2B</span></div>
+          <div class="row"><span class="k">Localisation</span><span class="v">Lyon · remote Europe</span></div>
+          <div class="row"><span class="k">Disponibilité</span><span class="v accent">Q3 2026 — missions ≥ 3 mois</span></div>
+          <div class="row"><span class="k">Langues</span><span class="v">Français · Anglais (C1)</span></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="block" id="stack">
+      <SectionHead num="§ 01 — Stack" title="Bill of materials." kicker="vue ingénieur, par catégorie" />
+      <p class="bom-intro">
+        La stack que j'opère quotidiennement, exprimée comme une BOM —
+        chaque ligne porte une référence, des composants concrets, et la
+        maturité que j'ai dessus. Tout ce qui est listé tourne en production
+        sur au moins un projet actif.
+      </p>
+      <BomTableCompact rows={bomRows} />
+    </section>
+
+    <section class="block" id="projects" style="padding-top: 56px;">
+      <SectionHead num="§ 02 — Projets" title="Sélection — 3 systèmes." kicker="cliquer pour le récit complet" />
+      <div class="projects">
+        {featured.map((p, i) => (
+          <ProjectCardWide
+            href={`/projets/${p.id}/`}
+            side={i % 2 === 0 ? "left" : "right"}
+            dark={p.data.variant === "dark"}
+            figTag={p.data.figTag}
+            metaLeft={`${p.data.ref} · ${p.data.category}`}
+            metaRight={`${p.data.period}${p.data.ongoing ? " · en cours" : ""}`}
+            title={p.data.title}
+            desc={p.data.lede.replace(/<[^>]+>/g, "")}
+            kpis={p.data.kpis.map((k, ki) => ({ k: k.k, v: k.v, accent: ki === 0 }))}
+            chips={p.data.chips}
+          />
+        ))}
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div>
+        <h2>Discuter d'un <span class="em">système</span>.</h2>
+        <p>
+          Architecture, lead technique, audit, mission longue. Si vous avez
+          un système complexe à concevoir ou à reprendre, écrivez-moi —
+          réponse sous 48 h ouvrées.
+        </p>
+      </div>
+      <div class="cta-links">
+        <a href="mailto:hello@jdupont.eng"><span class="k">email</span><span>hello@jdupont.eng →</span></a>
+        <a href="/contact/"><span class="k">contact</span><span>formulaire de contact →</span></a>
+        <a href="https://github.com/" target="_blank" rel="noopener"><span class="k">github</span><span>@jdupont →</span></a>
+        <a href="#"><span class="k">cv</span><span>cv-2026.pdf →</span></a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    border-bottom: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+  }
+  .hero-left {
+    padding: 56px 56px 56px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .hero-right { padding: 56px 0 56px 56px; }
+
+  .field-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(58px, 7vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .hero h1 .last { color: var(--accent); }
+  .hero .role {
+    margin-top: 14px;
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink-2);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .hero .role b { font-weight: 500; font-style: normal; color: var(--ink); }
+  .hero p.lead {
+    margin: 28px 0 0;
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 520px;
+    text-wrap: pretty;
+  }
+  .hero p.lead :global(em.hl) {
+    font-style: normal;
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  :global(html[data-theme="dark"]) .hero p.lead :global(em.hl) { color: var(--accent-2); }
+
+  .portrait-wrap { margin-top: 36px; display: flex; align-items: center; gap: 18px; }
+  .portrait {
+    width: 112px; height: 112px;
+    border-radius: 2px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule-2);
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .portrait svg { display: block; width: 100%; height: 100%; }
+  .portrait::after {
+    content: "";
+    position: absolute; inset: 0;
+    box-shadow: inset 0 -28px 32px -20px rgba(26, 24, 20, 0.15);
+    pointer-events: none;
+  }
+  .portrait-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+  }
+  .portrait-meta b { color: var(--ink); font-weight: 500; }
+
+  .specs { font-family: var(--mono); font-size: 12.5px; }
+  .specs .row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--rule-2);
+    align-items: baseline;
+  }
+  .specs .row:last-child { border-bottom: none; }
+  .specs .k { color: var(--ink-soft); text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.1em; }
+  .specs .v { color: var(--ink); }
+  .specs .v.accent { color: var(--accent); }
+  .specs .v :global(.badge) {
+    display: inline-block;
+    padding: 1px 7px;
+    background: var(--accent-soft);
+    color: var(--accent-2);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    margin-left: 6px;
+    border-radius: 2px;
+  }
+
+  section.block { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  section.block:last-of-type { border-bottom: none; }
+  .bom-intro {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    max-width: 640px;
+    margin: 0 0 22px;
+  }
+  .projects { display: flex; flex-direction: column; gap: 0; }
+
+  .cta {
+    padding: 80px 0 96px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .cta h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0;
+    max-width: 540px;
+  }
+  .cta h2 .em { color: var(--accent); font-style: italic; font-family: var(--serif); font-weight: 500; }
+  .cta p {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    margin: 22px 0 0;
+    max-width: 480px;
+  }
+  .cta-links { display: flex; flex-direction: column; gap: 0; font-family: var(--mono); font-size: 13px; }
+  .cta-links a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    transition: color 150ms ease, padding-left 150ms ease;
+  }
+  .cta-links a:first-child { border-top: 1px solid var(--rule); }
+  .cta-links a .k { color: var(--ink-soft); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .cta-links a:hover { color: var(--accent); padding-left: 4px; }
+  .cta-links a:hover .k { color: var(--accent); }
+
+  @media (max-width: 1100px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 48px 0; border-right: none; border-bottom: 1px solid var(--rule); }
+    .hero-right { padding: 48px 0; }
+    .cta { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 52px; }
+    .cta h2 { font-size: 36px; }
+  }
+</style>

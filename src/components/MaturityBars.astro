@@ -1,0 +1,21 @@
+---
+export interface Props {
+  level: number; // 0-5
+}
+const { level } = Astro.props;
+const bars = Array.from({ length: 5 }, (_, i) => i < level);
+---
+
+<span class="bars">
+  {bars.map((on) => <span class={on ? "" : "off"}></span>)}
+</span>
+
+<style>
+  .bars { display: inline-flex; gap: 2px; vertical-align: -1px; }
+  .bars span {
+    display: inline-block;
+    width: 8px; height: 11px;
+    background: var(--ink);
+  }
+  .bars span.off { background: var(--rule); }
+</style>

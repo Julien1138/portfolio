@@ -1,0 +1,55 @@
+---
+import Prose from "./Prose.astro";
+import Triptych from "./Triptych.astro";
+import CodeBlock from "./CodeBlock.astro";
+import Split2 from "./Split2.astro";
+import RowList from "./RowList.astro";
+import ArchiDiagram from "./ArchiDiagram.astro";
+import PipelineDiagram from "./PipelineDiagram.astro";
+import KpisBig from "./KpisBig.astro";
+import VIMatrix from "./VIMatrix.astro";
+import Constraints from "./Constraints.astro";
+import Decisions from "./Decisions.astro";
+import Takeaway from "./Takeaway.astro";
+import Pull from "./Pull.astro";
+
+export interface Props {
+  sections: any[];
+}
+const { sections } = Astro.props;
+---
+
+{sections.map((s) => {
+  switch (s.type) {
+    case "prose":
+      return <Prose heading={s.heading} num={s.num} paragraphs={s.paragraphs} />;
+    case "triptych":
+      return <Triptych items={s.items} />;
+    case "codeblock":
+      return <CodeBlock head={s.head} lines={s.lines} />;
+    case "split2":
+      return <Split2 figTag={s.figTag} panelK={s.panelK} panelTitle={s.panelTitle} items={s.items} />;
+    case "rowlist":
+      return <RowList rows={s.rows} />;
+    case "archi":
+      return <ArchiDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} arrows={s.arrows} />;
+    case "pipeline":
+      return <PipelineDiagram figLabel={s.figLabel} sub={s.sub} stages={s.stages} axis={s.axis} />;
+    case "kpisBig":
+      return <KpisBig items={s.items} />;
+    case "vimatrix":
+      return (
+        <VIMatrix varTitle={s.varTitle} varItems={s.varItems} invTitle={s.invTitle} invItems={s.invItems} />
+      );
+    case "constraints":
+      return <Constraints rows={s.rows} />;
+    case "decisions":
+      return <Decisions items={s.items} />;
+    case "takeaway":
+      return <Takeaway cards={s.cards} />;
+    case "pull":
+      return <Pull body={s.body} sig={s.sig} />;
+    default:
+      return null;
+  }
+})}

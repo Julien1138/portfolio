@@ -1,0 +1,120 @@
+---
+export interface Props {
+  active: number;
+}
+const { active } = Astro.props;
+
+const items = [
+  { num: "01", label: "Index", href: "/" },
+  { num: "02", label: "Projets", href: "/projets/" },
+  { num: "03", label: "Rôles", href: "/roles/" },
+  { num: "04", label: "Parcours", href: "/parcours/" },
+  { num: "05", label: "Stack", href: "/stack/" },
+  { num: "06", label: "Contact", href: "/contact/" },
+];
+---
+
+<aside class="rail" aria-label="Navigation">
+  <div>
+    <div class="mark"><span class="dot"></span>JD.ENG</div>
+    <div class="mark-sub">PORTFOLIO · v1.0</div>
+  </div>
+  <nav>
+    {items.map((item, i) => (
+      <a href={item.href} class={active === i + 1 ? "active" : ""}>
+        <span class="num">{item.num}</span><span>{item.label}</span>
+      </a>
+    ))}
+  </nav>
+  <div class="grow"></div>
+  <div class="status">
+    <div class="ok">DISPONIBLE Q3 2026</div>
+    <div>Lyon · remote EU</div>
+    <div>maj. 12.05.2026</div>
+  </div>
+</aside>
+
+<style>
+  .rail {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--rail);
+    border-right: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 28px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    transition: background 200ms ease, border-color 200ms ease;
+  }
+  .rail .mark {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rail .mark .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .rail .mark-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .rail nav {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rail nav a {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    align-items: center;
+    padding: 7px 0 7px 10px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-left: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+  }
+  .rail nav a .num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .rail nav a:hover { color: var(--ink); }
+  .rail nav a.active {
+    color: var(--ink);
+    border-left-color: var(--accent);
+  }
+  .rail nav a.active .num { color: var(--accent); }
+  .rail .grow { flex: 1; }
+  .rail .status {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+  .rail .status .ok { color: var(--green); }
+  .rail .status .ok::before {
+    content: "●";
+    margin-right: 6px;
+  }
+
+  @media (max-width: 760px) {
+    .rail { display: none; }
+  }
+</style>

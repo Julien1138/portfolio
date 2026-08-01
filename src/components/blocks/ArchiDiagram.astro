@@ -1,0 +1,108 @@
+---
+export interface Stage {
+  lbl: string;
+  name: string;
+  items: string[];
+}
+export interface Props {
+  figLabel: string;
+  figRef: string;
+  stages: Stage[];
+  arrows: string[]; // labels between stages, length = stages.length - 1
+}
+const { figLabel, figRef, stages, arrows } = Astro.props;
+---
+
+<div class="archi">
+  <div class="head">
+    <span class="lbl">{figLabel}</span>
+    <span class="lbl ref">{figRef}</span>
+  </div>
+  <div class="grid">
+    {stages.map((stage, i) => (
+      <>
+        <div class="stage">
+          <span class="lbl">{stage.lbl}</span>
+          <span class="name">{stage.name}</span>
+          {stage.items.map((it) => <span class="item">{it}</span>)}
+        </div>
+        {i < stages.length - 1 && (
+          <div class="arrow">
+            <span class="line">→</span>
+            <span class="label">{arrows[i]}</span>
+          </div>
+        )}
+      </>
+    ))}
+  </div>
+</div>
+
+<style>
+  .archi {
+    margin-top: 20px;
+    max-width: var(--maxw);
+    padding: 26px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .archi .head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 16px;
+  }
+  .archi .head .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .archi .head .ref { color: var(--accent); }
+  .archi .grid {
+    display: grid;
+    grid-template-columns: 1fr 26px 1fr 26px 1fr;
+    align-items: stretch;
+  }
+  .archi .stage {
+    background: var(--paper-2);
+    border: 1px solid var(--rule-2);
+    padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .archi .stage .lbl {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+  .archi .stage .name {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .archi .stage .item {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-2);
+    padding: 4px 8px;
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+  }
+  .archi .arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    color: var(--ink-soft);
+    flex-direction: column;
+    gap: 2px;
+    font-size: 11px;
+  }
+  .archi .arrow .line { color: var(--ink-soft); font-size: 18px; line-height: 1; }
+  .archi .arrow .label { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .archi .grid { grid-template-columns: 1fr; gap: 10px; }
+    .archi .arrow { transform: rotate(90deg); padding: 4px 0; }
+  }
+</style>
