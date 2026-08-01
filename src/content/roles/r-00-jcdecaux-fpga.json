@@ -16,6 +16,7 @@
   ],
   "chips": ["VHDL", "Verilog", "Lattice", "Xilinx", "pipelines", "horloges multi-domaines", "BRAM", "gamma LUT", "scan matriciel", "industrialisation"],
   "ledHero": true,
+  "heroImage": "/src/assets/images/roles/jcdecaux-fpga/afficheur-new-york.jpg",
   "sections": [
     {
       "type": "prose",

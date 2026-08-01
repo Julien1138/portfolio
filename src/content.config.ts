@@ -138,6 +138,7 @@ const roles = defineCollection({
     metaStrip: z.array(metaCell).length(5),
     chips: z.array(z.string()),
     ledHero: z.boolean().default(false),
+    heroImage: z.string().optional(),
     sections: z.array(sectionSchema).default([]),
   }),
 });

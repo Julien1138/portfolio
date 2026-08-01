@@ -51,7 +51,11 @@ const allRoles = (await getCollection("roles")).sort((a, b) => a.data.order - b.
       <ChipRow chips={d.chips} class="header-chips" />
     </header>
 
-    {d.ledHero ? (
+    {d.heroImage ? (
+      <div class="hero-fig-wrap">
+        <PlaceholderFigure tag={`fig. 1 · ${d.client} · ${d.domain}`} imagePath={d.heroImage} minHeight="240px" />
+      </div>
+    ) : d.ledHero ? (
       <LedHero />
     ) : (
       <div class="hero-fig-wrap">
