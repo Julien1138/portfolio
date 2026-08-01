@@ -1,0 +1,77 @@
+{
+  "ref": "R-03",
+  "title": "Faire progresser les autres",
+  "client": "Enseignement · ID-1 · Medium",
+  "domain": "Transmission & mentorat technique",
+  "period": "2019 — 2025",
+  "years": "~6 ans",
+  "order": 3,
+  "lede": "Transmettre des connaissances me procure autant de plaisir que d'en acquérir — <em>par l'enseignement, l'encadrement et l'écriture technique</em>.",
+  "metaStrip": [
+    { "k": "Contextes", "v": "Enseignement · ID-1 · Medium" },
+    { "k": "Domaine", "v": "Transmission & mentorat technique" },
+    { "k": "Rôle", "v": "Mentor technique", "accent": true },
+    { "k": "Format", "v": "Cours · encadrement · articles" },
+    { "k": "Lecture", "v": "~ 5 min" }
+  ],
+  "chips": ["VHDL / FPGA", "Pédagogie par projet", "Mentorat", "Revue de code", "Écriture technique", "Onboarding"],
+  "ledHero": false,
+  "sections": [
+    {
+      "type": "prose",
+      "heading": "Transmettre autant qu'apprendre.",
+      "num": "§ 01 — Contexte",
+      "paragraphs": [
+        { "lead": true, "html": "Tout au long de mon parcours, je me suis rendu compte que j'éprouvais autant de plaisir à <b>transmettre des connaissances</b> qu'à les acquérir. J'aime comprendre un sujet en profondeur, prendre du recul sur ce qui est essentiel, puis trouver la meilleure manière de le rendre accessible à quelqu'un d'autre." },
+        { "html": "Cette envie de partager s'est exprimée sous plusieurs formes : l'enseignement, l'encadrement de jeunes ingénieurs, et l'écriture technique." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Enseigner par le projet.",
+      "num": "§ 02 — Enseignement",
+      "paragraphs": [
+        { "html": "À la rentrée 2019, j'ai assuré pendant un semestre un cours de VHDL/FPGA auprès d'étudiants de deuxième année de Bachelor. La plupart découvraient complètement le développement sur FPGA." },
+        { "html": "Plutôt que de limiter l'enseignement à des exercices indépendants, j'ai construit le semestre autour d'un <span class=\"hl\">projet collectif</span> : la réalisation d'un jeu vidéo sur FPGA." },
+        { "html": "Nous avons imaginé ensemble les règles du jeu, découpé son architecture en modules VHDL, défini les interfaces entre ces modules, puis chaque groupe d'étudiants a développé une partie du système. Le semestre s'est terminé par l'intégration de tous les modules et quelques parties sur le système final." },
+        { "html": "J'ai particulièrement apprécié cette approche où chacun contribue à un projet plus grand que lui et découvre naturellement les enjeux d'architecture, d'interfaces et d'intégration." },
+        { "html": "Cette expérience m'a également appris que ce qui me motive n'est pas la gestion d'une classe ou l'évaluation des étudiants, mais bien <b>l'accompagnement technique et la transmission par la pratique</b>." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Accompagner des jeunes ingénieurs.",
+      "num": "§ 03 — Encadrement",
+      "paragraphs": [
+        { "html": "Chez ID-1, j'ai eu le plaisir d'encadrer un apprenti ainsi que trois stagiaires." },
+        { "html": "Mon objectif n'a jamais été de leur confier des sujets isolés ou artificiels. Je préfère les intégrer à de <span class=\"hl\">véritables projets de l'entreprise</span>, avec un périmètre clairement défini et une responsabilité réelle. Ils découvrent ainsi les contraintes d'un produit industriel tout en produisant un travail utile à l'équipe." },
+        { "html": "J'apprécie particulièrement les échanges techniques, les revues de code, les discussions d'architecture et les moments où une notion devient soudainement évidente pour la personne en face de moi." },
+        { "html": "Cette démarche bénéficie autant aux personnes accompagnées qu'à l'entreprise : les premières gagnent rapidement en autonomie, tandis que les secondes apportent une contribution concrète aux projets." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Partager au-delà de mon équipe.",
+      "num": "§ 04 — Écriture",
+      "paragraphs": [
+        { "html": "Lorsque je rencontre un sujet peu documenté ou que je découvre une solution élégante à un problème, il m'arrive d'écrire des tutoriels techniques publiés sur Medium." },
+        { "html": "Ces articles sont nés d'une idée simple : si une difficulté m'a demandé plusieurs jours de recherche, je peux probablement <span class=\"hl\">faire gagner ce temps à d'autres</span>." },
+        { "html": "Écrire ces tutoriels m'oblige également à structurer ma pensée et à clarifier mes propres connaissances. Expliquer est souvent la meilleure manière de vérifier que l'on a réellement compris." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Ce que cela dit de moi.",
+      "num": "§ 05 — Bilan",
+      "paragraphs": [
+        { "lead": true, "html": "Avec le temps, j'ai compris que je suis davantage un <b>mentor technique</b> qu'un enseignant au sens traditionnel." },
+        { "html": "J'aime créer un cadre dans lequel les autres peuvent comprendre, expérimenter et gagner progressivement en autonomie. Voir une personne progresser, prendre confiance et devenir capable de résoudre seule des problèmes de plus en plus complexes est une satisfaction comparable à celle de mener à bien un projet technique." }
+      ]
+    },
+    {
+      "type": "pull",
+      "body": "« Transmettre n'est pas une activité annexe de mon métier d'ingénieur : c'est l'une des façons dont j'aime exercer ce métier. »",
+      "sig": "— Julien Aupart · sur la transmission"
+    }
+  ]
+}
