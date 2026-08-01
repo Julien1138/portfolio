@@ -114,18 +114,6 @@
         ]
       },
       {
-        "type": "codeblock",
-        "head": "firmware/src/ — arborescence simplifiée",
-        "lines": [
-          "├── <b>hal/</b>           <span class=\"com\">// drivers ratiométrique, ADC, I²C</span>",
-          "├── <b>core/</b>          <span class=\"com\">// scheduler, journal, machine à états</span>",
-          "├── <b>net/</b>           <span class=\"com\">// client HTTP, remontée mesures, MAJ à distance</span>",
-          "├── <b>ui/</b>            <span class=\"com\">// serveur HTTP embarqué + assets Vue</span>",
-          "├── <b>storage/</b>       <span class=\"com\">// journal circulaire, conf persistante</span>",
-          "└── <b>tests/</b>         <span class=\"com\">// tests unitaires, mocks HAL</span>"
-        ]
-      },
-      {
         "type": "prose",
         "heading": "Une interface locale, accessible et réactive",
         "num": "§ 04",
