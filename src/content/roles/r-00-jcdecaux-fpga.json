@@ -1,11 +1,11 @@
 {
-  "ref": "R-02",
+  "ref": "R-00",
   "title": "Expert FPGA & électronique numérique",
   "client": "JCDecaux",
   "domain": "Affichage urbain LED",
   "period": "2014 — 2018",
   "years": "~4 ans",
-  "order": 2,
+  "order": 0,
   "lede": "Concevoir et faire évoluer les architectures FPGA qui pilotent les matrices LED d'affichage urbain — un travail de bas niveau dont la qualité se voit, <em>littéralement, de loin</em>.",
   "metaStrip": [
     { "k": "Entreprise", "v": "JCDecaux" },

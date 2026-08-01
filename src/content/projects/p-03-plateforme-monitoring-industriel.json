@@ -1,11 +1,11 @@
 {
-  "ref": "P-01",
+  "ref": "P-03",
   "title": "Boîtier de mesure connecté",
   "category": "IoT industriel",
   "tag": "iot",
   "period": "2021 — 2025",
   "yearStart": 2021,
-  "order": 1,
+  "order": 3,
   "featured": true,
   "variant": "default",
   "lede": "Conception d'un système complet de mesure et de supervision industrielle — <em>électronique, firmware, interface web, infrastructure serveur, mécanique</em> — menée seul, de bout en bout, chez ID-1.",
@@ -20,11 +20,11 @@
     "Impression 3D"
   ],
   "role": "Solo → + 1 apprenti",
-  "figTag": "fig. P-01 · boîtier terrain + appli locale",
-  "cornerLabel": "P-01 / IOT",
+  "figTag": "fig. P-03 · boîtier terrain + appli locale",
+  "cornerLabel": "P-03 / IOT",
   "heroImage": "/src/assets/images/projets/p-01-plateforme-monitoring-industriel/boitier-akriplo.jpg",
   "deepDive": {
-    "metaTop": "P-01 · IoT industriel · 2021 — 2025 · ID-1",
+    "metaTop": "P-03 · IoT industriel · 2021 — 2025 · ID-1",
     "readTime": "~ 5 min",
     "metaStrip": [
       {
@@ -58,7 +58,7 @@
         "heading": "Carte blanche, après l'audit",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-00-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles." },
+          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-02-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles." },
           { "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps." },
           { "html": "Cette fois, <span class=\"hl\">carte blanche</span> pour tout repenser, du silicium à l'interface. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z." }
         ]
@@ -165,7 +165,7 @@
       {
         "type": "archi",
         "figLabel": "fig. 3 · architecture — du boîtier à la supervision",
-        "figRef": "P-01.ARCH",
+        "figRef": "P-03.ARCH",
         "stages": [
           {
             "lbl": "EDGE",

@@ -1,11 +1,11 @@
 {
-  "ref": "R-03",
+  "ref": "R-02",
   "title": "Responsable systèmes embarqués",
   "client": "ID-1",
   "domain": "Pompes à chaleur industrielles",
   "period": "2020 — 2025",
   "years": "~5 ans",
-  "order": 3,
+  "order": 2,
   "lede": "Conception et développement, de bout en bout, d'un système embarqué industriel pour équiper des pompes à chaleur — <em>de l'architecture au déploiement terrain</em>.",
   "metaStrip": [
     { "k": "Entreprise", "v": "ID-1" },

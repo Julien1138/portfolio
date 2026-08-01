@@ -1,21 +1,21 @@
 {
-  "ref": "P-00",
+  "ref": "P-02",
   "title": "Reprise et refonte d'un prototype de boîtier de mesure",
   "category": "IoT industriel",
   "tag": "iot",
   "period": "2020 — 2021",
   "yearStart": 2020,
-  "order": 0,
+  "order": 2,
   "featured": true,
   "variant": "default",
   "lede": "Reprendre un prototype existant chez ID-1, remettre à plat son logiciel et son architecture — <em>et ouvrir la voie au développement industriel</em> d'un nouveau boîtier de mesure.",
   "chips": ["STM32", "ESP8266", "Protobuf", "Preact", "Électronique"],
   "role": "Solo",
-  "figTag": "fig. P-00 · prototype initial STM32 + 2×ESP8266",
-  "cornerLabel": "P-00 / IOT",
+  "figTag": "fig. P-02 · prototype initial STM32 + 2×ESP8266",
+  "cornerLabel": "P-02 / IOT",
   "heroImage": "/src/assets/images/projets/p-00-reprise-prototype-boitier-mesure/carte-sensorbox.jpg",
   "deepDive": {
-    "metaTop": "P-00 · IoT industriel · 2020 — 2021 · ID-1",
+    "metaTop": "P-02 · IoT industriel · 2020 — 2021 · ID-1",
     "readTime": "~ 4 min",
     "metaStrip": [
       { "k": "Période", "v": "2020 → 2021" },
@@ -66,7 +66,7 @@
         "heading": "Préparer la suite",
         "num": "§ 04",
         "paragraphs": [
-          { "html": "Enfin, j'ai réalisé un <b>audit complet de la carte électronique</b>. Cet audit a permis de dresser un cahier des charges précis pour ce qui allait devenir le <a href=\"/projets/p-01-plateforme-monitoring-industriel/\">boîtier Akriplo</a> : une version totalement repensée, robuste et industrialisable, que j'ai ensuite eu l'opportunité de concevoir de bout en bout." }
+          { "html": "Enfin, j'ai réalisé un <b>audit complet de la carte électronique</b>. Cet audit a permis de dresser un cahier des charges précis pour ce qui allait devenir le <a href=\"/projets/p-03-plateforme-monitoring-industriel/\">boîtier Akriplo</a> : une version totalement repensée, robuste et industrialisable, que j'ai ensuite eu l'opportunité de concevoir de bout en bout." }
         ]
       },
       {

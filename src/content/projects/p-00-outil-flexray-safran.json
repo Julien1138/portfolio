@@ -1,20 +1,20 @@
 {
-  "ref": "P-07",
+  "ref": "P-00",
   "title": "Outil d'analyse et d'injection FlexRay pour bancs de test automobile",
   "category": "FPGA · bancs de test automobile",
   "tag": "fpga",
   "period": "2009",
   "yearStart": 2009,
-  "order": -2,
+  "order": 0,
   "featured": false,
   "variant": "default",
   "lede": "Concevoir un outil d'analyse et d'injection FlexRay pour bancs de test automobile — <em>appropriation autonome d'un protocole dense</em>, chez Safran Engineering Services.",
   "chips": ["FPGA", "FlexRay", "Machines à états", "Temps réel", "Ethernet"],
   "role": "Stagiaire · solo",
-  "figTag": "fig. P-07 · outil FPGA FlexRay + PC hôte",
-  "cornerLabel": "P-07 / FPGA",
+  "figTag": "fig. P-00 · outil FPGA FlexRay + PC hôte",
+  "cornerLabel": "P-00 / FPGA",
   "deepDive": {
-    "metaTop": "P-07 · FPGA · 2009 · Safran Engineering Services",
+    "metaTop": "P-00 · FPGA · 2009 · Safran Engineering Services",
     "readTime": "~ 4 min",
     "metaStrip": [
       { "k": "Période", "v": "2009" },
@@ -67,7 +67,7 @@
       {
         "type": "archi",
         "figLabel": "fig. 2 · architecture — outil FPGA et PC hôte",
-        "figRef": "P-07.ARCH",
+        "figRef": "P-00.ARCH",
         "stages": [
           { "lbl": "FPGA", "name": "Outil d'analyse FlexRay", "items": ["FPGA + mémoire", "Interfaces physiques FlexRay", "Analyse, espionnage, injection"] },
           { "lbl": "HOST", "name": "PC hôte", "items": ["Pilotage via Ethernet", "Exploitation des données", "Interaction utilisateur"] }

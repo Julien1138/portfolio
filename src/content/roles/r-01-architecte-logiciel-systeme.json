@@ -1,11 +1,11 @@
 {
-  "ref": "R-04",
+  "ref": "R-01",
   "title": "Architecte logiciel & système",
   "client": "Naept · ID-1",
   "domain": "Architecture logicielle & systèmes",
   "period": "2019 — 2025",
   "years": "~6 ans",
-  "order": 4,
+  "order": 1,
   "lede": "Porter une vision d'architecture cohérente sur la durée — <em>arbitrer entre complexité, robustesse, coût et délai</em> — chez Naept comme chez ID-1.",
   "metaStrip": [
     { "k": "Entreprises", "v": "Naept · ID-1" },

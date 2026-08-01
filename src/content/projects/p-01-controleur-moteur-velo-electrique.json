@@ -1,21 +1,21 @@
 {
-  "ref": "P-06",
+  "ref": "P-01",
   "title": "Contrôleur moteur de vélo à assistance électrique",
   "category": "Embarqué · mobilité urbaine",
   "tag": "embedded",
   "period": "2017 — 2018",
   "yearStart": 2017,
-  "order": -1,
+  "order": 1,
   "featured": true,
   "variant": "default",
   "lede": "Développement complet du logiciel embarqué d'un contrôleur moteur pour vélo à assistance électrique urbain — <em>architecture temps réel, C++ embarqué, logique d'assistance sur mesure</em>, chez JCDecaux.",
   "chips": ["STM32", "C++", "FreeRTOS", "CAN bus", "Qt", "Capteur pédalier"],
   "role": "Solo",
-  "figTag": "fig. P-06 · contrôleur moteur + maquette de test",
-  "cornerLabel": "P-06 / EMBED",
+  "figTag": "fig. P-01 · contrôleur moteur + maquette de test",
+  "cornerLabel": "P-01 / EMBED",
   "heroImage": "/src/assets/images/projets/p-06-controleur-moteur-velo-electrique/velov.jpg",
   "deepDive": {
-    "metaTop": "P-06 · Embarqué · 2017 — 2018 · JCDecaux",
+    "metaTop": "P-01 · Embarqué · 2017 — 2018 · JCDecaux",
     "readTime": "~ 6 min",
     "metaStrip": [
       { "k": "Période", "v": "2017 → 2018" },
@@ -40,7 +40,7 @@
       {
         "type": "archi",
         "figLabel": "fig. 2 · architecture distribuée — 3 cartes reliées par CAN",
-        "figRef": "P-06.ARCH",
+        "figRef": "P-01.ARCH",
         "stages": [
           { "lbl": "MOTEUR", "name": "Contrôleur moteur", "items": ["STM32 · C++", "FreeRTOS", "Capteur pédalier", "Logique d'assistance"] },
           { "lbl": "ÉNERGIE", "name": "Carte batterie", "items": ["BMS", "Alimentation moteur"] },

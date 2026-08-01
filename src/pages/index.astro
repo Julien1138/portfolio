@@ -4,11 +4,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHead from "../components/SectionHead.astro";
 import BomTableCompact from "../components/BomTableCompact.astro";
 import ProjectCardWide from "../components/ProjectCardWide.astro";
+import RelatedGrid from "../components/RelatedGrid.astro";
 
 const allProjects = await getCollection("projects");
 const featured = allProjects
   .filter((p) => p.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => b.data.order - a.data.order);
+
+const roles = (await getCollection("roles")).sort((a, b) => a.data.order - b.data.order);
 
 const bomRows = [
   { ref: "EMB-01", cat: "Embarqué temps réel", detail: "C, C++17, FreeRTOS, ESP-IDF, mbedTLS", years: 12, maturity: 5 },
@@ -121,6 +124,19 @@ const bomRows = [
           />
         ))}
       </div>
+    </section>
+
+    <section class="block" id="roles" style="padding-top: 56px;">
+      <SectionHead num="§ 03 — Rôles" title="Un métier, plusieurs casquettes." kicker="lecture par posture, pas par mission" />
+      <RelatedGrid
+        label={`${roles.length} rôles documentés`}
+        items={roles.map((r) => ({
+          ref: `${r.data.ref} · ${r.data.period}`,
+          title: r.data.title,
+          sub: `${r.data.client} · ${r.data.domain}`,
+          href: `/roles/${r.id}/`,
+        }))}
+      />
     </section>
 
     <section class="cta" id="contact">
@@ -260,6 +276,8 @@ const bomRows = [
     margin: 0 0 22px;
   }
   .projects { display: flex; flex-direction: column; gap: 0; }
+
+  #roles :global(.related) { border-top: none; margin-top: 0; padding-top: 0; }
 
   .cta {
     padding: 80px 0 96px;

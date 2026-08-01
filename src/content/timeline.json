@@ -126,7 +126,7 @@
     "roleLine": "Salarié · affichage urbain · JCDecaux",
     "title": "Expert électronique numérique — matrices LED urbaines.",
     "setting": "Conception et évolution des architectures FPGA pilotant les chaînes d'affichage LED, ainsi que logiciel embarqué et outillage de test.",
-    "desc": "Cinq ans consacrés au pilotage numérique des écrans LED urbains : architectures FPGA en VHDL, algorithmes de traitement d'image, liaison horloge embarquée haute vitesse (50 Mbps) sur FPGA Lattice. En parallèle, logiciel embarqué C/C++ pour mobiliers urbains et contrôle moteur, et outils de test PC en C++/Qt. <em>Détail complet : fiche rôle R-02.</em>",
+    "desc": "Cinq ans consacrés au pilotage numérique des écrans LED urbains : architectures FPGA en VHDL, algorithmes de traitement d'image, liaison horloge embarquée haute vitesse (50 Mbps) sur FPGA Lattice. En parallèle, logiciel embarqué C/C++ pour mobiliers urbains et contrôle moteur, et outils de test PC en C++/Qt. <em>Détail complet : fiche rôle R-00.</em>",
     "highlights": [
       {
         "n": "H.1",
