@@ -6,7 +6,7 @@
   "period": "2020 — 2021",
   "yearStart": 2020,
   "order": 0,
-  "featured": false,
+  "featured": true,
   "variant": "default",
   "lede": "Reprendre un prototype existant chez ID-1, remettre à plat son logiciel et son architecture — <em>et ouvrir la voie au développement industriel</em> d'un nouveau boîtier de mesure.",
   "chips": ["STM32", "ESP8266", "Protobuf", "Preact", "Électronique"],

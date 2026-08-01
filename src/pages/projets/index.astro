@@ -4,7 +4,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCardIndex from "../../components/ProjectCardIndex.astro";
 
 const allProjects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
-const totalArchived = 10; // total projects on file, incl. unpublished ones not shown here
+const years = allProjects.map((p) => p.data.yearStart);
+const minYear = Math.min(...years);
+const currentYear = new Date().getFullYear();
 
 const filters = [
   { v: "all", label: "all" },
@@ -30,10 +32,10 @@ const filters = [
   <div class="container">
     <header class="page-head">
       <div class="meta-top">§ 02 · Projets — sélection</div>
-      <h1>Cinq projets, un fil rouge.</h1>
+      <h1>Des projets, un fil rouge.</h1>
       <p class="lede">
         Du capteur au dashboard, du firmware à la gouvernance. <em>Sélection
-        des projets significatifs des cinq dernières années</em> —
+        des projets qui illustrent le mieux cette continuité</em> —
         cliquer une carte pour le deep-dive technique.
       </p>
     </header>
@@ -57,8 +59,8 @@ const filters = [
     </div>
 
     <div class="count-line">
-      <span class="total"><b id="visible-count">{allProjects.length}</b> projets affichés · <span style="color:var(--ink-soft);">{totalArchived} total dans l'archive</span></span>
-      <span>2024 → 2026 · 18 mois cumulés</span>
+      <span class="total"><b id="visible-count">{allProjects.length}</b> projets documentés</span>
+      <span>{minYear} → {currentYear}</span>
     </div>
 
     <ol class="proj-list" id="proj-list">
@@ -66,7 +68,7 @@ const filters = [
         <ProjectCardIndex
           href={`/projets/${p.id}/`}
           side={i % 2 === 0 ? "left" : "right"}
-          bigNum={String(p.data.order).padStart(2, "0")}
+          bigNum={String(i + 1).padStart(2, "0")}
           figTag={p.data.figTag}
           heroImage={p.data.heroImage}
           cornerLabel={p.data.cornerLabel}
@@ -85,10 +87,7 @@ const filters = [
     </ol>
 
     <div class="end-strip">
-      <span class="lbl"><b>// fin de la sélection</b> · {allProjects.length} projets sur {totalArchived} affichés</span>
-      <div class="actions">
-        <span class="chip tone-accent">voir l'archive complète →</span>
-      </div>
+      <span class="lbl"><b>// fin de la liste</b> · {allProjects.length} projets documentés</span>
     </div>
   </div>
 </BaseLayout>
