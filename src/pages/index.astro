@@ -1,10 +1,15 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import portraitImg from "../assets/images/parcours/portrait-cropped.jpg";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHead from "../components/SectionHead.astro";
 import BomTableCompact from "../components/BomTableCompact.astro";
 import ProjectCardWide from "../components/ProjectCardWide.astro";
 import RelatedGrid from "../components/RelatedGrid.astro";
+import { getYearsOfExperience } from "../lib/experience";
+
+const years = getYearsOfExperience();
 
 const allProjects = await getCollection("projects");
 const featured = allProjects
@@ -47,7 +52,7 @@ const bomRows = [
           une seule pile, conçue pour durer.
         </div>
         <p class="lead">
-          Ingénieur indépendant depuis quinze ans. Je conçois, code et industrialise
+          Ingénieur système depuis {years} ans. Je conçois, code et industrialise
           des systèmes complexes : firmware temps réel, électronique numérique, FPGA,
           backend SaaS, interfaces métier. <em class="hl">Je prends la responsabilité
           de la chaîne entière</em>, du transistor au pixel.
@@ -55,23 +60,11 @@ const bomRows = [
 
         <div class="portrait-wrap">
           <div class="portrait" aria-label="Portrait">
-            <svg viewBox="0 0 112 112" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
-                  <line x1="0" y1="0" x2="0" y2="4" stroke="currentColor" stroke-width="0.6" opacity="0.18"></line>
-                </pattern>
-              </defs>
-              <rect width="112" height="112" fill="var(--portrait-bg)"></rect>
-              <rect width="112" height="112" fill="url(#hatch)" style="color: var(--hatch-color);"></rect>
-              <circle cx="56" cy="46" r="18" fill="var(--portrait-fg)"></circle>
-              <path d="M22 112 C 22 82, 38 70, 56 70 C 74 70, 90 82, 90 112 Z" fill="var(--portrait-fg)"></path>
-              <circle cx="56" cy="46" r="18" fill="none" stroke="var(--accent)" stroke-width="1.2"></circle>
-            </svg>
+            <Image src={portraitImg} alt="Julien Aupart" width={112} height={112} />
           </div>
           <div class="portrait-meta">
             <b>JULIEN AUPART</b><br />
-            Septeuil, France · b. 1986<br />
-            Indépendant depuis 2014
+            Septeuil, France · b. 1985
           </div>
         </div>
       </div>
@@ -79,7 +72,7 @@ const bomRows = [
       <div class="hero-right">
         <span class="field-label">Caractéristiques</span>
         <div class="specs">
-          <div class="row"><span class="k">Expérience</span><span class="v">15 ans <span class="badge">depuis 2009</span></span></div>
+          <div class="row"><span class="k">Expérience</span><span class="v">{years} ans <span class="badge">depuis 2009</span></span></div>
           <div class="row"><span class="k">Domaines</span><span class="v">Hardware · Embarqué · FPGA · Backend · Frontend</span></div>
           <div class="row"><span class="k">Rôles</span><span class="v">Architect · Tech Lead · CTO intérim</span></div>
           <div class="row"><span class="k">Langages</span><span class="v">C, C++, VHDL, TypeScript, PHP, Python</span></div>
@@ -87,9 +80,8 @@ const bomRows = [
           <div class="row"><span class="k">Frameworks</span><span class="v">Symfony / API Platform, Vue 3, Astro, Tailwind</span></div>
           <div class="row"><span class="k">Méthodes</span><span class="v">Spec-driven, traçabilité, IEC 62304, audits</span></div>
           <div class="row"><span class="k">Industries</span><span class="v">IoT industriel, medtech, affichage, ERP B2B</span></div>
-          <div class="row"><span class="k">Localisation</span><span class="v">Septeuil (78) · remote Europe</span></div>
-          <div class="row"><span class="k">Disponibilité</span><span class="v accent">Q3 2026 — missions ≥ 3 mois</span></div>
-          <div class="row"><span class="k">Langues</span><span class="v">Français · Anglais (C1)</span></div>
+          <div class="row"><span class="k">Localisation</span><span class="v">Septeuil (78) · remote</span></div>
+          <div class="row"><span class="k">Langues</span><span class="v">Français · Anglais (B2+)</span></div>
         </div>
       </div>
     </header>
@@ -226,7 +218,7 @@ const bomRows = [
     position: relative;
     flex-shrink: 0;
   }
-  .portrait svg { display: block; width: 100%; height: 100%; }
+  .portrait :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
   .portrait::after {
     content: "";
     position: absolute; inset: 0;

@@ -21,27 +21,27 @@ import SectionHead from "../../components/SectionHead.astro";
         <span class="field-label">Prise de contact</span>
         <h1>Discuter d'un <span class="em">système.</span></h1>
         <p class="lead">
-          Architecture, lead technique, audit, mission longue. Si vous avez
-          un système complexe à concevoir, reprendre ou stabiliser — <em class="hl">écrivez-moi
-          avec le contexte technique</em>. Réponse argumentée sous 48 h ouvrées, qu'on travaille ensemble ou pas.
+          Architecture système, FPGA, embarqué, retour sur un projet ou une
+          opportunité professionnelle — si le sujet a un lien avec ce qui
+          est documenté ici, <em class="hl">écrivez-moi avec le contexte</em>.
+          Je réponds personnellement, sous 48 h ouvrées.
         </p>
       </div>
 
       <div class="meta-right">
-        <span class="field-label">État courant</span>
+        <span class="field-label">Aujourd'hui</span>
         <div class="specs">
-          <div class="row"><span class="k">Statut</span><span class="v green">Disponible Q3 2026</span></div>
-          <div class="row"><span class="k">Capacité</span><span class="v">1 mission lead + 1 audit</span></div>
-          <div class="row"><span class="k">Durée min.</span><span class="v">≥ 3 mois (mission)</span></div>
-          <div class="row"><span class="k">TJM indic.</span><span class="v">800 — 1 100 € HT</span></div>
-          <div class="row"><span class="k">Localisation</span><span class="v">Septeuil (78) · remote EU</span></div>
+          <div class="row"><span class="k">Poste actuel</span><span class="v">Développeur FPGA senior · Thales LAS</span></div>
+          <div class="row"><span class="k">Statut</span><span class="v">Salarié</span></div>
+          <div class="row"><span class="k">Localisation</span><span class="v">Septeuil (78) · remote</span></div>
+          <div class="row"><span class="k">Langues</span><span class="v">Français · Anglais (B2+)</span></div>
           <div class="row"><span class="k">Réponse</span><span class="v accent">≤ 48 h ouvrées</span></div>
         </div>
       </div>
     </header>
 
     <section class="block" id="brief" style="padding-top: 56px;">
-      <SectionHead num="§ 01 — Brief" title="Coordonnées & message." kicker="deux entrées — l'une rapide, l'autre structurée" />
+      <SectionHead num="§ 01 — Contact" title="Coordonnées & message." kicker="deux entrées — l'une rapide, l'autre structurée" />
 
       <div class="contact-grid">
         <div class="col-coord">
@@ -53,15 +53,13 @@ import SectionHead from "../../components/SectionHead.astro";
             <a href="#"><span class="k">CV</span><span class="v">cv-julienaupart-2026.pdf</span><span class="arr">→</span></a>
           </div>
           <div class="coord-foot">
-            <b>Préférence :</b> email pour un premier échange — joindre, si
-            vous l'avez, un brief technique court, un schéma système, ou
-            quelques lignes de contexte produit. Pas besoin de NDA pour
-            démarrer.
+            <b>Préférence :</b> email pour un premier échange — un message
+            court suffit, j'irai à l'essentiel dans ma réponse.
           </div>
         </div>
 
         <div class="col-form">
-          <div class="col-title"><span>Brief structuré</span><span class="pill pill-muted">~ 3 min</span></div>
+          <div class="col-title"><span>Message structuré</span><span class="pill pill-muted">~ 3 min</span></div>
 
           <form class="form" id="contact-form">
             <div class="form-row split">
@@ -81,27 +79,26 @@ import SectionHead from "../../components/SectionHead.astro";
                 <input type="email" name="email" placeholder="c.lemoine@acme.fr" required />
               </div>
               <div class="form-row">
-                <div class="lbl"><span>Démarrage visé</span><span class="opt">optionnel</span></div>
-                <input type="text" name="start" placeholder="Q3 2026 · ou flexible" />
+                <div class="lbl"><span>Sujet</span><span class="opt">optionnel</span></div>
+                <input type="text" name="subject" placeholder="Ex. : question sur le projet P-03" />
               </div>
             </div>
 
             <div class="form-row">
-              <div class="lbl"><span>Type de mission</span><span class="opt">un ou plusieurs</span></div>
+              <div class="lbl"><span>Sujet de l'échange</span><span class="opt">un ou plusieurs</span></div>
               <div class="chip-group">
-                <input type="checkbox" id="m-arch" name="mission" value="architecte" /><label for="m-arch">Architecte système</label>
-                <input type="checkbox" id="m-lead" name="mission" value="lead" /><label for="m-lead">Tech Lead</label>
-                <input type="checkbox" id="m-cto" name="mission" value="cto" /><label for="m-cto">CTO intérim</label>
-                <input type="checkbox" id="m-aud" name="mission" value="audit" /><label for="m-aud">Audit / due-dil</label>
-                <input type="checkbox" id="m-emb" name="mission" value="firmware" /><label for="m-emb">Firmware / FPGA</label>
-                <input type="checkbox" id="m-bck" name="mission" value="backend" /><label for="m-bck">Backend SaaS</label>
-                <input type="checkbox" id="m-oth" name="mission" value="autre" /><label for="m-oth">Autre</label>
+                <input type="checkbox" id="m-arch" name="topic" value="architecture" /><label for="m-arch">Architecture système</label>
+                <input type="checkbox" id="m-fpga" name="topic" value="fpga" /><label for="m-fpga">FPGA / embarqué</label>
+                <input type="checkbox" id="m-mentor" name="topic" value="mentorat" /><label for="m-mentor">Mentorat / formation</label>
+                <input type="checkbox" id="m-opp" name="topic" value="opportunite" /><label for="m-opp">Opportunité professionnelle</label>
+                <input type="checkbox" id="m-retour" name="topic" value="retour" /><label for="m-retour">Retour sur un projet/article</label>
+                <input type="checkbox" id="m-oth" name="topic" value="autre" /><label for="m-oth">Autre</label>
               </div>
             </div>
 
             <div class="form-row">
-              <div class="lbl"><span>Contexte technique</span><span class="opt">court — ce qui compte</span></div>
-              <textarea name="context" placeholder="Ex. : monolithe Symfony 4 à reprendre, 60 k lignes, 3 devs internes, contraintes de migration en prod sans interruption — besoin d'un lead pour 6 mois."></textarea>
+              <div class="lbl"><span>Contexte</span><span class="opt">court — ce qui compte</span></div>
+              <textarea name="context" placeholder="Ex. : un retour sur l'architecture FPGA du projet P-03, une question sur DO-254, une opportunité dans votre équipe..."></textarea>
             </div>
 
             <div class="form-submit">
@@ -110,7 +107,7 @@ import SectionHead from "../../components/SectionHead.astro";
                 pas de CRM tiers. Réponse perso sous 48 h ouvrées.
               </div>
               <button class="submit" type="submit">
-                Envoyer le brief <span class="arr">→</span>
+                Envoyer le message <span class="arr">→</span>
               </button>
             </div>
             <p class="form-note" id="form-note" hidden>
@@ -122,130 +119,78 @@ import SectionHead from "../../components/SectionHead.astro";
       </div>
     </section>
 
-    <section class="block" id="process">
-      <SectionHead num="§ 02 — Processus" title="De la réception à la mission." kicker="quatre étapes — pas de surprise" />
-      <div class="process">
-        <div class="step">
-          <div class="n">01 — Réception</div>
-          <div class="when">J + 0 → 2</div>
-          <h4>Lecture &amp; tri.</h4>
-          <p>
-            Je lis chaque brief moi-même. Si le périmètre est clair et la
-            compatibilité agenda OK, je réponds avec questions ciblées.
-            Sinon je vous oriente vers quelqu'un de plus pertinent.
-          </p>
-        </div>
-        <div class="step">
-          <div class="n">02 — Cadrage</div>
-          <div class="when">J + 3 → 7</div>
-          <h4>Appel 45 min.</h4>
-          <p>
-            Visio ou téléphone, pas de slide. On creuse l'enjeu réel,
-            je pose les vraies questions techniques, on évalue
-            honnêtement si je suis le bon profil pour ça.
-          </p>
-        </div>
-        <div class="step">
-          <div class="n">03 — Proposition</div>
-          <div class="when">J + 7 → 14</div>
-          <h4>Note d'intention.</h4>
-          <p>
-            Document court (4 — 6 pages) : compréhension du besoin,
-            approche proposée, jalons, TJM, ce que je ne ferai pas.
-            Discussion ouverte sur la suite.
-          </p>
-        </div>
-        <div class="step">
-          <div class="n">04 — Démarrage</div>
-          <div class="when">J + 30</div>
-          <h4>Contrat &amp; kick-off.</h4>
-          <p>
-            Contrat de prestation simple, kick-off d'une demi-journée
-            sur place ou en visio, accès aux dépôts et au contexte.
-            Premier livrable visible sous 15 jours.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <section class="block" id="fit">
-      <SectionHead num="§ 03 — Compatibilité" title="Bon match, mauvais match." kicker="honnêteté avant le brief" />
+      <SectionHead num="§ 02 — Sujets" title="Ce qui m'intéresse." kicker="honnêteté avant le message" />
       <div class="fit">
         <div class="good">
-          <h3>Ce qui marche bien</h3>
+          <h3>Ce qui m'intéresse</h3>
           <ul>
-            <li><span class="glyph">+</span><span><b>Systèmes complets</b> à concevoir bout-en-bout — du capteur ou du transistor jusqu'à l'interface métier.</span></li>
-            <li><span class="glyph">+</span><span><b>Reprise de legacy</b> embarqué ou backend, avec dette technique documentée et équipe à reformer.</span></li>
-            <li><span class="glyph">+</span><span><b>Audit &amp; due-diligence</b> techniques avant rachat, levée, refonte — rapport écrit, défendable, sans langue de bois.</span></li>
-            <li><span class="glyph">+</span><span><b>Lead technique</b> sur une équipe de 3 à 8 ingénieurs, avec une vraie responsabilité d'architecture et de livraison.</span></li>
-            <li><span class="glyph">+</span><span><b>Industries exigeantes :</b> medtech, IoT industriel, énergie, affichage urbain — contraintes réelles, traçabilité requise.</span></li>
+            <li><span class="glyph">+</span><span><b>Architecture de systèmes complets</b> — du capteur ou du transistor jusqu'à l'interface métier.</span></li>
+            <li><span class="glyph">+</span><span><b>FPGA et électronique numérique</b> — retours d'expérience, questions techniques, discussions d'architecture.</span></li>
+            <li><span class="glyph">+</span><span><b>Mentorat et accompagnement technique</b> — revues de code, montée en compétence, retours sur pratique.</span></li>
+            <li><span class="glyph">+</span><span><b>Écriture et transmission</b> — retours sur un article, invitations à échanger ou présenter.</span></li>
+            <li><span class="glyph">+</span><span><b>Opportunités professionnelles sérieuses</b> — dans des environnements techniques exigeants : medtech, IoT industriel, énergie, IA.</span></li>
           </ul>
         </div>
         <div class="bad">
-          <h3>Ce qui ne marche pas</h3>
+          <h3>Moins mon terrain</h3>
           <ul>
-            <li><span class="glyph">−</span><span><b>Pure dev front</b> sans dimension système — sites vitrine, e-commerce standard, intégrations CMS.</span></li>
-            <li><span class="glyph">−</span><span><b>Missions &lt; 3 mois</b> hors audits ponctuels — je préfère m'engager longtemps que d'enchaîner les sprints.</span></li>
-            <li><span class="glyph">−</span><span><b>Régies ouvertes</b> sans objectif technique défini ou sans interlocuteur technique côté client.</span></li>
-            <li><span class="glyph">−</span><span><b>Stacks JavaScript pures</b> en cœur de métier, sans dimension système — je les utilise, je ne les enseigne pas.</span></li>
-            <li><span class="glyph">−</span><span><b>Crypto, ad-tech, surveillance</b> grand public — choix personnel, je passe la main.</span></li>
+            <li><span class="glyph">−</span><span><b>Missions freelance ou régie</b> — je suis salarié, je ne propose pas de prestation indépendante.</span></li>
+            <li><span class="glyph">−</span><span><b>Sollicitations commerciales génériques</b> — SEO, growth, outils no-code, prospection automatisée.</span></li>
+            <li><span class="glyph">−</span><span><b>Stacks purement front-end</b> sans dimension système.</span></li>
+            <li><span class="glyph">−</span><span><b>Crypto, ad-tech, surveillance, finance</b> — choix personnel, je passe la main.</span></li>
+            <li><span class="glyph">−</span><span><b>Démarchage sans contexte</b> — un message personnalisé a toujours plus de chances d'obtenir une réponse.</span></li>
           </ul>
         </div>
       </div>
     </section>
 
     <section class="block" id="faq">
-      <SectionHead num="§ 04 — Questions fréquentes" title="Avant d'écrire." kicker="les six qui reviennent le plus" />
+      <SectionHead num="§ 03 — Questions fréquentes" title="Avant d'écrire." kicker="les six qui reviennent le plus" />
       <div class="faq">
         <details>
-          <summary><span>Comment se passe la facturation ?</span><span class="marker">+</span></summary>
+          <summary><span>Êtes-vous disponible pour une mission freelance ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Facturation mensuelle à terme échu, TJM × jours réellement
-            travaillés. Pas d'astreinte facturée hors avenant signé.
-            Frais réels sur justificatifs, plafond convenu en amont.
+            Je suis salarié. Ce site est un
+            portfolio professionnel, pas une offre de prestation
+            indépendante.
           </p>
         </details>
         <details>
-          <summary><span>Travaillez-vous à l'étranger ?</span><span class="marker">+</span></summary>
+          <summary><span>Puis-je vous écrire en anglais ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Oui, en remote pour l'Europe (UTC−1 à UTC+3). Pour des missions
-            hors UE, sur site uniquement avec un cadrage clair des aspects
-            fiscaux et légaux côté client.
+            Oui, sans problème — niveau B2+.
           </p>
         </details>
         <details>
-          <summary><span>Acceptez-vous les NDA ?</span><span class="marker">+</span></summary>
+          <summary><span>Discutez-vous de vos projets professionnels en détail ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Volontiers, mais pas avant le premier échange. Les NDA très
-            restrictifs (non-concurrence longue, IP rétroactive)
-            demanderont une revue par mon conseil avant signature.
+            En partie : les secteurs défense et avionique imposent une
+            confidentialité stricte. Les projets présentés ici sont ceux
+            que je peux documenter publiquement.
           </p>
         </details>
         <details>
-          <summary><span>Pouvez-vous recruter / former une équipe ?</span><span class="marker">+</span></summary>
+          <summary><span>Faites-vous du mentorat ou de la formation ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Oui, dans le cadre d'une mission de lead ou CTO intérim. Je
-            participe aux entretiens techniques, j'aide à la structure
-            d'équipe et au plan de montée en compétences. Pas de chasse
-            de tête isolée.
+            Oui — voir la fiche de rôle « Faire progresser les autres » :
+            cours VHDL/FPGA, encadrement de stagiaires et d'apprentis,
+            articles techniques.
           </p>
         </details>
         <details>
-          <summary><span>Que livrez-vous concrètement ?</span><span class="marker">+</span></summary>
+          <summary><span>Recevez-vous des sollicitations commerciales ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Du code en production, des schémas système versionnés,
-            des ADR (Architecture Decision Records), des runbooks et
-            une documentation utilisable par l'équipe après mon départ.
-            Pas de slide-deck-only.
+            Oui, régulièrement. Je fais de mon mieux pour répondre sous
+            quelques jours, mais les messages génériques sans lien avec mon
+            travail ne reçoivent pas toujours de réponse.
           </p>
         </details>
         <details>
-          <summary><span>Comment se finit une mission ?</span><span class="marker">+</span></summary>
+          <summary><span>Comment se passe un premier échange ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Avec un dossier de passation écrit, deux semaines de
-            disponibilité réduite pour répondre aux questions, et un
-            point à 3 mois si l'équipe le souhaite. Sortie propre,
-            pas de dépendance entretenue.
+            Par email, en direct. Si le sujet le justifie, on peut passer à
+            un appel — sans process formel imposé.
           </p>
         </details>
       </div>
@@ -286,8 +231,6 @@ import SectionHead from "../../components/SectionHead.astro";
   .specs .k { color: var(--ink-soft); text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.1em; }
   .specs .v { color: var(--ink); }
   .specs .v.accent { color: var(--accent); }
-  .specs .v.green { color: var(--green); }
-  .specs .v.green::before { content: "●  "; }
 
   section.block { padding: 64px 0; border-bottom: 1px solid var(--rule); }
   section.block:last-of-type { border-bottom: none; }
@@ -382,21 +325,6 @@ import SectionHead from "../../components/SectionHead.astro";
   .fit .bad li .glyph { color: var(--accent-2); }
   .fit li :global(b) { color: var(--ink); font-weight: 500; font-family: var(--sans); }
 
-  .process { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--rule); }
-  .step { padding: 28px 26px 30px; border-right: 1px solid var(--rule); position: relative; background: var(--paper); }
-  .step:last-child { border-right: none; }
-  .step .n { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
-  .step .when { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-soft); margin-bottom: 8px; text-transform: uppercase; }
-  .step h4 { font-family: var(--sans); font-weight: 600; font-size: 17px; letter-spacing: -0.01em; margin: 0 0 10px; line-height: 1.2; }
-  .step p { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
-  .step::after {
-    content: "→"; position: absolute; top: 30px; right: -8px; width: 16px; height: 16px;
-    background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
-    font-family: var(--mono); font-size: 10px; color: var(--ink-soft);
-    display: flex; align-items: center; justify-content: center; z-index: 2;
-  }
-  .step:last-child::after { display: none; }
-
   .faq { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
   .faq details { padding: 18px 0; border-bottom: 1px solid var(--rule); cursor: pointer; }
   .faq details[open] summary .marker { transform: rotate(45deg); color: var(--accent); }
@@ -421,11 +349,6 @@ import SectionHead from "../../components/SectionHead.astro";
     .contact-grid > .col-coord { border-right: none; border-bottom: 1px solid var(--rule); }
     .fit { grid-template-columns: 1fr; }
     .fit > .good { border-right: none; border-bottom: 1px solid var(--rule); }
-    .process { grid-template-columns: 1fr 1fr; }
-    .step:nth-child(2)::after { display: none; }
-    .step:nth-child(odd) { border-right: 1px solid var(--rule); }
-    .step:nth-child(even) { border-right: none; }
-    .step:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
     .faq { grid-template-columns: 1fr; }
     .closing { grid-template-columns: 1fr; gap: 36px; }
     .closing .sig { text-align: left; }
@@ -434,10 +357,6 @@ import SectionHead from "../../components/SectionHead.astro";
     .hero h1 { font-size: 48px; }
     .contact-grid > div { padding: 26px 22px; }
     .form-row.split { grid-template-columns: 1fr; }
-    .process { grid-template-columns: 1fr; }
-    .step { border-right: none; border-bottom: 1px solid var(--rule); }
-    .step:last-child { border-bottom: none; }
-    .step::after { display: none; }
   }
 </style>
 

@@ -33,9 +33,6 @@
   --strip-muted:  #B8B0A0;
   --bom-head-bg:  var(--ink);
   --bom-head-fg:  var(--paper);
-  --portrait-bg:  #EDE7D7;
-  --portrait-fg:  #1A1814;
-  --hatch-color:  #1A1814;
   --fpga-bg:      #1A1814;
   --fpga-inner:   #1f1d18;
   --fpga-border:  #2c2922;
@@ -92,9 +89,6 @@ html[data-theme="dark"] {
   --strip-muted:  #6F6952;
   --bom-head-bg:  #0E0C08;
   --bom-head-fg:  #EFE9D6;
-  --portrait-bg:  #26221A;
-  --portrait-fg:  #EFE9D6;
-  --hatch-color:  #EFE9D6;
   --fpga-bg:      #0E0C08;
   --fpga-inner:   #16140F;
   --fpga-border:  #2C281D;

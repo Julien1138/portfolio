@@ -9,10 +9,16 @@ import CapabilityMap from "../../components/CapabilityMap.astro";
 import TimelineEntries from "../../components/TimelineEntries.astro";
 import RelatedGrid from "../../components/RelatedGrid.astro";
 import H2Row from "../../components/H2Row.astro";
+import { getYearsOfExperience } from "../../lib/experience";
+
+const years = getYearsOfExperience();
+const currentYear = new Date().getFullYear();
 
 const entries = (await getCollection("timeline"))
   .sort((a, b) => a.data.order - b.data.order)
   .map((e) => e.data);
+
+const roleCount = (await getCollection("roles")).length;
 
 const lanes = [
   {
@@ -80,7 +86,7 @@ const lanes = [
   stripFields={[
     { label: "FICHE", value: "A-01 / À PROPOS" },
     { label: "DEPUIS", value: "2009" },
-    { label: "DISPO", value: "Q3 2026" },
+    { label: "RÔLES", value: String(roleCount) },
     { label: "PAGE", value: "04 / 08" },
   ]}
 >
@@ -93,7 +99,7 @@ const lanes = [
     </nav>
 
     <header class="doc-header">
-      <div class="meta-top">A-01 · About · Parcours · 17 ans d'ingénierie</div>
+      <div class="meta-top">A-01 · About · Parcours · {years} ans d'ingénierie</div>
       <h1>Du silicium <span class="amp">à</span> l'écran.</h1>
       <p class="lede">
         Ingénieur système depuis 2009. J'ai porté des produits complexes
@@ -104,8 +110,8 @@ const lanes = [
 
       <MetaStrip
         cells={[
-          { k: "Localisation", v: "Septeuil (78) · remote EU" },
-          { k: "Expérience", v: "17 ans · depuis 2009", accent: true },
+          { k: "Localisation", v: "Septeuil (78) · remote" },
+          { k: "Expérience", v: `${years} ans · depuis 2009`, accent: true },
           { k: "Postes tenus", v: "6 · ingénieur → expert" },
           { k: "Domaines", v: "FPGA · Embarqué · Web" },
           { k: "Lecture", v: "~ 6 min" },
@@ -161,10 +167,10 @@ const lanes = [
     </section>
 
     <section class="section" id="chiffres">
-      <H2Row title="Chiffres-clés." num="§ 02 — Indicateurs" sub="à fin 2026" />
+      <H2Row title="Chiffres-clés." num="§ 02 — Indicateurs" sub={`à fin ${currentYear}`} />
       <div class="stats">
         <div class="cell">
-          <div class="n">17<span class="unit">&nbsp;ans</span></div>
+          <div class="n">{years}<span class="unit">&nbsp;ans</span></div>
           <div class="t">d'ingénierie continue</div>
           <div class="d">Depuis septembre 2009, sans interruption.</div>
         </div>
@@ -174,9 +180,9 @@ const lanes = [
           <div class="d">Ingénieur électronique → expert → direction technique → FPGA senior.</div>
         </div>
         <div class="cell">
-          <div class="n">2</div>
-          <div class="t">normes qualité avionique maîtrisées</div>
-          <div class="d">DO-178B (logiciel) et DO-254 (hardware), chez Safran et Thales.</div>
+          <div class="n">6</div>
+          <div class="t">couches techniques maîtrisées</div>
+          <div class="d">Du silicium (FPGA, carte électronique) à l'écran (frontend), sans changer de posture.</div>
         </div>
         <div class="cell">
           <div class="n">1</div>
@@ -280,6 +286,8 @@ const lanes = [
       items={[
         { ref: "→ Rôles · R-00", title: "Expert FPGA · JCDecaux", sub: "Le cœur de l'expertise bas-niveau, détaillée.", href: "/roles/r-00-jcdecaux-fpga/" },
         { ref: "→ Page 05", title: "Stack technique", sub: "BOM complète, par couche, avec niveau de maîtrise.", href: "/stack/" },
+        { ref: "→ Page 06", title: "Centres d'intérêt professionnels", sub: "Les axes techniques qui reviennent, projet après projet.", href: "/interets/" },
+        { ref: "→ Page 07", title: "Activités non-professionnelles", sub: "Ce qui se construit hors du travail.", href: "/perso/" },
         { ref: "→ Page 08", title: "Contact", sub: "Discuter d'une mission. Réponse sous 48 h.", href: "/contact/" },
       ]}
     />
