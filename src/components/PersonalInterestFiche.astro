@@ -1,0 +1,173 @@
+---
+// Alternating photo/prose card for the Personal Interests page. Photo slot
+// falls back to a hachured placeholder + caption when no `imagePath` is
+// supplied yet, same pattern as PlaceholderFigure/ProjectCardIndex.
+import { Image } from "astro:assets";
+
+export interface Props {
+  num: string; // "§ 01"
+  emoji: string;
+  title: string;
+  subtitle: string;
+  reverse?: boolean;
+  photoCaption: string;
+  imagePath?: string;
+  paragraphs: string[]; // html strings
+}
+const { num, emoji, title, subtitle, reverse = false, photoCaption, imagePath, paragraphs } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}",
+  { eager: true }
+);
+const resolved = imagePath ? images[imagePath]?.default : undefined;
+---
+
+<article class={`fiche ${reverse ? "rev" : ""}`}>
+  <div class="fiche-photo">
+    {resolved ? (
+      <Image src={resolved} alt={title} width={720} class="photo" />
+    ) : (
+      <>
+        <div class="stripes"></div>
+        <span class="center">[ PHOTO ]</span>
+      </>
+    )}
+    <span class="tag">{photoCaption}</span>
+  </div>
+  <div class="fiche-main">
+    <div class="fiche-head">
+      <span class="emoji">{emoji}</span>
+      <h2>{title}</h2>
+      <span class="num">{num}</span>
+    </div>
+    <div class="fiche-sub">{subtitle}</div>
+    {paragraphs.map((html) => <p set:html={html} />)}
+  </div>
+</article>
+
+<style>
+  .fiche {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 30px 34px 34px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+  .fiche.rev { grid-template-columns: 1fr 240px; }
+  .fiche.rev .fiche-photo { order: 1; }
+  .fiche-main { min-width: 0; }
+  .fiche-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .fiche-head .emoji { font-size: 26px; line-height: 1; }
+  .fiche-head h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--ink);
+  }
+  .fiche-head .num {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .fiche-sub {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    margin: -8px 0 16px;
+  }
+  .fiche p {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 12px;
+    text-wrap: pretty;
+  }
+  .fiche p:last-of-type { margin-bottom: 0; }
+  .fiche p :global(b) { color: var(--ink); font-weight: 600; }
+  .fiche p :global(.hl) {
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  :global(html[data-theme="dark"]) .fiche p :global(.hl) { color: var(--accent-2); }
+
+  .fiche-photo {
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+  }
+  .fiche-photo .stripes {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(135deg, transparent 0 16px, var(--rule) 16px 17px);
+    opacity: 0.45;
+  }
+  .fiche-photo .center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    text-align: center;
+    padding: 12px;
+  }
+  .fiche-photo .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .fiche-photo .tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--rule-2);
+    padding: 4px 8px;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .fiche, .fiche.rev { grid-template-columns: 1fr; }
+    .fiche.rev .fiche-photo { order: 0; }
+    .fiche-photo { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 760px) {
+    .fiche { padding: 22px 20px 26px; }
+    .fiche-head .num { margin-left: 0; }
+  }
+</style>

@@ -6,11 +6,12 @@ export interface Cell {
 }
 export interface Props {
   cells: Cell[];
+  cols?: number;
 }
-const { cells } = Astro.props;
+const { cells, cols = 5 } = Astro.props;
 ---
 
-<div class="meta-strip">
+<div class="meta-strip" style={`--cols: ${cols}`}>
   {cells.map((c) => (
     <div class="cell">
       <span class="k">{c.k}</span>
@@ -22,7 +23,7 @@ const { cells } = Astro.props;
 <style>
   .meta-strip {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(var(--cols, 5), 1fr);
     gap: 0;
     margin-top: 32px;
     border-top: 1.5px solid var(--ink);

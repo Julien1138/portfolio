@@ -1,4 +1,4 @@
-# Handoff : Portfolio ingénieur — Julien Aupart
+# Handoff : Portfolio ingénieur — Jean Dupont
 
 ## Aperçu
 Site portfolio pour un ingénieur système senior (17 ans d'XP, FPGA / systèmes embarqués / plateformes cloud). Ton : sobre, technique, esthétique "datasheet / documentation d'ingénierie" — pas un portfolio créatif classique.
@@ -9,14 +9,14 @@ Les fichiers HTML de ce dossier sont des **références de design** produites co
 **Tâche** : recréer ces designs en **Astro**, avec des composants `.astro` propres, réutilisables entre les pages, et une gestion de layout partagée (rail de navigation, footer, thème). Utiliser les patterns Astro standards (layouts, content collections pour les projets si pertinent, îles pour toute interactivité comme le tweaks-panel de thème). Aucune stack existante à respecter — Astro est le choix déjà fait par l'utilisateur.
 
 ## Fidélité
-**Haute fidélité (hifi)** pour les 6 pages listées ci-dessous : couleurs, typographie, espacements et layout sont finaux. Reproduire pixel-perfect.
+**Haute fidélité (hifi)** pour les 8 pages listées ci-dessous : couleurs, typographie, espacements et layout sont finaux. Reproduire pixel-perfect.
 
 Un dossier `wireframes/` est aussi inclus à titre de **contexte de structure uniquement** (exploration de mise en page antérieure, basse fidélité, esthétique "sketch" différente) — ignorer son style visuel, il a été remplacé par les 6 pages hi-fi.
 
 ## Pages / Écrans
 
 1. **Accueil** — `Homepage Datasheet (hi-fi).html`
-   Titre "Julien Aupart — Architecte système". Hero avec portrait SVG placeholder, tableau de caractéristiques ("specs") façon datasheet, section BOM (bill-of-materials) présentant la stack, grille de projets alternée (image / contenu), CTA de contact. Contient un panneau de tweaks (thème clair/sombre) en bas à droite — île interactive à recréer si le thème doit rester togglable.
+   Titre "Jean Dupont — Architecte système". Hero avec portrait SVG placeholder, tableau de caractéristiques ("specs") façon datasheet, section BOM (bill-of-materials) présentant la stack, grille de projets alternée (image / contenu), CTA de contact. Contient un panneau de tweaks (thème clair/sombre) en bas à droite — île interactive à recréer si le thème doit rester togglable.
 
 2. **Projets — index** — `Projects Index (hi-fi).html`
    Liste des projets, format "git log" / spec sheet.
@@ -36,10 +36,16 @@ Un dossier `wireframes/` est aussi inclus à titre de **contexte de structure un
 7. **Contact** — `Contact (hi-fi).html`
    Titre "Jean Dupont — Contact". Page sobre, formulaire/coordonnées.
 
+8. **Centres d'intérêt professionnels** — `Professional Interests (hi-fi).html`
+   Titre "Ce qui m'anime, techniquement." 8 fiches thématiques pleine largeur (une par axe : conception end-to-end, langages systèmes, donnée contrainte, UX, architecture, veille, prototypage, transmission), chacune avec un bloc encadré "🔍 Ce que je recherche à travers cet axe" (liste à puces).
+
+9. **Activités non-professionnelles** — `Personal Interests (hi-fi).html`
+   Titre "Ce qui se construit hors du travail." 6 fiches thématiques avec emplacement photo (placeholder hachuré, alterné gauche/droite), reliant chaque activité personnelle à une qualité professionnelle. 5 des 6 fiches ont un sous-titre "[ activité à préciser ]" — l'utilisateur doit renseigner l'activité réelle avant mise en prod.
+
 Pour le détail exact du layout de chaque page (grilles, espacements, contenu), lire directement le HTML/CSS de chaque fichier — les styles sont dans des blocs `<style>` en tête de chaque fichier, avec des noms de classes explicites (`.rail`, `.hero`, `.specs`, `.bom-intro`, `table.bom`, `.project`, `.cta`, etc.).
 
 ## Interactions & comportement
-- Navigation : rail latéral fixe (`.rail`) à gauche sur desktop, avec liens numérotés vers chaque section/page, indicateur `.active` sur la page courante.
+- Navigation : rail latéral fixe (`.rail`) à gauche sur desktop, avec liens numérotés (01–08) vers chaque section/page, indicateur `.active` sur la page courante. Le rail est dupliqué à l'identique dans chaque fichier HTML — à factoriser en un composant Astro partagé (layout ou `<Nav />`).
 - Hover : les lignes de tableau BOM, les cartes projet et les liens CTA ont des transitions de couleur/fond au survol (voir règles `:hover` dans le CSS de chaque fichier).
 - Thème clair/sombre : géré via `body[data-theme="dark"]` qui redéfinit les custom properties CSS (`--paper`, `--ink`, `--accent`, etc.). Un panneau de tweaks flottant permet de basculer — à réimplémenter en île Astro (ou simple toggle JS) si le theming doit rester dynamique en prod ; sinon fixer un seul thème par défaut.
 - Pas d'animations complexes — transitions CSS simples uniquement.
@@ -79,7 +85,7 @@ Aucune image bitmap — tout est en placeholders (hachures diagonales CSS `repea
 
 ## Captures d'écran
 Dossier \`screenshots/\` — une capture par page (état réel actuel, thème clair) :
-- \`01-homepage.png\`, \`02-projects-index.png\`, \`03-project-deep-dive.png\`, \`04-role-page.png\`, \`05-about-parcours.png\`, \`06-stack-bom.png\`, \`07-contact.png\`
+- \`01-homepage.png\`, \`02-projects-index.png\`, \`03-project-deep-dive.png\`, \`04-role-page.png\`, \`05-about-parcours.png\`, \`06-stack-bom.png\`, \`07-contact.png\`, \`08-professional-interests.png\`, \`09-personal-interests.png\`
 
 ## Fichiers inclus
 - `Homepage Datasheet (hi-fi).html`
@@ -89,4 +95,6 @@ Dossier \`screenshots/\` — une capture par page (état réel actuel, thème cl
 - `About Parcours (hi-fi).html`
 - `Stack BOM (hi-fi).html`
 - `Contact (hi-fi).html`
+- `Professional Interests (hi-fi).html`
+- `Personal Interests (hi-fi).html`
 - `wireframes/` — exploration de structure antérieure (contexte seulement, ne pas suivre visuellement)

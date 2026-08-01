@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Centres d'intérêt professionnels · Jean Dupont</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #F5F1E8; --paper-2: #EDE7D7; --paper-3: #E5DEC9;
+    --ink: #1A1814; --ink-2: #3D3A33; --ink-3: #5F594E; --ink-soft: #8A8478;
+    --rule: #D4CDB8; --rule-2: #C9C0A6;
+    --accent: #C45A2C; --accent-2: #A14722; --accent-soft: #F4E4D6;
+    --green: #5E7A4F;
+    --strip-bg: var(--ink); --strip-fg: var(--paper); --strip-muted: #B8B0A0;
+    --sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+    --serif: "Source Serif 4", ui-serif, Georgia, serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --rail: 204px; --maxw: 960px; --prose: 680px;
+  }
+  body[data-theme="dark"] {
+    --paper: #16140F; --paper-2: #1E1B14; --paper-3: #26221A;
+    --ink: #EFE9D6; --ink-2: #CFC8B2; --ink-3: #A39C84; --ink-soft: #6F6952;
+    --rule: #2C281D; --rule-2: #3A3527;
+    --accent: #E68B4E; --accent-2: #F0A268; --accent-soft: #3A2718;
+    --green: #8FA77A;
+    --strip-bg: #0E0C08; --strip-fg: #EFE9D6; --strip-muted: #6F6952;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; transition: background 200ms ease, color 200ms ease; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-2); }
+  #progress { position: fixed; top: 0; left: var(--rail); right: 0; height: 2px; background: transparent; z-index: 50; }
+  #progress .bar { height: 100%; width: 0%; background: var(--accent); transition: width 80ms linear; }
+
+  .rail { position: fixed; top: 0; left: 0; bottom: 0; width: var(--rail); border-right: 1px solid var(--rule); background: var(--paper); padding: 28px 22px 22px; display: flex; flex-direction: column; z-index: 10; }
+  .rail .mark { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+  .rail .mark .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+  .rail .mark-sub { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 4px; }
+  .rail nav { margin-top: 40px; display: flex; flex-direction: column; gap: 2px; }
+  .rail nav a { display: grid; grid-template-columns: 26px 1fr; align-items: center; padding: 7px 0 7px 10px; font-size: 14px; font-weight: 500; color: var(--ink-2); border-left: 2px solid transparent; transition: color 150ms ease, border-color 150ms ease; }
+  .rail nav a .num { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.06em; }
+  .rail nav a:hover { color: var(--ink); }
+  .rail nav a.active { color: var(--ink); border-left-color: var(--accent); }
+  .rail nav a.active .num { color: var(--accent); }
+  .rail .grow { flex: 1; }
+  .rail .status { font-family: var(--mono); font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.04em; line-height: 1.7; }
+  .rail .status .ok { color: var(--green); }
+  .rail .status .ok::before { content: "●"; margin-right: 6px; }
+
+  main { margin-left: var(--rail); min-height: 100vh; }
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 56px; }
+
+  .strip { background: var(--strip-bg); color: var(--strip-fg); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; padding: 11px 0; }
+  .strip-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 56px; display: flex; justify-content: space-between; gap: 24px; }
+  .strip .muted { color: var(--strip-muted); }
+  .strip .sep { opacity: 0.4; }
+
+  .breadcrumb { padding-top: 36px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--ink-soft); }
+  .breadcrumb a { color: var(--ink-soft); }
+  .breadcrumb .here { color: var(--ink); }
+  .breadcrumb .sep { color: var(--ink-soft); margin: 0 6px; }
+
+  .doc-header { padding: 28px 0 0; }
+  .doc-header .meta-top { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .doc-header h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(40px, 5.2vw, 64px); line-height: 1.02; letter-spacing: -0.03em; margin: 0 0 18px; max-width: 820px; }
+  .doc-header .lede { font-family: var(--serif); font-size: 21px; line-height: 1.45; color: var(--ink-2); font-weight: 400; margin: 0; max-width: 720px; }
+  .doc-header .lede em { color: var(--ink); font-style: italic; font-weight: 500; }
+
+  .meta-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 32px; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .meta-strip .cell { padding: 16px 18px 16px 0; border-right: 1px solid var(--rule); }
+  .meta-strip .cell:last-child { border-right: none; padding-right: 0; }
+  .meta-strip .cell:not(:first-child) { padding-left: 18px; }
+  .meta-strip .k { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 4px; }
+  .meta-strip .v { font-family: var(--sans); font-size: 14px; color: var(--ink); font-weight: 500; }
+  .meta-strip .v.accent { color: var(--accent); }
+
+  /* ─── FICHE (pro) ─── */
+  .fiches { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+  .fiche { border: 1px solid var(--rule); background: var(--paper); padding: 30px 34px 34px; }
+  .fiche-head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); margin-bottom: 20px; }
+  .fiche-head .emoji { font-size: 26px; line-height: 1; }
+  .fiche-head h2 { font-family: var(--sans); font-weight: 600; font-size: 23px; letter-spacing: -0.015em; line-height: 1.15; margin: 0; color: var(--ink); }
+  .fiche-head .num { margin-left: auto; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+  .fiche p { font-family: var(--serif); font-size: 16.5px; line-height: 1.62; color: var(--ink-2); margin: 0 0 14px; max-width: var(--prose); text-wrap: pretty; }
+  .fiche p:last-of-type { margin-bottom: 0; }
+  .fiche p b { color: var(--ink); font-weight: 600; }
+  .fiche .hl { background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%); padding: 0 2px; color: var(--ink); }
+  body[data-theme="dark"] .fiche .hl { color: var(--accent-2); }
+
+  .seek { margin-top: 22px; background: var(--paper-2); border-left: 3px solid var(--accent); padding: 18px 22px 20px; }
+  .seek .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .seek ul { list-style: none; margin: 0; padding: 0; }
+  .seek li { font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--ink-2); padding: 6px 0; border-bottom: 1px dotted var(--rule-2); display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
+  .seek li:last-child { border-bottom: none; }
+  .seek li::before { content: "—"; font-family: var(--mono); color: var(--ink-soft); font-size: 12px; }
+
+  .related { margin: 56px 0 0; padding: 22px 0 0; border-top: 1.5px solid var(--ink); }
+  .related .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px; }
+  .related .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .related a.card { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px 18px; border: 1px solid var(--rule); background: var(--paper); transition: background 150ms ease, border-color 150ms ease; }
+  .related a.card:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .related a.card .ref { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; }
+  .related a.card .t { font-family: var(--sans); font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.005em; }
+  .related a.card .d { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+
+  footer.bot { border-top: 1.5px solid var(--ink); margin-top: 56px; padding: 18px 0; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+  footer.bot .inner { max-width: var(--maxw); margin: 0 auto; padding: 0 56px; display: flex; justify-content: space-between; gap: 20px; }
+  footer.bot a { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .meta-strip { grid-template-columns: repeat(2, 1fr); }
+    .meta-strip .cell:nth-child(2) { border-right: none; }
+    .related .grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .rail { display: none; }
+    main { margin-left: 0; }
+    #progress { left: 0; }
+    .container, .strip-inner, footer.bot .inner { padding: 0 24px; }
+    .doc-header h1 { font-size: 36px; }
+    .fiche { padding: 22px 20px 26px; }
+    .fiche-head { flex-wrap: wrap; }
+    .fiche-head .num { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+  <div id="progress"><div class="bar"></div></div>
+  <aside class="rail" aria-label="Navigation">
+    <div>
+      <div class="mark"><span class="dot"></span>JD.ENG</div>
+      <div class="mark-sub">PORTFOLIO · v2.6</div>
+    </div>
+    <nav>
+      <a href="Homepage Datasheet (hi-fi).html"><span class="num">01</span><span>Index</span></a>
+      <a href="Projects Index (hi-fi).html"><span class="num">02</span><span>Projets</span></a>
+      <a href="Role Page (hi-fi).html"><span class="num">03</span><span>Rôles</span></a>
+      <a href="About Parcours (hi-fi).html"><span class="num">04</span><span>Parcours</span></a>
+      <a href="Stack BOM (hi-fi).html"><span class="num">05</span><span>Stack</span></a>
+      <a href="Contact (hi-fi).html"><span class="num">06</span><span>Contact</span></a>
+      <a href="#" class="active"><span class="num">07</span><span>Intérêts</span></a>
+      <a href="Personal Interests (hi-fi).html"><span class="num">08</span><span>Perso</span></a>
+    </nav>
+    <div class="grow"></div>
+    <div class="status">
+      <div class="ok">DISPONIBLE Q3 2026</div>
+      <div>Lyon · remote EU</div>
+      <div>maj. 12.05.2026</div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="strip">
+      <div class="strip-inner">
+        <span><span class="muted">FICHE</span> &nbsp; JD-ENG / INTÉRÊTS</span>
+        <span class="sep">·</span>
+        <span><span class="muted">TYPE</span> Pro</span>
+        <span class="sep">·</span>
+        <span><span class="muted">AXES</span> 8</span>
+        <span class="sep">·</span>
+        <span><span class="muted">PAGE</span> 07 / 08</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Fil d'ariane">
+        <a href="Homepage Datasheet (hi-fi).html">portfolio</a>
+        <span class="sep">/</span>
+        <span class="here">centres d'intérêt professionnels</span>
+      </nav>
+
+      <header class="doc-header">
+        <div class="meta-top">I-01 · Intérêts · 8 axes techniques</div>
+        <h1>Ce qui m'anime, techniquement.</h1>
+        <p class="lede">
+          Huit axes qui reviennent, projet après projet, indépendamment du
+          client ou de la stack — <em>ce que je cherche à approfondir, pas
+          seulement ce que je sais déjà faire</em>.
+        </p>
+        <div class="meta-strip">
+          <div class="cell"><span class="k">Format</span><span class="v">8 fiches thématiques</span></div>
+          <div class="cell"><span class="k">Nature</span><span class="v accent">Axes transverses, non chronologiques</span></div>
+          <div class="cell"><span class="k">Lecture</span><span class="v">~ 8 min</span></div>
+          <div class="cell"><span class="k">Voir aussi</span><span class="v">Parcours · Stack</span></div>
+        </div>
+      </header>
+
+      <div class="fiches">
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">🧭</span>
+            <h2>Conception de systèmes complets (end-to-end)</h2>
+            <span class="num">§ 01</span>
+          </div>
+          <p>
+            Je m'intéresse particulièrement à la conception de systèmes techniques pris dans leur globalité, depuis les couches matérielles et embarquées jusqu'à la donnée, les interfaces utilisateur et l'intégration physique du produit final.
+          </p>
+          <p>
+            Plutôt que de raisonner par briques isolées, j'aborde les projets comme des ensembles cohérents, où chaque décision locale — qu'elle concerne l'électronique, le firmware, l'architecture logicielle, la modélisation de la donnée ou l'UX — a un impact direct sur l'équilibre global du système. Cette approche me permet d'anticiper les contraintes d'intégration, de limiter les effets de bord et d'éviter les choix techniques qui déplacent simplement les problèmes d'une couche à une autre.
+          </p>
+          <p>
+            J'accorde une importance particulière aux compromis : <span class="hl">performance, maintenabilité, contraintes matérielles, expérience utilisateur et réalité industrielle doivent coexister de manière pragmatique</span>. Mon objectif n'est pas d'optimiser chaque composant individuellement, mais de construire des systèmes lisibles, robustes et exploitables sur la durée.
+          </p>
+          <p>
+            Cette vision end-to-end s'est construite au fil de projets mêlant électronique, logiciel embarqué, backend, interfaces web et conception mécanique, et constitue aujourd'hui un fil conducteur dans ma manière d'aborder l'ingénierie et les rôles d'architecture ou de lead technique.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Comprendre un système dans son ensemble avant d'en optimiser les parties</li>
+              <li>Concevoir des architectures cohérentes et évolutives</li>
+              <li>Faire dialoguer contraintes techniques, usages et réalité terrain</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">⚙️</span>
+            <h2>Langages systèmes &amp; maîtrise fine des ressources</h2>
+            <span class="num">§ 02</span>
+          </div>
+          <p>
+            J'aime rester proche de la machine : comprendre ce qu'un programme fait réellement en mémoire, en cycles, en interruptions — pas seulement ce qu'il produit à l'écran. Le C, le C++ et les environnements contraints (microcontrôleurs, FPGA, systèmes temps réel) m'obligent à raisonner en ressources finies, ce qui clarifie énormément les décisions.
+          </p>
+          <p>
+            Cette discipline du bas niveau n'est pas une fin en soi : c'est un <span class="hl">outil de lucidité</span>. Elle m'aide à évaluer, même quand je travaille plus haut dans la pile (backend, frontend), ce que coûte réellement une abstraction, et quand il vaut mieux l'éviter.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Garder une compréhension exacte du coût réel des abstractions</li>
+              <li>Concevoir des systèmes sobres, prévisibles en ressources</li>
+              <li>Transporter cette rigueur bas niveau vers les couches hautes</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">📊</span>
+            <h2>Donnée en environnement contraint</h2>
+            <span class="num">§ 03</span>
+          </div>
+          <p>
+            Modéliser de la donnée n'a pas le même sens selon qu'elle transite par un bus série à quelques kilobits, qu'elle est stockée sur un microcontrôleur à mémoire limitée, ou qu'elle alimente un dashboard temps réel côté serveur. Ce qui m'intéresse, c'est cette chaîne complète — du capteur à la base de données — et les arbitrages qu'elle impose à chaque étage.
+          </p>
+          <p>
+            Bande passante, rétention, granularité, fiabilité de transport : ce sont des questions <b>autant architecturales que techniques</b>, et elles se posent différemment selon qu'on conçoit pour l'embarqué, l'IoT industriel ou une application web classique.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Modéliser la donnée en fonction de sa contrainte réelle de transport et de stockage</li>
+              <li>Concevoir des schémas qui restent lisibles à l'échelle</li>
+              <li>Relier la donnée brute du terrain à sa valeur d'usage finale</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">🎛️</span>
+            <h2>Lisibilité, UX et outils pour humains</h2>
+            <span class="num">§ 04</span>
+          </div>
+          <p>
+            Un dashboard de supervision, une interface embarquée pour technicien terrain, un outil de debug interne : ce sont rarement des produits « grand public », mais ils méritent le même soin qu'une interface commerciale. Une interface confuse coûte du temps à chaque utilisation, et cache souvent des décisions de données mal pensées en amont.
+          </p>
+          <p>
+            Je considère l'UX comme un <span class="hl">révélateur de la qualité du système</span> qu'elle expose : si l'interface est confuse, c'est souvent que le modèle sous-jacent l'est aussi.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Concevoir des outils clairs, même pour un usage interne ou technique</li>
+              <li>Traiter l'UX comme un signal de qualité du système sous-jacent</li>
+              <li>Réduire la charge cognitive des personnes qui utilisent le système au quotidien</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">🧩</span>
+            <h2>Architecture, maintenabilité et évolution des systèmes</h2>
+            <span class="num">§ 05</span>
+          </div>
+          <p>
+            Un système n'est jamais figé : il est repris, étendu, audité, parfois des années après sa conception initiale — souvent par quelqu'un d'autre que moi. Cette réalité oriente fortement mes choix d'architecture : découpage clair des responsabilités, conventions explicites, documentation qui vieillit bien.
+          </p>
+          <p>
+            J'essaie de concevoir des systèmes qui restent <b>compréhensibles sans leur auteur dans la pièce</b> — ce qui suppose d'accepter, parfois, une solution un peu moins optimale mais beaucoup plus lisible.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Construire des architectures qui survivent au changement d'équipe</li>
+              <li>Préférer la lisibilité à l'optimisation locale quand les deux s'opposent</li>
+              <li>Documenter les décisions, pas seulement le code</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">🔭</span>
+            <h2>Exploration technique et veille active</h2>
+            <span class="num">§ 06</span>
+          </div>
+          <p>
+            Je garde une pratique régulière de veille : retours d'incident d'équipes infra, papers d'architecture, nouvelles approches de traitement de données. Ce n'est pas de la curiosité gratuite — c'est une manière de tester mes propres décisions contre celles d'autres équipes, souvent à une échelle que je ne rencontre pas dans mes projets.
+          </p>
+          <p>
+            Cette veille se double d'expérimentation concrète : petits side-projects, bancs d'essai, prototypes jetables — pour vérifier une intuition avant de l'introduire dans un système en production.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Confronter mes choix techniques à ceux d'autres équipes et d'autres échelles</li>
+              <li>Tester une intuition en petit avant de l'engager en production</li>
+              <li>Ne jamais figer une pratique par habitude plutôt que par choix</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">🧱</span>
+            <h2>Prototypage concret et matérialisation rapide</h2>
+            <span class="num">§ 07</span>
+          </div>
+          <p>
+            J'aime le moment où une idée quitte l'écran : une impression 3D pour valider une ergonomie, un breadboard pour vérifier un choix de capteur, une maquette pour montrer un flux plutôt que le décrire. Cette matérialisation rapide fait remonter des problèmes qu'aucune spécification n'aurait révélés.
+          </p>
+          <p>
+            Prototyper vite, c'est aussi accepter de <span class="hl">se tromper tôt et pas cher</span> — plutôt que tard et en production.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Faire sortir une idée du papier le plus tôt possible</li>
+              <li>Détecter les problèmes d'intégration avant qu'ils ne coûtent cher</li>
+              <li>Garder un contact direct avec la matière et l'objet final</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span class="emoji">🧑‍🏫</span>
+            <h2>Transmission par la pratique</h2>
+            <span class="num">§ 08</span>
+          </div>
+          <p>
+            J'apprécie particulièrement les moments d'onboarding, de pair-programming ou de revue de code où une pratique se transmet concrètement, plutôt qu'à travers une procédure figée. C'est aussi une manière de mettre mes propres habitudes à l'épreuve : expliquer un choix oblige à le justifier vraiment.
+          </p>
+          <p>
+            Sur la durée, je constate que les équipes où la transmission se fait par la pratique — et pas uniquement par la documentation — gardent une <b>cohérence technique plus durable</b>.
+          </p>
+          <div class="seek">
+            <div class="k">🔍 Ce que je recherche à travers cet axe</div>
+            <ul>
+              <li>Transmettre des pratiques, pas seulement des procédures</li>
+              <li>Mettre mes propres choix à l'épreuve en les expliquant</li>
+              <li>Contribuer à une cohérence technique qui dépasse ma propre présence</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+
+      <section class="related" aria-label="Aller plus loin">
+        <div class="k">Aller plus loin &nbsp;·&nbsp; sections liées</div>
+        <div class="grid">
+          <a class="card" href="About Parcours (hi-fi).html">
+            <span class="ref">→ Page 04</span>
+            <span class="t">Parcours</span>
+            <span class="d">17 ans d'ingénierie, en contexte.</span>
+          </a>
+          <a class="card" href="Personal Interests (hi-fi).html">
+            <span class="ref">→ Page 08</span>
+            <span class="t">Activités non-professionnelles</span>
+            <span class="d">Ce qui nourrit ces axes en dehors du travail.</span>
+          </a>
+          <a class="card" href="Contact (hi-fi).html">
+            <span class="ref">→ Page 06</span>
+            <span class="t">Contact</span>
+            <span class="d">Discuter d'une mission. Réponse sous 48 h.</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <footer class="bot">
+      <div class="inner">
+        <span>© 2026 · Jean Dupont</span>
+        <span>Fiche intérêts · compilée avec soin · maj. 12.05.2026</span>
+        <a href="#top">↑ Haut</a>
+      </div>
+    </footer>
+  </main>
+
+  <style>
+    #tweaks-panel { position: fixed; right: 20px; bottom: 20px; width: 260px; background: var(--paper); color: var(--ink); border: 1px solid var(--rule-2); border-radius: 4px; box-shadow: 0 8px 32px -8px rgba(0,0,0,0.18), 0 2px 6px -2px rgba(0,0,0,0.08); font-family: var(--sans); font-size: 13px; z-index: 100; display: none; overflow: hidden; }
+    #tweaks-panel.open { display: block; }
+    #tweaks-panel .tp-head { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--rule); background: var(--paper-2); }
+    #tweaks-panel .tp-title { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+    #tweaks-panel .tp-close { background: none; border: none; cursor: pointer; color: var(--ink-soft); font-size: 16px; line-height: 1; padding: 2px 6px; border-radius: 2px; }
+    #tweaks-panel .tp-close:hover { color: var(--ink); background: var(--paper-3); }
+    #tweaks-panel .tp-section { padding: 14px 14px 16px; }
+    #tweaks-panel .tp-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    #tweaks-panel .tp-label { font-size: 13px; color: var(--ink-2); }
+    #tweaks-panel .tp-toggle { position: relative; width: 38px; height: 22px; background: var(--rule-2); border-radius: 11px; border: none; cursor: pointer; padding: 0; transition: background 200ms ease; flex-shrink: 0; }
+    #tweaks-panel .tp-toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: var(--paper); border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.18); transition: transform 180ms cubic-bezier(0.4,0,0.2,1); }
+    #tweaks-panel .tp-toggle[aria-checked="true"] { background: var(--accent); }
+    #tweaks-panel .tp-toggle[aria-checked="true"]::after { transform: translateX(16px); }
+    #tweaks-panel .tp-note { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); letter-spacing: 0.05em; margin-top: 8px; line-height: 1.5; }
+  </style>
+  <div id="tweaks-panel" role="dialog" aria-label="Tweaks">
+    <div class="tp-head"><span class="tp-title">Tweaks</span><button class="tp-close" aria-label="Fermer">✕</button></div>
+    <div class="tp-section">
+      <div class="tp-row">
+        <label class="tp-label" for="tp-dark">Thème sombre</label>
+        <button id="tp-dark" class="tp-toggle" role="switch" aria-checked="false" aria-label="Basculer le thème sombre"></button>
+      </div>
+      <div class="tp-note">Bascule la palette papier ↔ sombre. La donnée persiste.</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const TWEAKS = /*EDITMODE-BEGIN*/{
+        "darkMode": false
+      }/*EDITMODE-END*/;
+      const state = Object.assign({}, TWEAKS);
+      const panel = document.getElementById('tweaks-panel');
+      const toggle = document.getElementById('tp-dark');
+      const close = panel.querySelector('.tp-close');
+      function applyTheme() {
+        document.body.dataset.theme = state.darkMode ? 'dark' : 'light';
+        toggle.setAttribute('aria-checked', state.darkMode ? 'true' : 'false');
+      }
+      applyTheme();
+      window.addEventListener('message', function (e) {
+        const d = e && e.data;
+        if (!d || typeof d !== 'object') return;
+        if (d.type === '__activate_edit_mode') panel.classList.add('open');
+        if (d.type === '__deactivate_edit_mode') panel.classList.remove('open');
+      });
+      try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (_) {}
+      toggle.addEventListener('click', function () {
+        state.darkMode = !state.darkMode;
+        applyTheme();
+        try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { darkMode: state.darkMode } }, '*'); } catch (_) {}
+      });
+      close.addEventListener('click', function () {
+        panel.classList.remove('open');
+        try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (_) {}
+      });
+      const bar = document.querySelector('#progress .bar');
+      function onScroll() {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      }
+      document.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

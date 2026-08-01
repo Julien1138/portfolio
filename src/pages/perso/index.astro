@@ -1,0 +1,195 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BreadcrumbNav from "../../components/BreadcrumbNav.astro";
+import MetaStrip from "../../components/MetaStrip.astro";
+import PersonalInterestFiche from "../../components/PersonalInterestFiche.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
+
+const themes = [
+  {
+    num: "§ 01",
+    emoji: "🧠",
+    title: "Transmettre & apprendre",
+    subtitle: "Brassage associatif, collectif, compagnonnage",
+    photoCaption: "brassage artisanal",
+    imagePath: "/src/assets/images/perso/brasseur.jpg",
+    paragraphs: [
+      "Je suis responsable des brassages dans une association de fabrication de bière artisanale.",
+      "J'y transmets des méthodes et des pratiques à des nouveaux membres, tout en continuant à apprendre auprès des plus expérimentés.",
+      "Cette logique de <span class=\"hl\">transmission, de documentation et d'amélioration continue</span> est au cœur de ma manière de travailler.",
+    ],
+  },
+  {
+    num: "§ 02",
+    emoji: "🔧",
+    title: "Concevoir avec des contraintes réelles",
+    subtitle: "Bricolage, bois, métal, réparation électronique",
+    photoCaption: "bricolage",
+    imagePath: "/src/assets/images/perso/bricoleur.jpg",
+    paragraphs: [
+      "Je conçois et construis régulièrement des objets concrets : meubles, aménagements, réparations.",
+      "Travailler le bois, le métal ou l'électronique m'a appris à composer avec des contraintes physiques, économiques et matérielles.",
+      "Cela renforce ma recherche de <span class=\"hl\">solutions simples, robustes et maintenables</span>.",
+    ],
+  },
+  {
+    num: "§ 03",
+    emoji: "🧭",
+    title: "Décider dans l'incertitude",
+    subtitle: "Spéléologie, pilotage avion",
+    photoCaption: "pilotage d'avion de tourisme",
+    imagePath: "/src/assets/images/perso/pilote.jpg",
+    paragraphs: [
+      "La spéléologie et le pilotage d'avion de tourisme m'ont confronté à des environnements où la préparation et la gestion du risque sont essentielles.",
+      "On n'y cherche pas la performance maximale, mais des <span class=\"hl\">décisions sûres, adaptées au contexte</span>.",
+      "Cette approche guide mes choix dans des systèmes techniques complexes.",
+    ],
+  },
+  {
+    num: "§ 04",
+    emoji: "🎭",
+    title: "Écoute et adaptation collective",
+    subtitle: "Théâtre d'improvisation",
+    photoCaption: "théâtre d'improvisation",
+    imagePath: "/src/assets/images/perso/comédien.jpg",
+    paragraphs: [
+      "Le théâtre d'improvisation m'a appris à écouter, à accepter les propositions des autres et à construire collectivement.",
+      "L'objectif n'est pas d'imposer une idée, mais de <span class=\"hl\">faire émerger une solution pertinente en temps réel</span>.",
+      "C'est une compétence clé dans le travail d'équipe et les rôles de coordination.",
+    ],
+  },
+  {
+    num: "§ 05",
+    emoji: "🌱",
+    title: "Penser le temps long",
+    subtitle: "Jardinage",
+    photoCaption: "jardinage",
+    imagePath: "/src/assets/images/perso/jardinier.jpg",
+    paragraphs: [
+      "Le jardinage m'a sensibilisé à la notion de temps long et de systèmes vivants.",
+      "On ne maîtrise pas tous les paramètres, mais on peut <span class=\"hl\">créer les conditions favorables à un bon fonctionnement</span>.",
+      "Cette vision influence directement ma manière de concevoir des architectures évolutives et durables.",
+    ],
+  },
+  {
+    num: "§ 06",
+    emoji: "🌍",
+    title: "Ouverture et prise de recul",
+    subtitle: "Voyages : Russie, Islande, Indonésie, Népal",
+    photoCaption: "voyages",
+    imagePath: "/src/assets/images/perso/voyageur.jpg",
+    paragraphs: [
+      "Mes voyages m'ont confronté à d'autres cultures, d'autres contraintes et d'autres façons de résoudre les problèmes.",
+      "Ils nourrissent ma capacité à <span class=\"hl\">prendre du recul et à remettre en question des choix qui semblaient évidents</span>.",
+      "Une compétence essentielle dans des projets de longue durée.",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Activités non-professionnelles · Julien Aupart"
+  active={7}
+  container="doc"
+  stripFields={[
+    { label: "FICHE", value: "JA-ENG / PERSO" },
+    { label: "TYPE", value: "Hors-écran" },
+    { label: "THÈMES", value: "6" },
+    { label: "PAGE", value: "07 / 08" },
+  ]}
+  footerNote="Fiche perso · compilée avec soin · maj. 12.05.2026"
+>
+  <div class="container">
+    <BreadcrumbNav
+      crumbs={[
+        { label: "portfolio", href: "/" },
+        { label: "activités non-professionnelles" },
+      ]}
+    />
+
+    <header class="doc-header">
+      <div class="meta-top">P-01 · Perso · 6 thèmes</div>
+      <h1>Ce qui se construit hors du travail.</h1>
+      <p class="lede">
+        Des activités choisies pour ce qu'elles font travailler chez moi —
+        <em>écoute, patience, décision, transmission</em> — et qui, sans
+        surprise, se retrouvent dans ma manière de conduire des projets.
+      </p>
+      <MetaStrip
+        cols={4}
+        cells={[
+          { k: "Format", v: "6 fiches thématiques" },
+          { k: "Nature", v: "Hors-écran, non professionnel", accent: true },
+          { k: "Lecture", v: "~ 5 min" },
+          { k: "Voir aussi", v: "Intérêts pro · Parcours" },
+        ]}
+      />
+    </header>
+
+    <div class="fiches">
+      {themes.map((t, i) => (
+        <PersonalInterestFiche
+          num={t.num}
+          emoji={t.emoji}
+          title={t.title}
+          subtitle={t.subtitle}
+          reverse={i % 2 === 1}
+          photoCaption={t.photoCaption}
+          imagePath={t.imagePath}
+          paragraphs={t.paragraphs}
+        />
+      ))}
+    </div>
+
+    <RelatedGrid
+      label="Aller plus loin · sections liées"
+      items={[
+        { ref: "→ Page 06", title: "Centres d'intérêt professionnels", sub: "Les huit axes techniques que ces activités nourrissent.", href: "/interets/" },
+        { ref: "→ Page 04", title: "Parcours", sub: "17 ans d'ingénierie, en contexte.", href: "/parcours/" },
+        { ref: "→ Page 08", title: "Contact", sub: "Discuter d'une mission. Réponse sous 48 h.", href: "/contact/" },
+      ]}
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  .doc-header { padding: 28px 0 0; }
+  .doc-header .meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .doc-header h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(40px, 5.2vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+    max-width: 820px;
+  }
+  .doc-header .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin: 0;
+    max-width: 720px;
+  }
+  .doc-header .lede :global(em) { color: var(--ink); font-style: italic; font-weight: 500; }
+
+  .fiches {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  @media (max-width: 760px) {
+    .doc-header h1 { font-size: 36px; }
+  }
+</style>

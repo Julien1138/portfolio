@@ -1,0 +1,119 @@
+---
+export interface Props {
+  num: string; // "§ 01"
+  emoji: string;
+  title: string;
+  paragraphs: string[]; // html strings
+  seekTitle?: string;
+  seekItems?: string[];
+}
+const { num, emoji, title, paragraphs, seekTitle, seekItems } = Astro.props;
+---
+
+<article class="fiche">
+  <div class="fiche-head">
+    <span class="emoji">{emoji}</span>
+    <h2>{title}</h2>
+    <span class="num">{num}</span>
+  </div>
+  {paragraphs.map((html) => <p set:html={html} />)}
+  {seekItems && seekItems.length > 0 && (
+    <div class="seek">
+      <div class="k">🔍 {seekTitle}</div>
+      <ul>
+        {seekItems.map((item) => <li set:html={item} />)}
+      </ul>
+    </div>
+  )}
+</article>
+
+<style>
+  .fiche {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 30px 34px 34px;
+  }
+  .fiche-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 20px;
+  }
+  .fiche-head .emoji { font-size: 26px; line-height: 1; }
+  .fiche-head h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 23px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--ink);
+  }
+  .fiche-head .num {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .fiche p {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    line-height: 1.62;
+    color: var(--ink-2);
+    margin: 0 0 14px;
+    max-width: var(--prose);
+    text-wrap: pretty;
+  }
+  .fiche p:last-of-type { margin-bottom: 0; }
+  .fiche p :global(b) { color: var(--ink); font-weight: 600; }
+  .fiche p :global(.hl) {
+    background: linear-gradient(transparent 62%, var(--accent-soft) 62%, var(--accent-soft) 92%, transparent 92%);
+    padding: 0 2px;
+    color: var(--ink);
+  }
+  :global(html[data-theme="dark"]) .fiche p :global(.hl) { color: var(--accent-2); }
+
+  .seek {
+    margin-top: 22px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px 20px;
+  }
+  .seek .k {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .seek ul { list-style: none; margin: 0; padding: 0; }
+  .seek li {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--rule-2);
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 8px;
+  }
+  .seek li:last-child { border-bottom: none; }
+  .seek li::before { content: "—"; font-family: var(--mono); color: var(--ink-soft); font-size: 12px; }
+
+  @media (max-width: 760px) {
+    .fiche { padding: 22px 20px 26px; }
+    .fiche-head { flex-wrap: wrap; }
+    .fiche-head .num { margin-left: 0; }
+  }
+</style>

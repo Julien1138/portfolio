@@ -1,0 +1,238 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BreadcrumbNav from "../../components/BreadcrumbNav.astro";
+import MetaStrip from "../../components/MetaStrip.astro";
+import ProInterestFiche from "../../components/ProInterestFiche.astro";
+import RelatedGrid from "../../components/RelatedGrid.astro";
+
+const axes = [
+  {
+    num: "§ 01",
+    emoji: "🧭",
+    title: "Conception de systèmes complets (end-to-end)",
+    paragraphs: [
+      "Je m'intéresse particulièrement à la conception de systèmes techniques pris dans leur globalité, depuis les couches matérielles et embarquées jusqu'à la donnée, les interfaces utilisateur et l'intégration physique du produit final.",
+      "Plutôt que de raisonner par briques isolées, j'aborde les projets comme des ensembles cohérents, où chaque décision locale — qu'elle concerne l'électronique, le firmware, l'architecture logicielle, la modélisation de la donnée ou l'UX — a un impact direct sur l'équilibre global du système. Cette approche me permet d'anticiper les contraintes d'intégration, de limiter les effets de bord et d'éviter les choix techniques qui déplacent simplement les problèmes d'une couche à une autre.",
+      "J'accorde une importance particulière aux compromis : <span class=\"hl\">performance, maintenabilité, contraintes matérielles, expérience utilisateur et réalité industrielle doivent coexister de manière pragmatique</span>. Mon objectif n'est pas d'optimiser chaque composant individuellement, mais de construire des systèmes lisibles, robustes et exploitables sur la durée.",
+      "Cette vision end-to-end s'est construite au fil de projets mêlant électronique, logiciel embarqué, backend, interfaces web et conception mécanique, et constitue aujourd'hui un fil conducteur dans ma manière d'aborder l'ingénierie et les rôles d'architecture ou de lead technique.",
+    ],
+  },
+  {
+    num: "§ 02",
+    emoji: "⚙️",
+    title: "Langages systèmes & maîtrise fine des ressources",
+    paragraphs: [
+      "Je porte un intérêt particulier aux langages et aux modèles de programmation permettant un contrôle précis du comportement des systèmes, notamment en environnement contraint ou proche du matériel.",
+      "Le C et le C++ constituent le socle principal de cette approche, aussi bien pour le développement embarqué que pour la conception d'architectures logicielles robustes. Je m'intéresse aux questions de gestion mémoire, de concurrence, de temps réel et de structuration du code, avec une attention particulière portée aux compromis entre <span class=\"hl\">performance, sûreté et lisibilité</span>.",
+      "Dans cette continuité, je m'intéresse également à Rust, non comme une fin en soi, mais pour les propositions qu'il apporte en matière de sûreté mémoire et de modèles de conception alternatifs. Cette curiosité s'inscrit dans une démarche d'exploration pragmatique, visant à identifier les contextes où ces approches peuvent apporter une réelle valeur par rapport aux solutions existantes.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Comprendre finement le coût réel des abstractions",
+      "Concevoir des logiciels prévisibles et maîtrisés",
+      "Choisir les bons outils en fonction des contraintes réelles du système",
+    ],
+  },
+  {
+    num: "§ 03",
+    emoji: "📊",
+    title: "Donnée en environnement contraint",
+    paragraphs: [
+      "Je suis particulièrement intéressé par la gestion de la donnée dans des systèmes soumis à de fortes contraintes matérielles, énergétiques ou réseau, notamment dans le contexte de l'embarqué connecté.",
+      "Au-delà de la simple collecte de mesures, j'aborde la donnée comme un objet d'ingénierie à part entière : modélisation, validation, persistance, synchronisation et exploitation doivent être pensées de manière cohérente dès la conception. Cette approche permet de construire des <span class=\"hl\">systèmes plus robustes, capables de fonctionner malgré des communications intermittentes ou des ressources limitées</span>.",
+      "Cet intérêt s'étend naturellement à l'ensemble de la chaîne, depuis la production physique de la donnée jusqu'à sa visualisation et son utilisation par les utilisateurs finaux. La cohérence entre firmware, backend et interfaces de supervision est, selon moi, un facteur clé de qualité et de pérennité des systèmes.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Concevoir des modèles de données adaptés aux contraintes du terrain",
+      "Garantir la cohérence et la fiabilité des informations collectées",
+      "Relier étroitement systèmes embarqués et outils d'exploitation",
+    ],
+  },
+  {
+    num: "§ 04",
+    emoji: "🎛️",
+    title: "Lisibilité, UX et outils pour humains",
+    paragraphs: [
+      "Je m'intéresse tout particulièrement à la conception d'interfaces et d'outils permettant de rendre des systèmes techniques complexes compréhensibles, configurables et agréables à utiliser.",
+      "Cette sensibilité à l'UX ne se limite pas aux interfaces grand public. Elle s'exprime également — et surtout — dans des contextes industriels ou techniques, où <span class=\"hl\">la lisibilité des informations, la clarté des interactions et la réduction des erreurs humaines</span> ont un impact direct sur l'efficacité et la fiabilité des systèmes.",
+      "Qu'il s'agisse d'interfaces embarquées, d'outils de configuration, de visualisation de données ou d'applications web de supervision, j'intègre ces préoccupations dès les premières phases de conception, en lien étroit avec l'architecture logicielle et la modélisation de la donnée.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Rendre des systèmes complexes intuitifs à utiliser",
+      "Réduire la charge cognitive des utilisateurs",
+      "Concevoir des interfaces au service du fonctionnement réel du système",
+    ],
+  },
+  {
+    num: "§ 05",
+    emoji: "🧩",
+    title: "Architecture, maintenabilité et évolution des systèmes",
+    paragraphs: [
+      "Je m'intéresse à la manière dont les systèmes logiciels et embarqués évoluent dans le temps, au-delà de leur première mise en production.",
+      "Une part importante de mon expérience concerne <b>la reprise de systèmes existants, l'amélioration de code legacy et la mise en place de trajectoires d'évolution réalistes</b>. J'accorde une attention particulière à la dette technique, à la structuration du code et aux choix d'architecture permettant d'accompagner les évolutions sans remettre en cause l'ensemble du système.",
+      "Cette approche privilégie les transformations progressives et maîtrisées, plutôt que les refontes brutales. Elle vise à concilier qualité technique, contraintes opérationnelles et continuité de service.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Construire des architectures capables d'évoluer dans le temps",
+      "Améliorer la maintenabilité sans bloquer l'activité",
+      "Trouver le bon équilibre entre pragmatisme et qualité",
+    ],
+  },
+  {
+    num: "§ 06",
+    emoji: "🔭",
+    title: "Exploration technique et veille active",
+    paragraphs: [
+      "Je me définis comme un explorateur technique, avec une curiosité marquée pour de nouveaux langages, outils et paradigmes, dès lors qu'ils apportent des perspectives intéressantes sur des problématiques concrètes.",
+      "Cette exploration s'appuie sur des lectures techniques, des expérimentations ciblées et des prototypes, avec pour objectif de comprendre les apports réels d'une technologie avant d'envisager son adoption. Elle ne s'inscrit pas dans une <span class=\"hl\">logique d'effet de mode</span>, mais dans une démarche d'enrichissement de mes outils intellectuels d'ingénieur.",
+      "Explorer, pour moi, consiste autant à découvrir de nouvelles approches qu'à mieux comprendre les limites des solutions existantes.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Identifier des approches pertinentes face à des problèmes réels",
+      "Enrichir ma capacité d'analyse et de conception",
+      "Garder un regard critique sur les tendances technologiques",
+    ],
+  },
+  {
+    num: "§ 07",
+    emoji: "🧱",
+    title: "Prototypage concret et matérialisation rapide",
+    paragraphs: [
+      "Je considère le prototypage comme un outil d'ingénierie essentiel pour confronter rapidement les idées à la réalité.",
+      "La modélisation 3D, l'impression 3D et la réalisation de maquettes fonctionnelles me permettent de <span class=\"hl\">valider des choix techniques, d'anticiper des contraintes d'intégration et d'itérer efficacement</span>. Cette approche favorise une meilleure compréhension des interactions entre mécanique, électronique et logiciel.",
+      "En donnant rapidement une forme tangible aux systèmes, il devient possible de détecter plus tôt les problèmes, de réduire les incertitudes et d'améliorer la qualité globale des solutions développées.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Tester rapidement des hypothèses techniques",
+      "Réduire les risques liés à l'intégration physique",
+      "Favoriser une approche itérative et pragmatique",
+    ],
+  },
+  {
+    num: "§ 08",
+    emoji: "🧑‍🏫",
+    title: "Transmission par la pratique",
+    paragraphs: [
+      "Je m'intéresse à la transmission des compétences techniques à travers l'action et les projets concrets, plutôt que par un enseignement théorique formel.",
+      "L'accompagnement de profils plus juniors, les revues de code et le travail en binôme sont pour moi des moyens efficaces de <span class=\"hl\">partager des savoir-faire, de structurer la réflexion technique et de favoriser la montée en compétence</span>. Les apports théoriques trouvent alors naturellement leur place, en réponse à des problématiques rencontrées sur le terrain.",
+      "Cette approche par la pratique permet de transmettre non seulement des connaissances, mais aussi une manière de raisonner et d'aborder les systèmes complexes.",
+    ],
+    seekTitle: "Ce que je recherche à travers cet axe",
+    seekItems: [
+      "Accompagner la montée en compétence par le concret",
+      "Partager des méthodes de raisonnement et d'analyse",
+      "Construire des équipes techniquement solides et autonomes",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Centres d'intérêt professionnels · Julien Aupart"
+  active={6}
+  container="doc"
+  stripFields={[
+    { label: "FICHE", value: "JA-ENG / INTÉRÊTS" },
+    { label: "TYPE", value: "Pro" },
+    { label: "AXES", value: "8" },
+    { label: "PAGE", value: "06 / 08" },
+  ]}
+  footerNote="Fiche intérêts · compilée avec soin · maj. 12.05.2026"
+>
+  <div class="container">
+    <BreadcrumbNav
+      crumbs={[
+        { label: "portfolio", href: "/" },
+        { label: "centres d'intérêt professionnels" },
+      ]}
+    />
+
+    <header class="doc-header">
+      <div class="meta-top">I-01 · Intérêts · 8 axes techniques</div>
+      <h1>Ce qui m'anime, techniquement.</h1>
+      <p class="lede">
+        Huit axes qui reviennent, projet après projet, indépendamment du
+        client ou de la stack — <em>ce que je cherche à approfondir, pas
+        seulement ce que je sais déjà faire</em>.
+      </p>
+      <MetaStrip
+        cols={4}
+        cells={[
+          { k: "Format", v: "8 fiches thématiques" },
+          { k: "Nature", v: "Axes transverses, non chronologiques", accent: true },
+          { k: "Lecture", v: "~ 8 min" },
+          { k: "Voir aussi", v: "Parcours · Stack" },
+        ]}
+      />
+    </header>
+
+    <div class="fiches">
+      {axes.map((axe) => (
+        <ProInterestFiche
+          num={axe.num}
+          emoji={axe.emoji}
+          title={axe.title}
+          paragraphs={axe.paragraphs}
+          seekTitle={axe.seekTitle}
+          seekItems={axe.seekItems}
+        />
+      ))}
+    </div>
+
+    <RelatedGrid
+      label="Aller plus loin · sections liées"
+      items={[
+        { ref: "→ Page 04", title: "Parcours", sub: "17 ans d'ingénierie, en contexte.", href: "/parcours/" },
+        { ref: "→ Page 07", title: "Activités non-professionnelles", sub: "Ce qui nourrit ces axes en dehors du travail.", href: "/perso/" },
+        { ref: "→ Page 08", title: "Contact", sub: "Discuter d'une mission. Réponse sous 48 h.", href: "/contact/" },
+      ]}
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  .doc-header { padding: 28px 0 0; }
+  .doc-header .meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .doc-header h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(40px, 5.2vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+    max-width: 820px;
+  }
+  .doc-header .lede {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--ink-2);
+    font-weight: 400;
+    margin: 0;
+    max-width: 720px;
+  }
+  .doc-header .lede :global(em) { color: var(--ink); font-style: italic; font-weight: 500; }
+
+  .fiches {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  @media (max-width: 760px) {
+    .doc-header h1 { font-size: 36px; }
+  }
+</style>
