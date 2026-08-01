@@ -25,6 +25,7 @@
   --violet-soft:  #E1D9EB;
   --amber:        #B58A2A;
   --red:          #A14722;
+  --slate:        #56606B;
 
   /* Surface tokens that may be overridden per-theme */
   --strip-bg:     var(--ink);
@@ -84,6 +85,7 @@ html[data-theme="dark"] {
   --violet-soft:  #261E33;
   --amber:        #D9B057;
   --red:          #E68B4E;
+  --slate:        #96A3AC;
 
   --strip-bg:     #0E0C08;
   --strip-fg:     #EFE9D6;
