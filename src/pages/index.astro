@@ -18,17 +18,13 @@ const featured = allProjects
 
 const roles = (await getCollection("roles")).sort((a, b) => a.data.order - b.data.order);
 
-const bomRows = [
-  { ref: "EMB-01", cat: "Embarqué temps réel", detail: "C, C++17, FreeRTOS, ESP-IDF, mbedTLS", years: 12, maturity: 5 },
-  { ref: "EMB-02", cat: "Logique programmable", detail: "VHDL, Verilog (lecture), Lattice ECP5, Xilinx 7-series", years: 8, maturity: 4 },
-  { ref: "EMB-03", cat: "MCU bare-metal", detail: "STM32 (F0/F4/H7), Nordic nRF52, ESP32-S3", years: 12, maturity: 5 },
-  { ref: "BCK-01", cat: "API & backend", detail: "Symfony, API Platform, Node, NestJS", years: 10, maturity: 5 },
-  { ref: "BCK-02", cat: "Bases & séries temp.", detail: "PostgreSQL 16, TimescaleDB, Redis, MariaDB", years: 10, maturity: 4 },
-  { ref: "FRT-01", cat: "SPA modernes", detail: "Vue 3 + Pinia, React, TypeScript, Astro", years: 9, maturity: 4 },
-  { ref: "INF-01", cat: "Containers & CI", detail: "Docker, Compose, GitLab CI, GitHub Actions", years: 8, maturity: 4 },
-  { ref: "INF-02", cat: "Observabilité", detail: "Prometheus, Grafana, Loki, OpenTelemetry", years: 5, maturity: 3 },
-  { ref: "MTH-01", cat: "Méthode & qualité", detail: "Spec-driven, traçabilité, IEC 62304, audits", years: 8, maturity: 4 },
-];
+// Curated highlights, one per family — pulled from the same stack
+// collection as /stack/ so this preview can't drift out of sync with it.
+const stackAll = await getCollection("stack");
+const bomHighlightIds = ["fpga-01", "emb-01", "proto-01", "elec-01", "bck-01", "frt-01", "inf-01", "mth-01"];
+const bomRows = bomHighlightIds
+  .map((id) => stackAll.find((r) => r.id === id)?.data)
+  .filter((r) => r !== undefined);
 ---
 
 <BaseLayout
@@ -87,7 +83,7 @@ const bomRows = [
     </header>
 
     <section class="block" id="stack">
-      <SectionHead num="§ 01 — Stack" title="Bill of materials." kicker="vue ingénieur, par catégorie" />
+      <SectionHead num="§ 01 — Stack" title="Bill of materials." kicker="vue ingénieur, ligne par ligne" />
       <p class="bom-intro">
         La stack que j'opère quotidiennement, exprimée comme une BOM —
         chaque ligne porte une référence, des composants concrets, et la

@@ -147,16 +147,17 @@ const stack = defineCollection({
   loader: file("./src/content/stack.json"),
   schema: z.object({
     id: z.string(),
-    family: z.enum(["EMB", "BCK", "FRT", "INF", "MTH"]),
+    family: z.enum(["FPGA", "EMB", "PROTO", "ELEC", "BCK", "FRT", "INF", "MTH"]),
     ref: z.string(),
-    category: z.string(),
-    critical: z.boolean().default(false),
+    // Single named technology — no bundled "detail" strings anymore, so
+    // maturity reflects one real thing instead of a category average.
     detail: z.string(),
     since: z.number(),
-    years: z.number(),
     maturity: z.number().min(0).max(5),
-    lastUsage: z.enum(["daily", "weekly", "archive"]),
-    lastYear: z.number(),
+    // Concrete evidence instead of a self-reported "last used" date: where
+    // this was actually used, linking to a project/role fiche when one
+    // exists, else a plain "client · year" label.
+    usages: z.array(z.object({ label: z.string(), href: z.string().optional() })),
   }),
 });
 

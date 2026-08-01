@@ -1,23 +1,116 @@
 [
-  { "id": "emb-01", "family": "EMB", "ref": "EMB-01", "category": "Langages bas-niveau", "critical": true, "detail": "C, C++17, assembleur ARM ponctuel, scripts Python pour outillage", "since": 2009, "years": 17, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "emb-02", "family": "EMB", "ref": "EMB-02", "category": "RTOS & bare-metal", "critical": false, "detail": "FreeRTOS, Zephyr (lecture), bare-metal cooperative loop", "since": 2012, "years": 14, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "emb-03", "family": "EMB", "ref": "EMB-03", "category": "MCU & SoC", "critical": true, "detail": "ESP32 (S3 / C3), STM32 (F0 / F4 / H7), Nordic nRF52, RP2040", "since": 2009, "years": 17, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "emb-04", "family": "EMB", "ref": "EMB-04", "category": "Logique programmable", "critical": false, "detail": "VHDL, Verilog (lecture), Lattice ECP5, Xilinx 7-series, simulation GHDL", "since": 2017, "years": 9, "maturity": 4, "lastUsage": "weekly", "lastYear": 2025 },
-  { "id": "emb-05", "family": "EMB", "ref": "EMB-05", "category": "Bus & protocoles", "critical": false, "detail": "UART, SPI, I²C, CAN, Modbus RTU/TCP, MQTT, LoRaWAN", "since": 2009, "years": 17, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "emb-06", "family": "EMB", "ref": "EMB-06", "category": "Sécurité embarquée", "critical": false, "detail": "mbedTLS, OTA signée, secure boot ESP32, clés HSM en provisioning", "since": 2020, "years": 6, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "fpga-01", "family": "FPGA", "ref": "FPGA-01", "detail": "VHDL", "since": 2008, "maturity": 5,
+    "usages": [
+      { "label": "P-00 · FlexRay (stage)", "href": "/projets/p-00-outil-flexray-safran/" },
+      { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Thales · 2026" }
+    ] },
+  { "id": "fpga-02", "family": "FPGA", "ref": "FPGA-02", "detail": "Xilinx (Virtex 4/5/Spartan → 7-series → UltraScale+)", "since": 2009, "maturity": 5,
+    "usages": [
+      { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Thales · 2026" }
+    ] },
+  { "id": "fpga-03", "family": "FPGA", "ref": "FPGA-03", "detail": "TCL — génération automatique de code VHDL", "since": 2025, "maturity": 3,
+    "usages": [ { "label": "Thales · 2026" } ] },
+  { "id": "fpga-04", "family": "FPGA", "ref": "FPGA-04", "detail": "Lattice ECP5", "since": 2014, "maturity": 4,
+    "usages": [ { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" } ] },
+  { "id": "fpga-05", "family": "FPGA", "ref": "FPGA-05", "detail": "Verilog (lecture)", "since": 2014, "maturity": 2,
+    "usages": [ { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" } ] },
+  { "id": "fpga-06", "family": "FPGA", "ref": "FPGA-06", "detail": "CPLD Altera", "since": 2009, "maturity": 3,
+    "usages": [ { "label": "Safran · 2012" } ] },
 
-  { "id": "bck-01", "family": "BCK", "ref": "BCK-01", "category": "API & frameworks", "critical": true, "detail": "Symfony 6/7, API Platform, NestJS, FastAPI ponctuel", "since": 2014, "years": 12, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "bck-02", "family": "BCK", "ref": "BCK-02", "category": "Bases & séries temp.", "critical": true, "detail": "PostgreSQL 16, TimescaleDB, Redis, MariaDB legacy", "since": 2014, "years": 12, "maturity": 5, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "bck-03", "family": "BCK", "ref": "BCK-03", "category": "Messaging & bus", "critical": false, "detail": "MQTT, AMQP / RabbitMQ, Symfony Messenger, NATS (POC)", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "emb-01", "family": "EMB", "ref": "EMB-01", "detail": "C / C++", "since": 2009, "maturity": 5,
+    "usages": [
+      { "label": "P-01 · Vélo JCDecaux", "href": "/projets/p-01-controleur-moteur-velo-electrique/" },
+      { "label": "R-02 · ID-1", "href": "/roles/r-02-responsable-systemes-embarques/" }
+    ] },
+  { "id": "emb-02", "family": "EMB", "ref": "EMB-02", "detail": "ESP32 (S3, 8266)", "since": 2020, "maturity": 5,
+    "usages": [
+      { "label": "P-02 · Prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" },
+      { "label": "P-03 · Boîtier connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" }
+    ] },
+  { "id": "emb-03", "family": "EMB", "ref": "EMB-03", "detail": "FreeRTOS", "since": 2017, "maturity": 5,
+    "usages": [
+      { "label": "P-01 · Vélo JCDecaux", "href": "/projets/p-01-controleur-moteur-velo-electrique/" },
+      { "label": "R-02 · ID-1", "href": "/roles/r-02-responsable-systemes-embarques/" }
+    ] },
+  { "id": "emb-04", "family": "EMB", "ref": "EMB-04", "detail": "STM32", "since": 2017, "maturity": 4,
+    "usages": [
+      { "label": "P-01 · Vélo JCDecaux", "href": "/projets/p-01-controleur-moteur-velo-electrique/" },
+      { "label": "P-02 · Prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" }
+    ] },
+  { "id": "emb-05", "family": "EMB", "ref": "EMB-05", "detail": "Python — scripting & outillage", "since": 2025, "maturity": 3,
+    "usages": [ { "label": "Thales · 2026" } ] },
 
-  { "id": "frt-01", "family": "FRT", "ref": "FRT-01", "category": "SPA & framework", "critical": false, "detail": "Vue 3 (Pinia, Composition), React 18, TypeScript", "since": 2017, "years": 9, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "frt-02", "family": "FRT", "ref": "FRT-02", "category": "Build & bundling", "critical": false, "detail": "Vite, Webpack (legacy), Astro, esbuild", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "frt-03", "family": "FRT", "ref": "FRT-03", "category": "Style & design tokens", "critical": false, "detail": "Tailwind, SCSS modules, tokens JSON, design-systems légers", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "proto-01", "family": "PROTO", "ref": "PROTO-01", "detail": "FlexRay", "since": 2008, "maturity": 4,
+    "usages": [ { "label": "P-00 · FlexRay (stage)", "href": "/projets/p-00-outil-flexray-safran/" } ] },
+  { "id": "proto-02", "family": "PROTO", "ref": "PROTO-02", "detail": "CAN bus", "since": 2014, "maturity": 4,
+    "usages": [
+      { "label": "P-01 · Vélo JCDecaux", "href": "/projets/p-01-controleur-moteur-velo-electrique/" },
+      { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" }
+    ] },
+  { "id": "proto-03", "family": "PROTO", "ref": "PROTO-03", "detail": "RS422 / RS485", "since": 2014, "maturity": 3,
+    "usages": [ { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" } ] },
+  { "id": "proto-04", "family": "PROTO", "ref": "PROTO-04", "detail": "AURORA", "since": 2025, "maturity": 3,
+    "usages": [ { "label": "Thales · 2026" } ] },
+  { "id": "proto-05", "family": "PROTO", "ref": "PROTO-05", "detail": "JESD204C", "since": 2025, "maturity": 3,
+    "usages": [ { "label": "Thales · 2026" } ] },
+  { "id": "proto-06", "family": "PROTO", "ref": "PROTO-06", "detail": "AXI-Lite", "since": 2025, "maturity": 3,
+    "usages": [ { "label": "Thales · 2026" } ] },
 
-  { "id": "inf-01", "family": "INF", "ref": "INF-01", "category": "Containers & orchestration", "critical": false, "detail": "Docker, Compose, multi-stage builds, Kubernetes (light), ArgoCD", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "inf-02", "family": "INF", "ref": "INF-02", "category": "CI/CD", "critical": false, "detail": "GitLab CI, GitHub Actions, pipelines signés / reproductibles", "since": 2018, "years": 8, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
-  { "id": "inf-03", "family": "INF", "ref": "INF-03", "category": "Observabilité", "critical": false, "detail": "Prometheus, Grafana, Loki, OpenTelemetry, dashboards ad-hoc", "since": 2021, "years": 5, "maturity": 3, "lastUsage": "weekly", "lastYear": 2026 },
-  { "id": "inf-04", "family": "INF", "ref": "INF-04", "category": "OS & système", "critical": false, "detail": "Linux (Debian / Alpine), systemd, scripts shell, Ansible léger", "since": 2009, "years": 17, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 },
+  { "id": "elec-01", "family": "ELEC", "ref": "ELEC-01", "detail": "Conception carte électronique & schématique", "since": 2012, "maturity": 4,
+    "usages": [
+      { "label": "P-02 · Prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" },
+      { "label": "P-03 · Boîtier connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" }
+    ] },
+  { "id": "elec-02", "family": "ELEC", "ref": "ELEC-02", "detail": "Ethernet / Wi-Fi / 4G — interfaces réseau embarquées", "since": 2020, "maturity": 4,
+    "usages": [ { "label": "R-02 · ID-1", "href": "/roles/r-02-responsable-systemes-embarques/" } ] },
+  { "id": "elec-03", "family": "ELEC", "ref": "ELEC-03", "detail": "Fusion360 & impression 3D", "since": 2021, "maturity": 3,
+    "usages": [ { "label": "P-03 · Boîtier connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" } ] },
 
-  { "id": "mth-01", "family": "MTH", "ref": "MTH-01", "category": "Spec-driven & audits", "critical": true, "detail": "Traçabilité spec → code → test, ADR, IEC 62304, audits internes", "since": 2014, "years": 12, "maturity": 4, "lastUsage": "daily", "lastYear": 2026 }
+  { "id": "bck-01", "family": "BCK", "ref": "BCK-01", "detail": "Symfony / API Platform", "since": 2020, "maturity": 5,
+    "usages": [
+      { "label": "R-01 · Architecte", "href": "/roles/r-01-architecte-logiciel-systeme/" },
+      { "label": "R-02 · ID-1", "href": "/roles/r-02-responsable-systemes-embarques/" }
+    ] },
+  { "id": "bck-02", "family": "BCK", "ref": "BCK-02", "detail": "Laravel", "since": 2019, "maturity": 4,
+    "usages": [ { "label": "R-01 · Architecte (Naept)", "href": "/roles/r-01-architecte-logiciel-systeme/" } ] },
+  { "id": "bck-03", "family": "BCK", "ref": "BCK-03", "detail": "MySQL / MariaDB", "since": 2019, "maturity": 4,
+    "usages": [ { "label": "R-01 · Architecte", "href": "/roles/r-01-architecte-logiciel-systeme/" } ] },
+  { "id": "bck-04", "family": "BCK", "ref": "BCK-04", "detail": "InfluxDB", "since": 2021, "maturity": 3,
+    "usages": [ { "label": "P-03 · Boîtier connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" } ] },
+  { "id": "bck-05", "family": "BCK", "ref": "BCK-05", "detail": "Protobuf", "since": 2020, "maturity": 3,
+    "usages": [ { "label": "P-02 · Prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" } ] },
+  { "id": "bck-06", "family": "BCK", "ref": "BCK-06", "detail": "Tiptap / ProseMirror", "since": 2019, "maturity": 3,
+    "usages": [ { "label": "R-01 · Architecte (Naept)", "href": "/roles/r-01-architecte-logiciel-systeme/" } ] },
+
+  { "id": "frt-01", "family": "FRT", "ref": "FRT-01", "detail": "Vue.js", "since": 2019, "maturity": 5,
+    "usages": [
+      { "label": "P-03 · Boîtier connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" },
+      { "label": "R-01 · Architecte (Naept)", "href": "/roles/r-01-architecte-logiciel-systeme/" }
+    ] },
+  { "id": "frt-02", "family": "FRT", "ref": "FRT-02", "detail": "React / TypeScript", "since": 2019, "maturity": 3,
+    "usages": [ { "label": "R-01 · Architecte (Naept)", "href": "/roles/r-01-architecte-logiciel-systeme/" } ] },
+  { "id": "frt-03", "family": "FRT", "ref": "FRT-03", "detail": "Preact", "since": 2020, "maturity": 3,
+    "usages": [ { "label": "P-02 · Prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" } ] },
+  { "id": "frt-04", "family": "FRT", "ref": "FRT-04", "detail": "Ionic", "since": 2020, "maturity": 3,
+    "usages": [ { "label": "R-02 · ID-1", "href": "/roles/r-02-responsable-systemes-embarques/" } ] },
+  { "id": "frt-05", "family": "FRT", "ref": "FRT-05", "detail": "Qt", "since": 2014, "maturity": 4,
+    "usages": [
+      { "label": "P-01 · Vélo JCDecaux", "href": "/projets/p-01-controleur-moteur-velo-electrique/" },
+      { "label": "R-00 · JCDecaux", "href": "/roles/r-00-jcdecaux-fpga/" }
+    ] },
+
+  { "id": "inf-01", "family": "INF", "ref": "INF-01", "detail": "Docker", "since": 2019, "maturity": 4,
+    "usages": [
+      { "label": "P-03 · Boîtier connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" },
+      { "label": "R-01 · Architecte", "href": "/roles/r-01-architecte-logiciel-systeme/" }
+    ] },
+  { "id": "inf-02", "family": "INF", "ref": "INF-02", "detail": "GitLab CI / CI-CD", "since": 2019, "maturity": 4,
+    "usages": [ { "label": "R-01 · Architecte (Naept)", "href": "/roles/r-01-architecte-logiciel-systeme/" } ] },
+
+  { "id": "mth-01", "family": "MTH", "ref": "MTH-01", "detail": "Traçabilité des exigences (spec → code → test)", "since": 2019, "maturity": 5,
+    "usages": [ { "label": "R-01 · Architecte (Naept)", "href": "/roles/r-01-architecte-logiciel-systeme/" } ] },
+  { "id": "mth-02", "family": "MTH", "ref": "MTH-02", "detail": "DO-178B / DO-254", "since": 2009, "maturity": 3,
+    "usages": [ { "label": "Safran · 2012" } ] }
 ]

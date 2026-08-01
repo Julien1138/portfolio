@@ -6,16 +6,32 @@ import BomTableFull from "../../components/BomTableFull.astro";
 
 const rows = (await getCollection("stack")).map((r) => r.data);
 
-const families = [
-  { code: "EMB" as const, title: "Embarqué & logique programmable", meta: "6 références · depuis 2009 · cœur de métier" },
-  { code: "BCK" as const, title: "Backend, données & messaging", meta: "3 références · depuis 2014 · pilier SaaS & ERP" },
-  { code: "FRT" as const, title: "Frontend, SPA & build", meta: "3 références · depuis 2017 · dashboards métier" },
-  { code: "INF" as const, title: "Infra, CI/CD & observabilité", meta: "4 références · depuis 2018 · on-prem & conteneurs" },
-  { code: "MTH" as const, title: "Méthode & qualité", meta: "1 référence · depuis 2014 · transversale" },
+const familyMeta = [
+  { code: "FPGA" as const, title: "FPGA & logique programmable" },
+  { code: "EMB" as const, title: "Firmware & embarqué" },
+  { code: "PROTO" as const, title: "Protocoles implémentés" },
+  { code: "ELEC" as const, title: "Électronique & carte" },
+  { code: "BCK" as const, title: "Backend web" },
+  { code: "FRT" as const, title: "Frontend web" },
+  { code: "INF" as const, title: "Infra & CI/CD" },
+  { code: "MTH" as const, title: "Méthode & qualité" },
 ];
 
-const maxYears = Math.max(...rows.map((r) => r.years));
-const activeIn2026 = rows.filter((r) => r.lastYear >= 2026).length;
+const families = familyMeta.map((f) => {
+  const famRows = rows.filter((r) => r.family === f.code);
+  const minSince = Math.min(...famRows.map((r) => r.since));
+  return {
+    code: f.code,
+    title: f.title,
+    meta: `${famRows.length} référence${famRows.length > 1 ? "s" : ""} · depuis ${minSince}`,
+  };
+});
+
+const currentYear = new Date().getFullYear();
+const oldestSince = Math.min(...rows.map((r) => r.since));
+const oldestItem = rows.find((r) => r.since === oldestSince);
+const maxYears = currentYear - oldestSince;
+const linkedFichesCount = new Set(rows.flatMap((r) => r.usages.map((u) => u.href).filter(Boolean))).size;
 ---
 
 <BaseLayout
@@ -64,22 +80,22 @@ const activeIn2026 = rows.filter((r) => r.lastYear >= 2026).length;
       <div class="kpi">
         <span class="k">Références</span>
         <span class="v">{rows.length}<span class="u"> lignes</span></span>
-        <span class="sub">composants regroupés par catégorie</span>
+        <span class="sub">une technologie nommée par ligne</span>
       </div>
       <div class="kpi">
         <span class="k">Familles</span>
         <span class="v">{families.length}<span class="u"> · {families.map((f) => f.code).join(" · ")}</span></span>
-        <span class="sub">du transistor à la méthode</span>
+        <span class="sub">du silicium à la méthode</span>
       </div>
       <div class="kpi">
         <span class="k">Ancienneté max.</span>
         <span class="v accent">{maxYears}<span class="u"> ans</span></span>
-        <span class="sub">C / C++ embarqué — depuis 2009</span>
+        <span class="sub">{oldestItem?.detail} — depuis {oldestSince}</span>
       </div>
       <div class="kpi">
-        <span class="k">Actives en 2026</span>
-        <span class="v">{activeIn2026}<span class="u"> / {rows.length}</span></span>
-        <span class="sub">{rows.length - activeIn2026} référence(s) en archive</span>
+        <span class="k">Fiches liées</span>
+        <span class="v">{linkedFichesCount}<span class="u"> projets / rôles</span></span>
+        <span class="sub">chaque référence pointe vers une preuve</span>
       </div>
     </div>
 
@@ -97,12 +113,12 @@ const activeIn2026 = rows.filter((r) => r.lastYear >= 2026).length;
           <p>
             Je préfère <em>refuser une techno</em> plutôt que de la lister sans
             pouvoir la maîtriser sous pression. La BOM ci-dessus est le strict
-            minimum que je m'engage à opérer en autonomie, week-end inclus.
+            minimum que je maîtrise en autonomie.
           </p>
           <p>
             Le reste — ce que j'ai touché sans le revendiquer, et ce que je
-            décline explicitement — est tout aussi important à connaître pour
-            décider d'une mission.
+            décline explicitement — est tout aussi important pour comprendre
+            mon profil technique.
           </p>
         </div>
 
@@ -137,9 +153,8 @@ const activeIn2026 = rows.filter((r) => r.lastYear >= 2026).length;
       <div>
         <h2>Cette BOM matche votre <span class="em">besoin</span> ?</h2>
         <p>
-          Architecture, lead technique, audit, mission longue. Si vous avez
-          un système complexe à concevoir ou à reprendre, écrivez-moi —
-          réponse sous 48 h ouvrées.
+          Architecture système, FPGA, embarqué — si un sujet technique de
+          cette page vous intéresse, écrivez-moi. Réponse sous 48 h ouvrées.
         </p>
       </div>
       <div class="cta-links">

@@ -3,9 +3,7 @@ import MaturityBars from "./MaturityBars.astro";
 
 export interface Row {
   ref: string;
-  cat: string;
   detail: string;
-  years: number;
   maturity: number;
 }
 export interface Props {
@@ -18,9 +16,7 @@ const { rows } = Astro.props;
   <thead>
     <tr>
       <th>Réf.</th>
-      <th>Catégorie</th>
-      <th>Composants</th>
-      <th>Années</th>
+      <th>Composant</th>
       <th>Maturité</th>
     </tr>
   </thead>
@@ -28,9 +24,7 @@ const { rows } = Astro.props;
     {rows.map((r) => (
       <tr>
         <td class="ref">{r.ref}</td>
-        <td class="cat">{r.cat}</td>
-        <td class="det">{r.detail}</td>
-        <td class="yrs">{r.years}</td>
+        <td class="cat">{r.detail}</td>
         <td class="lvl"><MaturityBars level={r.maturity} /></td>
       </tr>
     ))}
@@ -66,13 +60,9 @@ const { rows } = Astro.props;
   table.bom tbody tr:hover td { background: var(--accent-soft); }
   td.ref { color: var(--accent); letter-spacing: 0.08em; }
   td.cat { color: var(--ink); font-weight: 500; font-family: var(--sans); font-size: 13.5px; }
-  td.det { color: var(--ink-3); }
-  td.yrs { color: var(--ink-2); font-variant-numeric: tabular-nums; }
   td.lvl { color: var(--ink); }
 
   @media (max-width: 760px) {
     table.bom { font-size: 11px; }
-    table.bom thead th:nth-child(3),
-    table.bom tbody td:nth-child(3) { display: none; }
   }
 </style>
