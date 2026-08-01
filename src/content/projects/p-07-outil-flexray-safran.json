@@ -1,0 +1,113 @@
+{
+  "ref": "P-07",
+  "title": "Outil d'analyse et d'injection FlexRay pour bancs de test automobile",
+  "category": "FPGA · bancs de test automobile",
+  "tag": "fpga",
+  "period": "2009",
+  "yearStart": 2009,
+  "order": -2,
+  "featured": false,
+  "variant": "default",
+  "lede": "Concevoir un outil d'analyse et d'injection FlexRay pour bancs de test automobile — <em>appropriation autonome d'un protocole dense</em>, chez Safran Engineering Services.",
+  "chips": ["FPGA", "FlexRay", "Machines à états", "Temps réel", "Ethernet"],
+  "role": "Stagiaire · solo",
+  "figTag": "fig. P-07 · outil FPGA FlexRay + PC hôte",
+  "cornerLabel": "P-07 / FPGA",
+  "deepDive": {
+    "metaTop": "P-07 · FPGA · 2009 · Safran Engineering Services",
+    "readTime": "~ 4 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2009" },
+      { "k": "Rôle", "v": "Stagiaire ingénieur" },
+      { "k": "Équipe", "v": "Solo" },
+      { "k": "Périmètre", "v": "Spec → modélisation → FPGA → PC hôte", "accent": true },
+      { "k": "Lecture", "v": "~ 4 min" }
+    ],
+    "heroFigTag": "fig. 1 · outil FPGA FlexRay + PC hôte",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Outil FPGA d'analyse et d'injection FlexRay, connecté à un PC hôte via Ethernet — positionnement proche d'un CANalyzer, appliqué à FlexRay.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Anticiper l'arrivée de FlexRay",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Dans le cadre de mon stage de fin d'études, j'ai travaillé sur un projet visant à anticiper l'arrivée du bus FlexRay dans les architectures automobiles. À cette époque, FlexRay était pressenti comme un successeur haut débit et déterministe du CAN pour les systèmes critiques, mais les outils industriels disponibles restaient rares, coûteux et peu accessibles." },
+          { "html": "L'objectif du projet était de concevoir un outil sur étagère, intégrable dans des baies de bancs de test automobile, capable d'analyser, d'espionner et d'injecter des trames FlexRay. Le positionnement du produit se rapprochait volontairement de celui d'un <b>CANalyzer</b>, appliqué à un protocole nettement plus complexe." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Appropriation d'un protocole complexe",
+        "num": "§ 02",
+        "paragraphs": [
+          { "html": "Une part essentielle du travail a consisté à étudier l'intégralité de la <b>spécification officielle</b> du bus et du protocole FlexRay. Cette lecture m'a confronté à un protocole dense, structuré en couches, combinant contraintes temporelles strictes, synchronisation globale et tolérance aux fautes." },
+          { "html": "Plutôt que d'aborder FlexRay comme un simple flux de trames, j'ai choisi de le <span class=\"hl\">découper en couches réseau</span>, en identifiant clairement les responsabilités de chaque niveau. Cette approche m'a permis de mieux comprendre les interactions entre les mécanismes temporels du bus, les états du contrôleur et la structure des données échangées." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Modélisation et machines à états",
+        "num": "§ 03",
+        "paragraphs": [
+          { "html": "Le fonctionnement de FlexRay repose sur une succession d'états et de phases précisément définis. Pour maîtriser cette complexité, j'ai modélisé le protocole sous forme de <b>machines à états</b>, décrivant aussi bien les phases normales de communication que les transitions et les situations d'erreur." },
+          { "html": "Cette formalisation m'a permis de sécuriser l'implémentation et de disposer d'un cadre clair pour raisonner sur le comportement du système. Avec le recul, ce projet a été l'un de mes premiers contacts concrets avec l'idée que <span class=\"hl\">la modélisation est un outil fondamental de l'architecture</span>, bien avant l'écriture du code." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Architecture matérielle et logicielle",
+        "num": "§ 04",
+        "paragraphs": [
+          { "html": "Le système reposait sur une <b>architecture FPGA</b>, adaptée aux contraintes de débit et de déterminisme du bus FlexRay. J'ai participé à la conception de la carte électronique intégrant le FPGA, la mémoire, les interfaces physiques FlexRay et les alimentations nécessaires." },
+          { "html": "L'outil était connecté à un <b>PC hôte via Ethernet</b>, chargé du pilotage et de l'exploitation des données. Cette architecture imposait une séparation nette entre une partie embarquée temps réel, et une partie logicielle PC orientée analyse et interaction utilisateur." },
+          { "html": "Ce découplage m'a sensibilisé très tôt aux problématiques d'<span class=\"hl\">interfaces internes, de responsabilités clairement définies et de communication entre sous-systèmes</span> — des notions qui sont devenues centrales dans mes projets ultérieurs." }
+        ]
+      },
+      {
+        "type": "archi",
+        "figLabel": "fig. 2 · architecture — outil FPGA et PC hôte",
+        "figRef": "P-07.ARCH",
+        "stages": [
+          { "lbl": "FPGA", "name": "Outil d'analyse FlexRay", "items": ["FPGA + mémoire", "Interfaces physiques FlexRay", "Analyse, espionnage, injection"] },
+          { "lbl": "HOST", "name": "PC hôte", "items": ["Pilotage via Ethernet", "Exploitation des données", "Interaction utilisateur"] }
+        ],
+        "arrows": ["Ethernet"]
+      },
+      {
+        "type": "prose",
+        "heading": "Enseignements",
+        "num": "§ 05",
+        "paragraphs": [
+          { "lead": true, "html": "Avec le recul, ce projet de stage a été particulièrement structurant." }
+        ]
+      },
+      {
+        "type": "decisions",
+        "items": [
+          { "num": "01", "t": "S'approprier une spec complexe", "d": "De manière autonome, sans accompagnement rapproché." },
+          { "num": "02", "t": "Raisonner en architecture globale", "d": "Plutôt qu'en fonctionnalités isolées." },
+          { "num": "03", "t": "Modéliser avant de coder", "d": "La modélisation comme outil de compréhension et de conception." },
+          { "num": "04", "t": "Analyser avant de construire", "d": "Un bon design nécessite une phase d'analyse approfondie en amont." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "",
+        "num": "",
+        "paragraphs": [
+          { "html": "Il a également posé les bases de ma manière d'aborder les systèmes embarqués : prendre du recul face à la complexité, découper, abstraire, puis construire une architecture cohérente et évolutive." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Regard rétrospectif",
+        "num": "§ 06",
+        "paragraphs": [
+          { "lead": true, "html": "Même s'il s'agissait d'un projet de stage, ce travail reflète déjà une posture qui m'accompagne encore aujourd'hui : celle de <span class=\"hl\">ne pas subir la complexité d'un système</span>, mais de chercher à la comprendre, la structurer et la maîtriser." },
+          { "html": "Ce projet marque le point de départ de mon intérêt pour les architectures embarquées complexes et les systèmes de communication critiques." }
+        ]
+      }
+    ]
+  }
+}
