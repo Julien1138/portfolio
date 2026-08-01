@@ -91,8 +91,8 @@
         "heading": "Une logique d'assistance centrée sur l'effort",
         "num": "§ 06",
         "paragraphs": [
-          { "html": "À partir de ces données, j'ai conçu et implémenté la logique complète d'assistance électrique. Mon constat, issu de l'expérience utilisateur de nombreux vélos à assistance électrique d'entrée de gamme, est que l'assistance est souvent mal perçue : trop brutale, peu cohérente, et déconnectée de l'effort réel du cycliste." },
-          { "html": "J'ai donc adopté une approche différente : pour moi, un niveau d'assistance ne doit pas correspondre à une simple amplification du couple, mais à un <span class=\"hl\">niveau d'effort cible</span> que le cycliste doit fournir. L'asservissement du moteur a été conçu de manière à maintenir cet effort aussi constant que possible — s'affranchissant ainsi des variations liées à l'environnement (pente, vent, charge) sans avoir besoin de les mesurer explicitement. Le comportement du vélo reste ainsi cohérent et prévisible, quelles que soient les conditions extérieures." }
+          { "html": "À partir du couple mesuré, de la vitesse de pédalage et du niveau d'assistance demandé par l'utilisateur, j'ai conçu et implémenté l'intégralité de la logique de pilotage du moteur. Mon constat, issu de l'expérience utilisateur de nombreux vélos à assistance électrique d'entrée de gamme, est que l'assistance est souvent mal perçue : trop brutale, peu cohérente, et déconnectée de l'effort réel du cycliste." },
+          { "html": "J'ai donc adopté une approche différente : pour moi, un niveau d'assistance ne doit pas correspondre à une simple amplification du couple, mais à un <span class=\"hl\">niveau d'effort cible</span> que le cycliste doit fournir. L'asservissement du moteur a été conçu de manière à maintenir cet effort aussi constant que possible — s'affranchissant ainsi des variations liées à l'environnement (pente, vent, charge, état de la batterie) sans avoir besoin de les mesurer explicitement. Le comportement du vélo reste ainsi cohérent, prévisible et confortable, quelles que soient les conditions extérieures." }
         ]
       },
       {
@@ -134,7 +134,8 @@
         "num": "§ 09",
         "paragraphs": [
           { "lead": true, "html": "Ce projet a renforcé ma conviction que, même sur des systèmes embarqués contraints, les choix d'architecture logicielle sont déterminants." },
-          { "html": "<span class=\"hl\">Une abstraction bien pensée, une structuration claire et des outils adaptés</span> permettent non seulement de répondre aux exigences fonctionnelles, mais aussi de produire un système plus robuste, plus compréhensible et plus durable." }
+          { "html": "<span class=\"hl\">Une abstraction bien pensée, une structuration claire et des outils adaptés</span> permettent non seulement de répondre aux exigences fonctionnelles, mais aussi de produire un système plus robuste, plus compréhensible et plus durable." },
+          { "html": "Il illustre aussi l'intérêt d'une approche pragmatique du C++ embarqué, utilisée non pour sa sophistication, mais comme un <b>levier de clarté et de maintenabilité</b>." }
         ]
       }
     ]
