@@ -1,45 +1,40 @@
 {
   "ref": "P-01",
-  "title": "Plateforme de monitoring industriel",
-  "category": "IoT · SaaS",
+  "title": "Boîtier de mesure connecté",
+  "category": "IoT industriel",
   "tag": "iot",
-  "period": "2024 — 2026",
-  "yearStart": 2024,
-  "ongoing": true,
+  "period": "2021 — 2025",
+  "yearStart": 2021,
   "order": 1,
   "featured": true,
   "variant": "default",
-  "lede": "Architecture full-stack pour superviser <em>12 000 capteurs ESP32</em> en environnement industriel — firmware OTA, ingestion MQTT vers TimescaleDB, dashboard Vue 3 temps réel. On-prem, sans dépendance cloud externe.",
-  "kpis": [
-    { "k": "Échelle", "v": "12 k", "s": "devices · 150 sites" },
-    { "k": "Uptime", "v": "99.97 %", "s": "obj. 99.9 %" },
-    { "k": "Latence p95", "v": "780 ms", "s": "obj. < 1 s" }
-  ],
-  "chips": ["ESP32-S3", "FreeRTOS", "MQTT", "TimescaleDB", "Symfony", "Vue 3", "Docker"],
-  "role": "Architect + lead dev · 1 + 3",
-  "figTag": "fig. P-01 · dashboard + boîtier terrain",
+  "lede": "Conception d'un système complet de mesure et de supervision industrielle — <em>électronique, firmware, interface web, infrastructure serveur, mécanique</em> — menée seul, de bout en bout, chez ID-1.",
+  "chips": ["ESP32-S3", "C++", "Vue.js", "HTTP", "InfluxDB", "Docker", "Injection plastique"],
+  "role": "Solo → + 1 apprenti",
+  "figTag": "fig. P-01 · boîtier terrain + appli locale",
   "cornerLabel": "P-01 / IOT",
   "deepDive": {
-    "metaTop": "P-01 · IoT industriel · 2024 — 2026 · ID-1 (NDA)",
-    "readTime": "~ 6 min",
+    "metaTop": "P-01 · IoT industriel · 2021 — 2025 · ID-1",
+    "readTime": "~ 5 min",
     "metaStrip": [
-      { "k": "Période", "v": "2024 → 2026" },
-      { "k": "Rôle", "v": "Architect + lead dev" },
-      { "k": "Équipe", "v": "1 archi + 3 devs" },
-      { "k": "Échelle", "v": "12 k devices · 150 sites", "accent": true },
-      { "k": "Lecture", "v": "~ 6 min" }
+      { "k": "Période", "v": "2021 → 2025" },
+      { "k": "Rôle", "v": "Conception complète" },
+      { "k": "Équipe", "v": "Solo → + 1 apprenti" },
+      { "k": "Périmètre", "v": "Électronique → mécanique → logiciel", "accent": true },
+      { "k": "Lecture", "v": "~ 5 min" }
     ],
-    "heroFigTag": "fig. 1 · boîtier sur site + dashboard",
+    "heroFigTag": "fig. 1 · boîtier terrain + appli locale",
     "figCaptionRef": "fig. 1",
-    "figCaptionText": "Vue d'ensemble — boîtier ID-1 sur équipement thermodynamique (gauche) et dashboard de supervision (droite).",
+    "figCaptionText": "Vue d'ensemble — boîtier ID-1 installé sur équipement thermodynamique, avec l'application web locale de supervision.",
     "sections": [
       {
         "type": "prose",
-        "heading": "Une aventure technique complète",
+        "heading": "Un prototype à tout reprendre",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Chez <b>ID-1</b>, on m'a confié une mission ambitieuse : concevoir un boîtier connecté capable de mesurer avec précision température et pression, tout en offrant une interface claire pour les techniciens sur le terrain — et un pilotage centralisé pour les équipes de maintenance." },
-          { "html": "L'objectif : superviser intelligemment des équipements thermodynamiques répartis sur plusieurs sites, <span class=\"hl\">sans dépendre d'un cloud externe</span>, avec un maximum d'autonomie pour les équipes locales." }
+          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Quand je suis arrivé sur ce dossier chez <b>ID-1</b>, il existait déjà un prototype de boîtier de mesure connecté, pensé pour équiper des machines thermodynamiques industrielles." },
+          { "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps." },
+          { "html": "Le prototype existant fonctionnait... mais mal. Trop complexe, mal adapté au terrain, fragile. On m'a donné <span class=\"hl\">carte blanche</span> pour tout repenser. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z." }
         ]
       },
       {
@@ -47,16 +42,16 @@
         "heading": "De l'électronique à la mécanique",
         "num": "§ 02",
         "paragraphs": [
-          { "html": "Le projet a démarré par la conception des cartes électroniques, avec un soin particulier porté à la mesure analogique de précision. Les températures sont mesurées en <b>ratiométrique</b> pour garantir une stabilité maximale, même dans des environnements industriels exigeants." },
-          { "html": "Parallèlement, j'ai modélisé le boîtier mécanique — d'abord en impression 3D pour valider l'ergonomie, puis en pièces injectées, avec un suivi rigoureux de la sous-traitance. Le sourcing des composants faisait également partie du périmètre, pour assurer reproductibilité et robustesse sur l'ensemble du parc." }
+          { "html": "Le cœur du système est un boîtier autonome, capable de capturer des mesures précises à intervalles réguliers. J'ai conçu l'<b>électronique</b> en partant de zéro, avec une attention particulière sur la <b>mesure ratiométrique</b> pour la température — une première pour moi à cette échelle. Ce fut ma première grosse carte, et l'occasion d'apprendre énormément en très peu de temps." },
+          { "html": "Et comme rien n'existe sans forme, j'ai aussi conçu le <b>boîtier mécanique</b>, d'abord en impression 3D pour valider l'ergonomie, puis en pièces injectées après validation. J'ai géré le sourcing des composants et le suivi de la sous-traitance." }
         ]
       },
       {
         "type": "triptych",
         "items": [
-          { "num": "PCB", "title": "Front-end analogique", "text": "Mesure ratiométrique 24-bit, références internes pour la stabilité long terme." },
+          { "num": "PCB", "title": "Front-end analogique", "text": "Mesure ratiométrique de précision pour la température, conçue de zéro." },
           { "num": "MÉCA", "title": "CAO → injection", "text": "Validation par impression 3D, puis pièces injectées avec suivi de sous-traitance." },
-          { "num": "SOURCING", "title": "BOM critique", "text": "Composants stratégiques gérés en direct fournisseurs, sécurité d'approvisionnement." }
+          { "num": "SOURCING", "title": "Composants & fournisseurs", "text": "Sourcing direct, échanges fournisseurs, ajustements d'outillage." }
         ]
       },
       {
@@ -64,8 +59,7 @@
         "heading": "Un firmware modulaire, tourné vers la fiabilité",
         "num": "§ 03",
         "paragraphs": [
-          { "html": "Le cœur du système repose sur un <b>ESP32-S3</b>, programmé en C++ à l'aide de l'ESP-IDF. Le firmware gère l'acquisition des capteurs, la communication, la journalisation des événements, la mise à jour à distance, et bien sûr l'interface utilisateur locale." },
-          { "html": "L'architecture logicielle est pensée pour durer : séparation claire des responsabilités, bonne testabilité, et fonctionnement assuré même en cas de coupure réseau ou de redémarrage inopiné. <span class=\"hl\">Pas de magie — des contrats explicites entre couches.</span>" }
+          { "html": "L'<b>ESP32-S3</b> a été choisi comme cœur numérique, et tout le firmware a été développé en <b>C++</b>, dans une architecture modulaire pensée pour durer. L'autonomie, la fiabilité, la clarté du code et la facilité de mise à jour étaient des priorités." }
         ]
       },
       {
@@ -74,10 +68,10 @@
         "lines": [
           "├── <b>hal/</b>           <span class=\"com\">// drivers ratiométrique, ADC, I²C</span>",
           "├── <b>core/</b>          <span class=\"com\">// scheduler, journal, machine à états</span>",
-          "├── <b>net/</b>           <span class=\"com\">// MQTT, OTA <span class=\"ac\">signé ECDSA</span>, WebSocket local</span>",
+          "├── <b>net/</b>           <span class=\"com\">// client HTTP, remontée mesures, MAJ à distance</span>",
           "├── <b>ui/</b>            <span class=\"com\">// serveur HTTP embarqué + assets Vue</span>",
           "├── <b>storage/</b>       <span class=\"com\">// journal circulaire, conf persistante</span>",
-          "└── <b>tests/</b>         <span class=\"com\">// Unity, mocks HAL, CI hôte</span>"
+          "└── <b>tests/</b>         <span class=\"com\">// tests unitaires, mocks HAL</span>"
         ]
       },
       {
@@ -85,8 +79,7 @@
         "heading": "Une interface locale, accessible et réactive",
         "num": "§ 04",
         "paragraphs": [
-          { "html": "Pour les techniciens sur le terrain, une <b>application web embarquée</b> directement dans le boîtier, en VueJS. Visualisation des mesures en temps réel, ajustement de la configuration, vérification de l'état du système — le tout sans connexion internet." },
-          { "html": "L'approche : <span class=\"hl\">pas de cloud obligatoire, pas de superflu</span>. Juste l'essentiel, rapide et clair, accessible depuis un portable connecté en Wi-Fi au boîtier." }
+          { "html": "Mais la force du système, c'est aussi son interface. Chaque boîtier embarque une <b>application web locale</b>, développée en VueJS : accessible en Wi-Fi, elle permet à un technicien de visualiser en temps réel les mesures, d'ajuster des paramètres, ou de diagnostiquer un problème <span class=\"hl\">sans avoir besoin de connexion externe</span>." }
         ]
       },
       {
@@ -95,56 +88,48 @@
         "panelK": "Stack — UI locale",
         "panelTitle": "Embarquée dans le firmware",
         "items": [
-          "Vue 3 + Vite, build embarqué (~120 KB gz)",
-          "WebSocket pour les mesures en direct",
-          "API REST locale pour la configuration",
-          "Aucune dépendance externe à l'exécution",
-          "Authentification opérateur via NFC"
+          "Vue.js, embarquée directement dans le firmware",
+          "Accessible en Wi-Fi, sans connexion internet",
+          "Visualisation des mesures en temps réel",
+          "Ajustement de la configuration et diagnostic sur site"
         ]
       },
       {
         "type": "prose",
-        "heading": "Une infrastructure simple et robuste",
+        "heading": "Une infrastructure serveur simple",
         "num": "§ 05",
         "paragraphs": [
-          { "html": "Côté supervision centralisée, une <b>stack logicielle conteneurisée</b>, déployée sur les serveurs internes du client. On-prem, par décision et non par contrainte : la donnée est stratégique, et l'audit s'en trouve considérablement simplifié." }
+          { "html": "Pour la supervision globale, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, déployée en interne chez ID-1 : collecte des données, configuration à distance, visualisation centralisée, alertes. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure à l'analyse." },
+          { "html": "Les boîtiers remontent leurs mesures en <b>HTTP</b> vers le serveur, qui les stocke dans <b>InfluxDB</b> — une base de séries temporelles adaptée au volume et à la fréquence des relevés." }
         ]
       },
       {
         "type": "rowlist",
         "rows": [
-          { "t": "Collecte & archivage", "d": "Mosquitto MQTT → worker PHP → TimescaleDB · rétention 18 mois" },
-          { "t": "Configuration distante", "d": "Dashboard Vue → API Symfony → push MQTT signé vers les boîtiers" },
-          { "t": "Visualisation & alertes", "d": "Vue 3 + charting custom · seuils par site · alerting email / SMS" },
-          { "t": "Déploiement", "d": "Docker Compose en prod, GitLab CI pour build / sign / release" }
+          { "t": "Collecte & stockage", "d": "Remontée des mesures en HTTP, stockage dans InfluxDB" },
+          { "t": "Configuration distante", "d": "Mise à jour des paramètres et du firmware à distance" },
+          { "t": "Visualisation & alertes", "d": "Web app centralisée pour la supervision et les alertes" },
+          { "t": "Déploiement", "d": "Infrastructure serveur dockerisée, déployée en interne" }
         ]
       },
       {
         "type": "archi",
-        "figLabel": "fig. 3 · architecture cible — 3 étages, contrats explicites",
+        "figLabel": "fig. 3 · architecture — du boîtier à la supervision",
         "figRef": "P-01.ARCH",
         "stages": [
-          { "lbl": "EDGE", "name": "Boîtier ID-1", "items": ["ESP32-S3 · ESP-IDF", "Mesures ratio. 24-bit", "OTA signé ECDSA", "UI locale Vue"] },
-          { "lbl": "INGESTION", "name": "Cœur on-prem", "items": ["Mosquitto broker", "Worker PHP", "TimescaleDB", "Docker Compose"] },
-          { "lbl": "APPLICATION", "name": "Dashboard métier", "items": ["Symfony · API Platform", "Vue 3 SPA", "Alerting · RBAC", "Export · audit"] }
+          { "lbl": "EDGE", "name": "Boîtier ID-1", "items": ["ESP32-S3 · C++", "Mesure ratio. de précision", "UI locale Vue.js"] },
+          { "lbl": "INGESTION", "name": "Serveur interne", "items": ["Réception HTTP", "InfluxDB", "Docker"] },
+          { "lbl": "APPLICATION", "name": "Supervision", "items": ["Web app centralisée", "Configuration à distance", "Alertes"] }
         ],
-        "arrows": ["MQTT", "HTTPS"]
+        "arrows": ["HTTP", "HTTP"]
       },
       {
         "type": "prose",
-        "heading": "Impact mesuré",
+        "heading": "Bilan, et suite",
         "num": "§ 06",
         "paragraphs": [
-          { "html": "Après stabilisation, le système tient ses promesses. Les chiffres ci-dessous sont relevés sur la flotte en production, six mois après la dernière vague de déploiement." }
-        ]
-      },
-      {
-        "type": "kpisBig",
-        "items": [
-          { "k": "Échelle", "v": "12 k", "s": "boîtiers en prod · 150 sites" },
-          { "k": "Uptime mesuré", "v": "99.97 %", "s": "objectif 99.9 %" },
-          { "k": "Interventions", "v": "−92 %", "s": "vs. 2024" },
-          { "k": "Latence p95", "v": "780 ms", "s": "objectif < 1 s" }
+          { "html": "Ce projet a aussi été un <b>gros travail de R&D</b> : tout était à valider, des méthodes de mesure aux choix d'architecture. Avec le recul, je referais sans doute une première version plus rapide, en assemblant des cartes du commerce, pour tester l'intérêt marché plus tôt. Mais cette version complète a permis d'aboutir à un produit <span class=\"hl\">fiable, robuste, en place chez plusieurs clients</span>, avec des retours très positifs." },
+          { "html": "Le travail a même débouché sur le développement d'une <b>version low-cost</b>, pensée pour le monde domestique — réfrigérateur, cave à vin, congélateur — preuve que l'approche modulaire et la réflexion de fond étaient les bonnes." }
         ]
       },
       {
@@ -152,8 +137,8 @@
         "heading": "Ce que j'ai aimé dans ce projet",
         "num": "§ 07",
         "paragraphs": [
-          { "lead": true, "html": "Ce projet m'a permis de toucher à toutes les couches du système : de la résistance de tirage au WebSocket, en passant par le sourcing de connecteurs ou la modélisation CAO." },
-          { "html": "J'y ai retrouvé ce que j'aime dans mon métier : <span class=\"hl\">créer des objets utiles, les voir prendre vie, et construire des ponts entre le physique et le numérique.</span>" }
+          { "lead": true, "html": "C'est un projet dont je suis fier : non pas parce qu'il était parfait, mais parce qu'il m'a permis d'exercer tout ce que j'aime dans mon métier." },
+          { "html": "<span class=\"hl\">Concevoir, apprendre, décider, construire, simplifier, et surtout donner vie à une idée.</span>" }
         ]
       }
     ]

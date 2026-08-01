@@ -10,7 +10,7 @@ export interface Props {
   period: string;
   title: string;
   lede: string;
-  kpis: { k: string; v: string; s?: string }[];
+  kpis?: { k: string; v: string; s?: string }[];
   chips: string[];
   role: string;
   tag: string; // filter tag, e.g. "iot"
@@ -40,15 +40,17 @@ const { href, side, bigNum, figTag, cornerLabel, ref, category, period, title, l
       <h2>{title}</h2>
       <p class="lede" set:html={lede} />
 
-      <div class="kpis">
-        {kpis.map((k) => (
-          <div class="kpi">
-            <span class="k">{k.k}</span>
-            <span class="v">{k.v}</span>
-            <span class="s">{k.s}</span>
-          </div>
-        ))}
-      </div>
+      {kpis && kpis.length > 0 && (
+        <div class="kpis">
+          {kpis.map((k) => (
+            <div class="kpi">
+              <span class="k">{k.k}</span>
+              <span class="v">{k.v}</span>
+              <span class="s">{k.s}</span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div class="chip-row">
         {chips.map((c) => <span class="chip">{c}</span>)}

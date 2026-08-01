@@ -115,7 +115,7 @@ const bomRows = [
             metaRight={`${p.data.period}${p.data.ongoing ? " · en cours" : ""}`}
             title={p.data.title}
             desc={p.data.lede.replace(/<[^>]+>/g, "")}
-            kpis={p.data.kpis.map((k, ki) => ({ k: k.k, v: k.v, accent: ki === 0 }))}
+            kpis={p.data.kpis?.map((k, ki) => ({ k: k.k, v: k.v, accent: ki === 0 }))}
             chips={p.data.chips}
           />
         ))}

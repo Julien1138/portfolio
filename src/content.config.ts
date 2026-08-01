@@ -101,7 +101,7 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     variant: z.enum(["default", "dark"]).default("default"),
     lede: z.string(),
-    kpis: z.array(kpiItem).length(3),
+    kpis: z.array(kpiItem).length(3).optional(),
     chips: z.array(z.string()),
     role: z.string(),
     figTag: z.string(),

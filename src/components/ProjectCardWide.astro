@@ -10,7 +10,7 @@ export interface Props {
   metaRight: string;
   title: string;
   desc: string;
-  kpis: { k: string; v: string; accent?: boolean }[];
+  kpis?: { k: string; v: string; accent?: boolean }[];
   chips: string[];
 }
 const { href, side, dark = false, figTag, metaLeft, metaRight, title, desc, kpis, chips } = Astro.props;
@@ -25,14 +25,16 @@ const { href, side, dark = false, figTag, metaLeft, metaRight, title, desc, kpis
     </div>
     <h3>{title}</h3>
     <p class="desc">{desc}</p>
-    <div class="kpis">
-      {kpis.map((k) => (
-        <div class="kpi">
-          <span class="k">{k.k}</span>
-          <span class={`v ${k.accent ? "accent" : ""}`}>{k.v}</span>
-        </div>
-      ))}
-    </div>
+    {kpis && kpis.length > 0 && (
+      <div class="kpis">
+        {kpis.map((k) => (
+          <div class="kpi">
+            <span class="k">{k.k}</span>
+            <span class={`v ${k.accent ? "accent" : ""}`}>{k.v}</span>
+          </div>
+        ))}
+      </div>
+    )}
     <div class="chips">
       {chips.map((c) => <span class="chip">{c}</span>)}
     </div>
