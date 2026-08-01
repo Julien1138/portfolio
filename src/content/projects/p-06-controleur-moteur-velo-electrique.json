@@ -1,0 +1,141 @@
+{
+  "ref": "P-06",
+  "title": "Contrôleur moteur de vélo à assistance électrique",
+  "category": "Embarqué · mobilité urbaine",
+  "tag": "embedded",
+  "period": "2014 — 2018",
+  "yearStart": 2014,
+  "order": -1,
+  "featured": false,
+  "variant": "default",
+  "lede": "Développement complet du logiciel embarqué d'un contrôleur moteur pour vélo à assistance électrique urbain — <em>architecture temps réel, C++ embarqué, logique d'assistance sur mesure</em>, chez JCDecaux.",
+  "chips": ["STM32", "C++", "FreeRTOS", "CAN bus", "Qt", "Capteur pédalier"],
+  "role": "Solo",
+  "figTag": "fig. P-06 · contrôleur moteur + maquette de test",
+  "cornerLabel": "P-06 / EMBED",
+  "deepDive": {
+    "metaTop": "P-06 · Embarqué · 2014 — 2018 · JCDecaux",
+    "readTime": "~ 6 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2014 → 2018" },
+      { "k": "Rôle", "v": "Logiciel embarqué complet" },
+      { "k": "Équipe", "v": "Solo" },
+      { "k": "Périmètre", "v": "Firmware → outils PC → maquette", "accent": true },
+      { "k": "Lecture", "v": "~ 6 min" }
+    ],
+    "heroFigTag": "fig. 1 · contrôleur moteur STM32 + maquette de test",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Architecture distribuée — contrôleur moteur, carte batterie (BMS) et carte afficheur, reliés par bus CAN.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Une architecture distribuée à trois cartes",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Dans le cadre d'un projet de vélo à assistance électrique destiné à un usage urbain, j'ai été en charge de l'intégralité du logiciel embarqué du contrôleur moteur. J'étais seul responsable de cette partie du projet, depuis les choix d'architecture firmware jusqu'à la mise au point fonctionnelle." },
+          { "html": "Le système reposait sur une architecture distribuée autour de trois cartes électroniques : le contrôleur moteur, une carte batterie équipée d'un BMS, et une carte dédiée à l'interface utilisateur intégrant un afficheur et des boutons. Le contrôleur moteur, basé sur un microcontrôleur <b>STM32</b>, constituait le cœur décisionnel du système." }
+        ]
+      },
+      {
+        "type": "archi",
+        "figLabel": "fig. 2 · architecture distribuée — 3 cartes reliées par CAN",
+        "figRef": "P-06.ARCH",
+        "stages": [
+          { "lbl": "MOTEUR", "name": "Contrôleur moteur", "items": ["STM32 · C++", "FreeRTOS", "Capteur pédalier", "Logique d'assistance"] },
+          { "lbl": "ÉNERGIE", "name": "Carte batterie", "items": ["BMS", "Alimentation moteur"] },
+          { "lbl": "IHM", "name": "Carte afficheur", "items": ["Afficheur + boutons", "Remontée des défauts"] }
+        ],
+        "arrows": ["CAN", "CAN"]
+      },
+      {
+        "type": "prose",
+        "heading": "Une architecture temps réel orientée sécurité et confort",
+        "num": "§ 02",
+        "paragraphs": [
+          { "html": "Le logiciel embarqué devait répondre à des contraintes temps réel strictes. L'action sur un frein devait provoquer une coupure immédiate de l'alimentation du moteur, sans latence perceptible. De la même manière, l'assistance devait s'interrompre à 25 km/h, conformément à la réglementation." },
+          { "html": "Plutôt que de procéder à une coupure brutale, j'ai choisi d'implémenter une <span class=\"hl\">réduction progressive de l'assistance</span> à l'approche de cette limite. L'objectif était d'éviter les à-coups et de préserver une sensation de conduite naturelle, même dans les phases transitoires." },
+          { "html": "Le logiciel s'appuyait sur <b>FreeRTOS</b>, tel que recommandé par ST pour les microcontrôleurs STM32 à l'époque, ce qui m'a permis de structurer le système autour de tâches clairement identifiées et de garantir la réactivité des fonctions critiques." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Choix du C++ embarqué : une décision structurante",
+        "num": "§ 03",
+        "paragraphs": [
+          { "html": "J'ai fait le choix de développer l'ensemble du firmware en <b>C++</b>, une première dans l'entreprise pour un projet embarqué de ce type. Cette décision n'était pas motivée par un besoin de sophistication du langage, mais par une volonté très pragmatique : mieux structurer le code et le rendre plus lisible et plus accessible pour un futur ingénieur amené à reprendre le projet." },
+          { "html": "Le C++ m'a permis d'introduire une encapsulation claire des responsabilités, de définir des interfaces explicites entre les différents sous-systèmes, et d'isoler les dépendances matérielles. Contrairement à certaines idées reçues, les compilateurs récents se sont révélés parfaitement capables d'optimiser efficacement ce code, sans pénalité notable en termes de performances ou de consommation de ressources." },
+          { "html": "Avec le recul, ce choix s'est avéré pertinent : il a contribué à une <span class=\"hl\">meilleure maintenabilité</span> et à une compréhension plus rapide du fonctionnement global du système." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Abstraction matérielle et pilotage moteur",
+        "num": "§ 04",
+        "paragraphs": [
+          { "html": "Le pilotage du moteur reposait sur une bibliothèque ST fournie, utilisée comme une boîte noire. Afin de préserver la cohérence de l'architecture, j'ai volontairement encapsulé cette bibliothèque derrière une couche logicielle dédiée. Cette approche a permis de contenir la complexité liée à cette dépendance et d'éviter que le reste du code ne soit structuré autour de contraintes imposées par la bibliothèque." },
+          { "html": "Plus globalement, j'ai mis en place des couches d'abstraction matérielle pour les capteurs et les actionneurs, ainsi que des machines à états pour modéliser les différents modes de fonctionnement du système. Cette organisation permettait d'envisager le remplacement de capteurs ou d'actionneurs avec un impact logiciel limité." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Capteur pédalier : de la mesure brute à la donnée exploitable",
+        "num": "§ 05",
+        "paragraphs": [
+          { "html": "Le capteur de pédalier fournissait plusieurs informations brutes : un capteur de couple mesuré sur une seule pédale, ainsi qu'un capteur incrémental à quadrature de phase, complété par un top tour." },
+          { "html": "Plutôt que d'exposer directement ces données au reste du système, j'ai conçu une abstraction logicielle par <b>fusion de données</b>, dont le rôle était de produire des grandeurs exploitables par la logique métier : un couple filtré par moyenne glissante, une vitesse de pédalage stable, et un angle de pédalier cohérent et continu. Cette approche permettait à la fois de lisser les imperfections de la mesure et d'isoler la complexité du capteur dans une couche dédiée, rendant le reste du logiciel plus simple, plus lisible et plus évolutif." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Une logique d'assistance centrée sur l'effort",
+        "num": "§ 06",
+        "paragraphs": [
+          { "html": "À partir de ces données, j'ai conçu et implémenté la logique complète d'assistance électrique. Mon constat, issu de l'expérience utilisateur de nombreux vélos à assistance électrique d'entrée de gamme, est que l'assistance est souvent mal perçue : trop brutale, peu cohérente, et déconnectée de l'effort réel du cycliste." },
+          { "html": "J'ai donc adopté une approche différente : pour moi, un niveau d'assistance ne doit pas correspondre à une simple amplification du couple, mais à un <span class=\"hl\">niveau d'effort cible</span> que le cycliste doit fournir. L'asservissement du moteur a été conçu de manière à maintenir cet effort aussi constant que possible — s'affranchissant ainsi des variations liées à l'environnement (pente, vent, charge) sans avoir besoin de les mesurer explicitement. Le comportement du vélo reste ainsi cohérent et prévisible, quelles que soient les conditions extérieures." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Communication CAN et gestion des défauts",
+        "num": "§ 07",
+        "paragraphs": [
+          { "html": "La communication entre le contrôleur moteur, le BMS batterie et la carte afficheur reposait sur un <b>bus CAN</b>. Les informations de défauts, qu'elles concernent les capteurs, la batterie ou le système lui-même, étaient transmises à la carte afficheur afin d'informer l'utilisateur." },
+          { "html": "Même sans être responsable de l'architecture système globale, j'ai conçu la partie firmware de manière à <span class=\"hl\">isoler la communication CAN de la logique métier</span>, et à garantir un comportement sûr en cas d'anomalie ou de perte de communication." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Outils de mise au point et maquette de test",
+        "num": "§ 08",
+        "paragraphs": [
+          { "html": "Pour accompagner le développement et la mise au point du système, j'ai développé deux outils logiciels sur PC." }
+        ]
+      },
+      {
+        "type": "rowlist",
+        "rows": [
+          { "t": "Interface graphique Qt", "d": "Dialogue avec le contrôleur via bus CAN — visualisation temps réel des états et capteurs, ajustement de paramètres, pilotage manuel d'actionneurs." },
+          { "t": "Outil ligne de commande", "d": "Analyse des trames CAN, avec décodage lisible en console — efficace pour comprendre le comportement du système dans des situations complexes." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "",
+        "num": "",
+        "paragraphs": [
+          { "html": "Afin de développer et valider le logiciel indépendamment de l'intégration finale sur le vélo, j'ai également conçu une <b>maquette sur table</b> représentant les principaux composants du système : moteur, capteur de pédalier et capteurs de frein." },
+          { "html": "Cette maquette m'a permis de tester la logique d'assistance, les réactions temps réel et les scénarios de défaut dans un environnement maîtrisé, tout en accélérant fortement les phases de mise au point. Elle a joué un rôle clé dans la compréhension fine du comportement du système et dans la validation progressive des choix d'architecture logicielle." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Regard rétrospectif",
+        "num": "§ 09",
+        "paragraphs": [
+          { "lead": true, "html": "Ce projet a renforcé ma conviction que, même sur des systèmes embarqués contraints, les choix d'architecture logicielle sont déterminants." },
+          { "html": "<span class=\"hl\">Une abstraction bien pensée, une structuration claire et des outils adaptés</span> permettent non seulement de répondre aux exigences fonctionnelles, mais aussi de produire un système plus robuste, plus compréhensible et plus durable." }
+        ]
+      }
+    ]
+  }
+}
