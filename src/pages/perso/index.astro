@@ -52,6 +52,7 @@ const themes = [
     subtitle: "Théâtre d'improvisation",
     photoCaption: "théâtre d'improvisation",
     imagePath: "/src/assets/images/perso/comédien.jpg",
+    objectPosition: "75% center",
     paragraphs: [
       "Le théâtre d'improvisation m'a appris à écouter, à accepter les propositions des autres et à construire collectivement.",
       "L'objectif n'est pas d'imposer une idée, mais de <span class=\"hl\">faire émerger une solution pertinente en temps réel</span>.",
@@ -65,6 +66,7 @@ const themes = [
     subtitle: "Jardinage",
     photoCaption: "jardinage",
     imagePath: "/src/assets/images/perso/jardinier.jpg",
+    objectPosition: "100% center",
     paragraphs: [
       "Le jardinage m'a sensibilisé à la notion de temps long et de systèmes vivants.",
       "On ne maîtrise pas tous les paramètres, mais on peut <span class=\"hl\">créer les conditions favorables à un bon fonctionnement</span>.",
@@ -75,13 +77,15 @@ const themes = [
     num: "§ 06",
     emoji: "🌍",
     title: "Ouverture et prise de recul",
-    subtitle: "Voyages : Russie, Islande, Indonésie, Népal",
+    subtitle: "Voyages : Russie, Islande, Indonésie, Népal · Photographie",
     photoCaption: "voyages",
     imagePath: "/src/assets/images/perso/voyageur.jpg",
+    objectPosition: "100% center",
     paragraphs: [
       "Mes voyages m'ont confronté à d'autres cultures, d'autres contraintes et d'autres façons de résoudre les problèmes.",
       "Ils nourrissent ma capacité à <span class=\"hl\">prendre du recul et à remettre en question des choix qui semblaient évidents</span>.",
       "Une compétence essentielle dans des projets de longue durée.",
+      "La photographie prolonge cette même attention : composer un cadre, c'est déjà choisir ce qui compte et ce qu'on laisse de côté.",
     ],
   },
 ];
@@ -136,6 +140,7 @@ const themes = [
           reverse={i % 2 === 1}
           photoCaption={t.photoCaption}
           imagePath={t.imagePath}
+          objectPosition={t.objectPosition}
           paragraphs={t.paragraphs}
         />
       ))}
