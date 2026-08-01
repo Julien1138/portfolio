@@ -151,9 +151,8 @@ import SectionHead from "../../components/SectionHead.astro";
         <details>
           <summary><span>Êtes-vous disponible pour une mission freelance ?</span><span class="marker">+</span></summary>
           <p class="a">
-            Je suis salarié. Ce site est un
-            portfolio professionnel, pas une offre de prestation
-            indépendante.
+            Je suis salarié. Ce site est un portfolio professionnel, pas une offre de prestation indépendante.
+            Cependant, pour des projets sans pression, je suis ouvert à la discussion.
           </p>
         </details>
         <details>
@@ -202,10 +201,7 @@ import SectionHead from "../../components/SectionHead.astro";
         l'équipe continue d'en être fière, et personne ne se souvient
         que j'y suis passé.
       </p>
-      <div class="sig">
-        <div class="signature">Julien Aupart</div>
-        Septeuil, 12 mai 2026
-      </div>
+      <div class="sig">— note personnelle</div>
     </section>
   </div>
 </BaseLayout>
@@ -339,8 +335,7 @@ import SectionHead from "../../components/SectionHead.astro";
   .closing { padding: 64px 0 80px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: end; }
   .closing .quote { font-family: var(--serif); font-style: italic; font-size: 26px; line-height: 1.3; color: var(--ink); margin: 0; max-width: 540px; text-wrap: balance; }
   .closing .quote::before { content: "\201C"; font-family: var(--serif); color: var(--accent); font-size: 80px; line-height: 0.4; margin-right: 4px; vertical-align: -22px; }
-  .closing .sig { text-align: right; font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; line-height: 1.7; }
-  .closing .sig .signature { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 32px; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 4px; }
+  .closing .sig { text-align: right; font-family: var(--mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; line-height: 1.7; text-transform: uppercase; }
 
   @media (max-width: 1100px) {
     .hero { grid-template-columns: 1fr; gap: 40px; }
