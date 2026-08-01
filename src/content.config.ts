@@ -159,6 +159,7 @@ const timeline = defineCollection({
   loader: file("./src/content/timeline.json"),
   schema: z.object({
     id: z.string(),
+    order: z.number(),
     yearRange: z.string(),
     span: z.string(),
     current: z.boolean().default(false),

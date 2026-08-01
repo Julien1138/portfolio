@@ -8,59 +8,55 @@ import TimelineEntries from "../../components/TimelineEntries.astro";
 import RelatedGrid from "../../components/RelatedGrid.astro";
 import H2Row from "../../components/H2Row.astro";
 
-// timeline.json is authored most-recent-first already
-const entries = (await getCollection("timeline")).map((e) => e.data);
+const entries = (await getCollection("timeline"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((e) => e.data);
 
 const lanes = [
   {
-    label: "Embedded", color: "var(--accent)",
+    label: "FPGA · électronique num.", color: "var(--accent)",
     segments: [
-      { from: 2009, to: 2014, label: "STM32 · firmware", style: "intense" as const },
-      { from: 2014, to: 2018, label: "ARM · RTOS", style: "intense" as const },
-      { from: 2018, to: 2021, label: "medtech · IEC", style: "intense" as const },
-      { from: 2021, to: 2024, label: "ponctuel", style: "outline" as const },
-      { from: 2024, to: 2026, label: "ESP-IDF · IoT", style: "intense" as const },
+      { from: 2008, to: 2009, label: "stages", style: "outline" as const },
+      { from: 2009, to: 2012, label: "Safran", style: "intense" as const },
+      { from: 2012, to: 2014, label: "Viveris", style: "intense" as const },
+      { from: 2014, to: 2019, label: "JCDecaux · LED urbain", style: "intense" as const },
+      { from: 2025, to: 2026, label: "Thales", style: "intense" as const },
     ],
   },
   {
-    label: "FPGA", color: "var(--accent-2)",
+    label: "Embedded C/C++", color: "var(--accent-2)",
     segments: [
-      { from: 2014, to: 2017, label: "init.", style: "outline" as const },
-      { from: 2017, to: 2021, label: "JCDecaux · LED · vision", style: "intense" as const },
-      { from: 2024, to: 2026, label: "conseil", style: "outline" as const },
+      { from: 2014, to: 2019, label: "JCDecaux · mobilier urbain", style: "intense" as const },
+      { from: 2020, to: 2025, label: "ID-1 · ESP32-S3", style: "intense" as const },
     ],
   },
   {
-    label: "Backend", color: "var(--blue)",
+    label: "Backend web", color: "var(--blue)",
     segments: [
-      { from: 2014, to: 2016, label: "PHP · MySQL", style: "outline" as const },
-      { from: 2016, to: 2021, label: "Symfony · API Platform", style: "intense" as const },
-      { from: 2021, to: 2026, label: "SF + Node · Postgres + Timescale", style: "intense" as const },
+      { from: 2019, to: 2020, label: "Naept", style: "intense" as const },
+      { from: 2020, to: 2025, label: "ID-1 · Symfony/API Platform", style: "intense" as const },
     ],
   },
   {
-    label: "Frontend", color: "var(--violet)",
+    label: "Frontend web", color: "var(--violet)",
     segments: [
-      { from: 2015, to: 2017, label: "jQuery · SCSS", style: "outline" as const },
-      { from: 2017, to: 2020, label: "Vue 2", style: "outline" as const },
-      { from: 2020, to: 2026, label: "Vue 3 · React · TS", style: "intense" as const },
+      { from: 2019, to: 2020, label: "Naept", style: "intense" as const },
+      { from: 2020, to: 2025, label: "ID-1 · Vue.js/Ionic", style: "intense" as const },
     ],
   },
   {
     label: "Infra · DevOps", color: "var(--green)",
     segments: [
-      { from: 2014, to: 2018, label: "Linux · scripts", style: "outline" as const },
-      { from: 2018, to: 2022, label: "Docker · CI/CD", style: "intense" as const },
-      { from: 2022, to: 2026, label: "K8s · observability", style: "intense" as const },
+      { from: 2019, to: 2020, label: "Naept", style: "outline" as const },
+      { from: 2020, to: 2025, label: "ID-1 · Docker/CI-CD", style: "intense" as const },
     ],
   },
   {
-    label: "Leadership", color: "var(--ink)", lead: true,
+    label: "Direction technique", color: "var(--ink)", lead: true,
     segments: [
-      { from: 2016, to: 2018, label: "mentor", style: "outline" as const },
-      { from: 2018, to: 2021, label: "tech lead — équipe 5", style: "intense" as const },
-      { from: 2021, to: 2024, label: "lead architect — 10 devs", style: "intense" as const },
-      { from: 2024, to: 2026, label: "CTO intérim · conseil", style: "intense" as const },
+      { from: 2019, to: 2020, label: "Naept", style: "outline" as const },
+      { from: 2020, to: 2025, label: "responsable dev — ID-1", style: "intense" as const },
+      { from: 2025, to: 2026, label: "Thales", style: "intense" as const },
     ],
   },
 ];
@@ -87,97 +83,97 @@ const lanes = [
 
     <header class="doc-header">
       <div class="meta-top">A-01 · About · Parcours · 17 ans d'ingénierie</div>
-      <h1>Du transistor <span class="amp">au</span> cluster Kubernetes.</h1>
+      <h1>Du silicium <span class="amp">à</span> l'écran.</h1>
       <p class="lede">
         Ingénieur système depuis 2009. J'ai porté des produits complexes
-        de la spec initiale à la production : <em>firmware embarqué,
-        électronique numérique, FPGA, backend, frontend, infra</em>.
-        Une seule pile cohérente, une seule personne aux frontières.
+        de la spec initiale à la production : <em>électronique numérique,
+        FPGA, embarqué, backend, frontend</em>. Une seule pile cohérente,
+        une seule personne aux frontières.
       </p>
 
       <MetaStrip
         cells={[
           { k: "Localisation", v: "Septeuil (78) · remote EU" },
           { k: "Expérience", v: "17 ans · depuis 2009", accent: true },
-          { k: "Rôles tenus", v: "6 · jr → architecte" },
-          { k: "Domaines", v: "Embarqué · Web · Infra" },
+          { k: "Postes tenus", v: "6 · ingénieur → expert" },
+          { k: "Domaines", v: "FPGA · Embarqué · Web" },
           { k: "Lecture", v: "~ 6 min" },
         ]}
       />
 
       <div class="chip-row">
-        <span class="chip accent">Architecte système</span>
-        <span class="chip accent">Lead technique</span>
-        <span class="chip accent">CTO intérim</span>
+        <span class="chip accent">FPGA · VHDL</span>
+        <span class="chip accent">Électronique numérique</span>
+        <span class="chip accent">DO-178B / DO-254</span>
         <span class="chip">Embedded · C/C++</span>
-        <span class="chip">FPGA · VHDL</span>
-        <span class="chip">Backend · PHP/Node</span>
-        <span class="chip">Frontend · Vue/React</span>
-        <span class="chip">Infra · K8s/Docker</span>
-        <span class="chip">Spec-driven</span>
-        <span class="chip">IEC 62304</span>
+        <span class="chip">Backend · Laravel/Symfony</span>
+        <span class="chip">Frontend · Vue.js/React</span>
+        <span class="chip">Docker · CI/CD</span>
+        <span class="chip">Traçabilité des exigences</span>
       </div>
     </header>
 
     <section class="portrait-row">
       <div class="intro">
         <p>
-          Mon métier : prendre un système complexe — pile complète, du
-          silicium au cloud — et le rendre <span class="hl">simple,
-          traçable, défendable en audit</span>.
+          Mon métier : concevoir l'électronique et le firmware des
+          systèmes qui ne doivent jamais tomber en panne — de
+          l'avionique militaire aux écrans LED urbains, en passant par
+          le SaaS et l'IoT industriel.
         </p>
         <p>
-          Concrètement, ça veut dire que je sais lire un schéma, dompter
-          un FPGA récalcitrant, refactorer une base Symfony de 2014,
-          écrire un dashboard Vue 3, et déployer le tout en K8s — sans
-          que les coutures soient visibles. Cette continuité est rare,
-          et c'est exactement là que je crée de la valeur : <b>aux
-          frontières du système</b>, là où les pannes se cachent et où
-          les arbitrages coûtent cher.
+          Concrètement, ça veut dire lire un schéma, coder un FPGA en
+          VHDL, écrire le firmware C/C++ qui pilote un capteur,
+          refactorer une API Laravel ou Symfony, développer une
+          interface Vue.js — et savoir où ces couches se rejoignent.
+          Cette continuité entre le matériel et le logiciel s'est
+          construite au fil de missions chez <b>Safran, Viveris,
+          JCDecaux</b>, ma propre société <b>Naept</b>, <b>ID-1</b>, et
+          aujourd'hui <b>Thales</b>.
         </p>
         <p>
-          Ce qui m'intéresse : la qualité, l'architecture, la
-          traçabilité — et les systèmes où l'on doit <em>prouver</em>
-          que ça marche, pas juste sentir que ça marche.
+          Ce qui m'intéresse : la rigueur du bas niveau. Les processus
+          <span class="hl">DO-178B et DO-254</span> m'ont appris à
+          documenter, tracer et prouver — pas juste à faire fonctionner.
         </p>
       </div>
       <figure class="portrait" aria-label="Portrait — placeholder">
         <div class="ph-stripes"></div>
-        <span class="ph-mark">JD · 01</span>
+        <span class="ph-mark">JA · 01</span>
         <div class="ph-center">[ PORTRAIT ]</div>
         <span class="ph-tag">photo · 4:5 · à fournir</span>
       </figure>
     </section>
 
-    <CapabilityMap yMin={2009} yMax={2026} lanes={lanes} />
+    <CapabilityMap yMin={2008} yMax={2026} lanes={lanes} />
 
     <section class="section" id="parcours">
-      <H2Row title="Parcours." num="§ 01 — Timeline" sub={`2009 → 2026 · ${entries.length} postes`} />
+      <H2Row title="Parcours." num="§ 01 — Timeline" sub={`2008 → 2026 · ${entries.length} étapes`} />
       <TimelineEntries entries={entries} />
     </section>
 
     <section class="section" id="chiffres">
-      <H2Row title="Chiffres-clés." num="§ 02 — Indicateurs" sub="à fin Q2 2026" />
+      <H2Row title="Chiffres-clés." num="§ 02 — Indicateurs" sub="à fin 2026" />
       <div class="stats">
         <div class="cell">
           <div class="n">17<span class="unit">&nbsp;ans</span></div>
           <div class="t">d'ingénierie continue</div>
-          <div class="d">Depuis septembre 2009. Aucune coupure de plus de 6 semaines.</div>
+          <div class="d">Depuis septembre 2009, sans interruption.</div>
         </div>
         <div class="cell">
           <div class="n">6</div>
-          <div class="t">postes · 4 employeurs</div>
-          <div class="d">Junior → architecte. Aucun changement vertical sans raison technique.</div>
+          <div class="t">postes · 6 employeurs</div>
+          <div class="d">Ingénieur électronique → expert → direction technique → FPGA senior.</div>
         </div>
         <div class="cell">
-          <div class="n">23</div>
-          <div class="t">projets pilotés en lead</div>
-          <div class="d">Du firmware standalone au SaaS multi-tenant. 19 toujours en production.</div>
+          <div class="n">2</div>
+          <div class="t">normes qualité avionique maîtrisées</div>
+          <div class="d">DO-178B (logiciel) et DO-254 (hardware), chez Safran et Thales.</div>
         </div>
         <div class="cell">
-          <div class="n">5k+</div>
-          <div class="t">nœuds embarqués en terrain</div>
-          <div class="d">Compteurs énergie, capteurs industriels, dispositifs médicaux.</div>
+          <div class="n">1</div>
+          <div class="t">société co-fondée</div>
+          <div class="d">Naept, 2019 — logiciel de traçabilité des exigences.</div>
         </div>
       </div>
     </section>
@@ -193,15 +189,15 @@ const lanes = [
             descendante : exigence → conception → code → test. Audit-ready
             par défaut, pas en panique avant un rendez-vous notifié.
           </p>
-          <div class="signal">→ <b>Outil de référence</b> : DOORS / GitLab issues + matrice de traçabilité.</div>
+          <div class="signal">→ <b>Outils de référence</b> : matrices de traçabilité Excel/Visio, suivi Jira.</div>
         </div>
         <div class="card">
           <span class="id">M-02 · Archi</span>
           <h4>Boring tech, justifié.</h4>
           <p>
-            Le moins de pièces mobiles possible. Postgres avant Cassandra,
-            monolithe modulaire avant microservices, Docker Compose avant
-            Kubernetes. <b>Optimiser quand on mesure</b>, jamais en
+            Le moins de pièces mobiles possible. Framework éprouvé (Laravel,
+            Symfony) avant micro-services, Docker Compose avant
+            sur-ingénierie. <b>Optimiser quand on mesure</b>, jamais en
             anticipation.
           </p>
           <div class="signal">→ <b>Marqueur</b> : si je propose une techno récente, c'est qu'elle a déjà été tenue 2 ans en prod ailleurs.</div>
@@ -225,7 +221,7 @@ const lanes = [
           temps tous les jours après le déploiement. Le mauvais
           arbitrage, c'est de l'oublier sous pression. »
         </p>
-        <div class="sig">— note d'atelier · 2023</div>
+        <div class="sig">— note personnelle</div>
       </div>
     </section>
 
@@ -235,31 +231,29 @@ const lanes = [
         <div class="text">
           <p>
             Le métier d'ingénieur système se nourrit autant de ce qu'on
-            fait à l'écran que de ce qu'on lit, écrit, démonte ou
-            transmet en dehors. Quelques pratiques que j'entretiens :
+            fait à l'écran que de ce qu'on fait en dehors. Quelques
+            pratiques que j'entretiens :
           </p>
           <p>
-            Je lis régulièrement les <b>retours d'incident</b> publiés
-            par les équipes infra (AWS, GitLab, Cloudflare) — c'est la
-            meilleure école d'architecture défensive qui existe. Je
-            tiens un side-project VHDL pour ne pas perdre la main bas
-            niveau, et j'écris occasionnellement sur le spec-driven
-            embedded.
+            Je descends régulièrement sous terre pour la <b>spéléologie</b>,
+            je pratique le <b>théâtre d'improvisation</b>, et je jardine —
+            trois façons différentes de sortir la tête du code.
           </p>
           <p>
-            Quand l'écran fatigue : vélo route en montagne, et
-            photographie argentique noir &amp; blanc.
+            Côté plus classique : course à pied, photographie, brassage
+            de bière maison, et pilotage d'avion de tourisme.
           </p>
         </div>
         <div class="list">
-          <div class="k">Activités · 2026</div>
+          <div class="k">Activités</div>
           <ul>
-            <li><span class="n">01</span><span><b>Lectures techniques</b> · postmortems, papers archi data</span></li>
-            <li><span class="n">02</span><span><b>Side-project VHDL</b> · décodeur protocole vintage</span></li>
-            <li><span class="n">03</span><span><b>Mentorat ponctuel</b> · 2 juniors externes / mois</span></li>
-            <li><span class="n">04</span><span><b>Articles</b> · spec-driven embedded · ~4 / an</span></li>
-            <li><span class="n">05</span><span><b>Vélo route</b> · Alpes — 4 000 km / an</span></li>
-            <li><span class="n">06</span><span><b>Photographie</b> · argentique N&amp;B, 35 mm</span></li>
+            <li><span class="n">01</span><span><b>Spéléologie</b></span></li>
+            <li><span class="n">02</span><span><b>Photographie</b></span></li>
+            <li><span class="n">03</span><span><b>Théâtre d'improvisation</b></span></li>
+            <li><span class="n">04</span><span><b>Jardinage</b></span></li>
+            <li><span class="n">05</span><span><b>Course à pied</b></span></li>
+            <li><span class="n">06</span><span><b>Brassage de bière</b></span></li>
+            <li><span class="n">07</span><span><b>Pilotage d'avion de tourisme</b></span></li>
           </ul>
         </div>
       </div>

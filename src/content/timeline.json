@@ -1,99 +1,251 @@
 [
   {
-    "id": "2024-2026",
-    "yearRange": "2024 — 2026",
-    "span": "~ 2 ans",
+    "id": "2025-2026",
+    "order": 1,
+    "yearRange": "Depuis nov. 2025",
+    "span": "~ 9 mois",
     "current": true,
-    "roleLine": "Indépendant · architecte système & CTO intérim",
-    "title": "Architecte indépendant — missions critiques.",
-    "setting": "Missions 3 à 12 mois · scale-ups B2B et industriels · grand-Est & remote EU.",
-    "desc": "Reprise et architecture de plateformes complexes — typiquement là où le système touche à la fois <b>hardware, data et produit</b>. Quand le tech leadership manque, je tiens le rôle de CTO intérim le temps de structurer l'équipe et de stabiliser la roadmap.",
+    "roleLine": "Salarié · groupe industriel & défense · Thales LAS",
+    "title": "Développeur FPGA senior — liaisons numériques haute vitesse.",
+    "setting": "Programme multicartes sur cibles Xilinx Virtex UltraScale+ · rôle de référent technique.",
+    "desc": "Initialisation d'un projet FPGA multicartes d'envergure : liaisons <b>AURORA</b> sur fibre optique, interfaces <b>JESD204C</b> avec convertisseurs DAC/ADC RF. Développement d'un atelier de génération automatique de code — en TCL pour le VHDL, en Python pour les registres AXI-Lite décrits en XML.",
     "highlights": [
-      { "n": "H.1", "html": "<b>Plateforme IoT industrielle</b> — 10k devices, ingestion MQTT → TimescaleDB, OTA signé, dashboard temps réel. De zéro à prod en 9 mois." },
-      { "n": "H.2", "html": "<b>ERP SaaS multi-tenant</b> — audit + remédiation : isolation tenants, migration Postgres, x3 perf catalogue." },
-      { "n": "H.3", "html": "<b>CTO intérim · 5 mois</b> — structuration spec-driven, recrutement de 4 devs, mise en place de la traçabilité audit-ready." }
+      {
+        "n": "H.1",
+        "html": "Mise en œuvre de liens <b>AURORA</b> sur fibre optique et <b>JESD204C</b> pour l'interfaçage RF haute vitesse."
+      },
+      {
+        "n": "H.2",
+        "html": "Développement d'un atelier scripté en <b>TCL</b> pour la génération automatique de code VHDL."
+      },
+      {
+        "n": "H.3",
+        "html": "Outil <b>Python</b> de génération automatique de registres AXI-Lite depuis une description XML."
+      },
+      {
+        "n": "H.4",
+        "html": "Rôle de <b>référent technique</b> sur le projet."
+      }
     ],
-    "stack": ["ESP-IDF", "Symfony", "Vue 3", "Postgres + Timescale", "K8s", "GitLab CI"]
+    "stack": [
+      "VHDL",
+      "Xilinx Virtex UltraScale+",
+      "AURORA",
+      "JESD204C",
+      "TCL",
+      "Python",
+      "AXI-Lite"
+    ]
   },
   {
-    "id": "2021-2024",
-    "yearRange": "2021 — 2024",
+    "id": "2020-2025",
+    "order": 2,
+    "yearRange": "Nov. 2020 — oct. 2025",
+    "span": "~ 5 ans",
+    "current": false,
+    "roleLine": "Salarié · PME industrielle · froid commercial · ID-1",
+    "title": "Responsable développement logiciel — de l'ERP au boîtier connecté.",
+    "setting": "Éditeur d'un ERP métier pour les professionnels du froid · conception d'un système de mesure distante pour machines thermodynamiques.",
+    "desc": "Double casquette pendant cinq ans : faire évoluer un ERP legacy vers une stack moderne (<b>API Platform</b>, <b>Vue.js</b>, <b>Ionic</b>), tout en concevant et développant, de bout en bout, un boîtier connecté de mesure — électronique analogique de précision, firmware <b>ESP32-S3</b> en C++, application web embarquée en Vue.js, et infrastructure serveur conteneurisée.",
+    "highlights": [
+      {
+        "n": "H.1",
+        "html": "Migration progressive de l'ERP vers <b>API Platform / Vue.js / Ionic</b>, avec mise en place d'un processus de priorisation des bugs et fonctionnalités."
+      },
+      {
+        "n": "H.2",
+        "html": "Conception électronique (mesure analogique de précision) et développement du firmware <b>C++ / ESP32-S3</b> du boîtier de mesure."
+      },
+      {
+        "n": "H.3",
+        "html": "Application web embarquée en <b>Vue.js</b>, déploiement conteneurisé (<b>Docker</b>) pour la remontée de mesures et la configuration à distance."
+      },
+      {
+        "n": "H.4",
+        "html": "Mise en place de l'<b>intégration et du déploiement continus</b>."
+      },
+      {
+        "n": "H.5",
+        "html": "Modélisation et impression 3D des boîtiers, suivi de la sous-traitance mécanique (injection) et du sourcing composants."
+      }
+    ],
+    "stack": [
+      "Symfony",
+      "API Platform",
+      "Vue.js",
+      "Ionic",
+      "ESP32-S3",
+      "C++",
+      "Docker",
+      "CI/CD"
+    ]
+  },
+  {
+    "id": "2019-2020",
+    "order": 3,
+    "yearRange": "Mars 2019 — nov. 2020",
+    "span": "~ 1,5 an",
+    "current": false,
+    "roleLine": "Co-fondateur & directeur technique · Naept",
+    "title": "Co-fondateur — logiciel de traçabilité des exigences.",
+    "setting": "Société créée en 2019, sur un logiciel imaginé et développé depuis 2016 : traçabilité et capitalisation de la connaissance en rédaction de spécifications.",
+    "desc": "Direction technique d'un produit <b>web collaboratif</b> de rédaction de documentation technique, structuré autour des liens de dépendance entre exigences. Développement frontend <b>Vue.js</b> (éditeur collaboratif temps réel basé sur Tiptap/ProseMirror, représentation en mindmap des données relationnelles) et backend <b>Laravel</b> (API, authentification, notifications temps réel), conteneurisation et déploiement continu. Interventions de conseil chez des clients sur la qualité documentaire et la spécification du besoin.",
+    "highlights": [
+      {
+        "n": "H.1",
+        "html": "Éditeur de texte collaboratif temps réel (<b>Tiptap / ProseMirror</b> + serveur Socket), avec représentation en mindmap des exigences liées."
+      },
+      {
+        "n": "H.2",
+        "html": "API <b>Laravel</b> structurée par services (Single Action Classes), authentification Sanctum, notifications temps réel (Laravel Echo)."
+      },
+      {
+        "n": "H.3",
+        "html": "Dockerisation complète, déploiement continu via <b>GitLab CI</b>, reverse-proxy Traefik."
+      },
+      {
+        "n": "H.4",
+        "html": "Contributions à des bibliothèques open source (ProseMirror ↔ HTML, PHPWord, Eloquent Sequence) et publications techniques."
+      }
+    ],
+    "stack": [
+      "Vue.js",
+      "Laravel",
+      "Tiptap/ProseMirror",
+      "Docker",
+      "GitLab CI",
+      "React/TypeScript"
+    ]
+  },
+  {
+    "id": "2014-2019",
+    "order": 4,
+    "yearRange": "Janv. 2014 — fév. 2019",
+    "span": "~ 5 ans",
+    "current": false,
+    "roleLine": "Salarié · affichage urbain · JCDecaux",
+    "title": "Expert électronique numérique — matrices LED urbaines.",
+    "setting": "Conception et évolution des architectures FPGA pilotant les chaînes d'affichage LED, ainsi que logiciel embarqué et outillage de test.",
+    "desc": "Cinq ans consacrés au pilotage numérique des écrans LED urbains : architectures FPGA en VHDL, algorithmes de traitement d'image, liaison horloge embarquée haute vitesse (50 Mbps) sur FPGA Lattice. En parallèle, logiciel embarqué C/C++ pour mobiliers urbains et contrôle moteur, et outils de test PC en C++/Qt. <em>Détail complet : fiche rôle R-02.</em>",
+    "highlights": [
+      {
+        "n": "H.1",
+        "html": "Étude, architecture et implémentation de nouvelles générations d'écrans LED."
+      },
+      {
+        "n": "H.2",
+        "html": "Développement d'une communication monofil embarquée à <b>50 Mbps</b> sur FPGA Lattice."
+      },
+      {
+        "n": "H.3",
+        "html": "Logiciel embarqué pour mobiliers urbains et contrôle moteur brushless (bus <b>CAN</b>)."
+      },
+      {
+        "n": "H.4",
+        "html": "Outils PC de test et de mise au point (C++, Qt, RS422/485/232)."
+      }
+    ],
+    "stack": [
+      "VHDL",
+      "Lattice",
+      "C/C++",
+      "Qt",
+      "CAN bus",
+      "RS422/485"
+    ]
+  },
+  {
+    "id": "2012-2013",
+    "order": 5,
+    "yearRange": "Oct. 2012 — déc. 2013",
+    "span": "~ 1 an",
+    "current": false,
+    "roleLine": "Salarié · bureau d'études · Viveris Technologies",
+    "title": "Ingénieur électronique — bureau d'études multi-clients.",
+    "setting": "Missions FPGA et électronique pour plusieurs comptes industriels, dont JCDecaux, Alstom Power et l'IFP.",
+    "desc": "Reprise et amélioration d'une chaîne d'affichage vidéo FPGA existante chez JCDecaux ; conception électronique et codage FPGA pour la rénovation de cartes de commande d'électrovannes d'une centrale nucléaire (Alstom Power) ; investigation de panne sur un système de sauvegarde d'alimentation pour l'IFP.",
+    "highlights": [
+      {
+        "n": "H.1",
+        "html": "Reprise, correction et optimisation de performances d'une chaîne d'affichage vidéo FPGA (<b>JCDecaux</b>)."
+      },
+      {
+        "n": "H.2",
+        "html": "Conception électronique et codage de <b>4 FPGA</b> pour la rénovation de cartes de commande (<b>Alstom Power</b>, centrale nucléaire)."
+      },
+      {
+        "n": "H.3",
+        "html": "Analyse de panne et propositions de solutions, simulations à l'appui (<b>IFP</b>)."
+      }
+    ],
+    "stack": [
+      "VHDL",
+      "FPGA",
+      "Schématique électronique",
+      "Conseil technique"
+    ]
+  },
+  {
+    "id": "2009-2012",
+    "order": 6,
+    "yearRange": "Sept. 2009 — oct. 2012",
     "span": "~ 3 ans",
     "current": false,
-    "roleLine": "Salarié · scale-up B2B série B · 35 pers.",
-    "title": "Lead architect — ERP SaaS & marketplace.",
-    "setting": "Équipe technique de 10 devs · produit B2B européen · stack Symfony / Vue 3.",
-    "desc": "Refonte de l'ERP en multi-tenant strict (isolation Postgres schema-per-tenant), mise en place de la marketplace, et surtout : <b>installation du spec-driven</b> dans une équipe qui ne l'avait jamais pratiqué. Le résultat : moins de régressions, des releases prévisibles, et une dette technique qui décroît au lieu de grossir.",
+    "roleLine": "Salarié · bureau d'études · Safran Engineering Services",
+    "title": "Ingénieur électronique — FPGA et systèmes embarqués multi-clients.",
+    "setting": "Bureau d'études prototypage & industrialisation, missions pour SAGEM, Bombardier Transport et Thales.",
+    "desc": "Trois ans de missions FPGA et embarqué en régie : modules d'interface FPGA pour capteurs et séquencement d'alimentation (SAGEM), mise à jour d'un algorithme de traitement vidéo sur une chaîne de deux FPGA Xilinx Virtex 4 (SAGEM), banc de test « Iron Bird » pour un train (Bombardier Transport), lecteur-enregistreur vidéo haut débit à 50 Mo/s (SAGEM), conversion protocolaire temps réel pour boule gyrostabilisée (SAGEM), messagerie de banc de test (Thales), et un premier projet <b>DO-254</b> de modification d'un concentrateur de données de vol avionique.",
     "highlights": [
-      { "n": "H.1", "html": "Refonte du modèle data <b>sans downtime</b> (dual-write, backfill, switch)." },
-      { "n": "H.2", "html": "Vélocité dev <b>×4</b> en 18 mois — mesurée sur le throughput tickets / sprint." },
-      { "n": "H.3", "html": "Mise en place CI/CD propre : lint, tests, build signé, déploiement progressif." },
-      { "n": "H.4", "html": "Mentorat actif — 3 juniors devenus seniors sur la période." }
+      {
+        "n": "H.1",
+        "html": "Modules d'interface FPGA (décodage ADC/PWM, séquencement d'alimentation, multiboot) pour <b>SAGEM</b>."
+      },
+      {
+        "n": "H.2",
+        "html": "Mise à jour d'un algorithme de traitement vidéo sur deux <b>FPGA Xilinx Virtex 4</b>, sous contraintes de timing sévères."
+      },
+      {
+        "n": "H.3",
+        "html": "Conception et développement du banc de test <b>« Iron Bird »</b> pour un train (<b>Bombardier Transport</b>)."
+      },
+      {
+        "n": "H.4",
+        "html": "Premier projet sous processus <b>DO-254</b> (avionique) — concentrateur de données de vol."
+      }
     ],
-    "stack": ["Symfony", "API Platform", "Vue 3 + Pinia", "PostgreSQL", "Redis", "GitLab CI"]
+    "stack": [
+      "VHDL",
+      "Xilinx Virtex 4/5/Spartan",
+      "C/C++",
+      "DO-254",
+      "CPLD Altera"
+    ]
   },
   {
-    "id": "2018-2021",
-    "yearRange": "2018 — 2021",
-    "span": "~ 3 ans",
+    "id": "2008-2009",
+    "order": 7,
+    "yearRange": "2008 — 2009",
+    "span": "2 stages",
     "current": false,
-    "roleLine": "Salarié · medtech · dispositif classe IIa",
-    "title": "Senior embedded engineer — dispositif médical.",
-    "setting": "PME 30 pers. · firmware sous IEC 62304 · audits ANSM et notifiés.",
-    "desc": "Firmware d'un dispositif médical classe IIa : qualité logicielle imposée par la norme (62304), traçabilité descendante stricte, <b>zéro régression tolérée</b>. En parallèle, conception du module vision : FPGA pour le pipeline capture + décodage propriétaire.",
+    "roleLine": "Stagiaire · FH Electronics puis Safran Engineering Services",
+    "title": "Stages ingénieur — du calculateur automobile au FlexRay.",
+    "setting": "Deux stages de fin d'études : interface calculateur moteur sous Simulink, puis outil d'espionnage/simulation FlexRay sur FPGA.",
+    "desc": "Chez FH Electronics, développement de blocs Simulink et intégration d'un compilateur pour permettre le pilotage d'un calculateur moteur automobile haut de gamme, avec un protocole de téléchargement sécurisé. Chez Safran, conception électronique et développement d'une IP <b>FlexRay</b> personnalisée en VHDL sur FPGA Altera Cyclone III, pour un outil d'espionnage et de simulation réseau.",
     "highlights": [
-      { "n": "H.1", "html": "<b>Mise au norme IEC 62304</b> + soutenance audit notifié, du premier coup." },
-      { "n": "H.2", "html": "Refonte de la stack capture vidéo — latence ÷3, occupation FPGA ÷2." },
-      { "n": "H.3", "html": "<b>0 régression critique</b> sur 3 ans en post-déploiement clinique." }
+      {
+        "n": "H.1",
+        "html": "Blocs <b>Simulink</b> et intégration d'un compilateur pour calculateur moteur automobile (<b>FH Electronics</b>)."
+      },
+      {
+        "n": "H.2",
+        "html": "IP <b>FlexRay</b> personnalisée en VHDL sur FPGA <b>Altera Cyclone III</b> (<b>Safran</b>)."
+      }
     ],
-    "stack": ["STM32 H7", "FreeRTOS", "VHDL · Lattice", "C / C++17", "Unity (test)", "DOORS"]
-  },
-  {
-    "id": "2014-2018",
-    "yearRange": "2014 — 2018",
-    "span": "~ 4 ans",
-    "current": false,
-    "roleLine": "Salarié · agence R&D · multi-clients dont JCDecaux",
-    "title": "Ingénieur transverse — FPGA chez JCDecaux + full-stack.",
-    "setting": "Agence R&D · ~25 ingénieurs · mode régie longue chez les clients.",
-    "desc": "Période charnière : c'est là que ma double casquette <b>matériel + logiciel</b> s'est solidifiée. Chez JCDecaux, expertise FPGA pour les matrices LED urbaines (cf. fiche R-02). En parallèle, refontes backend Symfony et premiers front Vue 2 pour d'autres clients.",
-    "highlights": [
-      { "n": "H.1", "html": "<b>6+ générations</b> de cartes FPGA portées chez JCDecaux — librairie VHDL réutilisable." },
-      { "n": "H.2", "html": "Pipelines vidéo robustes : zéro scintillement, recovery autonome, watchdog matériel." },
-      { "n": "H.3", "html": "Côté web : 4 plateformes Symfony livrées, qualité tirée par les tests." }
-    ],
-    "stack": ["VHDL", "Lattice / Xilinx", "Symfony 3/4", "Vue 2", "MySQL"]
-  },
-  {
-    "id": "2011-2014",
-    "yearRange": "2011 — 2014",
-    "span": "~ 3 ans",
-    "current": false,
-    "roleLine": "Salarié · industriel IoT · compteurs énergie",
-    "title": "Ingénieur embarqué — IoT industriel, premières plateformes LoRa.",
-    "setting": "Industriel · ~80 pers. · compteurs énergétiques connectés, déploiement national.",
-    "desc": "Stack LoRa custom <em>avant</em> que LoRaWAN ne se stabilise. Firmware bas-niveau, protocoles radio propriétaires, bancs de test. Premier contact sérieux avec les contraintes <b>déploiement terrain à grande échelle</b> : variabilité des conditions, pas d'accès physique, OTA obligatoire.",
-    "highlights": [
-      { "n": "H.1", "html": "<b>5 000+ nœuds</b> déployés en France — taux de panne &lt; 0.4 % / an." },
-      { "n": "H.2", "html": "Stack radio custom + ECC en couche applicative — pré-LoRaWAN." },
-      { "n": "H.3", "html": "Certification <b>ATEX zone 2</b> obtenue (boîtier + firmware)." }
-    ],
-    "stack": ["STM32 F0/F4", "FreeRTOS", "LoRa (SX127x)", "Python (bancs)"]
-  },
-  {
-    "id": "2009-2011",
-    "yearRange": "2009 — 2011",
-    "span": "~ 2 ans",
-    "current": false,
-    "roleLine": "Salarié · PME hardware · premier poste",
-    "title": "Ingénieur junior — firmware & électronique.",
-    "setting": "PME hardware · équipe 4 personnes · sortie d'école.",
-    "desc": "Premiers projets STM32, schématique, layout PCB, firmware bas-niveau. <b>L'école de la rigueur</b> sur le bas-niveau : un bit oublié dans un registre, c'est trois jours de debug. Cette période m'a marqué — je vérifie toujours mes hypothèses au scope avant d'écrire des suppositions.",
-    "highlights": [
-      { "n": "H.1", "html": "<b>3 produits</b> sortis : bornes, capteurs industriels, télémétrie." },
-      { "n": "H.2", "html": "Premiers protocoles maison : I²C custom, framing tolérant aux erreurs." },
-      { "n": "H.3", "html": "Apprentissage du <b>spec → code → test</b> qui structure encore mon travail." }
-    ],
-    "stack": ["C · ARM Cortex-M", "STM32 SPL", "KiCad", "Oscilloscope"]
+    "stack": [
+      "VHDL",
+      "Simulink",
+      "FlexRay",
+      "C#"
+    ]
   }
 ]

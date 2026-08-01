@@ -121,7 +121,14 @@ const axisYears = [yMin, yMin + Math.round(span * 0.176), yMin + Math.round(span
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.04em;
-    overflow: hidden; white-space: nowrap;
+    overflow: hidden;
+  }
+  .capmap .seg > span {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .capmap .seg span { color: var(--ink-soft); }
   .capmap .seg.intense { background: currentColor; }
