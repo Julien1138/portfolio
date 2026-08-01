@@ -55,19 +55,12 @@
     "sections": [
       {
         "type": "prose",
-        "heading": "Un prototype à tout reprendre",
+        "heading": "Carte blanche, après l'audit",
         "num": "§ 01",
         "paragraphs": [
-          {
-            "lead": true,
-            "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Quand je suis arrivé sur ce dossier chez <b>ID-1</b>, il existait déjà un prototype de boîtier de mesure connecté, pensé pour équiper des machines thermodynamiques industrielles."
-          },
-          {
-            "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps."
-          },
-          {
-            "html": "Le prototype existant fonctionnait... mais mal. Trop complexe, mal adapté au terrain, fragile. On m'a donné <span class=\"hl\">carte blanche</span> pour tout repenser. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z."
-          }
+          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-00-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles." },
+          { "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps." },
+          { "html": "Cette fois, <span class=\"hl\">carte blanche</span> pour tout repenser, du silicium à l'interface. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z." }
         ]
       },
       {
@@ -209,11 +202,24 @@
       },
       {
         "type": "prose",
-        "heading": "Bilan, et suite",
+        "heading": "Apprendre à se faire challenger",
         "num": "§ 06",
         "paragraphs": [
           {
-            "html": "Ce projet a aussi été un <b>gros travail de R&D</b> : tout était à valider, des méthodes de mesure aux choix d'architecture. Avec le recul, je referais sans doute une première version plus rapide, en assemblant des cartes du commerce, pour tester l'intérêt marché plus tôt. Mais cette version complète a permis d'aboutir à un produit <span class=\"hl\">fiable, robuste, en place chez plusieurs clients</span>, avec des retours très positifs."
+            "html": "Avec l'accord de mon patron, j'ai pris l'initiative de <b>solliciter l'avis de pairs dans mon entourage professionnel externe à l'entreprise</b>. Cela m'a permis de confronter mes choix, de remettre en perspective certaines intuitions, et d'affiner mon design."
+          },
+          {
+            "html": "Cette ouverture a joué un rôle clé dans la robustesse finale du produit, et m'a conforté dans l'idée qu'<span class=\"hl\">un projet gagne toujours à être challengé par des regards extérieurs</span>."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Bilan, et suite",
+        "num": "§ 07",
+        "paragraphs": [
+          {
+            "html": "Ce projet a aussi été un <b>gros travail de R&D</b> : tout était à valider, des méthodes de mesure aux choix d'architecture. Avec le recul, je referais sans doute une première version plus rapide, en assemblant des cartes du commerce, pour tester l'intérêt du marché pour chacune des éxigences plus tôt. Mais cette version complète a permis d'aboutir à un produit <span class=\"hl\">fiable, robuste, en place chez plusieurs clients</span>, avec des retours très positifs."
           },
           {
             "html": "Le travail a même débouché sur le développement d'une <b>version low-cost</b>, pensée pour le monde domestique — réfrigérateur, cave à vin, congélateur — preuve que l'approche modulaire et la réflexion de fond étaient les bonnes."
@@ -223,7 +229,7 @@
       {
         "type": "prose",
         "heading": "Ce que j'ai aimé dans ce projet",
-        "num": "§ 07",
+        "num": "§ 08",
         "paragraphs": [
           {
             "lead": true,

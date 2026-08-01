@@ -1,0 +1,106 @@
+{
+  "ref": "P-00",
+  "title": "Reprise et refonte d'un prototype de boîtier de mesure",
+  "category": "IoT industriel",
+  "tag": "iot",
+  "period": "2020 — 2021",
+  "yearStart": 2020,
+  "order": 0,
+  "featured": false,
+  "variant": "default",
+  "lede": "Reprendre un prototype existant chez ID-1, remettre à plat son logiciel et son architecture — <em>et ouvrir la voie au développement industriel</em> d'un nouveau boîtier de mesure.",
+  "chips": ["STM32", "ESP8266", "Protobuf", "Preact", "Électronique"],
+  "role": "Solo",
+  "figTag": "fig. P-00 · prototype initial STM32 + 2×ESP8266",
+  "cornerLabel": "P-00 / IOT",
+  "heroImage": "/src/assets/images/projets/p-00-reprise-prototype-boitier-mesure/carte-sensorbox.jpg",
+  "deepDive": {
+    "metaTop": "P-00 · IoT industriel · 2020 — 2021 · ID-1",
+    "readTime": "~ 4 min",
+    "metaStrip": [
+      { "k": "Période", "v": "2020 → 2021" },
+      { "k": "Rôle", "v": "Reprise & audit" },
+      { "k": "Équipe", "v": "Solo" },
+      { "k": "Périmètre", "v": "Firmware → protocole → UI → audit HW", "accent": true },
+      { "k": "Lecture", "v": "~ 4 min" }
+    ],
+    "heroFigTag": "fig. 1 · prototype initial STM32 + 2×ESP8266",
+    "figCaptionRef": "fig. 1",
+    "figCaptionText": "Session de debug sur la carte SensorBox du prototype — sondes PCBite en place pour l'analyse des échanges entre microcontrôleurs.",
+    "sections": [
+      {
+        "type": "prose",
+        "heading": "Un prototype bancal à assainir",
+        "num": "§ 01",
+        "paragraphs": [
+          { "lead": true, "html": "Quand je suis arrivé chez <b>ID-1</b>, mon premier projet a été de reprendre un prototype déjà existant d'un boîtier de mesure connecté, pensé pour suivre le comportement de machines thermodynamiques." },
+          { "html": "En réalité, c'était une architecture complexe et bancale, difficile à maintenir et à améliorer : un <b>STM32</b> comme cœur, accompagné de deux <b>ESP8266</b> — l'un pour la connexion Wi-Fi, l'autre pour l'interface de configuration. Une solution inventive mais lourde, fragile et inutilement compliquée." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Remettre de l'ordre dans le logiciel",
+        "num": "§ 02",
+        "paragraphs": [
+          { "html": "J'ai commencé par <b>réécrire entièrement le logiciel</b>. Le code en place n'était ni maintenable, ni évolutif. Pour fiabiliser les échanges entre microcontrôleurs, j'ai mis en place un protocole de communication basé sur <b>Protocol Buffers</b> entre le STM32 et l'ESP8266. Cela a simplifié la structure, amélioré la clarté et rendu possible l'évolution future du firmware." },
+          { "html": "En analysant l'architecture, je me suis aperçu qu'il n'était pas nécessaire de conserver deux ESP : un seul pouvait suffire en exploitant sa capacité à fonctionner en <span class=\"hl\">mode AP et STA simultanément</span>. Cette décision a permis d'alléger le design et de réduire la consommation de ressources." }
+        ]
+      },
+      {
+        "type": "rowlist",
+        "rows": [
+          { "t": "Avant", "d": "STM32 + 2× ESP8266 (l'un Wi-Fi, l'autre configuration), liaison ad hoc entre MCU" },
+          { "t": "Après", "d": "STM32 + 1× ESP8266 en mode AP + STA simultané, liaison Protobuf entre MCU" }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Une interface utilisateur dans un mouchoir de poche",
+        "num": "§ 03",
+        "paragraphs": [
+          { "html": "Pour l'interface utilisateur embarquée, la contrainte de mémoire était sévère. J'ai choisi <b>Preact</b>, une librairie légère, afin de proposer malgré tout une interface web dynamique et réactive. L'utilisateur pouvait ainsi configurer son boîtier directement depuis un navigateur, sans dépendre d'un PC dédié ou d'outils complexes." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Préparer la suite",
+        "num": "§ 04",
+        "paragraphs": [
+          { "html": "Enfin, j'ai réalisé un <b>audit complet de la carte électronique</b>. Cet audit a permis de dresser un cahier des charges précis pour ce qui allait devenir le <a href=\"/projets/p-01-plateforme-monitoring-industriel/\">boîtier Akriplo</a> : une version totalement repensée, robuste et industrialisable, que j'ai ensuite eu l'opportunité de concevoir de bout en bout." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Une leçon de recul",
+        "num": "§ 05",
+        "paragraphs": [
+          { "lead": true, "html": "En étudiant ce prototype, j'ai remarqué qu'il avait déjà connu plusieurs itérations. Certaines bonnes idées initiales s'étaient, au fil des modifications, transformées en une <b>usine à gaz</b> complexe et peu fonctionnelle." },
+          { "html": "Cela m'a appris une leçon essentielle : dans tout projet, il est crucial de <span class=\"hl\">prendre régulièrement du recul</span>, de remettre en question ses choix, et d'éviter de s'enfermer dans une idée séduisante qui peut finir par devenir un piège." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Bilan",
+        "num": "§ 06",
+        "paragraphs": []
+      },
+      {
+        "type": "decisions",
+        "items": [
+          { "num": "01", "t": "Comprendre les limites", "d": "D'un prototype bricolé, empilé au fil des itérations." },
+          { "num": "02", "t": "Remettre de la rigueur", "d": "Dans l'architecture logicielle et les échanges inter-MCU." },
+          { "num": "03", "t": "Trouver l'élégance", "d": "Des solutions simples dans un cadre très contraint." },
+          { "num": "04", "t": "Poser les bases", "d": "D'un futur produit industriel — le boîtier Akriplo." }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "",
+        "num": "",
+        "paragraphs": [
+          { "html": "Une excellente mise en jambes, et une expérience qui a forgé ma manière d'aborder les projets suivants." }
+        ]
+      }
+    ]
+  }
+}
