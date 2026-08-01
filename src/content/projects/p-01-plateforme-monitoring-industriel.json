@@ -9,19 +9,45 @@
   "featured": true,
   "variant": "default",
   "lede": "Conception d'un système complet de mesure et de supervision industrielle — <em>électronique, firmware, interface web, infrastructure serveur, mécanique</em> — menée seul, de bout en bout, chez ID-1.",
-  "chips": ["ESP32-S3", "C++", "Vue.js", "HTTP", "InfluxDB", "Docker", "Injection plastique"],
+  "chips": [
+    "ESP32-S3",
+    "C++",
+    "Vue.js",
+    "HTTP",
+    "InfluxDB",
+    "Docker",
+    "Fusion360",
+    "Impression 3D"
+  ],
   "role": "Solo → + 1 apprenti",
   "figTag": "fig. P-01 · boîtier terrain + appli locale",
   "cornerLabel": "P-01 / IOT",
+  "heroImage": "/src/assets/images/projets/p-01-plateforme-monitoring-industriel/boitier-akriplo.jpg",
   "deepDive": {
     "metaTop": "P-01 · IoT industriel · 2021 — 2025 · ID-1",
     "readTime": "~ 5 min",
     "metaStrip": [
-      { "k": "Période", "v": "2021 → 2025" },
-      { "k": "Rôle", "v": "Conception complète" },
-      { "k": "Équipe", "v": "Solo → + 1 apprenti" },
-      { "k": "Périmètre", "v": "Électronique → mécanique → logiciel", "accent": true },
-      { "k": "Lecture", "v": "~ 5 min" }
+      {
+        "k": "Période",
+        "v": "2021 → 2025"
+      },
+      {
+        "k": "Rôle",
+        "v": "Conception complète"
+      },
+      {
+        "k": "Équipe",
+        "v": "Solo → + 1 apprenti"
+      },
+      {
+        "k": "Périmètre",
+        "v": "Électronique → mécanique → logiciel",
+        "accent": true
+      },
+      {
+        "k": "Lecture",
+        "v": "~ 5 min"
+      }
     ],
     "heroFigTag": "fig. 1 · boîtier terrain + appli locale",
     "figCaptionRef": "fig. 1",
@@ -32,9 +58,16 @@
         "heading": "Un prototype à tout reprendre",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Quand je suis arrivé sur ce dossier chez <b>ID-1</b>, il existait déjà un prototype de boîtier de mesure connecté, pensé pour équiper des machines thermodynamiques industrielles." },
-          { "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps." },
-          { "html": "Le prototype existant fonctionnait... mais mal. Trop complexe, mal adapté au terrain, fragile. On m'a donné <span class=\"hl\">carte blanche</span> pour tout repenser. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z." }
+          {
+            "lead": true,
+            "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Quand je suis arrivé sur ce dossier chez <b>ID-1</b>, il existait déjà un prototype de boîtier de mesure connecté, pensé pour équiper des machines thermodynamiques industrielles."
+          },
+          {
+            "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps."
+          },
+          {
+            "html": "Le prototype existant fonctionnait... mais mal. Trop complexe, mal adapté au terrain, fragile. On m'a donné <span class=\"hl\">carte blanche</span> pour tout repenser. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z."
+          }
         ]
       },
       {
@@ -42,16 +75,32 @@
         "heading": "De l'électronique à la mécanique",
         "num": "§ 02",
         "paragraphs": [
-          { "html": "Le cœur du système est un boîtier autonome, capable de capturer des mesures précises à intervalles réguliers. J'ai conçu l'<b>électronique</b> en partant de zéro, avec une attention particulière sur la <b>mesure ratiométrique</b> pour la température — une première pour moi à cette échelle. Ce fut ma première grosse carte, et l'occasion d'apprendre énormément en très peu de temps." },
-          { "html": "Et comme rien n'existe sans forme, j'ai aussi conçu le <b>boîtier mécanique</b>, d'abord en impression 3D pour valider l'ergonomie, puis en pièces injectées après validation. J'ai géré le sourcing des composants et le suivi de la sous-traitance." }
+          {
+            "html": "Le cœur du système est un boîtier autonome, capable de capturer des mesures précises à intervalles réguliers. J'ai conçu l'<b>électronique</b> en partant de zéro, avec une attention particulière sur la <b>mesure ratiométrique</b> pour la température — une première pour moi à cette échelle. Ce fut ma première grosse carte, et l'occasion d'apprendre énormément en très peu de temps."
+          },
+          {
+            "html": "Le boîtier lui-même est un <b>boîtier standard du commerce</b> — la vraie contrainte mécanique était ailleurs : loger toute l'électronique dans cet espace limité a demandé un <b>PCB 6 couches</b>, dont j'ai sous-traité le routage. J'ai en revanche modélisé quelques pièces sur-mesure : le boîtier d'un <b>capteur de présence de tension</b> maison, imprimé en 3D, et un <b>passe-fil en élastomère</b> un peu particulier, produit par injection."
+          }
         ]
       },
       {
         "type": "triptych",
         "items": [
-          { "num": "PCB", "title": "Front-end analogique", "text": "Mesure ratiométrique de précision pour la température, conçue de zéro." },
-          { "num": "MÉCA", "title": "CAO → injection", "text": "Validation par impression 3D, puis pièces injectées avec suivi de sous-traitance." },
-          { "num": "SOURCING", "title": "Composants & fournisseurs", "text": "Sourcing direct, échanges fournisseurs, ajustements d'outillage." }
+          {
+            "num": "PCB",
+            "title": "Carte 6 couches",
+            "text": "Espace très contraint dans un boîtier standard ; conception électronique en interne, routage sous-traité."
+          },
+          {
+            "num": "MÉCA",
+            "title": "Pièces sur-mesure ponctuelles",
+            "text": "Boîtier de capteur de tension imprimé en 3D, passe-fil élastomère produit par injection."
+          },
+          {
+            "num": "SOURCING",
+            "title": "Composants & fournisseurs",
+            "text": "Sourcing direct, échanges fournisseurs, ajustements d'outillage."
+          }
         ]
       },
       {
@@ -59,7 +108,9 @@
         "heading": "Un firmware modulaire, tourné vers la fiabilité",
         "num": "§ 03",
         "paragraphs": [
-          { "html": "L'<b>ESP32-S3</b> a été choisi comme cœur numérique, et tout le firmware a été développé en <b>C++</b>, dans une architecture modulaire pensée pour durer. L'autonomie, la fiabilité, la clarté du code et la facilité de mise à jour étaient des priorités." }
+          {
+            "html": "L'<b>ESP32-S3</b> a été choisi comme cœur numérique, et tout le firmware a été développé en <b>C++</b>, dans une architecture modulaire pensée pour durer. L'autonomie, la fiabilité, la clarté du code et la facilité de mise à jour étaient des priorités."
+          }
         ]
       },
       {
@@ -79,7 +130,9 @@
         "heading": "Une interface locale, accessible et réactive",
         "num": "§ 04",
         "paragraphs": [
-          { "html": "Mais la force du système, c'est aussi son interface. Chaque boîtier embarque une <b>application web locale</b>, développée en VueJS : accessible en Wi-Fi, elle permet à un technicien de visualiser en temps réel les mesures, d'ajuster des paramètres, ou de diagnostiquer un problème <span class=\"hl\">sans avoir besoin de connexion externe</span>." }
+          {
+            "html": "Mais la force du système, c'est aussi son interface. Chaque boîtier embarque une <b>application web locale</b>, développée en VueJS : accessible en Wi-Fi, elle permet à un technicien de visualiser en temps réel les mesures, d'ajuster des paramètres, ou de diagnostiquer un problème <span class=\"hl\">sans avoir besoin de connexion externe</span>."
+          }
         ]
       },
       {
@@ -99,17 +152,33 @@
         "heading": "Une infrastructure serveur simple",
         "num": "§ 05",
         "paragraphs": [
-          { "html": "Pour la supervision globale, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, déployée en interne chez ID-1 : collecte des données, configuration à distance, visualisation centralisée, alertes. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure à l'analyse." },
-          { "html": "Les boîtiers remontent leurs mesures en <b>HTTP</b> vers le serveur, qui les stocke dans <b>InfluxDB</b> — une base de séries temporelles adaptée au volume et à la fréquence des relevés." }
+          {
+            "html": "Pour la supervision globale, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, déployée en interne chez ID-1 : collecte des données, configuration à distance, visualisation centralisée, alertes. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure à l'analyse."
+          },
+          {
+            "html": "Les boîtiers remontent leurs mesures en <b>HTTP</b> vers le serveur, qui les stocke dans <b>InfluxDB</b> — une base de séries temporelles adaptée au volume et à la fréquence des relevés."
+          }
         ]
       },
       {
         "type": "rowlist",
         "rows": [
-          { "t": "Collecte & stockage", "d": "Remontée des mesures en HTTP, stockage dans InfluxDB" },
-          { "t": "Configuration distante", "d": "Mise à jour des paramètres et du firmware à distance" },
-          { "t": "Visualisation & alertes", "d": "Web app centralisée pour la supervision et les alertes" },
-          { "t": "Déploiement", "d": "Infrastructure serveur dockerisée, déployée en interne" }
+          {
+            "t": "Collecte & stockage",
+            "d": "Remontée des mesures en HTTP, stockage dans InfluxDB"
+          },
+          {
+            "t": "Configuration distante",
+            "d": "Mise à jour des paramètres et du firmware à distance"
+          },
+          {
+            "t": "Visualisation & alertes",
+            "d": "Web app centralisée pour la supervision et les alertes"
+          },
+          {
+            "t": "Déploiement",
+            "d": "Infrastructure serveur dockerisée, déployée en interne"
+          }
         ]
       },
       {
@@ -117,19 +186,50 @@
         "figLabel": "fig. 3 · architecture — du boîtier à la supervision",
         "figRef": "P-01.ARCH",
         "stages": [
-          { "lbl": "EDGE", "name": "Boîtier ID-1", "items": ["ESP32-S3 · C++", "Mesure ratio. de précision", "UI locale Vue.js"] },
-          { "lbl": "INGESTION", "name": "Serveur interne", "items": ["Réception HTTP", "InfluxDB", "Docker"] },
-          { "lbl": "APPLICATION", "name": "Supervision", "items": ["Web app centralisée", "Configuration à distance", "Alertes"] }
+          {
+            "lbl": "EDGE",
+            "name": "Boîtier ID-1",
+            "items": [
+              "ESP32-S3 · C++",
+              "Mesure ratio. de précision",
+              "UI locale Vue.js"
+            ]
+          },
+          {
+            "lbl": "INGESTION",
+            "name": "Serveur interne",
+            "items": [
+              "Réception HTTP",
+              "InfluxDB",
+              "Docker"
+            ]
+          },
+          {
+            "lbl": "APPLICATION",
+            "name": "Supervision",
+            "items": [
+              "Web app centralisée",
+              "Configuration à distance",
+              "Alertes"
+            ]
+          }
         ],
-        "arrows": ["HTTP", "HTTP"]
+        "arrows": [
+          "HTTP",
+          "HTTP"
+        ]
       },
       {
         "type": "prose",
         "heading": "Bilan, et suite",
         "num": "§ 06",
         "paragraphs": [
-          { "html": "Ce projet a aussi été un <b>gros travail de R&D</b> : tout était à valider, des méthodes de mesure aux choix d'architecture. Avec le recul, je referais sans doute une première version plus rapide, en assemblant des cartes du commerce, pour tester l'intérêt marché plus tôt. Mais cette version complète a permis d'aboutir à un produit <span class=\"hl\">fiable, robuste, en place chez plusieurs clients</span>, avec des retours très positifs." },
-          { "html": "Le travail a même débouché sur le développement d'une <b>version low-cost</b>, pensée pour le monde domestique — réfrigérateur, cave à vin, congélateur — preuve que l'approche modulaire et la réflexion de fond étaient les bonnes." }
+          {
+            "html": "Ce projet a aussi été un <b>gros travail de R&D</b> : tout était à valider, des méthodes de mesure aux choix d'architecture. Avec le recul, je referais sans doute une première version plus rapide, en assemblant des cartes du commerce, pour tester l'intérêt marché plus tôt. Mais cette version complète a permis d'aboutir à un produit <span class=\"hl\">fiable, robuste, en place chez plusieurs clients</span>, avec des retours très positifs."
+          },
+          {
+            "html": "Le travail a même débouché sur le développement d'une <b>version low-cost</b>, pensée pour le monde domestique — réfrigérateur, cave à vin, congélateur — preuve que l'approche modulaire et la réflexion de fond étaient les bonnes."
+          }
         ]
       },
       {
@@ -137,8 +237,13 @@
         "heading": "Ce que j'ai aimé dans ce projet",
         "num": "§ 07",
         "paragraphs": [
-          { "lead": true, "html": "C'est un projet dont je suis fier : non pas parce qu'il était parfait, mais parce qu'il m'a permis d'exercer tout ce que j'aime dans mon métier." },
-          { "html": "<span class=\"hl\">Concevoir, apprendre, décider, construire, simplifier, et surtout donner vie à une idée.</span>" }
+          {
+            "lead": true,
+            "html": "C'est un projet dont je suis fier : non pas parce qu'il était parfait, mais parce qu'il m'a permis d'exercer tout ce que j'aime dans mon métier."
+          },
+          {
+            "html": "<span class=\"hl\">Concevoir, apprendre, décider, construire, simplifier, et surtout donner vie à une idée.</span>"
+          }
         ]
       }
     ]
