@@ -1,0 +1,102 @@
+{
+  "ref": "R-03",
+  "title": "Responsable systèmes embarqués",
+  "client": "ID-1",
+  "domain": "Pompes à chaleur industrielles",
+  "period": "2020 — 2025",
+  "years": "~5 ans",
+  "order": 3,
+  "lede": "Conception et développement, de bout en bout, d'un système embarqué industriel pour équiper des pompes à chaleur — <em>de l'architecture au déploiement terrain</em>.",
+  "metaStrip": [
+    { "k": "Entreprise", "v": "ID-1" },
+    { "k": "Domaine", "v": "Pompes à chaleur industrielles" },
+    { "k": "Rôle", "v": "Responsable systèmes embarqués", "accent": true },
+    { "k": "Produits", "v": "2 boîtiers · firmware unique" },
+    { "k": "Lecture", "v": "~ 5 min" }
+  ],
+  "chips": ["ESP32-S3", "FreeRTOS", "C++", "Ethernet/Wi-Fi/4G", "Cartes filles", "CI/CD"],
+  "ledHero": false,
+  "sections": [
+    {
+      "type": "prose",
+      "heading": "Contexte.",
+      "num": "§ 01 — Contexte",
+      "paragraphs": [
+        { "lead": true, "html": "Chez ID-1, j'ai été responsable de la conception et du développement d'un système embarqué industriel destiné à équiper des machines thermodynamiques, principalement des pompes à chaleur." },
+        { "html": "Ce rôle recouvrait l'intégralité de la chaîne de valeur : de la définition des besoins jusqu'au déploiement terrain, en passant par l'électronique, le firmware, l'industrialisation et l'exploitation à distance." },
+        { "html": "J'étais seul responsable de l'architecture système, de la conception des cartes électroniques, du développement du firmware, des tests, de la mise en production, du CI/CD, du sourcing des composants (capteurs, connecteurs, batteries, modules 4G, alimentations), ainsi que de l'intégration mécanique. Cette responsabilité complète m'a naturellement amené à raisonner en permanence en termes de <span class=\"hl\">produit, et non de simple assemblage technique</span>." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Un système pensé comme un tout.",
+      "num": "§ 02 — Architecture",
+      "paragraphs": [
+        { "html": "Le produit est un système de mesure connecté, basé sur un cœur numérique <b>ESP32-S3</b>, capable de se connecter en Ethernet, Wi-Fi ou 4G. Il génère un point d'accès local avec portail captif permettant la configuration via une application web embarquée, tout en étant synchronisé avec un serveur distant pour la configuration, la collecte des mesures et les mises à jour logicielles." },
+        { "html": "Les mesures sont échantillonnées à intervalles réguliers, stockées localement, puis transmises vers une base de données temporelle. Le système est conçu pour pouvoir alerter rapidement en cas d'anomalie, ce qui impose un haut niveau de fiabilité et de robustesse." },
+        { "html": "L'architecture matérielle repose sur des <b>cartes filles interchangeables</b>, permettant d'interfacer différents types de capteurs (résistifs, tension, tout-ou-rien, bus de communication). Cette modularité permet d'adapter le produit à différents usages sans remettre en cause le cœur du système." },
+        { "html": "Un second boîtier, plus simple, a été développé sur une architecture proche. J'ai fait le choix de conserver un <span class=\"hl\">firmware unique pour les deux produits</span> : le logiciel identifie dynamiquement la cible matérielle en analysant les périphériques disponibles. Ce choix réduit fortement la complexité de maintenance et limite les risques de divergence fonctionnelle." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Contraintes et arbitrages.",
+      "num": "§ 03 — Contraintes",
+      "paragraphs": [
+        { "html": "Le système évolue dans un environnement industriel, avec des contraintes fortes de temps réel, de robustesse terrain et de coût BOM. L'échantillonnage des mesures devait rester régulier et fiable, indépendamment des tâches de communication réseau, parfois instables." },
+        { "html": "L'utilisation de <b>FreeRTOS</b> s'est imposée pour découpler proprement les responsabilités : acquisition, communication, stockage, supervision. Le firmware est développé en <b>C++</b>, avec une architecture modulaire inspirée des modules ESP-IDF, afin de garantir une séparation claire des rôles et une bonne testabilité. Cette organisation m'a permis d'écrire des tests unitaires complets et d'anticiper les évolutions futures." },
+        { "html": "Les mises à jour logicielles sont volontairement simples : elles sont distribuées via un serveur FTP sécurisé par mot de passe. Ce choix, peu sophistiqué en apparence, s'est révélé robuste et parfaitement adapté au contexte industriel du produit." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Choix industriels assumés.",
+      "num": "§ 04 — Trade-offs",
+      "paragraphs": [
+        { "html": "Tout au long du projet, j'ai dû arbitrer entre fonctionnalités idéales et réalités industrielles. Ces choix ne sont pas des compromis « par défaut », mais des décisions réfléchies, prises en tenant compte de l'usage réel et du modèle économique." }
+      ]
+    },
+    {
+      "type": "constraints",
+      "rows": [
+        { "id": "C-01", "head": "Surveillance de la batterie de secours", "desc": "Non implémentée : mesurer l'état de charge aurait nécessité un composant coûteux, pour un usage jugé secondaire.", "arbK": "Arbitrage type", "arbV": "Fonctionnalité écartée — le coût ne justifiait pas l'usage réel." },
+        { "id": "C-02", "head": "Plages de mesure des capteurs résistifs", "desc": "Non configurables par logiciel : définies par quelques composants discrets.", "arbK": "Arbitrage type", "arbV": "BOM réduite, choix acceptable du point de vue produit." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Retours d'expérience.",
+      "num": "§ 05 — Leçons",
+      "paragraphs": [
+        { "lead": true, "html": "Le projet a également été très formateur sur le plan industriel." }
+      ]
+    },
+    {
+      "type": "takeaway",
+      "cards": [
+        { "n": "01", "t": "Lire les datasheets à fond", "d": "Une mauvaise lecture a conduit à des composants incompatibles sur la première version de carte." },
+        { "n": "02", "t": "Garder la main sur le routage", "d": "Sous-traiter sur un outil différent de la schématique a coûté cher et fait perdre la maîtrise des itérations." },
+        { "n": "03", "t": "Négocier l'espace boîtier tôt", "d": "Un boîtier trop contraint a densifié la carte et renchéri les connecteurs." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "",
+      "num": "",
+      "paragraphs": [
+        { "html": "Aujourd'hui, j'argumente beaucoup plus fermement sur ces aspects dès les premières phases de conception. Avec le recul, une phase de prototypage rapide à base de cartes d'évaluation aurait permis de confronter plus tôt les exigences initiales aux réalités du marché, notamment sur le prix cible." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Conviction personnelle.",
+      "num": "§ 06 — Conviction",
+      "paragraphs": []
+    },
+    {
+      "type": "pull",
+      "body": "« Sur des produits embarqués déployés à grande échelle, la fiabilité est centrale. Chaque retour terrain est coûteux, parfois impossible. Mon approche privilégie donc la simplicité, la robustesse et une vision globale du système, depuis le capteur jusqu'à l'exploitation distante. »",
+      "sig": "— Julien Aupart · conviction personnelle"
+    }
+  ]
+}

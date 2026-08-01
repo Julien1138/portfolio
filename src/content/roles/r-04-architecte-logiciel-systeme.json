@@ -1,0 +1,101 @@
+{
+  "ref": "R-04",
+  "title": "Architecte logiciel & système",
+  "client": "Naept · ID-1",
+  "domain": "Architecture logicielle & systèmes",
+  "period": "2019 — 2025",
+  "years": "~6 ans",
+  "order": 4,
+  "lede": "Porter une vision d'architecture cohérente sur la durée — <em>arbitrer entre complexité, robustesse, coût et délai</em> — chez Naept comme chez ID-1.",
+  "metaStrip": [
+    { "k": "Entreprises", "v": "Naept · ID-1" },
+    { "k": "Domaine", "v": "Architecture logicielle" },
+    { "k": "Rôle", "v": "Architecte & lead technique", "accent": true },
+    { "k": "Contexte", "v": "Petites équipes, souvent seul" },
+    { "k": "Lecture", "v": "~ 5 min" }
+  ],
+  "chips": ["Architecture logicielle", "Modernisation incrémentale", "API design", "ProseMirror", "C++ (composition)", "Tests unitaires"],
+  "ledHero": false,
+  "sections": [
+    {
+      "type": "prose",
+      "heading": "Contexte.",
+      "num": "§ 01 — Contexte",
+      "paragraphs": [
+        { "lead": true, "html": "J'endosse le rôle d'architecte logiciel et système lorsque la complexité d'un produit dépasse la simple addition de composants techniques. C'est généralement le cas lorsque plusieurs technologies doivent cohabiter, que le produit est destiné à durer, et que les décisions prises aujourd'hui conditionnent fortement les évolutions futures." },
+        { "html": "Chez Naept et ID-1, j'ai occupé ce rôle dans des contextes de petites équipes, parfois sans véritable pair technique pour challenger les choix. Mon rôle consistait alors à maintenir une vision globale cohérente, tout en arbitrant en permanence entre <b>complexité, robustesse, coût et délai</b>." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Architecture comme outil d'arbitrage.",
+      "num": "§ 02 — Arbitrage",
+      "paragraphs": [
+        { "html": "Je ne cherche pas à concevoir une architecture « idéale » ou académique, mais une architecture adaptée à son contexte, capable d'évoluer sans refonte permanente." },
+        { "html": "Chez ID-1, j'ai par exemple repris un logiciel legacy pour lequel une refonte complète avait été engagée pendant près d'un an. L'analyse du périmètre fonctionnel, de la taille de l'équipe et des choix techniques existants m'a conduit à considérer cette refonte comme irréaliste. J'ai alors orienté le projet vers une <span class=\"hl\">modernisation incrémentale</span>, permettant de sécuriser l'existant tout en introduisant progressivement de nouvelles architectures et technologies." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Découpage et responsabilités.",
+      "num": "§ 03 — Découpage",
+      "paragraphs": [
+        { "html": "Je porte une attention particulière au découpage fonctionnel et à la clarté des responsabilités. Chez ID-1, certaines fonctionnalités ont été isolées dans des applications distinctes, interconnectées par des API. Il ne s'agissait pas de microservices au sens strict, mais d'une application pragmatique de leurs principes : limiter les couplages et rendre les évolutions indépendantes possibles." },
+        { "html": "Chez Naept, cette logique s'est traduite par une architecture frontend / API, permettant de proposer une expérience utilisateur fluide, proche d'une application, tout en conservant une structuration claire côté backend." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Frontend complexe et choix structurants.",
+      "num": "§ 04 — Frontend",
+      "paragraphs": [
+        { "html": "Un choix marquant a été l'utilisation de <b>ProseMirror</b> comme socle d'édition de texte chez Naept. Ce choix visait à obtenir un contrôle total sur le modèle documentaire et le comportement de l'éditeur, tout en dissociant clairement le rendu visuel de la logique métier. La complexité initiale était assumée, car elle permettait des évolutions futures sans remise en cause profonde de l'existant." },
+        { "html": "Ce type de décision illustre bien ma manière d'aborder l'architecture : <span class=\"hl\">accepter une complexité maîtrisée lorsqu'elle permet d'éviter une dette structurelle à long terme</span>." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Apprentissage par l'erreur.",
+      "num": "§ 05 — Erreurs",
+      "paragraphs": [
+        { "lead": true, "html": "Mon approche actuelle est aussi le fruit d'erreurs assumées." }
+      ]
+    },
+    {
+      "type": "rowlist",
+      "rows": [
+        { "t": "Héritage multiple (C++)", "d": "Architecture firmware initiale difficile à tester et à faire évoluer, chez ID-1 → refonte en « composition over inheritance », gain immédiat en lisibilité et en testabilité." },
+        { "t": "Absence de tests unitaires", "d": "Gain de temps à court terme, contre-productif à moyen terme → l'absence de stratégie de test est aujourd'hui pour moi un indicateur fort de future dérive architecturale." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "Convictions d'architecte.",
+      "num": "§ 06 — Convictions",
+      "paragraphs": [
+        { "html": "Je privilégie des architectures capables de durer :" }
+      ]
+    },
+    {
+      "type": "takeaway",
+      "cards": [
+        { "n": "01", "t": "Compréhensibles", "d": "Par ceux qui les reprennent, pas seulement par leur auteur." },
+        { "n": "02", "t": "Réversibles", "d": "Lorsque c'est possible — éviter les décisions à sens unique." },
+        { "n": "03", "t": "Capables de survivre à leurs premiers auteurs", "d": "Ne pas dépendre d'une seule personne pour rester intelligibles." }
+      ]
+    },
+    {
+      "type": "prose",
+      "heading": "",
+      "num": "",
+      "paragraphs": [
+        { "html": "Je suis volontairement méfiant vis-à-vis des effets de mode. Un concept pertinent mal appliqué est souvent plus dangereux qu'une solution simple bien maîtrisée." }
+      ]
+    },
+    {
+      "type": "pull",
+      "body": "« Mon objectif reste constant : construire des systèmes qui tiennent dans le temps, autant sur le plan technique que humain. »",
+      "sig": "— Julien Aupart · convictions d'architecte"
+    }
+  ]
+}
