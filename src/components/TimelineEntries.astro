@@ -9,6 +9,7 @@ export interface Entry {
   desc: string;
   highlights: { n: string; html: string }[];
   stack: string[];
+  links: { label: string; href: string }[];
 }
 export interface Props {
   entries: Entry[];
@@ -38,6 +39,12 @@ const { entries } = Astro.props;
           <span class="k">Stack</span>
           {e.stack.map((s) => <span class="chip">{s}</span>)}
         </div>
+        {e.links.length > 0 && (
+          <div class="fiche-links">
+            <span class="k">Détail</span>
+            {e.links.map((l) => <a class="fiche-link" href={l.href}>{l.label} →</a>)}
+          </div>
+        )}
       </div>
     </article>
   ))}
@@ -168,6 +175,32 @@ const { entries } = Astro.props;
     color: var(--ink-2);
     border-radius: 2px;
   }
+
+  .timeline .body .fiche-links {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .timeline .body .fiche-links .k {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-right: 4px;
+  }
+  .timeline .body .fiche-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    padding: 4px 10px;
+    border: 1px solid var(--rule-2);
+    background: var(--paper);
+    color: var(--accent);
+    border-radius: 2px;
+    transition: border-color 150ms ease, background 150ms ease;
+  }
+  .timeline .body .fiche-link:hover { border-color: var(--accent); background: var(--accent-soft); }
 
   @media (max-width: 760px) {
     .timeline .entry { grid-template-columns: 1fr; gap: 14px; }

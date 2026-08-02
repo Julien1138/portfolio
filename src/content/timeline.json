@@ -35,7 +35,8 @@
       "TCL",
       "Python",
       "AXI-Lite"
-    ]
+    ],
+    "links": []
   },
   {
     "id": "2020-2025",
@@ -78,6 +79,13 @@
       "C++",
       "Docker",
       "CI/CD"
+    ],
+    "links": [
+      { "label": "Rôle · R-01 — Architecte logiciel & système", "href": "/roles/r-01-architecte-logiciel-systeme/" },
+      { "label": "Rôle · R-02 — Responsable systèmes embarqués", "href": "/roles/r-02-responsable-systemes-embarques/" },
+      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
+      { "label": "Projet · P-02 — Reprise du prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" },
+      { "label": "Projet · P-03 — Boîtier de mesure connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" }
     ]
   },
   {
@@ -115,6 +123,10 @@
       "Docker",
       "GitLab CI",
       "React/TypeScript"
+    ],
+    "links": [
+      { "label": "Rôle · R-01 — Architecte logiciel & système", "href": "/roles/r-01-architecte-logiciel-systeme/" },
+      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" }
     ]
   },
   {
@@ -126,7 +138,7 @@
     "roleLine": "Salarié · affichage urbain · JCDecaux",
     "title": "Expert électronique numérique — matrices LED urbaines.",
     "setting": "Conception et évolution des architectures FPGA pilotant les chaînes d'affichage LED, ainsi que logiciel embarqué et outillage de test.",
-    "desc": "Cinq ans consacrés au pilotage numérique des écrans LED urbains : architectures FPGA en VHDL, algorithmes de traitement d'image, liaison horloge embarquée haute vitesse (50 Mbps) sur FPGA Lattice. En parallèle, logiciel embarqué C/C++ pour mobiliers urbains et contrôle moteur, et outils de test PC en C++/Qt. <em>Détail complet : fiche rôle R-00.</em>",
+    "desc": "Cinq ans consacrés au pilotage numérique des écrans LED urbains : architectures FPGA en VHDL, algorithmes de traitement d'image, liaison horloge embarquée haute vitesse (50 Mbps) sur FPGA Lattice. En parallèle, logiciel embarqué C/C++ pour mobiliers urbains et contrôle moteur, et outils de test PC en C++/Qt.",
     "highlights": [
       {
         "n": "H.1",
@@ -152,6 +164,10 @@
       "Qt",
       "CAN bus",
       "RS422/485"
+    ],
+    "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Projet · P-01 — Contrôleur moteur vélo électrique", "href": "/projets/p-01-controleur-moteur-velo-electrique/" }
     ]
   },
   {
@@ -183,7 +199,8 @@
       "FPGA",
       "Schématique électronique",
       "Conseil technique"
-    ]
+    ],
+    "links": []
   },
   {
     "id": "2009-2012",
@@ -219,7 +236,8 @@
       "C/C++",
       "DO-254",
       "CPLD Altera"
-    ]
+    ],
+    "links": []
   },
   {
     "id": "2008-2009",
@@ -246,6 +264,9 @@
       "Simulink",
       "FlexRay",
       "C#"
+    ],
+    "links": [
+      { "label": "Projet · P-00 — Outil FlexRay (stage)", "href": "/projets/p-00-outil-flexray-safran/" }
     ]
   }
 ]

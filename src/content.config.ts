@@ -175,6 +175,8 @@ const timeline = defineCollection({
     desc: z.string(),
     highlights: z.array(z.object({ n: z.string(), html: z.string() })),
     stack: z.array(z.string()),
+    // Deep-dive fiches this period is documented in, when one exists.
+    links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
   }),
 });
 
