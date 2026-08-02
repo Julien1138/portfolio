@@ -63,6 +63,28 @@
   },
   {
     "family": "FPGA",
+    "detail": "ModelSim",
+    "since": 2009,
+    "maturity": 5,
+    "usages": [
+      {
+        "label": "P-00 · FlexRay (stage)",
+        "href": "/projets/p-00-outil-flexray-safran/"
+      },
+      {
+        "label": "Safran · 2012"
+      },
+      {
+        "label": "R-00 · JCDecaux",
+        "href": "/roles/r-00-jcdecaux-fpga/"
+      },
+      {
+        "label": "Thales · 2026"
+      }
+    ]
+  },
+  {
+    "family": "FPGA",
     "detail": "Verilog (lecture)",
     "since": 2014,
     "maturity": 2,
@@ -330,6 +352,21 @@
   },
   {
     "family": "CAO",
+    "detail": "LTSpice — simulation électronique",
+    "since": 2015,
+    "maturity": 3,
+    "usages": [
+      {
+        "label": "JCDecaux · 2015"
+      },
+      {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      }
+    ]
+  },
+  {
+    "family": "CAO",
     "detail": "Fusion360 — conception mécanique",
     "since": 2021,
     "maturity": 4,
@@ -360,11 +397,11 @@
     "maturity": 4,
     "usages": [
       {
-        "label": "Projets perso"
-      },
-      {
         "label": "P-03 · Boîtier connecté",
         "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      },
+      {
+        "label": "Projets perso"
       }
     ]
   },
@@ -538,6 +575,10 @@
     "maturity": 4,
     "usages": [
       {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      },
+      {
         "label": "R-01 · Architecte (Naept)",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
@@ -550,6 +591,10 @@
     "maturity": 3,
     "usages": [
       {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      },
+      {
         "label": "R-01 · Architecte",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
       },
@@ -560,12 +605,31 @@
   },
   {
     "family": "MTH",
+    "detail": "AI / Coding agents",
+    "since": 2009,
+    "maturity": 4,
+    "usages": [
+      {
+        "label": "R-01 · Architecte",
+        "href": "/roles/r-01-architecte-logiciel-systeme/"
+      },
+      {
+        "label": "Thales · 2026"
+      }
+    ],
+    "highlight": true
+  },
+  {
+    "family": "MTH",
     "detail": "Traçabilité des exigences (spec → code → test)",
     "since": 2019,
     "maturity": 5,
     "usages": [
       {
-        "label": "R-01 · Architecte (Naept)",
+        "label": "Safran · 2010"
+      },
+      {
+        "label": "R-01 · Architecte",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
     ],
@@ -578,7 +642,7 @@
     "maturity": 3,
     "usages": [
       {
-        "label": "Safran · 2012"
+        "label": "Safran · 2010"
       }
     ]
   }

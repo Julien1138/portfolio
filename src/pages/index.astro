@@ -67,13 +67,12 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
         <div class="specs">
           <div class="row"><span class="k">Expérience</span><span class="v">{years} ans <span class="badge">depuis 2009</span></span></div>
           <div class="row"><span class="k">Domaines</span><span class="v">Hardware · Embarqué · FPGA · Backend · Frontend</span></div>
-          <div class="row"><span class="k">Rôles</span><span class="v">Architect · Tech Lead · CTO intérim</span></div>
+          <div class="row"><span class="k">Rôles</span><span class="v">Architecte · Tech Lead · Mentor technique</span></div>
           <div class="row"><span class="k">Langages</span><span class="v">C, C++, VHDL, TypeScript, PHP, Python</span></div>
-          <div class="row"><span class="k">Plateformes</span><span class="v">ESP32, STM32, FPGA Lattice/Xilinx, Linux</span></div>
-          <div class="row"><span class="k">Frameworks</span><span class="v">Symfony / API Platform, Vue 3, Astro, Tailwind</span></div>
-          <div class="row"><span class="k">Méthodes</span><span class="v">Spec-driven, traçabilité, IEC 62304, audits</span></div>
-          <div class="row"><span class="k">Industries</span><span class="v">IoT industriel, medtech, affichage, ERP B2B</span></div>
-          <div class="row"><span class="k">Localisation</span><span class="v">Septeuil (78) · remote</span></div>
+          <div class="row"><span class="k">Plateformes</span><span class="v">ESP32, STM32, FPGA (Lattice/Xilinx/Altera)</span></div>
+          <div class="row"><span class="k">Frameworks</span><span class="v">Symfony / API Platform, Laravel, Vue 3, Astro</span></div>
+          <div class="row"><span class="k">Méthodes</span><span class="v">Spec-driven, Test-driven, Traçabilité, DO-178B/DO-254, Audits</span></div>
+          <div class="row"><span class="k">Localisation</span><span class="v">Septeuil (78) · Remote</span></div>
           <div class="row"><span class="k">Langues</span><span class="v">Français · Anglais (B2+)</span></div>
         </div>
       </div>
@@ -82,10 +81,9 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
     <section class="block" id="stack">
       <SectionHead num="§ 01 — Stack" title="Bill of materials." kicker="vue ingénieur, ligne par ligne" />
       <p class="bom-intro">
-        La stack que j'opère quotidiennement, exprimée comme une BOM —
-        chaque ligne porte une référence, des composants concrets, et la
-        maturité que j'ai dessus. Tout ce qui est listé tourne en production
-        sur au moins un projet actif.
+        Chaque ligne correspond à une technologie précise, pas à une
+        catégorie fourre-tout — reliée au projet ou au rôle où je l'ai
+        réellement utilisée.
       </p>
       <BomTableCompact rows={bomRows} />
       <a class="see-more" href="/stack/">Voir la BOM complète <span class="arr">→</span></a>
