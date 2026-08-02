@@ -152,8 +152,8 @@ const usages = [...usageCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].loc
   .toolbar-right .legend-link { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule-2); cursor: pointer; }
   .toolbar-right .legend-link:hover { color: var(--ink); text-decoration-color: var(--accent); }
 
-  .bom-wrap { border: 1px solid var(--ink); background: var(--paper); }
-  table.bom { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; }
+  .bom-wrap { border: 1px solid var(--ink); background: var(--paper); overflow-x: auto; }
+  table.bom { width: 100%; min-width: 560px; border-collapse: collapse; font-family: var(--mono); font-size: 12px; }
   table.bom thead th {
     text-align: left;
     padding: 12px 14px;
