@@ -677,6 +677,18 @@
   },
   {
     "family": "MTH",
+    "detail": "Agile / Scrum",
+    "since": 2026,
+    "maturity": 3,
+    "usages": [
+      {
+        "label": "Thales · 2026"
+      }
+    ],
+    "highlight": true
+  },
+  {
+    "family": "MTH",
     "detail": "Traçabilité des exigences (spec → code → test)",
     "since": 2019,
     "maturity": 5,
