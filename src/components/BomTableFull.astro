@@ -71,9 +71,11 @@ const counts = Object.fromEntries(families.map((f) => [f.code, rows.filter((r) =
               <td class="cat">{r.detail}</td>
               <td class="lvl"><MaturityBars level={r.maturity} /></td>
               <td class="use">
-                {r.usages.map((u) => (
-                  u.href ? <a class="use-chip" href={u.href}>{u.label}</a> : <span class="use-chip plain">{u.label}</span>
-                ))}
+                <div class="use-wrap">
+                  {r.usages.map((u) => (
+                    u.href ? <a class="use-chip" href={u.href}>{u.label}</a> : <span class="use-chip plain">{u.label}</span>
+                  ))}
+                </div>
               </td>
             </tr>
           ))}
@@ -177,7 +179,7 @@ const counts = Object.fromEntries(families.map((f) => [f.code, rows.filter((r) =
   td.ref { color: var(--accent); letter-spacing: 0.08em; white-space: nowrap; }
   td.cat { color: var(--ink); font-weight: 500; font-family: var(--sans); font-size: 13.5px; }
   td.lvl { white-space: nowrap; }
-  td.use { display: flex; flex-wrap: wrap; gap: 6px; }
+  .use-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
 
   tr:hover :global(.bars span:not(.off)) { background: var(--accent-2); }
 

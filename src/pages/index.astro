@@ -88,6 +88,7 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
         sur au moins un projet actif.
       </p>
       <BomTableCompact rows={bomRows} />
+      <a class="see-more" href="/stack/">Voir la BOM complète <span class="arr">→</span></a>
     </section>
 
     <section class="block" id="projects" style="padding-top: 56px;">
@@ -109,6 +110,7 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
           />
         ))}
       </div>
+      <a class="see-more" href="/projets/">Voir tous les projets <span class="arr">→</span></a>
     </section>
 
     <section class="block" id="roles" style="padding-top: 56px;">
@@ -261,6 +263,24 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
     margin: 0 0 22px;
   }
   .projects { display: flex; flex-direction: column; gap: 0; }
+
+  .see-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 150ms ease;
+  }
+  .see-more:hover { color: var(--accent); }
+  .see-more .arr { color: var(--accent); display: inline-block; transition: transform 180ms ease; }
+  .see-more:hover .arr { transform: translateX(4px); }
 
   #roles :global(.related) { border-top: none; margin-top: 0; padding-top: 0; }
 
