@@ -61,7 +61,20 @@ import SectionHead from "../../components/SectionHead.astro";
         <div class="col-form">
           <div class="col-title"><span>Message structuré</span><span class="pill pill-muted">~ 3 min</span></div>
 
-          <form class="form" id="contact-form">
+          <form
+            class="form"
+            id="contact-form"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hp-field">
+              <label>Ne pas remplir si humain : <input name="bot-field" /></label>
+            </p>
+
+            <div class="form-fields">
             <div class="form-row split">
               <div class="form-row">
                 <div class="lbl"><span>Nom</span><span class="opt">requis</span></div>
@@ -87,12 +100,12 @@ import SectionHead from "../../components/SectionHead.astro";
             <div class="form-row">
               <div class="lbl"><span>Sujet de l'échange</span><span class="opt">un ou plusieurs</span></div>
               <div class="chip-group">
-                <input type="checkbox" id="m-arch" name="topic" value="architecture" /><label for="m-arch">Architecture système</label>
-                <input type="checkbox" id="m-fpga" name="topic" value="fpga" /><label for="m-fpga">FPGA / embarqué</label>
-                <input type="checkbox" id="m-mentor" name="topic" value="mentorat" /><label for="m-mentor">Mentorat / formation</label>
-                <input type="checkbox" id="m-opp" name="topic" value="opportunite" /><label for="m-opp">Opportunité professionnelle</label>
-                <input type="checkbox" id="m-retour" name="topic" value="retour" /><label for="m-retour">Retour sur un projet/article</label>
-                <input type="checkbox" id="m-oth" name="topic" value="autre" /><label for="m-oth">Autre</label>
+                <input type="checkbox" id="m-arch" name="topic[]" value="architecture" /><label for="m-arch">Architecture système</label>
+                <input type="checkbox" id="m-fpga" name="topic[]" value="fpga" /><label for="m-fpga">FPGA / embarqué</label>
+                <input type="checkbox" id="m-mentor" name="topic[]" value="mentorat" /><label for="m-mentor">Mentorat / formation</label>
+                <input type="checkbox" id="m-opp" name="topic[]" value="opportunite" /><label for="m-opp">Opportunité professionnelle</label>
+                <input type="checkbox" id="m-retour" name="topic[]" value="retour" /><label for="m-retour">Retour sur un projet/article</label>
+                <input type="checkbox" id="m-oth" name="topic[]" value="autre" /><label for="m-oth">Autre</label>
               </div>
             </div>
 
@@ -103,15 +116,19 @@ import SectionHead from "../../components/SectionHead.astro";
 
             <div class="form-submit">
               <div class="meta">
-                <b>Vos données :</b> envoyées par email chiffré, pas de tracker,
+                <b>Vos données :</b> envoyées directement, pas de tracker,
                 pas de CRM tiers. Réponse perso sous 48 h ouvrées.
               </div>
               <button class="submit" type="submit">
-                Envoyer le message <span class="arr">→</span>
+                <span class="submit-label">Envoyer le message</span> <span class="arr">→</span>
               </button>
             </div>
-            <p class="form-note" id="form-note" hidden>
-              Ce formulaire n'est pas encore relié à un service d'envoi — écrivez-moi directement à
+            </div>
+            <p class="form-note ok" id="form-note-ok" hidden>
+              Message envoyé — merci. Je réponds personnellement sous 48 h ouvrées.
+            </p>
+            <p class="form-note err" id="form-note-err" hidden>
+              L'envoi a échoué — écrivez-moi directement à
               <a href="mailto:julien.aupart@gmail.com">julien.aupart@gmail.com</a> en attendant.
             </p>
           </form>
@@ -251,6 +268,7 @@ import SectionHead from "../../components/SectionHead.astro";
   .coord-foot b { color: var(--ink); font-weight: 500; }
 
   .form { display: flex; flex-direction: column; gap: 18px; }
+  .form-fields { display: flex; flex-direction: column; gap: 18px; }
   .form-row { display: flex; flex-direction: column; gap: 6px; }
   .form-row.split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .form-row .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); display: flex; justify-content: space-between; align-items: baseline; }
@@ -296,13 +314,17 @@ import SectionHead from "../../components/SectionHead.astro";
   button.submit:hover .arr { transform: translateX(4px); }
   button.submit .arr { transition: transform 180ms ease; display: inline-block; }
   .form-note {
-    margin: 4px 0 0;
+    margin: 14px 0 0;
     font-family: var(--mono);
     font-size: 11px;
     color: var(--ink-soft);
     letter-spacing: 0.02em;
   }
   .form-note a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  .form-note.ok { color: var(--green); font-size: 13px; }
+  .form-note.err { color: var(--accent-2); }
+
+  .hp-field { position: absolute; left: -5000px; }
 
   .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); }
   .fit > div { padding: 32px 36px; }
@@ -357,9 +379,45 @@ import SectionHead from "../../components/SectionHead.astro";
 
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
-  const note = document.getElementById("form-note");
-  form?.addEventListener("submit", (e) => {
+  const noteOk = document.getElementById("form-note-ok");
+  const noteErr = document.getElementById("form-note-err");
+  const submitBtn = form?.querySelector<HTMLButtonElement>("button.submit");
+  const submitLabel = form?.querySelector(".submit-label");
+
+  function encode(data: Record<string, string>) {
+    return Object.keys(data)
+      .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
+      .join("&");
+  }
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    note?.removeAttribute("hidden");
+    noteOk?.setAttribute("hidden", "");
+    noteErr?.setAttribute("hidden", "");
+
+    const formData = new FormData(form);
+    const payload: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      payload[key] = payload[key] ? `${payload[key]}, ${value}` : String(value);
+    });
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitLabel) submitLabel.textContent = "Envoi…";
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode(payload),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      form.querySelector<HTMLDivElement>(".form-fields")?.setAttribute("hidden", "");
+      noteOk?.removeAttribute("hidden");
+    } catch {
+      noteErr?.removeAttribute("hidden");
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitLabel) submitLabel.textContent = "Envoyer le message";
+    }
   });
 </script>
