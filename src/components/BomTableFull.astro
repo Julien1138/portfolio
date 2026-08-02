@@ -25,17 +25,26 @@ export interface Props {
 }
 const { rows, families } = Astro.props;
 
-const counts = Object.fromEntries(families.map((f) => [f.code, rows.filter((r) => r.family === f.code).length]));
+// Filter by usage (project/role/client) rather than family — a given
+// technology can show up under several usages, so this is a plain
+// count of rows referencing each one, not a partition of the table.
+const usageCounts = new Map<string, number>();
+for (const r of rows) {
+  for (const u of r.usages) {
+    usageCounts.set(u.label, (usageCounts.get(u.label) ?? 0) + 1);
+  }
+}
+const usages = [...usageCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 ---
 
 <div class="filter-bar">
   <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
-    <span class="label">Famille</span>
+    <span class="label">Usage</span>
     <div class="chips" id="filter-chips">
-      <button class="chip active" data-fam="all" type="button">all <span class="count">{rows.length}</span></button>
-      {families.map((f) => (
-        <button class="chip" data-fam={f.code} type="button">
-          {f.title.split(" ")[0].toLowerCase()} <span class="count">{counts[f.code]}</span>
+      <button class="chip active" data-usage="all" type="button">all <span class="count">{rows.length}</span></button>
+      {usages.map(([label, count]) => (
+        <button class="chip" data-usage={label} type="button">
+          {label} <span class="count">{count}</span>
         </button>
       ))}
     </div>
@@ -66,7 +75,7 @@ const counts = Object.fromEntries(families.map((f) => [f.code, rows.filter((r) =
             </td>
           </tr>
           {rows.filter((r) => r.family === f.code).map((r) => (
-            <tr data-fam={f.code}>
+            <tr data-fam={f.code} data-usages={r.usages.map((u) => u.label).join("||")}>
               <td class="ref">{r.ref}</td>
               <td class="cat">{r.detail}</td>
               <td class="lvl"><MaturityBars level={r.maturity} /></td>
@@ -229,22 +238,27 @@ const counts = Object.fromEntries(families.map((f) => [f.code, rows.filter((r) =
 
   if (chipsWrap && body) {
     chipsWrap.addEventListener("click", (e) => {
-      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-fam]");
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-usage]");
       if (!btn) return;
       chipsWrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
       btn.classList.add("active");
-      const fam = btn.dataset.fam || "all";
+      const usage = btn.dataset.usage || "all";
 
       const rows = Array.from(body.querySelectorAll<HTMLTableRowElement>("tr[data-fam]"));
       const famRows = Array.from(body.querySelectorAll<HTMLTableRowElement>("tr[data-fam-row]"));
+      const visibleFams = new Set<string>();
       let visible = 0;
       rows.forEach((r) => {
-        const show = fam === "all" || r.dataset.fam === fam;
+        const rowUsages = (r.dataset.usages || "").split("||");
+        const show = usage === "all" || rowUsages.includes(usage);
         r.style.display = show ? "" : "none";
-        if (show) visible++;
+        if (show) {
+          visible++;
+          if (r.dataset.fam) visibleFams.add(r.dataset.fam);
+        }
       });
       famRows.forEach((fr) => {
-        fr.style.display = fam === "all" || fr.dataset.famRow === fam ? "" : "none";
+        fr.style.display = usage === "all" || visibleFams.has(fr.dataset.famRow || "") ? "" : "none";
       });
       if (counter) counter.textContent = String(visible);
     });

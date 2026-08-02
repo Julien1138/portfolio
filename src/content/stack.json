@@ -490,18 +490,6 @@
     ]
   },
   {
-    "family": "BCK",
-    "detail": "Tiptap / ProseMirror",
-    "since": 2019,
-    "maturity": 3,
-    "usages": [
-      {
-        "label": "R-01 · Architecte (Naept)",
-        "href": "/roles/r-01-architecte-logiciel-systeme/"
-      }
-    ]
-  },
-  {
     "family": "FRT",
     "detail": "Vue.js",
     "since": 2019,
@@ -520,7 +508,7 @@
   },
   {
     "family": "FRT",
-    "detail": "React / TypeScript",
+    "detail": "TypeScript",
     "since": 2019,
     "maturity": 3,
     "usages": [
@@ -549,8 +537,15 @@
     "maturity": 3,
     "usages": [
       {
-        "label": "R-02 · Responsable systèmes embarqués",
-        "href": "/roles/r-02-responsable-systemes-embarques/"
+        "label": "R-01 · Architecte (Naept)",
+        "href": "/roles/r-01-architecte-logiciel-systeme/"
+      },
+      {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      },
+      {
+        "label": "Projets perso"
       }
     ]
   },
@@ -563,10 +558,18 @@
       {
         "label": "P-01 · Vélo JCDecaux",
         "href": "/projets/p-01-controleur-moteur-velo-electrique/"
-      },
+      }
+    ]
+  },
+  {
+    "family": "FRT",
+    "detail": "Tiptap / ProseMirror",
+    "since": 2019,
+    "maturity": 3,
+    "usages": [
       {
-        "label": "R-00 · Expert électronique numérique",
-        "href": "/roles/r-00-jcdecaux-fpga/"
+        "label": "R-01 · Architecte (Naept)",
+        "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
     ]
   },
