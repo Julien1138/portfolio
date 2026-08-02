@@ -137,7 +137,7 @@
     "maturity": 5,
     "usages": [
       {
-        "label": "P-02 · Prototype",
+        "label": "P-02 · Audit Proto",
         "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
       },
       {
@@ -161,7 +161,7 @@
         "href": "/projets/p-01-controleur-moteur-velo-electrique/"
       },
       {
-        "label": "P-02 · Prototype",
+        "label": "P-02 · Audit Proto",
         "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
       }
     ]
@@ -193,6 +193,10 @@
     "maturity": 5,
     "usages": [
       {
+        "label": "P-02 · Audit Proto",
+        "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
+      },
+      {
         "label": "Projets perso"
       }
     ]
@@ -207,7 +211,7 @@
         "label": "Safran · 2010"
       },
       {
-        "label": "P-02 · Prototype",
+        "label": "P-02 · Audit Proto",
         "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
       },
       {
@@ -291,6 +295,18 @@
   },
   {
     "family": "PROTO",
+    "detail": "Protobuf",
+    "since": 2020,
+    "maturity": 5,
+    "usages": [
+      {
+        "label": "P-02 · Audit Proto",
+        "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
+      }
+    ]
+  },
+  {
+    "family": "PROTO",
     "detail": "MODBUS",
     "since": 2025,
     "maturity": 3,
@@ -334,7 +350,7 @@
     "maturity": 4,
     "usages": [
       {
-        "label": "P-02 · Prototype",
+        "label": "P-02 · Audit Proto",
         "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
       },
       {
@@ -478,18 +494,6 @@
     ]
   },
   {
-    "family": "BCK",
-    "detail": "Protobuf",
-    "since": 2020,
-    "maturity": 3,
-    "usages": [
-      {
-        "label": "P-02 · Prototype",
-        "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
-      }
-    ]
-  },
-  {
     "family": "FRT",
     "detail": "Vue.js",
     "since": 2019,
@@ -502,6 +506,9 @@
       {
         "label": "R-01 · Architecte (Naept)",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
+      },
+      {
+        "label": "Projets perso"
       }
     ],
     "highlight": true
@@ -525,7 +532,7 @@
     "maturity": 3,
     "usages": [
       {
-        "label": "P-02 · Prototype",
+        "label": "P-02 · Audit Proto",
         "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
       }
     ]
@@ -533,19 +540,35 @@
   {
     "family": "FRT",
     "detail": "Ionic",
-    "since": 2020,
-    "maturity": 3,
+    "since": 2022,
+    "maturity": 5,
     "usages": [
-      {
-        "label": "R-01 · Architecte (Naept)",
-        "href": "/roles/r-01-architecte-logiciel-systeme/"
-      },
       {
         "label": "P-03 · Boîtier connecté",
         "href": "/projets/p-03-plateforme-monitoring-industriel/"
       },
       {
+        "label": "R-01 · Architecte (ID-1)",
+        "href": "/roles/r-01-architecte-logiciel-systeme/"
+      },
+      {
+        "label": "R-02 · Responsable systèmes embarqués",
+        "href": "/roles/r-02-responsable-systemes-embarques/"
+      },
+      {
         "label": "Projets perso"
+      }
+    ]
+  },
+  {
+    "family": "FRT",
+    "detail": "Bootstrap",
+    "since": 2019,
+    "maturity": 4,
+    "usages": [
+      {
+        "label": "R-01 · Architecte (Naept)",
+        "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
     ]
   },
@@ -570,6 +593,17 @@
       {
         "label": "R-01 · Architecte (Naept)",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
+      }
+    ]
+  },
+  {
+    "family": "FRT",
+    "detail": "Astro",
+    "since": 2026,
+    "maturity": 3,
+    "usages": [
+      {
+        "label": "Ce portfolio · 2026"
       }
     ]
   },
