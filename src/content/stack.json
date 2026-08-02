@@ -1,10 +1,8 @@
 [
   {
-    "id": "fpga-01",
     "family": "FPGA",
-    "ref": "FPGA-01",
     "detail": "VHDL",
-    "since": 2008,
+    "since": 2009,
     "maturity": 5,
     "usages": [
       {
@@ -18,12 +16,11 @@
       {
         "label": "Thales · 2026"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "fpga-02",
     "family": "FPGA",
-    "ref": "FPGA-02",
     "detail": "Xilinx (Spartan 3/6/7, Virtex 4/5/UltraScale+)",
     "since": 2009,
     "maturity": 5,
@@ -37,15 +34,14 @@
     ]
   },
   {
-    "id": "fpga-03",
     "family": "FPGA",
-    "ref": "FPGA-03",
     "detail": "Altera (Cyclone II/III/IV/V)",
-    "since": 2008,
+    "since": 2009,
     "maturity": 5,
     "usages": [
       {
-        "label": "Safran · 2008"
+        "label": "P-00 · FlexRay (stage)",
+        "href": "/projets/p-00-outil-flexray-safran/"
       },
       {
         "label": "R-00 · JCDecaux",
@@ -54,9 +50,7 @@
     ]
   },
   {
-    "id": "fpga-05",
     "family": "FPGA",
-    "ref": "FPGA-05",
     "detail": "Lattice (MachXO2)",
     "since": 2014,
     "maturity": 4,
@@ -68,9 +62,7 @@
     ]
   },
   {
-    "id": "fpga-06",
     "family": "FPGA",
-    "ref": "FPGA-06",
     "detail": "Verilog (lecture)",
     "since": 2014,
     "maturity": 2,
@@ -85,9 +77,7 @@
     ]
   },
   {
-    "id": "fpga-04",
     "family": "FPGA",
-    "ref": "FPGA-04",
     "detail": "TCL — génération automatique de code VHDL",
     "since": 2025,
     "maturity": 3,
@@ -98,9 +88,7 @@
     ]
   },
   {
-    "id": "emb-01",
     "family": "EMB",
-    "ref": "EMB-01",
     "detail": "C / C++",
     "since": 2009,
     "maturity": 5,
@@ -117,12 +105,11 @@
         "label": "R-02 · ID-1",
         "href": "/roles/r-02-responsable-systemes-embarques/"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "emb-02",
     "family": "EMB",
-    "ref": "EMB-02",
     "detail": "ESP32 (S3, 8266)",
     "since": 2020,
     "maturity": 5,
@@ -142,9 +129,7 @@
     ]
   },
   {
-    "id": "emb-04",
     "family": "EMB",
-    "ref": "EMB-04",
     "detail": "STM32",
     "since": 2017,
     "maturity": 4,
@@ -160,9 +145,7 @@
     ]
   },
   {
-    "id": "emb-03",
     "family": "EMB",
-    "ref": "EMB-03",
     "detail": "FreeRTOS",
     "since": 2017,
     "maturity": 4,
@@ -182,9 +165,7 @@
     ]
   },
   {
-    "id": "emb-05",
     "family": "EMB",
-    "ref": "EMB-05",
     "detail": "Bare-metal (sans OS)",
     "since": 2009,
     "maturity": 5,
@@ -195,12 +176,55 @@
     ]
   },
   {
-    "id": "proto-01",
     "family": "PROTO",
-    "ref": "PROTO-01",
+    "detail": "SPI / I2C / UART",
+    "since": 2009,
+    "maturity": 5,
+    "usages": [
+      {
+        "label": "Safran · 2010"
+      },
+      {
+        "label": "P-02 · Prototype",
+        "href": "/projets/p-02-reprise-prototype-boitier-mesure/"
+      },
+      {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      },
+      {
+        "label": "R-00 · JCDecaux",
+        "href": "/roles/r-00-jcdecaux-fpga/"
+      },
+      {
+        "label": "R-02 · ID-1",
+        "href": "/roles/r-02-responsable-systemes-embarques/"
+      },
+      {
+        "label": "Projets perso"
+      }
+    ]
+  },
+  {
+    "family": "PROTO",
+    "detail": "RS323 / RS422 / RS485",
+    "since": 2009,
+    "maturity": 5,
+    "usages": [
+      {
+        "label": "Safran · 2010"
+      },
+      {
+        "label": "R-00 · JCDecaux",
+        "href": "/roles/r-00-jcdecaux-fpga/"
+      }
+    ]
+  },
+  {
+    "family": "PROTO",
     "detail": "FlexRay",
-    "since": 2008,
-    "maturity": 4,
+    "since": 2009,
+    "maturity": 3,
     "usages": [
       {
         "label": "P-00 · FlexRay (stage)",
@@ -209,9 +233,7 @@
     ]
   },
   {
-    "id": "proto-02",
     "family": "PROTO",
-    "ref": "PROTO-02",
     "detail": "CAN bus",
     "since": 2014,
     "maturity": 4,
@@ -227,26 +249,26 @@
     ]
   },
   {
-    "id": "proto-03",
     "family": "PROTO",
-    "ref": "PROTO-03",
-    "detail": "RS422 / RS485",
-    "since": 2014,
+    "detail": "MODBUS",
+    "since": 2025,
     "maturity": 3,
     "usages": [
       {
-        "label": "R-00 · JCDecaux",
-        "href": "/roles/r-00-jcdecaux-fpga/"
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      },
+      {
+        "label": "R-02 · ID-1",
+        "href": "/roles/r-02-responsable-systemes-embarques/"
       }
     ]
   },
   {
-    "id": "proto-04",
     "family": "PROTO",
-    "ref": "PROTO-04",
     "detail": "AURORA",
     "since": 2025,
-    "maturity": 3,
+    "maturity": 4,
     "usages": [
       {
         "label": "Thales · 2026"
@@ -254,9 +276,7 @@
     ]
   },
   {
-    "id": "proto-05",
     "family": "PROTO",
-    "ref": "PROTO-05",
     "detail": "JESD204C",
     "since": 2025,
     "maturity": 3,
@@ -267,22 +287,7 @@
     ]
   },
   {
-    "id": "proto-06",
-    "family": "PROTO",
-    "ref": "PROTO-06",
-    "detail": "AXI-Lite",
-    "since": 2025,
-    "maturity": 3,
-    "usages": [
-      {
-        "label": "Thales · 2026"
-      }
-    ]
-  },
-  {
-    "id": "elec-01",
     "family": "ELEC",
-    "ref": "ELEC-01",
     "detail": "Conception carte électronique & schématique",
     "since": 2012,
     "maturity": 4,
@@ -295,12 +300,11 @@
         "label": "P-03 · Boîtier connecté",
         "href": "/projets/p-03-plateforme-monitoring-industriel/"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "elec-02",
     "family": "ELEC",
-    "ref": "ELEC-02",
     "detail": "Ethernet / Wi-Fi / 4G — interfaces réseau embarquées",
     "since": 2020,
     "maturity": 4,
@@ -312,12 +316,10 @@
     ]
   },
   {
-    "id": "elec-03",
-    "family": "ELEC",
-    "ref": "ELEC-03",
-    "detail": "Fusion360 & impression 3D",
+    "family": "CAO",
+    "detail": "Kicad — conception PCB",
     "since": 2021,
-    "maturity": 3,
+    "maturity": 4,
     "usages": [
       {
         "label": "P-03 · Boîtier connecté",
@@ -326,9 +328,46 @@
     ]
   },
   {
-    "id": "bck-01",
+    "family": "CAO",
+    "detail": "Fusion360 — conception mécanique",
+    "since": 2021,
+    "maturity": 4,
+    "usages": [
+      {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      }
+    ]
+  },
+  {
+    "family": "CAO",
+    "detail": "SolidWorks — conception mécanique",
+    "since": 2021,
+    "maturity": 4,
+    "usages": [
+      {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      }
+    ]
+  },
+  {
+    "family": "CAO",
+    "detail": "Impression 3D — prototypage rapide",
+    "since": 2021,
+    "maturity": 4,
+    "usages": [
+      {
+        "label": "Projets perso"
+      },
+      {
+        "label": "P-03 · Boîtier connecté",
+        "href": "/projets/p-03-plateforme-monitoring-industriel/"
+      }
+    ]
+  },
+  {
     "family": "BCK",
-    "ref": "BCK-01",
     "detail": "Symfony / API Platform",
     "since": 2020,
     "maturity": 5,
@@ -341,12 +380,11 @@
         "label": "R-02 · ID-1",
         "href": "/roles/r-02-responsable-systemes-embarques/"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "bck-02",
     "family": "BCK",
-    "ref": "BCK-02",
     "detail": "Laravel",
     "since": 2019,
     "maturity": 4,
@@ -358,9 +396,7 @@
     ]
   },
   {
-    "id": "bck-03",
     "family": "BCK",
-    "ref": "BCK-03",
     "detail": "MySQL / MariaDB",
     "since": 2019,
     "maturity": 4,
@@ -372,9 +408,7 @@
     ]
   },
   {
-    "id": "bck-04",
     "family": "BCK",
-    "ref": "BCK-04",
     "detail": "InfluxDB",
     "since": 2021,
     "maturity": 3,
@@ -386,9 +420,7 @@
     ]
   },
   {
-    "id": "bck-05",
     "family": "BCK",
-    "ref": "BCK-05",
     "detail": "Protobuf",
     "since": 2020,
     "maturity": 3,
@@ -400,9 +432,7 @@
     ]
   },
   {
-    "id": "bck-06",
     "family": "BCK",
-    "ref": "BCK-06",
     "detail": "Tiptap / ProseMirror",
     "since": 2019,
     "maturity": 3,
@@ -414,9 +444,7 @@
     ]
   },
   {
-    "id": "frt-01",
     "family": "FRT",
-    "ref": "FRT-01",
     "detail": "Vue.js",
     "since": 2019,
     "maturity": 5,
@@ -429,12 +457,11 @@
         "label": "R-01 · Architecte (Naept)",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "frt-02",
     "family": "FRT",
-    "ref": "FRT-02",
     "detail": "React / TypeScript",
     "since": 2019,
     "maturity": 3,
@@ -446,9 +473,7 @@
     ]
   },
   {
-    "id": "frt-03",
     "family": "FRT",
-    "ref": "FRT-03",
     "detail": "Preact",
     "since": 2020,
     "maturity": 3,
@@ -460,9 +485,7 @@
     ]
   },
   {
-    "id": "frt-04",
     "family": "FRT",
-    "ref": "FRT-04",
     "detail": "Ionic",
     "since": 2020,
     "maturity": 3,
@@ -474,9 +497,7 @@
     ]
   },
   {
-    "id": "frt-05",
     "family": "FRT",
-    "ref": "FRT-05",
     "detail": "Qt",
     "since": 2014,
     "maturity": 4,
@@ -492,9 +513,7 @@
     ]
   },
   {
-    "id": "inf-01",
     "family": "INF",
-    "ref": "INF-01",
     "detail": "Docker",
     "since": 2019,
     "maturity": 4,
@@ -507,12 +526,11 @@
         "label": "R-01 · Architecte",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "inf-02",
     "family": "INF",
-    "ref": "INF-02",
     "detail": "GitLab CI / CI-CD",
     "since": 2019,
     "maturity": 4,
@@ -524,9 +542,7 @@
     ]
   },
   {
-    "id": "inf-03",
     "family": "INF",
-    "ref": "INF-03",
     "detail": "Python — scripting & outillage",
     "since": 2024,
     "maturity": 3,
@@ -541,9 +557,7 @@
     ]
   },
   {
-    "id": "mth-01",
     "family": "MTH",
-    "ref": "MTH-01",
     "detail": "Traçabilité des exigences (spec → code → test)",
     "since": 2019,
     "maturity": 5,
@@ -552,12 +566,11 @@
         "label": "R-01 · Architecte (Naept)",
         "href": "/roles/r-01-architecte-logiciel-systeme/"
       }
-    ]
+    ],
+    "highlight": true
   },
   {
-    "id": "mth-02",
     "family": "MTH",
-    "ref": "MTH-02",
     "detail": "DO-178B / DO-254",
     "since": 2009,
     "maturity": 3,

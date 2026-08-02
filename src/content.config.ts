@@ -144,10 +144,26 @@ const roles = defineCollection({
 });
 
 const stack = defineCollection({
-  loader: file("./src/content/stack.json"),
+  // `id` and `ref` (e.g. "FPGA-03") are computed here from array position
+  // within each family, not hand-maintained in the JSON — so adding,
+  // removing, or reordering rows in stack.json never requires renumbering
+  // anything. Rows only ever need: family, detail, since, maturity, usages,
+  // and an optional `highlight` flag for the homepage preview.
+  loader: file("./src/content/stack.json", {
+    parser: (text) => {
+      const rows = JSON.parse(text) as Array<Record<string, unknown>>;
+      const counts: Record<string, number> = {};
+      return rows.map((row) => {
+        const family = row.family as string;
+        counts[family] = (counts[family] ?? 0) + 1;
+        const n = String(counts[family]).padStart(2, "0");
+        return { ...row, id: `${family.toLowerCase()}-${n}`, ref: `${family}-${n}` };
+      });
+    },
+  }),
   schema: z.object({
     id: z.string(),
-    family: z.enum(["FPGA", "EMB", "PROTO", "ELEC", "BCK", "FRT", "INF", "MTH"]),
+    family: z.enum(["FPGA", "EMB", "PROTO", "ELEC", "CAO", "BCK", "FRT", "INF", "MTH"]),
     ref: z.string(),
     // Single named technology — no bundled "detail" strings anymore, so
     // maturity reflects one real thing instead of a category average.
@@ -158,6 +174,10 @@ const stack = defineCollection({
     // this was actually used, linking to a project/role fiche when one
     // exists, else a plain "client · year" label.
     usages: z.array(z.object({ label: z.string(), href: z.string().optional() })),
+    // Marks the small curated set shown on the homepage preview table —
+    // independent of position, so reordering stack.json can't silently
+    // swap out which technology appears there.
+    highlight: z.boolean().default(false),
   }),
 });
 

@@ -18,13 +18,10 @@ const featured = allProjects
 
 const roles = (await getCollection("roles")).sort((a, b) => a.data.order - b.data.order);
 
-// Curated highlights, one per family — pulled from the same stack
-// collection as /stack/ so this preview can't drift out of sync with it.
-const stackAll = await getCollection("stack");
-const bomHighlightIds = ["fpga-01", "emb-01", "proto-01", "elec-01", "bck-01", "frt-01", "inf-01", "mth-01"];
-const bomRows = bomHighlightIds
-  .map((id) => stackAll.find((r) => r.id === id)?.data)
-  .filter((r) => r !== undefined);
+// Curated highlights — flagged with "highlight": true in stack.json,
+// pulled from the same collection as /stack/ so this preview can't drift
+// out of sync with it (and survives reordering/renumbering there).
+const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => r.highlight);
 ---
 
 <BaseLayout
