@@ -58,8 +58,8 @@ const linkedFichesCount = new Set(rows.flatMap((r) => r.usages.map((u) => u.href
         <p class="lead">
           Aucun graphique de progression cliché, aucune barre « expert » à 87 %.
           Je liste <em class="hl">ce qui tourne en production aujourd'hui</em>, depuis combien
-          de temps, et à quel niveau je le maîtrise. Le reste — ce que je n'ai
-          qu'effleuré, ce que je refuse de prendre — est documenté en bas de page.
+          de temps, et à quel niveau je le maîtrise. Ce que je n'ai qu'effleuré
+          est documenté en bas de page.
         </p>
       </div>
 
@@ -117,13 +117,12 @@ const linkedFichesCount = new Set(rows.flatMap((r) => r.usages.map((u) => u.href
             La BOM ci-dessus est ce que je maîtrise réellement, en autonomie.
           </p>
           <p>
-            Le reste — ce que j'ai touché sans le revendiquer, et les choix
-            que j'évite par principe quand j'ai la main sur l'architecture —
-            est tout aussi utile pour comprendre ma façon de raisonner.
+            Le reste — ce que j'ai touché sans le revendiquer — est tout
+            aussi utile pour comprendre ma façon d'apprendre.
           </p>
         </div>
 
-        <div class="out-right">
+        <div class="out-right single">
           <div class="out-card has-touched">
             <div class="pre"><span class="swatch"></span>Touché — non revendiqué</div>
             <ul>
@@ -131,17 +130,6 @@ const linkedFichesCount = new Set(rows.flatMap((r) => r.usages.map((u) => u.href
               <li>Microservices<span class="lbl">curiosité 2024</span></li>
               <li>Java / Android<span class="lbl">app perso 2016</span></li>
               <li>Three.js / WebGL<span class="lbl">curiosité 2019</span></li>
-            </ul>
-          </div>
-          <div class="out-card no">
-            <div class="pre"><span class="swatch"></span>Évité — par principe</div>
-            <ul>
-              <li>JS framework du mois<span class="lbl">trop volatile</span></li>
-              <li>No-code en cœur<span class="lbl">non auditable</span></li>
-              <li>NoSQL document-only<span class="lbl">si schéma stable</span></li>
-              <li>Cloud lock-in profond<span class="lbl">on-prem-first</span></li>
-              <li>Gen-AI en boucle critique<span class="lbl">si non-déterministe</span></li>
-              <li>Stack JVM lourde<span class="lbl">hors contexte fort</span></li>
             </ul>
           </div>
         </div>
@@ -216,6 +204,7 @@ const linkedFichesCount = new Set(rows.flatMap((r) => r.usages.map((u) => u.href
   .out-left p em { font-style: italic; color: var(--ink); }
 
   .out-right { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .out-right.single { grid-template-columns: 1fr; max-width: 420px; }
   .out-card { border: 1px solid var(--rule); padding: 18px 20px; background: var(--paper); }
   .out-card .pre { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .out-card .pre .swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--ink-soft); flex-shrink: 0; }
