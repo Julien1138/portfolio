@@ -231,40 +231,42 @@ const usages = [...usageCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].loc
 </style>
 
 <script>
-  const chipsWrap = document.getElementById("filter-chips");
-  const body = document.getElementById("bom-body");
-  const counter = document.getElementById("row-count");
-  const legendLink = document.getElementById("scroll-legend");
+  document.addEventListener("astro:page-load", () => {
+    const chipsWrap = document.getElementById("filter-chips");
+    const body = document.getElementById("bom-body");
+    const counter = document.getElementById("row-count");
+    const legendLink = document.getElementById("scroll-legend");
 
-  if (chipsWrap && body) {
-    chipsWrap.addEventListener("click", (e) => {
-      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-usage]");
-      if (!btn) return;
-      chipsWrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-      btn.classList.add("active");
-      const usage = btn.dataset.usage || "all";
+    if (chipsWrap && body) {
+      chipsWrap.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-usage]");
+        if (!btn) return;
+        chipsWrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+        btn.classList.add("active");
+        const usage = btn.dataset.usage || "all";
 
-      const rows = Array.from(body.querySelectorAll<HTMLTableRowElement>("tr[data-fam]"));
-      const famRows = Array.from(body.querySelectorAll<HTMLTableRowElement>("tr[data-fam-row]"));
-      const visibleFams = new Set<string>();
-      let visible = 0;
-      rows.forEach((r) => {
-        const rowUsages = (r.dataset.usages || "").split("||");
-        const show = usage === "all" || rowUsages.includes(usage);
-        r.style.display = show ? "" : "none";
-        if (show) {
-          visible++;
-          if (r.dataset.fam) visibleFams.add(r.dataset.fam);
-        }
+        const rows = Array.from(body.querySelectorAll<HTMLTableRowElement>("tr[data-fam]"));
+        const famRows = Array.from(body.querySelectorAll<HTMLTableRowElement>("tr[data-fam-row]"));
+        const visibleFams = new Set<string>();
+        let visible = 0;
+        rows.forEach((r) => {
+          const rowUsages = (r.dataset.usages || "").split("||");
+          const show = usage === "all" || rowUsages.includes(usage);
+          r.style.display = show ? "" : "none";
+          if (show) {
+            visible++;
+            if (r.dataset.fam) visibleFams.add(r.dataset.fam);
+          }
+        });
+        famRows.forEach((fr) => {
+          fr.style.display = usage === "all" || visibleFams.has(fr.dataset.famRow || "") ? "" : "none";
+        });
+        if (counter) counter.textContent = String(visible);
       });
-      famRows.forEach((fr) => {
-        fr.style.display = usage === "all" || visibleFams.has(fr.dataset.famRow || "") ? "" : "none";
-      });
-      if (counter) counter.textContent = String(visible);
+    }
+
+    legendLink?.addEventListener("click", () => {
+      document.getElementById("legend")?.scrollIntoView({ behavior: "smooth", block: "center" });
     });
-  }
-
-  legendLink?.addEventListener("click", () => {
-    document.getElementById("legend")?.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 </script>

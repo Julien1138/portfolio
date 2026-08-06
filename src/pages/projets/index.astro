@@ -225,48 +225,51 @@ const filters = [
 </style>
 
 <script>
-  const chipsWrap = document.getElementById("filter-chips");
-  const sortSelect = document.getElementById("sort-select") as HTMLSelectElement | null;
-  const list = document.getElementById("proj-list");
-  const countEl = document.getElementById("visible-count");
-  if (!chipsWrap || !list) throw new Error("projects index: missing DOM nodes");
+  document.addEventListener("astro:page-load", () => {
+    const chipsWrap = document.getElementById("filter-chips");
+    const sortSelect = document.getElementById("sort-select") as HTMLSelectElement | null;
+    const list = document.getElementById("proj-list");
+    const countEl = document.getElementById("visible-count");
+    // Bail out rather than throw: this handler also fires on every other page.
+    if (!chipsWrap || !list) return;
 
-  let activeTag = "all";
+    let activeTag = "all";
 
-  function applyFilter() {
-    const items = Array.from(list!.querySelectorAll<HTMLLIElement>("li"));
-    let visible = 0;
-    items.forEach((li) => {
-      const card = li.querySelector<HTMLAnchorElement>(".pcard");
-      const show = activeTag === "all" || card?.dataset.tag === activeTag;
-      li.style.display = show ? "" : "none";
-      if (show) visible++;
+    function applyFilter() {
+      const items = Array.from(list!.querySelectorAll<HTMLLIElement>("li"));
+      let visible = 0;
+      items.forEach((li) => {
+        const card = li.querySelector<HTMLAnchorElement>(".pcard");
+        const show = activeTag === "all" || card?.dataset.tag === activeTag;
+        li.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      if (countEl) countEl.textContent = String(visible);
+    }
+
+    chipsWrap.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-tag]");
+      if (!btn) return;
+      chipsWrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+      btn.classList.add("active");
+      activeTag = btn.dataset.tag || "all";
+      applyFilter();
     });
-    if (countEl) countEl.textContent = String(visible);
-  }
 
-  chipsWrap.addEventListener("click", (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-tag]");
-    if (!btn) return;
-    chipsWrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
-    btn.classList.add("active");
-    activeTag = btn.dataset.tag || "all";
-    applyFilter();
-  });
-
-  sortSelect?.addEventListener("change", () => {
-    const items = Array.from(list!.querySelectorAll<HTMLLIElement>("li"));
-    const dir = sortSelect.value;
-    items.sort((a, b) => {
-      const ca = a.querySelector<HTMLAnchorElement>(".pcard")!;
-      const cb = b.querySelector<HTMLAnchorElement>(".pcard")!;
-      if (dir === "domaine") {
-        return (ca.dataset.category || "").localeCompare(cb.dataset.category || "");
-      }
-      const ya = Number(ca.dataset.yearStart || 0);
-      const yb = Number(cb.dataset.yearStart || 0);
-      return dir === "date-asc" ? ya - yb : yb - ya;
+    sortSelect?.addEventListener("change", () => {
+      const items = Array.from(list!.querySelectorAll<HTMLLIElement>("li"));
+      const dir = sortSelect.value;
+      items.sort((a, b) => {
+        const ca = a.querySelector<HTMLAnchorElement>(".pcard")!;
+        const cb = b.querySelector<HTMLAnchorElement>(".pcard")!;
+        if (dir === "domaine") {
+          return (ca.dataset.category || "").localeCompare(cb.dataset.category || "");
+        }
+        const ya = Number(ca.dataset.yearStart || 0);
+        const yb = Number(cb.dataset.yearStart || 0);
+        return dir === "date-asc" ? ya - yb : yb - ya;
+      });
+      items.forEach((li) => list!.appendChild(li));
     });
-    items.forEach((li) => list!.appendChild(li));
   });
 </script>
