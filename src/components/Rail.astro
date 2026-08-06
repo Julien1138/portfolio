@@ -201,22 +201,24 @@ const items = [
 </style>
 
 <script>
-  const btn = document.getElementById("mobile-menu-btn");
-  const rail = document.getElementById("rail");
-  const overlay = document.getElementById("rail-overlay");
+  document.addEventListener("astro:page-load", () => {
+    const btn = document.getElementById("mobile-menu-btn");
+    const rail = document.getElementById("rail");
+    const overlay = document.getElementById("rail-overlay");
 
-  function closeMenu() {
-    rail?.classList.remove("open");
-    overlay?.classList.remove("open");
-    btn?.setAttribute("aria-expanded", "false");
-  }
-  function toggleMenu() {
-    const isOpen = rail?.classList.toggle("open");
-    overlay?.classList.toggle("open", isOpen);
-    btn?.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  }
+    function closeMenu() {
+      rail?.classList.remove("open");
+      overlay?.classList.remove("open");
+      btn?.setAttribute("aria-expanded", "false");
+    }
+    function toggleMenu() {
+      const isOpen = rail?.classList.toggle("open");
+      overlay?.classList.toggle("open", isOpen);
+      btn?.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
 
-  btn?.addEventListener("click", toggleMenu);
-  overlay?.addEventListener("click", closeMenu);
-  rail?.querySelectorAll("nav a").forEach((a) => a.addEventListener("click", closeMenu));
+    btn?.addEventListener("click", toggleMenu);
+    overlay?.addEventListener("click", closeMenu);
+    rail?.querySelectorAll("nav a").forEach((a) => a.addEventListener("click", closeMenu));
+  });
 </script>

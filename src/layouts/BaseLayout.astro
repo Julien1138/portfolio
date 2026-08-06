@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import DatasheetStrip, { type Field } from "../components/DatasheetStrip.astro";
 import ThemeInitScript from "../components/ThemeInitScript.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 
 export interface Props {
@@ -40,6 +41,7 @@ const {
       rel="stylesheet"
     />
     <ThemeInitScript />
+    <ClientRouter />
   </head>
   <body data-container={container === "wide" ? undefined : container}>
     <Rail active={active} />

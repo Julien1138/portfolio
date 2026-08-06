@@ -378,46 +378,49 @@ import SectionHead from "../../components/SectionHead.astro";
 </style>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
-  const noteOk = document.getElementById("form-note-ok");
-  const noteErr = document.getElementById("form-note-err");
-  const submitBtn = form?.querySelector<HTMLButtonElement>("button.submit");
-  const submitLabel = form?.querySelector(".submit-label");
+  document.addEventListener("astro:page-load", () => {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    if (!form) return;
+    const noteOk = document.getElementById("form-note-ok");
+    const noteErr = document.getElementById("form-note-err");
+    const submitBtn = form.querySelector<HTMLButtonElement>("button.submit");
+    const submitLabel = form.querySelector(".submit-label");
 
-  function encode(data: Record<string, string>) {
-    return Object.keys(data)
-      .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
-      .join("&");
-  }
-
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    noteOk?.setAttribute("hidden", "");
-    noteErr?.setAttribute("hidden", "");
-
-    const formData = new FormData(form);
-    const payload: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      payload[key] = payload[key] ? `${payload[key]}, ${value}` : String(value);
-    });
-
-    if (submitBtn) submitBtn.disabled = true;
-    if (submitLabel) submitLabel.textContent = "Envoi…";
-
-    try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode(payload),
-      });
-      if (!res.ok) throw new Error(String(res.status));
-      form.reset();
-      form.querySelector<HTMLDivElement>(".form-fields")?.setAttribute("hidden", "");
-      noteOk?.removeAttribute("hidden");
-    } catch {
-      noteErr?.removeAttribute("hidden");
-      if (submitBtn) submitBtn.disabled = false;
-      if (submitLabel) submitLabel.textContent = "Envoyer le message";
+    function encode(data: Record<string, string>) {
+      return Object.keys(data)
+        .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(data[k])}`)
+        .join("&");
     }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      noteOk?.setAttribute("hidden", "");
+      noteErr?.setAttribute("hidden", "");
+
+      const formData = new FormData(form!);
+      const payload: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        payload[key] = payload[key] ? `${payload[key]}, ${value}` : String(value);
+      });
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = "Envoi…";
+
+      try {
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode(payload),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form!.reset();
+        form!.querySelector<HTMLDivElement>(".form-fields")?.setAttribute("hidden", "");
+        noteOk?.removeAttribute("hidden");
+      } catch {
+        noteErr?.removeAttribute("hidden");
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = "Envoyer le message";
+      }
+    });
   });
 </script>
