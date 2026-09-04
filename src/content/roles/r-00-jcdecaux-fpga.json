@@ -149,7 +149,19 @@
       "num": "§ 07 — Retour",
       "paragraphs": [
         { "lead": true, "html": "Entre 2019 et 2025, je n'ai pas touché un FPGA. Six ans de logiciel, d'architecture et de produit, chez Naept puis chez ID-1. Puis un an chez <b>Thales LAS</b>, sur le composant FPGA d'un simulateur d'environnement électromagnétique — <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">détaillé dans la fiche projet</a>." },
-        { "html": "La question qui se posait était simple : après sept ans d'écart, qu'est-ce qui revient ? Réponse : l'essentiel, et vite. Les réflexes de découpage, de timing, de frugalité étaient intacts. Ce qui a demandé du travail, c'est le neuf — des protocoles que je ne connaissais pas (<b>JESD204B/C</b>, <b>AURORA</b>), des outils qui avaient dix ans de plus, et une équipe de sept développeurs FPGA travaillant en méthode agile, là où mes expériences précédentes s'étaient faites seul ou à deux." },
+        { "html": "La question qui se posait était simple : après sept ans d'écart, qu'est-ce qui revient ? Réponse : l'essentiel, et vite. Les réflexes de découpage, de timing, de frugalité étaient intacts. Ce qui a demandé du travail, c'est le neuf — des protocoles que je ne connaissais pas (<b>JESD204B/C</b>, <b>AURORA</b>), des outils qui avaient dix ans de plus, et une équipe de sept développeurs FPGA travaillant en méthode agile, là où mes expériences précédentes s'étaient faites seul ou à deux." }
+      ]
+    },
+    {
+      "type": "pull",
+      "body": "« C'est comme le vélo, ça ne s'oublie pas. Et si le FPGA ne s'est pas oublié, mes autres compétences doivent être bien ancrées aussi. »",
+      "sig": "— note d'auteur"
+    },
+    {
+      "type": "prose",
+      "heading": "Une conviction remise en question.",
+      "num": "§ 08 — Reset",
+      "paragraphs": [
         { "html": "Le plus intéressant a été de me faire contredire sur un sujet que je croyais réglé. J'étais arrivé convaincu qu'un reset doit être <b>activé de façon asynchrone et relâché de façon synchrone</b>. Le design en place était entièrement en reset synchrone. En creusant : sur un FPGA moderne, toutes les bascules sont initialisées au chargement de la configuration ; l'activation asynchrone n'apporte rien à un processus qui n'échantillonne qu'au front d'horloge ; et un reset synchrone est un signal comme un autre, que les outils analysent et contraignent sans surprise." }
       ]
     },
@@ -161,7 +173,7 @@
     {
       "type": "prose",
       "heading": "Apports & héritage dans mon parcours.",
-      "num": "§ 08 — Héritage",
+      "num": "§ 09 — Héritage",
       "paragraphs": [
         { "lead": true, "html": "Ce socle FPGA a profondément structuré mon approche de l'ingénierie. Il m'a appris trois choses qui orientent encore aujourd'hui mes décisions d'architecte." }
       ]
@@ -182,7 +194,7 @@
     {
       "type": "prose",
       "heading": "Positionnement de la fiche.",
-      "num": "§ 09 — Lecture",
+      "num": "§ 10 — Lecture",
       "paragraphs": [
         { "html": "Cette fiche ne détaille pas chaque projet individuellement, mais rend lisible une expertise construite sur la <b>répétition de projets concrets, industriels et contraints</b>, étalés sur près de vingt ans. Elle constitue un socle technique fort, sur lequel se sont appuyés mes rôles ultérieurs en architecture logicielle, systèmes embarqués et conception de produits complets — et vers lequel je suis revenu sans difficulté après plusieurs années d'interruption." }
       ]

@@ -84,7 +84,7 @@
         "paragraphs": [
           { "html": "Chaque FPGA est piloté par des <b>bases de registres</b> accessibles en <b>AXI-Lite</b>, distribuées par des crossbars. Multipliées par une dizaine de cibles, cela représente des milliers de registres, que le FPGA et le logiciel doivent lire exactement de la même façon." },
           { "html": "Écrits à la main, ces registres dérivent : entre le code et sa documentation, et surtout entre le <b>FPGA et le logiciel</b>, qui n'évoluent pas au même rythme. À cette échelle, ce n'est plus une gêne mais un risque projet." },
-          { "html": "En binôme avec un développeur logiciel, j'ai mis en place un atelier où tout part d'une <b>description XML unique</b>. Deux générateurs, en <b>TCL</b> et en <b>Python</b>, en tirent tout le reste : le VHDL des bases de registres, le code de pilotage côté logiciel, la documentation, les crossbars et leurs connexions, et les bancs de test. En quelques secondes, pour l'ensemble des cibles." }
+          { "html": "En binôme avec un développeur logiciel, j'ai mis en place un atelier où tout part d'une <b>description XML unique</b>. Deux générateurs, en <b>TCL</b> et en <b>Python</b>, en tirent tout le reste : le VHDL des bases de registres, le code de pilotage côté logiciel, la documentation, les crossbars et leurs connexions, et les bancs de test. En quelques secondes, pour l'ensemble des cibles. Ce réflexe d'outillage traverse tout mon parcours — il fait l'objet d'une <a href=\"/roles/r-04-outiller-plutot-que-repeter/\">fiche dédiée</a>." }
         ]
       },
       {
@@ -123,7 +123,7 @@
           { "num": "D-01 · Source", "t": "Une seule vérité", "d": "Un fichier de description par base de registres ; tout le reste est généré, jamais recopié." },
           { "num": "D-02 · Tests", "t": "Générés avec le design", "d": "Les bancs de test sortent de la même source que le RTL : ils ne peuvent pas diverger." },
           { "num": "D-03 · Mesure", "t": "Mesurer avant de conclure", "d": "Chaque liaison rapide est instrumentée sur cible ; pas de performance supposée." },
-          { "num": "D-04 · Reset", "t": "Synchrone, assumé", "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils qu'un relâchement resynchronisé." }
+          { "num": "D-04 · Reset", "t": "Synchrone, assumé", "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils — <a href=\"/roles/r-00-jcdecaux-fpga/\">une conviction revue sur ce projet</a>." }
         ]
       },
       {
