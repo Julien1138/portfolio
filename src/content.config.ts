@@ -58,6 +58,36 @@ const sectionSchema = z.discriminatedUnion("type", [
     items: z.array(kpiItem),
   }),
   z.object({
+    // Interconnect map — one component at the centre, its links leaving by
+    // the face they use. Endpoints sharing a face are spread along it.
+    type: z.literal("linkmap"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    centerName: z.string(),
+    centerSub: z.string().optional(),
+    links: z.array(
+      z.object({
+        side: z.enum(["left", "right", "top", "bottom"]),
+        protocol: z.string(),
+        target: z.string(),
+        targetSub: z.string().optional(),
+        dashed: z.boolean().optional(),
+      })
+    ),
+  }),
+  z.object({
+    // Generation fan — one source description, every artefact derived from
+    // it, all feeding the same targets.
+    type: z.literal("genfan"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    sourceLabel: z.string(),
+    sourceFormat: z.string(),
+    outputs: z.array(z.string()),
+    targetLabel: z.string(),
+    targetSub: z.string().optional(),
+  }),
+  z.object({
     type: z.literal("vimatrix"),
     varTitle: z.string(),
     varItems: z.array(numText),
@@ -110,6 +140,9 @@ const projects = defineCollection({
     // resolved at build time via import.meta.glob in ProjectFigure. Falls back
     // to the hatched PlaceholderFigure when absent.
     heroImage: z.string().optional(),
+    // Generated absorber-field hero, mirroring `ledHero` on roles — for a
+    // project whose own visuals cannot be published.
+    anechoicHero: z.boolean().default(false),
     deepDive: z
       .object({
         metaTop: z.string(),

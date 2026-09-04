@@ -6,6 +6,8 @@ import Split2 from "./Split2.astro";
 import RowList from "./RowList.astro";
 import ArchiDiagram from "./ArchiDiagram.astro";
 import PipelineDiagram from "./PipelineDiagram.astro";
+import LinkMap from "./LinkMap.astro";
+import GenFan from "./GenFan.astro";
 import KpisBig from "./KpisBig.astro";
 import VIMatrix from "./VIMatrix.astro";
 import Constraints from "./Constraints.astro";
@@ -35,6 +37,14 @@ const { sections } = Astro.props;
       return <ArchiDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} arrows={s.arrows} />;
     case "pipeline":
       return <PipelineDiagram figLabel={s.figLabel} sub={s.sub} stages={s.stages} axis={s.axis} />;
+    case "linkmap":
+      return (
+        <LinkMap figLabel={s.figLabel} figRef={s.figRef} centerName={s.centerName} centerSub={s.centerSub} links={s.links} />
+      );
+    case "genfan":
+      return (
+        <GenFan figLabel={s.figLabel} figRef={s.figRef} sourceLabel={s.sourceLabel} sourceFormat={s.sourceFormat} outputs={s.outputs} targetLabel={s.targetLabel} targetSub={s.targetSub} />
+      );
     case "kpisBig":
       return <KpisBig items={s.items} />;
     case "vimatrix":

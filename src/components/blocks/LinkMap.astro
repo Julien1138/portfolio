@@ -1,0 +1,150 @@
+---
+// Interconnect map: one component at the centre, its links leaving by the
+// face they use, each toward a named counterpart. Endpoints sharing a face
+// are stacked (left/right) or spread (top/bottom); the component grows with
+// whichever face carries the most. Inline SVG, so the drawing follows the
+// theme tokens in both light and dark.
+export interface Link {
+  side: "left" | "right" | "top" | "bottom";
+  protocol: string;
+  target: string;
+  targetSub?: string;
+  dashed?: boolean;
+}
+export interface Props {
+  figLabel: string;
+  figRef: string;
+  centerName: string;
+  centerSub?: string;
+  links: Link[];
+}
+const { figLabel, figRef, centerName, centerSub, links } = Astro.props;
+
+const W = 800;
+const PAD = 22;
+const boxW = 180;
+const boxH = 48;
+const boxGap = 12;
+const runY = 56; // vertical run between the die and a top/bottom box
+const dieW = 192;
+
+const by = (s: Link["side"]) => links.filter((l) => l.side === s);
+const [L, R, T, B] = [by("left"), by("right"), by("top"), by("bottom")];
+
+const stackH = (n: number) => (n ? n * boxH + (n - 1) * boxGap : 0);
+const dieH = Math.max(104, stackH(Math.max(L.length, R.length)) + 10);
+
+const dieX = (W - dieW) / 2;
+const dieY = PAD + (T.length ? boxH + runY : 0);
+const cy = dieY + dieH / 2;
+const H = dieY + dieH + (B.length ? runY + boxH : 0) + PAD;
+
+type Node = { bx: number; by: number; path: string; dashed: boolean; label: string; lx: number; ly: number; anchor: "middle" | "start"; target: string; sub?: string; pad: string };
+const nodes: Node[] = [];
+
+for (const side of ["left", "right"] as const) {
+  const group = side === "left" ? L : R;
+  const top = cy - stackH(group.length) / 2;
+  group.forEach((l, i) => {
+    const y = top + i * (boxH + boxGap) + boxH / 2;
+    const bx = side === "left" ? PAD : W - PAD - boxW;
+    const from = side === "left" ? bx + boxW : dieX + dieW;
+    const to = side === "left" ? dieX : bx;
+    nodes.push({
+      bx, by: y - boxH / 2,
+      path: `M${from} ${y} H${to}`,
+      dashed: !!l.dashed, label: l.protocol,
+      lx: (from + to) / 2, ly: y - 9, anchor: "middle",
+      target: l.target, sub: l.targetSub,
+      pad: `<rect x="${side === "left" ? dieX - 4 : dieX + dieW - 4}" y="${y - 2.5}" width="8" height="5"/>`,
+    });
+  });
+}
+
+for (const side of ["top", "bottom"] as const) {
+  const group = side === "top" ? T : B;
+  group.forEach((l, i) => {
+    const f = (i + 1) / (group.length + 1);
+    const x = dieX + dieW * f;
+    const bTop = side === "top" ? PAD : dieY + dieH + runY;
+    const from = side === "top" ? bTop + boxH : dieY + dieH;
+    const to = side === "top" ? dieY : bTop;
+    nodes.push({
+      bx: x - boxW / 2, by: bTop,
+      path: `M${x} ${from} V${to}`,
+      dashed: !!l.dashed, label: l.protocol,
+      lx: x + 12, ly: (from + to) / 2 + 4, anchor: "start",
+      target: l.target, sub: l.targetSub,
+      pad: `<rect x="${x - 2.5}" y="${side === "top" ? dieY - 4 : dieY + dieH - 4}" width="5" height="8"/>`,
+    });
+  });
+}
+---
+
+<div class="linkmap">
+  <div class="head">
+    <span class="lbl">{figLabel}</span>
+    <span class="lbl ref">{figRef}</span>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={figLabel}>
+    {nodes.map((n) => (
+      <>
+        <path d={n.path} class="ln" stroke-dasharray={n.dashed ? "6 5" : undefined} />
+        <text x={n.lx} y={n.ly} class="proto" text-anchor={n.anchor}>{n.label}</text>
+        <rect x={n.bx} y={n.by} width={boxW} height={boxH} class="bx" />
+        <text x={n.bx + boxW / 2} y={n.by + (n.sub ? 21 : 29)} class="node" text-anchor="middle">{n.target}</text>
+        {n.sub && <text x={n.bx + boxW / 2} y={n.by + 37} class="node sub" text-anchor="middle">{n.sub}</text>}
+      </>
+    ))}
+    <rect x={dieX} y={dieY} width={dieW} height={dieH} class="die" />
+    <rect x={dieX + 10} y={dieY + 10} width={dieW - 20} height={dieH - 20} class="die-inner" />
+    <g class="pads" set:html={nodes.map((n) => n.pad).join("")} />
+    <text x={dieX + dieW / 2} y={cy + (centerSub ? -2 : 6)} class="center" text-anchor="middle">{centerName}</text>
+    {centerSub && <text x={dieX + dieW / 2} y={cy + 18} class="center sub" text-anchor="middle">{centerSub}</text>}
+  </svg>
+</div>
+
+<style>
+  .linkmap {
+    margin-top: 20px;
+    max-width: var(--maxw);
+    padding: 26px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .linkmap .head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .linkmap .head .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .linkmap .head .ref { color: var(--accent); }
+  .linkmap svg { display: block; width: 100%; height: auto; }
+  .linkmap :global(.ln) { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+  .linkmap :global(.bx) { fill: var(--paper-2); stroke: var(--rule-2); stroke-width: 1; }
+  .linkmap :global(.die) { fill: var(--paper-2); stroke: var(--ink-2); stroke-width: 1.3; }
+  .linkmap :global(.die-inner) { fill: none; stroke: var(--rule-2); stroke-width: 1; }
+  .linkmap :global(.pads) { fill: var(--ink-2); }
+  .linkmap :global(text) { font-family: var(--mono); }
+  .linkmap :global(.proto) {
+    font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
+    fill: var(--accent); font-weight: 500;
+  }
+  .linkmap :global(.node) {
+    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; fill: var(--ink-2);
+  }
+  .linkmap :global(.node.sub) { font-size: 10px; fill: var(--ink-soft); }
+  .linkmap :global(.center) {
+    font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+    fill: var(--ink); font-weight: 600;
+  }
+  .linkmap :global(.center.sub) {
+    font-size: 10.5px; letter-spacing: 0.09em; fill: var(--ink-soft); font-weight: 400;
+  }
+  @media (max-width: 700px) { .linkmap { padding: 16px; } }
+</style>
