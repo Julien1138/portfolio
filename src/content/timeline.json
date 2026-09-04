@@ -40,7 +40,7 @@
       "AXI-Lite"
     ],
     "links": [
-      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-expert-fpga/" },
       { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
       { "label": "Projet · P-04 — Composant FPGA, simulateur électromagnétique", "href": "/projets/p-04-fpga-simulateur-electromagnetique/" }
@@ -176,7 +176,7 @@
       "RS422/485"
     ],
     "links": [
-      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-expert-fpga/" },
       { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-01 — Contrôleur moteur vélo électrique", "href": "/projets/p-01-controleur-moteur-velo-electrique/" }
     ]
@@ -212,7 +212,7 @@
       "Conseil technique"
     ],
     "links": [
-      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" }
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-expert-fpga/" }
     ]
   },
   {
@@ -251,7 +251,7 @@
       "CPLD Altera"
     ],
     "links": [
-      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-expert-fpga/" },
       { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" }
     ]
   },
@@ -282,7 +282,7 @@
       "C#"
     ],
     "links": [
-      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-expert-fpga/" },
       { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-00 — Outil FlexRay (stage)", "href": "/projets/p-00-outil-flexray-safran/" }
     ]

@@ -242,7 +242,7 @@
             "html": "Les liaisons sont en place et mesurées ; l'atelier sert à l'ensemble des cibles du programme et a fait disparaître une classe entière d'erreurs de recopie, ainsi que la dérive entre FPGA, logiciel et documentation. Le temps gagné à chaque nouvelle carte s'est reporté sur ce qui compte vraiment : la mise au point des liens eux-mêmes."
           },
           {
-            "html": "Rien de spectaculaire dans le principe — <span class=\"hl\">une source unique, tout le reste généré</span> — mais une valeur qui se mesure directement à l'échelle du système et à la rigueur qu'il exige. Ce projet marque aussi mon retour au FPGA après plusieurs années : ce fil-là est raconté dans la <a href=\"/roles/r-00-jcdecaux-fpga/\">fiche rôle</a>."
+            "html": "Rien de spectaculaire dans le principe — <span class=\"hl\">une source unique, tout le reste généré</span> — mais une valeur qui se mesure directement à l'échelle du système et à la rigueur qu'il exige. Ce projet marque aussi mon retour au FPGA après plusieurs années : ce fil-là est raconté dans la <a href=\"/roles/r-00-expert-fpga/\">fiche rôle</a>."
           }
         ]
       },
