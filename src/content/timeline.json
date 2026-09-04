@@ -2,41 +2,47 @@
   {
     "id": "2025-2026",
     "order": 1,
-    "yearRange": "Depuis nov. 2025",
-    "span": "~ 9 mois",
+    "yearRange": "Nov. 2025 — nov. 2026",
+    "span": "~ 1 an",
     "current": true,
     "roleLine": "Salarié · groupe industriel & défense · Thales LAS",
-    "title": "Développeur FPGA senior — liaisons numériques haute vitesse.",
-    "setting": "Programme multicartes sur cibles Xilinx Virtex UltraScale+ · rôle de référent technique.",
-    "desc": "Initialisation d'un projet FPGA multicartes d'envergure : liaisons <b>AURORA</b> sur fibre optique, interfaces <b>JESD204C</b> avec convertisseurs DAC/ADC RF. Développement d'un atelier de génération automatique de code — en TCL pour le VHDL, en Python pour les registres AXI-Lite décrits en XML.",
+    "title": "Développeur FPGA senior — liaisons numériques haute vitesse & outillage.",
+    "setting": "Programme multicartes sur cibles Xilinx Virtex UltraScale+ · simulation d'environnement électromagnétique · équipe FPGA de 7 personnes.",
+    "desc": "Retour au développement FPGA sur un programme multicartes de simulation d'environnement électromagnétique : liaisons série rapides <b>PCIe</b>, <b>AURORA</b> sur fibre optique, <b>JESD204B/JESD204C</b> avec deux couples DAC/ADC, et <b>DDR</b>. En binôme avec un développeur logiciel, mise en place d'un atelier de génération automatique de code — TCL pour le VHDL, Python pour les registres et le crossbar AXI-Lite décrits en XML, jusqu'aux bancs de test.",
     "highlights": [
       {
         "n": "H.1",
-        "html": "Mise en œuvre de liens <b>AURORA</b> sur fibre optique et <b>JESD204C</b> pour l'interfaçage RF haute vitesse."
+        "html": "Développement solo des liaisons série rapides <b>PCIe</b>, <b>AURORA</b>, <b>JESD204B/JESD204C</b> (2 couples DAC/ADC) et <b>DDR</b>."
       },
       {
         "n": "H.2",
-        "html": "Développement d'un atelier scripté en <b>TCL</b> pour la génération automatique de code VHDL."
+        "html": "Atelier de génération automatique de code — <b>TCL</b> pour le VHDL, <b>Python</b> pour les registres et le crossbar AXI-Lite/PCIe, jusqu'aux bancs de test."
       },
       {
         "n": "H.3",
-        "html": "Outil <b>Python</b> de génération automatique de registres AXI-Lite depuis une description XML."
+        "html": "Automatisation du versionnement et de l'identification du FPGA et des bases de registres."
       },
       {
         "n": "H.4",
-        "html": "Rôle de <b>référent technique</b> sur le projet."
+        "html": "Avis sollicité sur l'architecture projet et les bonnes pratiques, au sein d'une équipe FPGA de <b>7 personnes</b>."
       }
     ],
     "stack": [
       "VHDL",
       "Xilinx Virtex UltraScale+",
+      "PCIe",
       "AURORA",
+      "JESD204B",
       "JESD204C",
+      "DDR",
       "TCL",
       "Python",
       "AXI-Lite"
     ],
-    "links": []
+    "links": [
+      { "label": "Rôle · R-04 — Développeur FPGA senior, défense", "href": "/roles/r-04-thales-fpga-defense/" },
+      { "label": "Projet · P-04 — Atelier de génération de code FPGA", "href": "/projets/p-04-atelier-generation-code-fpga/" }
+    ]
   },
   {
     "id": "2020-2025",
