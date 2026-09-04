@@ -40,6 +40,9 @@
       "AXI-Lite"
     ],
     "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
+      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
       { "label": "Projet · P-04 — Composant FPGA, simulateur électromagnétique", "href": "/projets/p-04-fpga-simulateur-electromagnetique/" }
     ]
   },
@@ -89,6 +92,7 @@
       { "label": "Rôle · R-01 — Architecte logiciel & système", "href": "/roles/r-01-architecte-logiciel-systeme/" },
       { "label": "Rôle · R-02 — Responsable systèmes embarqués", "href": "/roles/r-02-responsable-systemes-embarques/" },
       { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-02 — Reprise du prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" },
       { "label": "Projet · P-03 — Boîtier de mesure connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" }
     ]
@@ -131,7 +135,8 @@
     ],
     "links": [
       { "label": "Rôle · R-01 — Architecte logiciel & système", "href": "/roles/r-01-architecte-logiciel-systeme/" },
-      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" }
+      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" }
     ]
   },
   {
@@ -172,6 +177,7 @@
     ],
     "links": [
       { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-01 — Contrôleur moteur vélo électrique", "href": "/projets/p-01-controleur-moteur-velo-electrique/" }
     ]
   },
@@ -205,7 +211,9 @@
       "Schématique électronique",
       "Conseil technique"
     ],
-    "links": []
+    "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" }
+    ]
   },
   {
     "id": "2009-2012",
@@ -242,7 +250,10 @@
       "DO-254",
       "CPLD Altera"
     ],
-    "links": []
+    "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" }
+    ]
   },
   {
     "id": "2008-2009",
@@ -271,6 +282,8 @@
       "C#"
     ],
     "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-00 — Outil FlexRay (stage)", "href": "/projets/p-00-outil-flexray-safran/" }
     ]
   }
