@@ -8,15 +8,15 @@
     "roleLine": "Salarié · groupe industriel & défense · Thales LAS",
     "title": "Développeur FPGA senior — liaisons numériques haute vitesse & outillage.",
     "setting": "Programme multicartes sur cibles Xilinx Virtex UltraScale+ · simulation d'environnement électromagnétique · équipe FPGA de 7 personnes.",
-    "desc": "Retour au développement FPGA sur un programme multicartes de simulation d'environnement électromagnétique : liaisons série rapides <b>PCIe</b>, <b>AURORA</b> sur fibre optique, <b>JESD204B/JESD204C</b> avec deux couples DAC/ADC, et <b>DDR</b>. En binôme avec un développeur logiciel, mise en place d'un atelier de génération automatique de code — TCL pour le VHDL, Python pour les registres et le crossbar AXI-Lite décrits en XML, jusqu'aux bancs de test.",
+    "desc": "Retour au développement FPGA sur un programme multicartes de simulation d'environnement électromagnétique : liaisons série rapides <b>PCIe</b>, <b>AURORA</b> sur fibre optique, <b>JESD204B/JESD204C</b> vers deux couples DAC/ADC, et <b>DDR</b>. En binôme avec un développeur logiciel, mise en place d'un atelier de génération automatique de code — <b>TCL</b> et <b>Python</b> — produisant, depuis une description XML unique, les bases de registres AXI-Lite, leur pendant logiciel, la documentation, les crossbars et les bancs de test.",
     "highlights": [
       {
         "n": "H.1",
-        "html": "Développement solo des liaisons série rapides <b>PCIe</b>, <b>AURORA</b>, <b>JESD204B/JESD204C</b> (2 couples DAC/ADC) et <b>DDR</b>."
+        "html": "Mise en œuvre des liaisons série rapides <b>PCIe</b>, <b>AURORA</b>, <b>JESD204B/JESD204C</b> (deux couples DAC/ADC) et <b>DDR</b>, avec instrumentation de mesure embarquée."
       },
       {
         "n": "H.2",
-        "html": "Atelier de génération automatique de code — <b>TCL</b> pour le VHDL, <b>Python</b> pour les registres et le crossbar AXI-Lite/PCIe, jusqu'aux bancs de test."
+        "html": "Atelier de génération automatique de code (<b>TCL</b>, <b>Python</b>) : bases de registres AXI-Lite, code de pilotage, documentation, crossbars et bancs de test depuis une source unique."
       },
       {
         "n": "H.3",
@@ -24,7 +24,7 @@
       },
       {
         "n": "H.4",
-        "html": "Avis sollicité sur l'architecture projet et les bonnes pratiques, au sein d'une équipe FPGA de <b>7 personnes</b>."
+        "html": "Avis sollicité sur l'architecture du composant FPGA et les bonnes pratiques, au sein d'une équipe de <b>7 développeurs</b>."
       }
     ],
     "stack": [
@@ -41,7 +41,7 @@
     ],
     "links": [
       { "label": "Rôle · R-04 — Développeur FPGA senior, défense", "href": "/roles/r-04-thales-fpga-defense/" },
-      { "label": "Projet · P-04 — Atelier de génération de code FPGA", "href": "/projets/p-04-atelier-generation-code-fpga/" }
+      { "label": "Projet · P-04 — Composant FPGA, simulateur électromagnétique", "href": "/projets/p-04-fpga-simulateur-electromagnetique/" }
     ]
   },
   {

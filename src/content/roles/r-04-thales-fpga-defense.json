@@ -1,20 +1,20 @@
 {
   "ref": "R-04",
-  "title": "Développeur FPGA senior — liaisons haute vitesse & outillage.",
+  "title": "Développeur FPGA senior",
   "client": "Thales LAS",
   "domain": "Simulation d'environnement électromagnétique",
   "period": "Nov. 2025 — nov. 2026",
   "years": "~ 1 an",
   "order": 4,
-  "lede": "Reprendre le développement FPGA après plusieurs années d'écart, sur un programme multicartes de simulation d'environnement électromagnétique — <em>des liaisons série rapides à l'outillage de génération de code</em>, au sein d'une équipe de sept personnes.",
+  "lede": "Un an chez Thales LAS, sur le composant FPGA d'un simulateur d'environnement électromagnétique — <em>reprendre le FPGA après dix ans d'écart</em>, au sein d'une équipe de sept développeurs.",
   "metaStrip": [
     { "k": "Entreprise", "v": "Thales LAS" },
-    { "k": "Domaine", "v": "Simulation environnement électromagnétique" },
+    { "k": "Domaine", "v": "Simulation électromagnétique" },
     { "k": "Rôle", "v": "Développeur FPGA senior", "accent": true },
-    { "k": "Équipe", "v": "7 personnes · FPGA" },
+    { "k": "Équipe", "v": "7 développeurs FPGA" },
     { "k": "Lecture", "v": "~ 5 min" }
   ],
-  "chips": ["VHDL", "PCIe", "AURORA", "JESD204B", "JESD204C", "DDR", "Xilinx Virtex UltraScale+", "TCL", "Python", "AXI-Lite", "Agile"],
+  "chips": ["VHDL", "Xilinx Virtex UltraScale+", "AURORA", "JESD204B", "JESD204C", "PCIe", "DDR", "AXI-Lite", "TCL", "Python", "Agile"],
   "ledHero": false,
   "sections": [
     {
@@ -22,82 +22,73 @@
       "heading": "Contexte.",
       "num": "§ 01 — Contexte",
       "paragraphs": [
-        { "lead": true, "html": "Chez Thales LAS, j'ai rejoint un programme multicartes de <b>simulation d'environnement électromagnétique</b>, sur cibles <b>Xilinx Virtex UltraScale+</b>. Un domaine exigeant, où la rigueur de conception et de traçabilité pèse au moins autant que la performance pure." },
-        { "html": "Cette mission avait pour moi une saveur particulière : après plusieurs années sans avoir touché de FPGA, il fallait reprendre pied — sur les outils, sur les protocoles, et sur des pratiques d'équipe que je n'avais pas encore expérimentées à cette échelle." }
+        { "lead": true, "html": "Chez Thales LAS, j'ai rejoint l'équipe FPGA d'un <b>simulateur d'environnement électromagnétique</b> : un programme multicartes, une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, et des convertisseurs RF à piloter au plus près." },
+        { "html": "Pour moi, cette mission avait une saveur particulière. Cela faisait dix ans que je n'avais pas touché un FPGA. Il fallait reprendre pied sur les outils, découvrir des protocoles que je ne connaissais pas, et travailler pour la première fois dans une équipe FPGA structurée, en méthode agile." }
       ]
     },
     {
       "type": "prose",
-      "heading": "Le rôle — développeur FPGA senior, pas architecte produit.",
+      "heading": "Le rôle.",
       "num": "§ 02 — Rôle",
       "paragraphs": [
-        { "html": "Mon périmètre était volontairement circonscrit : je n'intervenais pas sur l'architecture du produit final, uniquement sur celle du composant FPGA. Au sein d'une équipe de <b>sept personnes</b>, mon avis était en revanche régulièrement sollicité sur l'architecture du projet FPGA et sur les bonnes pratiques de développement — une reconnaissance de séniorité plus qu'un mandat formel de référent technique." },
-        { "html": "J'ai travaillé <b>seul</b> sur les liaisons série rapides du composant — <b>PCIe</b>, <b>AURORA</b> sur fibre optique, <b>JESD204B</b> et <b>JESD204C</b> pour deux couples DAC/ADC distincts, et la <b>DDR</b> — et en <b>binôme avec un développeur logiciel</b> sur tout l'outillage de génération automatique de code, détaillé dans la <a href=\"/projets/p-04-atelier-generation-code-fpga/\">fiche projet dédiée</a>." }
+        { "html": "Développeur senior au sein d'une équipe de <b>sept personnes</b>, j'ai pris en charge de bout en bout les <b>liaisons série rapides</b> du composant FPGA : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux couples de convertisseurs DAC/ADC, et la mémoire <b>DDR</b>." },
+        { "html": "En binôme avec un développeur logiciel, j'ai conçu l'<b>atelier de génération automatique de code</b> qui produit, à partir d'une description unique, les bases de registres du FPGA, leur pendant logiciel, leur documentation, les crossbars AXI-Lite et les bancs de test — détaillé dans la <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">fiche projet</a>." },
+        { "html": "Au-delà de mon périmètre, mon avis était régulièrement sollicité sur l'<b>architecture du composant FPGA</b> et sur les <b>bonnes pratiques</b> de développement de l'équipe." }
       ]
     },
     {
       "type": "rowlist",
       "rows": [
-        { "t": "Liaisons série rapides (solo)", "d": "PCIe, AURORA fibre optique, JESD204B/JESD204C (2 couples DAC/ADC), DDR." },
-        { "t": "Outillage registres (binôme)", "d": "Génération automatique des registres de configuration/pilotage PCIe et AXI-Lite." },
-        { "t": "Crossbar & bancs de test (binôme)", "d": "Génération automatique du crossbar, des sous-crossbars AXI-Lite et des bancs de test associés." },
-        { "t": "Traçabilité (solo)", "d": "Automatisation du versionnement et de l'identification du FPGA et des bases de registres." }
+        { "t": "Liaisons série rapides", "d": "PCIe, AURORA fibre optique, JESD204B / JESD204C, DDR — mise en œuvre, paramétrage et mesure." },
+        { "t": "Génération de code", "d": "Bases de registres, code de pilotage, documentation, crossbars et bancs de test générés depuis une source unique." },
+        { "t": "Traçabilité", "d": "Versionnement et identification automatiques du FPGA et de ses bases de registres." },
+        { "t": "Architecture & pratiques", "d": "Avis sollicité sur l'architecture du composant FPGA et les bonnes pratiques de l'équipe." }
       ]
     },
     {
       "type": "prose",
-      "heading": "Une contrainte matérielle non négociable.",
-      "num": "§ 03 — Contrainte",
+      "heading": "Travailler en équipe.",
+      "num": "§ 03 — Collectif",
       "paragraphs": [
-        { "html": "Le programme repose sur une <b>carte du commerce</b>, pas sur une carte développée en interne. Ce choix a des conséquences directes sur le placement des interfaces liens série rapides : leur disposition physique est fixée par le constructeur de la carte, pas par les besoins du projet." },
-        { "html": "Mon rôle sur ce point n'a pas été d'arbitrer entre plusieurs architectures possibles, mais de <span class=\"hl\">faire remonter clairement les limitations imposées par le matériel</span>, pour que les choix d'intégration se fassent en connaissance de cause plutôt que par découverte tardive." }
+        { "html": "Mes expériences FPGA précédentes s'étaient faites seul ou en très petit comité. Ici, sept développeurs se partagent une dizaine de FPGA, avec des revues, des itérations courtes et un carnet de travail commun. J'ai découvert le <b>développement FPGA en méthode agile</b> — et j'y ai pris goût." },
+        { "html": "Le binôme avec un développeur logiciel a été un autre apport : concevoir un outil à deux, chacun depuis son côté de l'interface, oblige à se mettre d'accord sur ce que « la même chose » veut dire pour un registre vu du FPGA et vu du logiciel." },
+        { "html": "Enfin, le programme repose sur une <b>carte du commerce</b>, dont la disposition des liaisons série rapides est fixée par le constructeur. Une partie de mon travail a consisté à rendre ces limites visibles tôt, pour que les choix d'intégration se fassent en connaissance de cause plutôt que par découverte tardive." }
       ]
     },
     {
       "type": "prose",
-      "heading": "Prise en main & remise en question — reset synchrone ou asynchrone.",
-      "num": "§ 04 — Décisions",
+      "heading": "Une conviction remise en question.",
+      "num": "§ 04 — Reset",
       "paragraphs": [
-        { "html": "La difficulté principale n'était pas conceptuelle mais pratique : prendre en main les <b>IP Xilinx</b> pour AURORA et JESD204B/C, comprendre finement chaque paramètre pour établir des liens stables, et développer des outils de mesure <b>embarqués dans le FPGA</b> pour objectiver leurs performances plutôt que les supposer." },
-        { "html": "Le moment le plus marquant a été une remise en question sur un sujet que je pensais maîtriser : la stratégie de reset. J'étais arrivé convaincu que le pattern <b>« assert asynchrone, deassert synchrone »</b> était la seule bonne pratique. Le design en place chez Thales, entièrement en reset synchrone, m'a forcé à recreuser le sujet en profondeur." }
-      ]
-    },
-    {
-      "type": "decisions",
-      "items": [
-        { "num": "D-01 · IP haute vitesse", "t": "Instrumentation interne first", "d": "Outils de mesure embarqués dans le FPGA pour valider les liens plutôt que se fier aux seules simulations." },
-        { "num": "D-02 · Reset", "t": "Synchrone, assumé", "d": "Sur FPGA moderne, le GSR au chargement du bitstream couvre le besoin de power-on ; un reset 100% synchrone est un signal ordinaire, contraint et routé normalement par les outils." },
-        { "num": "D-03 · Registres", "t": "XML comme source unique", "d": "Toute description de registre part d'un XML unique, pour éliminer la dérive entre documentation et code — repris en détail côté outillage." }
+        { "html": "J'étais arrivé avec une certitude bien ancrée : un reset doit être <b>activé de façon asynchrone et relâché de façon synchrone</b>. Asynchrone pour attraper la mise sous tension avant que les horloges ne soient stables, synchrone au relâchement pour éviter la métastabilité. Logique, propre, robuste." },
+        { "html": "Le design en place chez Thales était entièrement en <b>reset synchrone</b>. Mon premier réflexe a été de me demander comment ils géraient la mise sous tension. En creusant, la réponse s'est imposée : sur un FPGA moderne, toutes les bascules sont initialisées au chargement de la configuration ; l'activation asynchrone n'apporte rien à un processus qui, de toute façon, n'échantillonne qu'au front d'horloge ; et un reset synchrone est un signal comme un autre, que les outils analysent, contraignent et routent sans surprise." }
       ]
     },
     {
       "type": "pull",
-      "body": "« Si le assert asynchrone est consommé en synchrone dans les process applicatifs, il ne sert à rien — le FF n'échantillonne qu'au prochain front d'horloge. Le pattern async/sync vient du monde ASIC, importé en FPGA par habitude et prudence. Il reste valide, mais sur FPGA moderne, un reset synchrone bien conçu est souvent plus simple, plus sûr et mieux supporté par les outils. Dix ans d'écart et une conviction remise en question en une matinée — c'est ça qui me plaît dans ce métier. »",
-        "sig": "— extrait d'un post LinkedIn publié pendant la mission"
+      "body": "« Le motif “activation asynchrone, relâchement synchrone” vient du monde ASIC, importé en FPGA par habitude et par prudence. Il reste valide — mais sur un FPGA moderne, un reset synchrone bien conçu est souvent plus simple, plus sûr et mieux supporté par les outils. Dix ans d'écart et une conviction remise en question en une matinée. C'est ça qui me plaît dans ce métier. »",
+      "sig": "— extrait d'un post LinkedIn, pendant la mission"
     },
     {
       "type": "prose",
-      "heading": "Apports & héritage.",
+      "heading": "Ce que j'en retire.",
       "num": "§ 05 — Héritage",
       "paragraphs": [
-        { "lead": true, "html": "Cette mission a agi comme un test grandeur nature après une longue pause sur le FPGA — et elle a confirmé plus qu'elle n'a inquiété." }
+        { "lead": true, "html": "Cette année a servi de test grandeur nature après une longue pause sur le FPGA. Elle a confirmé plus qu'elle n'a inquiété." }
       ]
     },
     {
       "type": "takeaway",
       "cards": [
-        { "n": "01", "t": "Les fondamentaux ne s'oublient pas", "d": "…dix ans sans FPGA, et les réflexes de conception étaient toujours là. Un signal encourageant sur la solidité du reste de mes compétences." },
-        { "n": "02", "t": "Le collectif, en Agile", "d": "…une découverte enthousiasmante : travailler en équipe FPGA structurée, avec des méthodes agiles, plutôt qu'en solo ou en petit binôme comme sur mes missions précédentes." },
-        { "n": "03", "t": "Remettre en question ses convictions", "d": "…même sur un sujet aussi ancré que la stratégie de reset. Rester capable de changer d'avis face à des arguments solides." }
+        { "n": "01", "t": "Les fondamentaux ne s'oublient pas", "d": "…dix ans sans FPGA, et les réflexes de conception étaient toujours là, très vite." },
+        { "n": "02", "t": "Le collectif, en agile", "d": "…une équipe FPGA structurée, des itérations courtes, un binôme avec le logiciel : une façon de travailler que je veux garder." },
+        { "n": "03", "t": "Savoir changer d'avis", "d": "…même sur un sujet aussi ancré que la stratégie de reset, face à des arguments solides." }
       ]
     },
     {
-      "type": "prose",
-      "heading": "Positionnement de la fiche.",
-      "num": "§ 06 — Lecture",
-      "paragraphs": [
-        { "html": "Cette mission se termine fin novembre 2026, à l'occasion d'une opportunité que j'ai trouvée plus stimulante ailleurs — et non d'une fin de programme. Elle laisse un socle FPGA remis à niveau, une première expérience concrète du travail en équipe agile sur un projet FPGA structuré, et une preuve que les compétences profondes résistent bien au temps." }
-      ]
+      "type": "pull",
+      "body": "« C'est comme le vélo, ça ne s'oublie pas. Et si le FPGA ne s'est pas oublié, mes autres compétences doivent être bien ancrées aussi. »",
+      "sig": "— note d'auteur"
     }
   ]
 }
