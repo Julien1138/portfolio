@@ -1,0 +1,99 @@
+---
+// Shared medium: every node taps the same bus, rather than passing messages
+// down a chain. Drawing it as a line with taps is the whole point — a chain
+// layout would misstate the topology.
+export interface Node { lbl: string; name: string; items?: string[] }
+export interface Props {
+  figLabel: string;
+  figRef: string;
+  busLabel: string;
+  busSub?: string;
+  nodes: Node[];
+}
+const { figLabel, figRef, busLabel, busSub, nodes } = Astro.props;
+
+const W = 800;
+const PAD = 14;
+const GAP = 26;
+const n = nodes.length;
+const boxW = (W - 2 * PAD - (n - 1) * GAP) / n;
+const maxItems = Math.max(...nodes.map((x) => x.items?.length ?? 0));
+const headH = 46;
+const itemH = 23;
+const boxH = headH + maxItems * itemH + 12;
+const topY = 10;
+const stub = 34;
+const busY = topY + boxH + stub;
+const H = busY + 40;
+const xOf = (i: number) => PAD + i * (boxW + GAP);
+---
+
+<div class="busd">
+  <div class="head">
+    <span class="lbl">{figLabel}</span>
+    <span class="lbl ref">{figRef}</span>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={figLabel}>
+    {nodes.map((nd, i) => (
+      <>
+        <rect x={xOf(i)} y={topY} width={boxW} height={boxH} class="bx" />
+        <text x={xOf(i) + 14} y={topY + 21} class="lbl-s">{nd.lbl}</text>
+        <text x={xOf(i) + 14} y={topY + 40} class="name">{nd.name}</text>
+        {(nd.items ?? []).map((it, k) => (
+          <>
+            <rect x={xOf(i) + 12} y={topY + headH + k * itemH} width={boxW - 24} height={itemH - 5} class="item" />
+            <text x={xOf(i) + 22} y={topY + headH + k * itemH + 13} class="item-t">{it}</text>
+          </>
+        ))}
+        <path d={`M${xOf(i) + boxW / 2} ${topY + boxH} V${busY}`} class="ln" />
+        <circle cx={xOf(i) + boxW / 2} cy={busY} r="4.5" class="tap" />
+      </>
+    ))}
+    <path d={`M${PAD} ${busY} H${W - PAD}`} class="bus" />
+    <path d={`M${PAD} ${busY - 7} V${busY + 7}`} class="bus" />
+    <path d={`M${W - PAD} ${busY - 7} V${busY + 7}`} class="bus" />
+    <text x={W / 2} y={busY + 27} class="bus-lbl" text-anchor="middle">{busLabel}</text>
+    {busSub && <text x={W - PAD} y={busY + 27} class="bus-sub" text-anchor="end">{busSub}</text>}
+  </svg>
+</div>
+
+<style>
+  .busd {
+    margin-top: 20px;
+    max-width: var(--maxw);
+    padding: 26px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .busd .head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .busd .head .lbl {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .busd .head .ref { color: var(--accent); }
+  .busd svg { display: block; width: 100%; height: auto; }
+  .busd :global(.ln) { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+  .busd :global(.bus) { stroke: var(--accent); stroke-width: 2.6; fill: none; }
+  .busd :global(.tap) { fill: var(--accent); }
+  .busd :global(.bx) { fill: var(--paper-2); stroke: var(--rule-2); stroke-width: 1; }
+  .busd :global(.item) { fill: var(--paper); stroke: var(--rule-2); stroke-width: 1; }
+  .busd :global(text) { font-family: var(--mono); }
+  .busd :global(.lbl-s) {
+    font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; fill: var(--accent);
+  }
+  .busd :global(.name) {
+    font-family: var(--sans); font-size: 14px; font-weight: 600; fill: var(--ink);
+  }
+  .busd :global(.item-t) { font-size: 10px; fill: var(--ink-2); }
+  .busd :global(.bus-lbl) {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    fill: var(--accent); font-weight: 500;
+  }
+  .busd :global(.bus-sub) {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--ink-soft);
+  }
+  @media (max-width: 700px) { .busd { padding: 16px; } }
+</style>

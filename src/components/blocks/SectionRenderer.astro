@@ -7,6 +7,8 @@ import RowList from "./RowList.astro";
 import ArchiDiagram from "./ArchiDiagram.astro";
 import PipelineDiagram from "./PipelineDiagram.astro";
 import LinkMap from "./LinkMap.astro";
+import ChainDiagram from "./ChainDiagram.astro";
+import BusDiagram from "./BusDiagram.astro";
 import GenFan from "./GenFan.astro";
 import KpisBig from "./KpisBig.astro";
 import VIMatrix from "./VIMatrix.astro";
@@ -37,6 +39,14 @@ const { sections } = Astro.props;
       return <ArchiDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} arrows={s.arrows} />;
     case "pipeline":
       return <PipelineDiagram figLabel={s.figLabel} sub={s.sub} stages={s.stages} axis={s.axis} />;
+    case "chain":
+      return (
+        <ChainDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} edges={s.edges} branches={s.branches} />
+      );
+    case "bus":
+      return (
+        <BusDiagram figLabel={s.figLabel} figRef={s.figRef} busLabel={s.busLabel} busSub={s.busSub} nodes={s.nodes} />
+      );
     case "linkmap":
       return (
         <LinkMap figLabel={s.figLabel} figRef={s.figRef} centerName={s.centerName} centerSub={s.centerSub} links={s.links} />

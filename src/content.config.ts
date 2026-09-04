@@ -58,6 +58,47 @@ const sectionSchema = z.discriminatedUnion("type", [
     items: z.array(kpiItem),
   }),
   z.object({
+    // Directed chain — stages left to right, each edge carrying its own
+    // protocol and direction, with an optional branch off the main line.
+    type: z.literal("chain"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    stages: z.array(
+      z.object({ lbl: z.string(), name: z.string(), items: z.array(z.string()).optional() })
+    ),
+    edges: z.array(
+      z.object({
+        label: z.string(),
+        // Caption for the return direction; drawn as its own arrow.
+        back: z.string().optional(),
+        dir: z.enum(["right", "left", "both"]).optional(),
+      })
+    ),
+    branches: z
+      .array(
+        z.object({
+          from: z.number(),
+          lbl: z.string(),
+          name: z.string(),
+          sub: z.string().optional(),
+          dashed: z.boolean().optional(),
+        })
+      )
+      .optional(),
+  }),
+  z.object({
+    // Shared medium — every node taps the same bus instead of relaying down
+    // a chain.
+    type: z.literal("bus"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    busLabel: z.string(),
+    busSub: z.string().optional(),
+    nodes: z.array(
+      z.object({ lbl: z.string(), name: z.string(), items: z.array(z.string()).optional() })
+    ),
+  }),
+  z.object({
     // Interconnect map — one component at the centre, its links leaving by
     // the face they use. Endpoints sharing a face are spread along it.
     type: z.literal("linkmap"),

@@ -58,9 +58,16 @@
         "heading": "Carte blanche, après l'audit",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-02-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles." },
-          { "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps." },
-          { "html": "Cette fois, <span class=\"hl\">carte blanche</span> pour tout repenser, du silicium à l'interface. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z." }
+          {
+            "lead": true,
+            "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-02-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles."
+          },
+          {
+            "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps."
+          },
+          {
+            "html": "Cette fois, <span class=\"hl\">carte blanche</span> pour tout repenser, du silicium à l'interface. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z."
+          }
         ]
       },
       {
@@ -163,21 +170,21 @@
         ]
       },
       {
-        "type": "archi",
-        "figLabel": "fig. 3 · architecture — du boîtier à la supervision",
+        "type": "chain",
+        "figLabel": "fig. 3 · du boîtier à la supervision",
         "figRef": "P-03.ARCH",
         "stages": [
           {
-            "lbl": "EDGE",
+            "lbl": "TERRAIN",
             "name": "Boîtier ID-1",
             "items": [
               "ESP32-S3 · C++",
-              "Mesure ratio. de précision",
+              "Mesure ratiométrique",
               "UI locale Vue.js"
             ]
           },
           {
-            "lbl": "INGESTION",
+            "lbl": "SERVEUR",
             "name": "Serveur interne",
             "items": [
               "Réception HTTP",
@@ -186,18 +193,34 @@
             ]
           },
           {
-            "lbl": "APPLICATION",
+            "lbl": "USAGE",
             "name": "Supervision",
             "items": [
               "Web app centralisée",
-              "Configuration à distance",
-              "Alertes"
+              "Alertes",
+              "Analyse historique"
             ]
           }
         ],
-        "arrows": [
-          "HTTP",
-          "HTTP"
+        "edges": [
+          {
+            "label": "HTTP · mesures",
+            "back": "config & firmware",
+            "dir": "both"
+          },
+          {
+            "label": "HTTP",
+            "dir": "right"
+          }
+        ],
+        "branches": [
+          {
+            "from": 0,
+            "lbl": "Wi-Fi · sans internet",
+            "name": "Technicien sur site",
+            "sub": "relevé, réglage et diagnostic",
+            "dashed": true
+          }
         ]
       },
       {

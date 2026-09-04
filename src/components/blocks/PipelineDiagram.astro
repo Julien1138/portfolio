@@ -11,6 +11,11 @@ export interface Props {
   axis: [string, string, string];
 }
 const { figLabel, sub, stages, axis } = Astro.props;
+
+// The grid was sized for four stages (4 x 2 columns + 3 arrows = 11); any
+// longer pipeline overflowed onto a second row, stranding an arrow at the
+// start of it. Derive the track count from the stages instead.
+const cols = stages.length * 3 - 1;
 ---
 
 <div class="pipeline" role="figure" aria-label="Pipeline — chaîne numérique typique">
@@ -18,7 +23,7 @@ const { figLabel, sub, stages, axis } = Astro.props;
     <span class="lbl"><span class="ref">{figLabel}</span></span>
     <span class="lbl">{sub}</span>
   </div>
-  <div class="grid">
+  <div class="grid" style={`grid-template-columns: repeat(${cols}, 1fr)`}>
     {stages.map((stage, i) => (
       <>
         <div class="stage">
@@ -59,7 +64,6 @@ const { figLabel, sub, stages, axis } = Astro.props;
   .pipeline .ph .ref { color: var(--accent); }
   .pipeline .grid {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
     align-items: stretch;
   }
   .pipeline .stage {

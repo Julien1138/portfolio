@@ -1,0 +1,167 @@
+---
+// Directed chain: stages left to right, each edge carrying its own protocol
+// and direction. A two-way edge is drawn as two separate arrows — one per
+// direction, each with its own caption — which reads far better than a
+// double-headed arrow with a cramped label under it. SVG text does not wrap,
+// so captions are wrapped here against the space actually available.
+export interface Stage { lbl: string; name: string; items?: string[] }
+export interface Edge { label: string; back?: string; dir?: "right" | "left" | "both" }
+export interface Branch { from: number; lbl: string; name: string; sub?: string; dashed?: boolean }
+export interface Props {
+  figLabel: string;
+  figRef: string;
+  stages: Stage[];
+  edges: Edge[];
+  branches?: Branch[];
+}
+const { figLabel, figRef, stages, edges, branches = [] } = Astro.props;
+
+const W = 800;
+const PAD = 14;
+const GAP = 132;
+const n = stages.length;
+const boxW = (W - 2 * PAD - (n - 1) * GAP) / n;
+const maxItems = Math.max(...stages.map((s) => s.items?.length ?? 0));
+const headH = 46;
+const itemH = 23;
+const boxH = headH + maxItems * itemH + 12;
+const topY = 12;
+const midY = topY + headH + 14;
+
+// JetBrains Mono advances about 0.6em, so characters per line are
+// predictable from the width a caption is allowed to occupy.
+const wrap = (text: string, px: number, advancePx: number, maxLines = 2) => {
+  const perLine = Math.max(6, Math.floor(px / advancePx));
+  const out: string[] = [];
+  let line = "";
+  for (const word of text.split(" ")) {
+    const next = line ? `${line} ${word}` : word;
+    // Never drop a word: once the last allowed line is open, keep filling it.
+    if (next.length > perLine && line && out.length < maxLines - 1) {
+      out.push(line);
+      line = word;
+    } else line = next;
+  }
+  if (line) out.push(line);
+  return out;
+};
+
+const branchBoxH = 52;
+const branchGap = 50;
+const H = topY + boxH + (branches.length ? branchGap + branchBoxH : 0) + 16;
+
+const xOf = (i: number) => PAD + i * (boxW + GAP);
+const arrow = (x: number, y: number, dir: 1 | -1) =>
+  `M${x} ${y - 4.5} l${9 * dir} 4.5 l${-9 * dir} 4.5 z`;
+
+// Lay out each edge: a two-way edge gets two lines, one above the other.
+const laidEdges = edges.map((e, i) => {
+  const from = xOf(i) + boxW;
+  const to = xOf(i + 1);
+  const cx = (from + to) / 2;
+  const dir = e.dir ?? "right";
+  const two = dir === "both" && !!e.back;
+  return {
+    from, to, cx, dir, two,
+    fwdY: two ? midY - 13 : midY,
+    backY: midY + 15,
+    label: wrap(e.label, GAP - 10, 7.6),
+    back: e.back ? wrap(e.back, GAP - 10, 7.6) : [],
+  };
+});
+---
+
+<div class="chain">
+  <div class="head">
+    <span class="lbl">{figLabel}</span>
+    <span class="lbl ref">{figRef}</span>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={figLabel}>
+    {laidEdges.map((e) => (
+      <>
+        <path d={`M${e.from} ${e.fwdY} H${e.to}`} class="ln" />
+        {e.dir !== "left" && <path d={arrow(e.to - 9, e.fwdY, 1)} class="arw" />}
+        {!e.two && e.dir !== "right" && <path d={arrow(e.from + 9, e.fwdY, -1)} class="arw" />}
+        {e.label.map((line, k) => (
+          <text x={e.cx} y={e.fwdY - 20 + k * 12} class="edge" text-anchor="middle">{line}</text>
+        ))}
+        {e.two && (
+          <>
+            <path d={`M${e.from} ${e.backY} H${e.to}`} class="ln" />
+            <path d={arrow(e.from + 9, e.backY, -1)} class="arw" />
+            {e.back.map((line, k) => (
+              <text x={e.cx} y={e.backY + 17 + k * 12} class="edge sub" text-anchor="middle">{line}</text>
+            ))}
+          </>
+        )}
+      </>
+    ))}
+    {stages.map((s, i) => (
+      <>
+        <rect x={xOf(i)} y={topY} width={boxW} height={boxH} class="bx" />
+        <text x={xOf(i) + 14} y={topY + 21} class="lbl-s">{s.lbl}</text>
+        <text x={xOf(i) + 14} y={topY + 40} class="name">{s.name}</text>
+        {(s.items ?? []).map((it, k) => (
+          <>
+            <rect x={xOf(i) + 12} y={topY + headH + k * itemH} width={boxW - 24} height={itemH - 5} class="item" />
+            <text x={xOf(i) + 22} y={topY + headH + k * itemH + 13} class="item-t">{it}</text>
+          </>
+        ))}
+      </>
+    ))}
+    {branches.map((b) => {
+      const cx = xOf(b.from) + boxW / 2;
+      const by = topY + boxH + branchGap;
+      return (
+        <>
+          <path d={`M${cx} ${topY + boxH} V${by}`} class="ln" stroke-dasharray={b.dashed ? "6 5" : undefined} />
+          <path d={arrow(cx, by - 9, 1)} class="arw" transform={`rotate(90 ${cx} ${by - 4.5})`} />
+          <text x={cx + 12} y={topY + boxH + branchGap / 2 + 4} class="edge">{b.lbl}</text>
+          <rect x={cx - boxW / 2} y={by} width={boxW} height={branchBoxH} class="bx" />
+          <text x={cx} y={by + (b.sub ? 20 : 30)} class="name" text-anchor="middle">{b.name}</text>
+          {b.sub && wrap(b.sub, boxW - 18, 6.6).map((line, k) => (
+            <text x={cx} y={by + 36 + k * 13} class="item-t" text-anchor="middle">{line}</text>
+          ))}
+        </>
+      );
+    })}
+  </svg>
+</div>
+
+<style>
+  .chain {
+    margin-top: 20px;
+    max-width: var(--maxw);
+    padding: 26px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .chain .head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .chain .head .lbl {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .chain .head .ref { color: var(--accent); }
+  .chain svg { display: block; width: 100%; height: auto; }
+  .chain :global(.ln) { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+  .chain :global(.arw) { fill: var(--accent); }
+  .chain :global(.bx) { fill: var(--paper-2); stroke: var(--rule-2); stroke-width: 1; }
+  .chain :global(.item) { fill: var(--paper); stroke: var(--rule-2); stroke-width: 1; }
+  .chain :global(text) { font-family: var(--mono); }
+  .chain :global(.lbl-s) {
+    font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; fill: var(--accent);
+  }
+  .chain :global(.name) {
+    font-family: var(--sans); font-size: 14px; font-weight: 600; fill: var(--ink);
+  }
+  .chain :global(.item-t) { font-size: 10px; fill: var(--ink-2); }
+  .chain :global(.edge) {
+    font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase;
+    fill: var(--accent); font-weight: 500;
+  }
+  .chain :global(.edge.sub) { fill: var(--ink-soft); font-weight: 400; }
+  @media (max-width: 700px) { .chain { padding: 16px; } }
+</style>
