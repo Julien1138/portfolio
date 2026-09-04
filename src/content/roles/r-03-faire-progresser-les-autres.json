@@ -1,16 +1,16 @@
 {
   "ref": "R-03",
   "title": "Faire progresser les autres",
-  "client": "Enseignement · ID-1 · Medium",
+  "client": "Enseignement · ID-1 · Thales · Medium",
   "domain": "Transmission & mentorat technique",
-  "period": "2019 — 2025",
-  "years": "~6 ans",
+  "period": "2019 — 2026",
+  "years": "~7 ans",
   "order": 3,
   "lede": "Transmettre des connaissances me procure autant de plaisir que d'en acquérir — <em>par l'enseignement, l'encadrement et l'écriture technique</em>.",
   "metaStrip": [
     {
       "k": "Contextes",
-      "v": "Enseignement · ID-1 · Medium"
+      "v": "Enseignement · ID-1 · Thales · Medium"
     },
     {
       "k": "Domaine",
@@ -36,6 +36,7 @@
     "Mentorat",
     "Revue de code",
     "Écriture technique",
+    "Bonnes pratiques",
     "Onboarding"
   ],
   "ledHero": false,
@@ -97,8 +98,21 @@
     },
     {
       "type": "prose",
+      "heading": "Être celui qu'on vient consulter.",
+      "num": "§ 04 — Références",
+      "paragraphs": [
+        {
+          "html": "Transmettre ne passe pas toujours par un rôle d'encadrement. Chez <b>Thales LAS</b>, au sein d'une équipe de sept développeurs FPGA, je n'avais aucune responsabilité hiérarchique ni mandat de référent — mais mon avis était régulièrement sollicité sur l'<b>architecture du composant</b> et sur les <b>bonnes pratiques</b> de développement."
+        },
+        {
+          "html": "C'est une forme de transmission que j'apprécie particulièrement, parce qu'elle se mérite plutôt qu'elle ne se décrète : on vient chercher un avis quand il a déjà été utile. Elle oblige aussi à une certaine honnêteté — expliquer <span class=\"hl\">pourquoi</span> une pratique tient, plutôt que de l'imposer parce qu'elle est la mienne, et accepter d'être contredit quand l'argument d'en face est meilleur."
+        }
+      ]
+    },
+    {
+      "type": "prose",
       "heading": "Partager au-delà de mon équipe.",
-      "num": "§ 04 — Écriture",
+      "num": "§ 05 — Écriture",
       "paragraphs": [
         {
           "html": "Lorsque je rencontre un sujet peu documenté ou que je découvre une solution élégante à un problème, il m'arrive d'écrire des tutoriels techniques publiés sur Medium."
@@ -108,13 +122,16 @@
         },
         {
           "html": "Écrire ces tutoriels m'oblige également à structurer ma pensée et à clarifier mes propres connaissances. Expliquer est souvent la meilleure manière de vérifier que l'on a réellement compris."
+        },
+        {
+          "html": "Le partage porte aussi sur mes propres erreurs. En reprenant le FPGA chez Thales après plusieurs années, j'ai découvert qu'une conviction que je croyais solide — la façon d'activer et de relâcher un reset — ne tenait plus sur les composants actuels. J'en ai fait un <b>post public</b> : raconter ce qu'on a cru à tort, et pourquoi on a changé d'avis, est souvent plus utile aux autres que d'exposer ce qu'on maîtrise déjà."
         }
       ]
     },
     {
       "type": "prose",
       "heading": "Ce que cela dit de moi.",
-      "num": "§ 05 — Bilan",
+      "num": "§ 06 — Bilan",
       "paragraphs": [
         {
           "lead": true,

@@ -2,41 +2,49 @@
   {
     "id": "2025-2026",
     "order": 1,
-    "yearRange": "Depuis nov. 2025",
-    "span": "~ 9 mois",
+    "yearRange": "Nov. 2025 — nov. 2026",
+    "span": "~ 1 an",
     "current": true,
     "roleLine": "Salarié · groupe industriel & défense · Thales LAS",
-    "title": "Développeur FPGA senior — liaisons numériques haute vitesse.",
-    "setting": "Programme multicartes sur cibles Xilinx Virtex UltraScale+ · rôle de référent technique.",
-    "desc": "Initialisation d'un projet FPGA multicartes d'envergure : liaisons <b>AURORA</b> sur fibre optique, interfaces <b>JESD204C</b> avec convertisseurs DAC/ADC RF. Développement d'un atelier de génération automatique de code — en TCL pour le VHDL, en Python pour les registres AXI-Lite décrits en XML.",
+    "title": "Développeur FPGA senior — liaisons numériques haute vitesse & outillage.",
+    "setting": "Programme multicartes sur cibles Xilinx Virtex UltraScale+ · simulation d'environnement électromagnétique · équipe FPGA de 7 personnes.",
+    "desc": "Retour au développement FPGA sur un programme multicartes de simulation d'environnement électromagnétique : liaisons série rapides <b>PCIe</b>, <b>AURORA</b> sur fibre optique, <b>JESD204B/JESD204C</b> vers deux composants de conversion analogique/numérique, et <b>DDR</b>. En binôme avec un développeur logiciel, mise en place d'un atelier de génération automatique de code — <b>TCL</b> et <b>Python</b> — produisant, depuis une description XML unique, les bases de registres AXI-Lite, leur pendant logiciel, la documentation, les crossbars et les bancs de test.",
     "highlights": [
       {
         "n": "H.1",
-        "html": "Mise en œuvre de liens <b>AURORA</b> sur fibre optique et <b>JESD204C</b> pour l'interfaçage RF haute vitesse."
+        "html": "Mise en œuvre des liaisons série rapides <b>PCIe</b>, <b>AURORA</b>, <b>JESD204B/JESD204C</b> (deux composants de conversion analogique/numérique) et <b>DDR</b>, avec instrumentation de mesure embarquée."
       },
       {
         "n": "H.2",
-        "html": "Développement d'un atelier scripté en <b>TCL</b> pour la génération automatique de code VHDL."
+        "html": "Atelier de génération automatique de code (<b>TCL</b>, <b>Python</b>) : bases de registres AXI-Lite, code de pilotage, documentation, crossbars et bancs de test depuis une source unique."
       },
       {
         "n": "H.3",
-        "html": "Outil <b>Python</b> de génération automatique de registres AXI-Lite depuis une description XML."
+        "html": "Automatisation du versionnement et de l'identification du FPGA et des bases de registres."
       },
       {
         "n": "H.4",
-        "html": "Rôle de <b>référent technique</b> sur le projet."
+        "html": "Avis sollicité sur l'architecture du composant FPGA et les bonnes pratiques, au sein d'une équipe de <b>7 développeurs</b>."
       }
     ],
     "stack": [
       "VHDL",
       "Xilinx Virtex UltraScale+",
+      "PCIe",
       "AURORA",
+      "JESD204B",
       "JESD204C",
+      "DDR",
       "TCL",
       "Python",
       "AXI-Lite"
     ],
-    "links": []
+    "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
+      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
+      { "label": "Projet · P-04 — Composant FPGA, simulateur électromagnétique", "href": "/projets/p-04-fpga-simulateur-electromagnetique/" }
+    ]
   },
   {
     "id": "2020-2025",
@@ -84,6 +92,7 @@
       { "label": "Rôle · R-01 — Architecte logiciel & système", "href": "/roles/r-01-architecte-logiciel-systeme/" },
       { "label": "Rôle · R-02 — Responsable systèmes embarqués", "href": "/roles/r-02-responsable-systemes-embarques/" },
       { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-02 — Reprise du prototype", "href": "/projets/p-02-reprise-prototype-boitier-mesure/" },
       { "label": "Projet · P-03 — Boîtier de mesure connecté", "href": "/projets/p-03-plateforme-monitoring-industriel/" }
     ]
@@ -126,7 +135,8 @@
     ],
     "links": [
       { "label": "Rôle · R-01 — Architecte logiciel & système", "href": "/roles/r-01-architecte-logiciel-systeme/" },
-      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" }
+      { "label": "Rôle · R-03 — Faire progresser les autres", "href": "/roles/r-03-faire-progresser-les-autres/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" }
     ]
   },
   {
@@ -167,6 +177,7 @@
     ],
     "links": [
       { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-01 — Contrôleur moteur vélo électrique", "href": "/projets/p-01-controleur-moteur-velo-electrique/" }
     ]
   },
@@ -200,7 +211,9 @@
       "Schématique électronique",
       "Conseil technique"
     ],
-    "links": []
+    "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" }
+    ]
   },
   {
     "id": "2009-2012",
@@ -237,7 +250,10 @@
       "DO-254",
       "CPLD Altera"
     ],
-    "links": []
+    "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" }
+    ]
   },
   {
     "id": "2008-2009",
@@ -266,6 +282,8 @@
       "C#"
     ],
     "links": [
+      { "label": "Rôle · R-00 — Expert FPGA & électronique numérique", "href": "/roles/r-00-jcdecaux-fpga/" },
+      { "label": "Rôle · R-04 — Outiller plutôt que répéter", "href": "/roles/r-04-outiller-plutot-que-repeter/" },
       { "label": "Projet · P-00 — Outil FlexRay (stage)", "href": "/projets/p-00-outil-flexray-safran/" }
     ]
   }
