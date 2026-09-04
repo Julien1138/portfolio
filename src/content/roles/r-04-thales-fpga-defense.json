@@ -22,7 +22,7 @@
       "heading": "Contexte.",
       "num": "§ 01 — Contexte",
       "paragraphs": [
-        { "lead": true, "html": "Chez Thales LAS, j'ai rejoint l'équipe FPGA d'un <b>simulateur d'environnement électromagnétique</b> : un programme multicartes, une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, et des convertisseurs RF à piloter au plus près." },
+        { "lead": true, "html": "Chez Thales LAS, j'ai rejoint l'équipe FPGA d'un <b>simulateur d'environnement électromagnétique</b> : un programme multicartes, une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, et des composants de conversion analogique/numérique à piloter au plus près." },
         { "html": "Pour moi, cette mission avait une saveur particulière. Cela faisait dix ans que je n'avais pas touché un FPGA. Il fallait reprendre pied sur les outils, découvrir des protocoles que je ne connaissais pas, et travailler pour la première fois dans une équipe FPGA structurée, en méthode agile." }
       ]
     },
@@ -31,7 +31,7 @@
       "heading": "Le rôle.",
       "num": "§ 02 — Rôle",
       "paragraphs": [
-        { "html": "Développeur senior au sein d'une équipe de <b>sept personnes</b>, j'ai pris en charge de bout en bout les <b>liaisons série rapides</b> du composant FPGA : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux couples de convertisseurs DAC/ADC, et la mémoire <b>DDR</b>." },
+        { "html": "Développeur senior au sein d'une équipe de <b>sept personnes</b>, j'ai pris en charge de bout en bout les <b>liaisons série rapides</b> du composant FPGA : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux composants de conversion analogique/numérique, et la mémoire <b>DDR</b>." },
         { "html": "En binôme avec un développeur logiciel, j'ai conçu l'<b>atelier de génération automatique de code</b> qui produit, à partir d'une description unique, les bases de registres du FPGA, leur pendant logiciel, leur documentation, les crossbars AXI-Lite et les bancs de test — détaillé dans la <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">fiche projet</a>." },
         { "html": "Au-delà de mon périmètre, mon avis était régulièrement sollicité sur l'<b>architecture du composant FPGA</b> et sur les <b>bonnes pratiques</b> de développement de l'équipe." }
       ]

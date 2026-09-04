@@ -26,14 +26,14 @@
     ],
     "heroFigTag": "fig. 1 · composant FPGA, liaisons & registres",
     "figCaptionRef": "fig. 1",
-    "figCaptionText": "Vue de principe du composant FPGA — liaisons série rapides vers le logiciel hôte, les autres cartes et les convertisseurs RF ; bases de registres générées depuis une source unique. Visuels réels non diffusables.",
+    "figCaptionText": "Vue de principe du composant FPGA — liaisons série rapides vers le logiciel hôte, les autres cartes et les composants de conversion analogique/numérique ; bases de registres générées depuis une source unique. Visuels réels non diffusables.",
     "sections": [
       {
         "type": "prose",
         "heading": "Un système à plusieurs voix",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Un <b>simulateur d'environnement électromagnétique</b> est un programme multicartes. Chez <b>Thales LAS</b>, celui-ci repose sur une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, sur des cartes du commerce, chacun relié à des convertisseurs RF, à ses voisins, à de la mémoire, et au logiciel qui le pilote." },
+          { "lead": true, "html": "Un <b>simulateur d'environnement électromagnétique</b> est un programme multicartes. Chez <b>Thales LAS</b>, celui-ci repose sur une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, sur des cartes du commerce, chacun relié à des composants de conversion analogique/numérique, à ses voisins, à de la mémoire, et au logiciel qui le pilote." },
           { "html": "Chacun de ces dialogues a son protocole, ses horloges, ses dizaines de paramètres. Et chacun doit tenir dans la durée, sans ambiguïté sur ce qu'un registre veut dire côté FPGA et côté logiciel. C'est cet ensemble — les liaisons, puis les registres qui les pilotent, puis l'outillage qui les produit — que j'ai pris en charge au sein d'une équipe de sept développeurs FPGA." }
         ]
       },
@@ -54,8 +54,8 @@
           },
           {
             "lbl": "RF",
-            "name": "Convertisseurs DAC / ADC",
-            "items": ["JESD204B", "JESD204C", "Deux couples de convertisseurs"]
+            "name": "Conversion analogique/numérique",
+            "items": ["JESD204B", "JESD204C", "Deux composants distincts"]
           }
         ],
         "arrows": ["PCIe", "JESD204B / C"]
@@ -65,7 +65,7 @@
         "heading": "Les liaisons série rapides",
         "num": "§ 02",
         "paragraphs": [
-          { "html": "J'ai mis en œuvre seul les liaisons du composant : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux couples de convertisseurs DAC/ADC distincts, et la mémoire <b>DDR</b>." },
+          { "html": "J'ai mis en œuvre seul les liaisons du composant : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux composants de conversion analogique/numérique distincts, et la mémoire <b>DDR</b>." },
           { "html": "La difficulté n'était pas conceptuelle mais concrète : s'approprier les IP Xilinx, comprendre finement ce que chaque paramètre change dans l'établissement du lien, et surtout ne pas se contenter d'un lien qui <em>semble</em> fonctionner. J'ai développé des <b>outils de mesure embarqués dans le FPGA</b> pour objectiver les performances de chaque liaison plutôt que les supposer." }
         ]
       },
