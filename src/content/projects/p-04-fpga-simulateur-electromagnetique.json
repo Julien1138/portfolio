@@ -10,7 +10,18 @@
   "featured": true,
   "variant": "default",
   "lede": "Une dizaine de FPGA reliés par des liaisons série rapides et pilotés par des milliers de registres — <em>et un atelier qui génère tout ce qui peut l'être</em>, chez Thales LAS.",
-  "chips": ["VHDL", "Xilinx Virtex UltraScale+", "AURORA", "JESD204B", "JESD204C", "PCIe", "DDR", "AXI-Lite", "TCL", "Python"],
+  "chips": [
+    "VHDL",
+    "Xilinx Virtex UltraScale+",
+    "AURORA",
+    "JESD204B",
+    "JESD204C",
+    "PCIe",
+    "DDR",
+    "AXI-Lite",
+    "TCL",
+    "Python"
+  ],
   "role": "Équipe de 7 · liaisons & outillage",
   "figTag": "fig. P-04 · composant FPGA, liaisons & registres",
   "cornerLabel": "P-04 / FPGA",
@@ -18,11 +29,27 @@
     "metaTop": "P-04 · FPGA · 2025 — 2026 · Thales LAS",
     "readTime": "~ 5 min",
     "metaStrip": [
-      { "k": "Période", "v": "2025 → 2026" },
-      { "k": "Rôle", "v": "Développeur FPGA senior" },
-      { "k": "Équipe", "v": "7 développeurs FPGA" },
-      { "k": "Périmètre", "v": "Liaisons rapides → registres → outillage", "accent": true },
-      { "k": "Lecture", "v": "~ 5 min" }
+      {
+        "k": "Période",
+        "v": "2025 → 2026"
+      },
+      {
+        "k": "Rôle",
+        "v": "Développeur FPGA senior"
+      },
+      {
+        "k": "Équipe",
+        "v": "7 développeurs FPGA"
+      },
+      {
+        "k": "Périmètre",
+        "v": "Liaisons rapides → registres → outillage",
+        "accent": true
+      },
+      {
+        "k": "Lecture",
+        "v": "~ 5 min"
+      }
     ],
     "heroFigTag": "fig. 1 · composant FPGA, liaisons & registres",
     "figCaptionRef": "fig. 1",
@@ -33,8 +60,13 @@
         "heading": "Un système à plusieurs voix",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Un <b>simulateur d'environnement électromagnétique</b> est un programme multicartes. Chez <b>Thales LAS</b>, celui-ci repose sur une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, sur des cartes du commerce, chacun relié à des composants de conversion analogique/numérique, à ses voisins, à de la mémoire, et au logiciel qui le pilote." },
-          { "html": "Chacun de ces dialogues a son protocole, ses horloges, ses dizaines de paramètres. Et chacun doit tenir dans la durée, sans ambiguïté sur ce qu'un registre veut dire côté FPGA et côté logiciel. C'est cet ensemble — les liaisons, puis les registres qui les pilotent, puis l'outillage qui les produit — que j'ai pris en charge au sein d'une équipe de sept développeurs FPGA." }
+          {
+            "lead": true,
+            "html": "Un <b>simulateur d'environnement électromagnétique</b> est un programme multicartes. Chez <b>Thales LAS</b>, celui-ci repose sur une dizaine de FPGA <b>Xilinx Virtex UltraScale+</b>, sur des cartes du commerce, chacun relié à des composants de conversion analogique/numérique, à ses voisins, à de la mémoire, et au logiciel qui le pilote."
+          },
+          {
+            "html": "Chacun de ces dialogues a son protocole, ses horloges, ses dizaines de paramètres. Et chacun doit tenir dans la durée, sans ambiguïté sur ce qu'un registre veut dire côté FPGA et côté logiciel. C'est cet ensemble — les liaisons, puis les registres qui les pilotent, puis l'outillage qui les produit — que j'ai pris en charge au sein d'une équipe de sept développeurs FPGA."
+          }
         ]
       },
       {
@@ -45,36 +77,73 @@
           {
             "lbl": "HÔTE",
             "name": "Logiciel de pilotage",
-            "items": ["Code de pilotage généré", "Documentation générée", "Même source que le FPGA"]
+            "items": [
+              "Code de pilotage généré",
+              "Documentation générée",
+              "Même source que le FPGA"
+            ]
           },
           {
             "lbl": "FPGA",
             "name": "Virtex UltraScale+ (× ~10)",
-            "items": ["Crossbars AXI-Lite", "Bases de registres", "DDR · AURORA fibre entre cartes"]
+            "items": [
+              "Crossbars AXI-Lite",
+              "Bases de registres",
+              "DDR · AURORA fibre entre cartes"
+            ]
           },
           {
             "lbl": "RF",
             "name": "Conversion analogique/numérique",
-            "items": ["JESD204B", "JESD204C", "Deux composants distincts"]
+            "items": [
+              "JESD204B",
+              "JESD204C",
+              "Deux composants distincts"
+            ]
           }
         ],
-        "arrows": ["PCIe", "JESD204B / C"]
+        "arrows": [
+          "PCIe",
+          "JESD204B / C"
+        ]
       },
       {
         "type": "prose",
         "heading": "Les liaisons série rapides",
         "num": "§ 02",
         "paragraphs": [
-          { "html": "J'ai mis en œuvre seul les liaisons du composant : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux composants de conversion analogique/numérique distincts, et la mémoire <b>DDR</b>." },
-          { "html": "La difficulté n'était pas conceptuelle mais concrète : s'approprier les IP Xilinx, comprendre finement ce que chaque paramètre change dans l'établissement du lien, et surtout ne pas se contenter d'un lien qui <em>semble</em> fonctionner. J'ai développé des <b>outils de mesure embarqués dans le FPGA</b> pour objectiver les performances de chaque liaison plutôt que les supposer." }
+          {
+            "html": "J'ai mis en œuvre seul les liaisons du composant : <b>PCIe</b> vers le logiciel hôte, <b>AURORA</b> sur fibre optique entre cartes, <b>JESD204B</b> et <b>JESD204C</b> vers deux composants de conversion analogique/numérique distincts, et la mémoire <b>DDR</b>."
+          },
+          {
+            "html": "La difficulté n'était pas conceptuelle mais concrète : s'approprier les IP Xilinx, comprendre finement ce que chaque paramètre change dans l'établissement du lien, et surtout ne pas se contenter d'un lien qui <em>semble</em> fonctionner. J'ai développé des <b>outils de mesure embarqués dans le FPGA</b> pour objectiver les performances de chaque liaison plutôt que les supposer."
+          }
         ]
       },
       {
         "type": "constraints",
         "rows": [
-          { "id": "C-01", "head": "Carte du commerce", "desc": "La disposition des liaisons série rapides est fixée par le constructeur de la carte, pas par le projet.", "arbK": "Réponse", "arbV": "Rendre ces limites visibles tôt, pour des choix d'intégration en connaissance de cause." },
-          { "id": "C-02", "head": "Paramétrage des IP", "desc": "Chaque protocole apporte ses dizaines de paramètres ; un seul de travers, et le lien se dégrade sans le dire.", "arbK": "Réponse", "arbV": "Comprendre chaque paramètre avant de le fixer, pas d'essai-erreur." },
-          { "id": "C-03", "head": "Confiance dans le lien", "desc": "Une liaison qui s'établit n'est pas une liaison qui tient sa performance.", "arbK": "Réponse", "arbV": "Instrumentation embarquée : mesurer dans le FPGA, sur cible." }
+          {
+            "id": "C-01",
+            "head": "Carte du commerce",
+            "desc": "La disposition des liaisons série rapides est fixée par le constructeur de la carte, pas par le projet.",
+            "arbK": "Réponse",
+            "arbV": "Rendre ces limites visibles tôt, pour des choix d'intégration en connaissance de cause."
+          },
+          {
+            "id": "C-02",
+            "head": "Paramétrage des IP",
+            "desc": "Chaque protocole apporte ses dizaines de paramètres ; un seul de travers, et le lien se dégrade sans le dire.",
+            "arbK": "Réponse",
+            "arbV": "Comprendre chaque paramètre avant de le fixer, pas d'essai-erreur."
+          },
+          {
+            "id": "C-03",
+            "head": "Confiance dans le lien",
+            "desc": "Une liaison qui s'établit n'est pas une liaison qui tient sa performance.",
+            "arbK": "Réponse",
+            "arbV": "Instrumentation embarquée : mesurer dans le FPGA, sur cible."
+          }
         ]
       },
       {
@@ -82,9 +151,15 @@
         "heading": "Des milliers de registres, une seule source",
         "num": "§ 03",
         "paragraphs": [
-          { "html": "Chaque FPGA est piloté par des <b>bases de registres</b> accessibles en <b>AXI-Lite</b>, distribuées par des crossbars. Multipliées par une dizaine de cibles, cela représente des milliers de registres, que le FPGA et le logiciel doivent lire exactement de la même façon." },
-          { "html": "Écrits à la main, ces registres dérivent : entre le code et sa documentation, et surtout entre le <b>FPGA et le logiciel</b>, qui n'évoluent pas au même rythme. À cette échelle, ce n'est plus une gêne mais un risque projet." },
-          { "html": "En binôme avec un développeur logiciel, j'ai mis en place un atelier où tout part d'une <b>description XML unique</b>. Deux générateurs, en <b>TCL</b> et en <b>Python</b>, en tirent tout le reste : le VHDL des bases de registres, le code de pilotage côté logiciel, la documentation, les crossbars et leurs connexions, et les bancs de test. En quelques secondes, pour l'ensemble des cibles. Ce réflexe d'outillage traverse tout mon parcours — il fait l'objet d'une <a href=\"/roles/r-04-outiller-plutot-que-repeter/\">fiche dédiée</a>." }
+          {
+            "html": "Chaque FPGA est piloté par des <b>bases de registres</b> accessibles en <b>AXI-Lite</b>, distribuées par des crossbars. Multipliées par une dizaine de cibles, cela représente des milliers de registres, que le FPGA et le logiciel doivent lire exactement de la même façon."
+          },
+          {
+            "html": "Écrits à la main, ces registres dérivent : entre le code et sa documentation, et surtout entre le <b>FPGA et le logiciel</b>, qui n'évoluent pas au même rythme. À cette échelle, ce n'est plus une gêne mais un risque projet."
+          },
+          {
+            "html": "En binôme avec un développeur logiciel, j'ai mis en place un atelier où tout part d'une <b>description XML unique</b>. Deux générateurs, en <b>TCL</b> et en <b>Python</b>, en tirent tout le reste : le VHDL des bases de registres, le code de pilotage côté logiciel, la documentation, les crossbars et leurs connexions, et les bancs de test. En quelques secondes, pour l'ensemble des cibles. Ce réflexe d'outillage traverse tout mon parcours — il fait l'objet d'une <a href=\"/roles/r-04-outiller-plutot-que-repeter/\">fiche dédiée</a>."
+          }
         ]
       },
       {
@@ -92,21 +167,61 @@
         "figLabel": "fig. 3 · de la description unique au FPGA testé",
         "sub": "6 sorties · une source",
         "stages": [
-          { "num": "01 · SOURCE", "t": "Description", "d": "XML unique" },
-          { "num": "02 · FPGA", "t": "Bases de registres", "d": "VHDL" },
-          { "num": "03 · LOGICIEL", "t": "Code de pilotage", "d": "même source" },
-          { "num": "04 · DOC", "t": "Documentation", "d": "toujours à jour" },
-          { "num": "05 · CROSSBAR", "t": "Crossbars & connexions", "d": "AXI-Lite" },
-          { "num": "06 · TESTS", "t": "Bancs de test", "d": "générés avec le design" }
+          {
+            "num": "01 · SOURCE",
+            "t": "Description",
+            "d": "XML unique"
+          },
+          {
+            "num": "02 · FPGA",
+            "t": "Bases de registres",
+            "d": "VHDL"
+          },
+          {
+            "num": "03 · LOGICIEL",
+            "t": "Code de pilotage",
+            "d": "même source"
+          },
+          {
+            "num": "04 · DOC",
+            "t": "Documentation",
+            "d": "toujours à jour"
+          },
+          {
+            "num": "05 · CROSSBAR",
+            "t": "Crossbars & connexions",
+            "d": "AXI-Lite"
+          },
+          {
+            "num": "06 · TESTS",
+            "t": "Bancs de test",
+            "d": "générés avec le design"
+          }
         ],
-        "axis": ["← une source unique", "génération automatique", "FPGA, logiciel & doc alignés →"]
+        "axis": [
+          "← une source unique",
+          "génération automatique",
+          "FPGA, logiciel & doc alignés →"
+        ]
       },
       {
         "type": "kpisBig",
         "items": [
-          { "k": "Cibles FPGA", "v": "~ 10", "s": "un seul atelier pour toutes" },
-          { "k": "Génération", "v": "quelques secondes", "s": "de la description au VHDL, au code et à la doc" },
-          { "k": "Registres", "v": "milliers", "s": "jamais écrits à la main" }
+          {
+            "k": "Cibles FPGA",
+            "v": "~ 10",
+            "s": "un seul atelier pour toutes"
+          },
+          {
+            "k": "Génération",
+            "v": "quelques secondes",
+            "s": "de la description au VHDL, au code et à la doc"
+          },
+          {
+            "k": "Registres",
+            "v": "milliers",
+            "s": "jamais écrits à la main"
+          }
         ]
       },
       {
@@ -114,16 +229,34 @@
         "heading": "Savoir quel FPGA on a en face",
         "num": "§ 04",
         "paragraphs": [
-          { "html": "Avec autant de cibles et de versions, une question revient sans cesse : ce FPGA-là, chargé sur cette carte-là, correspond-il bien à cette base de registres-là ? J'ai automatisé le <b>versionnement et l'identification</b> du FPGA et de ses bases de registres, pour que la réponse soit lisible depuis le logiciel, sans intervention manuelle — un point de rigueur qui compte dans un contexte défense." }
+          {
+            "html": "Avec autant de cibles et de versions, une question revient sans cesse : ce FPGA-là, chargé sur cette carte-là, correspond-il bien à cette base de registres-là ? J'ai automatisé le <b>versionnement et l'identification</b> du FPGA et de ses bases de registres, pour que la réponse soit lisible depuis le logiciel, sans intervention manuelle — un point de rigueur qui compte dans un contexte défense."
+          }
         ]
       },
       {
         "type": "decisions",
         "items": [
-          { "num": "D-01 · Source", "t": "Une seule vérité", "d": "Un fichier de description par base de registres ; tout le reste est généré, jamais recopié." },
-          { "num": "D-02 · Tests", "t": "Générés avec le design", "d": "Les bancs de test sortent de la même source que le RTL : ils ne peuvent pas diverger." },
-          { "num": "D-03 · Mesure", "t": "Mesurer avant de conclure", "d": "Chaque liaison rapide est instrumentée sur cible ; pas de performance supposée." },
-          { "num": "D-04 · Reset", "t": "Synchrone, assumé", "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils — <a href=\"/roles/r-00-jcdecaux-fpga/\">une conviction revue sur ce projet</a>." }
+          {
+            "num": "D-01 · Source",
+            "t": "Une seule vérité",
+            "d": "Un fichier de description par base de registres ; tout le reste est généré, jamais recopié."
+          },
+          {
+            "num": "D-02 · Tests",
+            "t": "Générés avec le design",
+            "d": "Les bancs de test sortent de la même source que le RTL : ils ne peuvent pas diverger."
+          },
+          {
+            "num": "D-03 · Mesure",
+            "t": "Mesurer avant de conclure",
+            "d": "Chaque liaison rapide est instrumentée sur cible ; pas de performance supposée."
+          },
+          {
+            "num": "D-04 · Reset",
+            "t": "Synchrone, assumé",
+            "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils — <a href=\"/roles/r-00-jcdecaux-fpga/\">une conviction revue sur ce projet</a>."
+          }
         ]
       },
       {
@@ -131,8 +264,29 @@
         "heading": "Bilan",
         "num": "§ 05",
         "paragraphs": [
-          { "html": "Les liaisons sont en place et mesurées ; l'atelier sert à l'ensemble des cibles du programme et a fait disparaître une classe entière d'erreurs de recopie, ainsi que la dérive entre FPGA, logiciel et documentation. Le temps gagné à chaque nouvelle carte s'est reporté sur ce qui compte vraiment : la mise au point des liens eux-mêmes." },
-          { "html": "Rien de spectaculaire dans le principe — <span class=\"hl\">une source unique, tout le reste généré</span> — mais une valeur qui se mesure directement à l'échelle du système et à la rigueur qu'il exige." }
+          {
+            "html": "Les liaisons sont en place et mesurées ; l'atelier sert à l'ensemble des cibles du programme et a fait disparaître une classe entière d'erreurs de recopie, ainsi que la dérive entre FPGA, logiciel et documentation. Le temps gagné à chaque nouvelle carte s'est reporté sur ce qui compte vraiment : la mise au point des liens eux-mêmes."
+          },
+          {
+            "html": "Rien de spectaculaire dans le principe — <span class=\"hl\">une source unique, tout le reste généré</span> — mais une valeur qui se mesure directement à l'échelle du système et à la rigueur qu'il exige."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Ce que ce projet m'a apporté",
+        "num": "§ 06",
+        "paragraphs": [
+          {
+            "lead": true,
+            "html": "Deux choses resteront de cette année, et aucune ne se trouve dans le code livré."
+          },
+          {
+            "html": "La première est le <b>binôme avec un développeur logiciel</b>. Concevoir un outil à deux, chacun depuis son côté de l'interface, oblige à se mettre d'accord sur ce que « la même chose » veut dire pour un registre vu du FPGA et vu du logiciel. C'est une discussion qu'on n'a jamais lorsqu'on écrit les deux côtés soi-même, et elle rend le résultat meilleur."
+          },
+          {
+            "html": "La seconde est le plaisir de <b>fabriquer l'instrument avant la mesure</b>. Un lien haute vitesse ne se laisse pas observer de l'extérieur : il faut construire, à l'intérieur du composant, de quoi le regarder fonctionner. <span class=\"hl\">Passer de « le lien s'établit » à « voici exactement ce qu'il fait »</span> est le moment que j'ai préféré sur ce projet."
+          }
         ]
       }
     ]
