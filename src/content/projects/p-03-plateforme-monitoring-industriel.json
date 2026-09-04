@@ -177,29 +177,17 @@
           {
             "lbl": "TERRAIN",
             "name": "Boîtier ID-1",
-            "items": [
-              "ESP32-S3 · C++",
-              "Mesure ratiométrique",
-              "UI locale Vue.js"
-            ]
+            "sub": "boîtier autonome"
           },
           {
             "lbl": "SERVEUR",
             "name": "Serveur interne",
-            "items": [
-              "Réception HTTP",
-              "InfluxDB",
-              "Docker"
-            ]
+            "sub": "hébergé en interne"
           },
           {
             "lbl": "USAGE",
             "name": "Supervision",
-            "items": [
-              "Web app centralisée",
-              "Alertes",
-              "Analyse historique"
-            ]
+            "sub": "web app centralisée"
           }
         ],
         "edges": [

@@ -4,7 +4,7 @@
 // direction, each with its own caption — which reads far better than a
 // double-headed arrow with a cramped label under it. SVG text does not wrap,
 // so captions are wrapped here against the space actually available.
-export interface Stage { lbl: string; name: string; items?: string[] }
+export interface Stage { lbl: string; name: string; sub?: string; items?: string[] }
 export interface Edge { label: string; back?: string; dir?: "right" | "left" | "both" }
 export interface Branch { from: number; lbl: string; name: string; sub?: string; dashed?: boolean }
 export interface Props {
@@ -24,9 +24,23 @@ const boxW = (W - 2 * PAD - (n - 1) * GAP) / n;
 const maxItems = Math.max(...stages.map((s) => s.items?.length ?? 0));
 const headH = 46;
 const itemH = 23;
-const boxH = headH + maxItems * itemH + 12;
+const hasSub = stages.some((x) => !!x.sub);
+const subH = hasSub ? 22 : 0;
+// The box grows with what it actually holds — a sub-title, a list of items,
+// both or neither — and the edges then sit inside it whatever the height.
+const boxH = headH + subH + maxItems * itemH + 12;
+// Mono advances about 0.6em, so the longest item decides how large the item
+// type can be without spilling out of its box. Clamped, never silently clipped.
+// Measured in-browser: JetBrains Mono advances 0.601em, and 0.631em once the
+// sub-title's letter-spacing is counted. Budget leaves a real margin so text
+// never sits flush against its box edge.
+const longestItem = Math.max(1, ...stages.flatMap((x) => (x.items ?? []).map((i) => i.length)));
+const itemFont = Math.max(8.4, Math.min(10, (boxW - 46) / (longestItem * 0.601)));
+const longestSub = Math.max(1, ...stages.map((x) => x.sub?.length ?? 0));
+const subFont = Math.max(8.6, Math.min(10.5, (boxW - 30) / (longestSub * 0.631)));
 const topY = 12;
-const midY = topY + headH + 14;
+const subY = topY + headH + 12;
+const midY = topY + Math.round(boxH * 0.55);
 
 // JetBrains Mono advances about 0.6em, so characters per line are
 // predictable from the width a caption is allowed to occupy.
@@ -71,7 +85,7 @@ const laidEdges = edges.map((e, i) => {
 });
 ---
 
-<div class="chain">
+<div class="chain" style={`--item-font:${itemFont.toFixed(2)}px; --sub-font:${subFont.toFixed(2)}px`}>
   <div class="head">
     <span class="lbl">{figLabel}</span>
     <span class="lbl ref">{figRef}</span>
@@ -101,10 +115,11 @@ const laidEdges = edges.map((e, i) => {
         <rect x={xOf(i)} y={topY} width={boxW} height={boxH} class="bx" />
         <text x={xOf(i) + 14} y={topY + 21} class="lbl-s">{s.lbl}</text>
         <text x={xOf(i) + 14} y={topY + 40} class="name">{s.name}</text>
+        {s.sub && <text x={xOf(i) + 14} y={subY} class="stage-sub">{s.sub}</text>}
         {(s.items ?? []).map((it, k) => (
           <>
-            <rect x={xOf(i) + 12} y={topY + headH + k * itemH} width={boxW - 24} height={itemH - 5} class="item" />
-            <text x={xOf(i) + 22} y={topY + headH + k * itemH + 13} class="item-t">{it}</text>
+            <rect x={xOf(i) + 12} y={topY + headH + subH + k * itemH} width={boxW - 24} height={itemH - 5} class="item" />
+            <text x={xOf(i) + 22} y={topY + headH + subH + k * itemH + 13} class="item-t">{it}</text>
           </>
         ))}
       </>
@@ -157,7 +172,10 @@ const laidEdges = edges.map((e, i) => {
   .chain :global(.name) {
     font-family: var(--sans); font-size: 14px; font-weight: 600; fill: var(--ink);
   }
-  .chain :global(.item-t) { font-size: 10px; fill: var(--ink-2); }
+  .chain :global(.stage-sub) {
+    font-size: var(--sub-font, 10.5px); fill: var(--ink-soft); letter-spacing: 0.03em;
+  }
+  .chain :global(.item-t) { font-size: var(--item-font, 10px); fill: var(--ink-2); }
   .chain :global(.edge) {
     font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase;
     fill: var(--accent); font-weight: 500;

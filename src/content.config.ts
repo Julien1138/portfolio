@@ -64,7 +64,12 @@ const sectionSchema = z.discriminatedUnion("type", [
     figLabel: z.string(),
     figRef: z.string(),
     stages: z.array(
-      z.object({ lbl: z.string(), name: z.string(), items: z.array(z.string()).optional() })
+      z.object({
+        lbl: z.string(),
+        name: z.string(),
+        sub: z.string().optional(),
+        items: z.array(z.string()).optional(),
+      })
     ),
     edges: z.array(
       z.object({

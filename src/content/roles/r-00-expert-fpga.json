@@ -8,13 +8,43 @@
   "order": 0,
   "lede": "Concevoir des architectures FPGA pour des systèmes qui ne pardonnent pas l'à-peu-près — <em>de l'avionique aux écrans urbains, puis à la défense</em> — avec sept ans d'interruption au milieu, qui n'ont rien effacé.",
   "metaStrip": [
-    { "k": "Contextes", "v": "Safran · Viveris · JCDecaux · Thales" },
-    { "k": "Domaine", "v": "FPGA & électronique numérique" },
-    { "k": "Rôle", "v": "Expert FPGA · électro num.", "accent": true },
-    { "k": "Étendue", "v": "2008 → 2026 · ~ 11 ans" },
-    { "k": "Lecture", "v": "~ 7 min" }
+    {
+      "k": "Contextes",
+      "v": "Safran · Viveris · JCDecaux · Thales"
+    },
+    {
+      "k": "Domaine",
+      "v": "FPGA & électronique numérique"
+    },
+    {
+      "k": "Rôle",
+      "v": "Expert FPGA · électro num.",
+      "accent": true
+    },
+    {
+      "k": "Étendue",
+      "v": "2008 → 2026 · ~ 11 ans"
+    },
+    {
+      "k": "Lecture",
+      "v": "~ 7 min"
+    }
   ],
-  "chips": ["VHDL", "Verilog", "Xilinx", "Lattice", "Altera", "pipelines", "horloges multi-domaines", "BRAM", "liaisons série rapides", "JESD204B/C", "AURORA", "DO-254", "industrialisation"],
+  "chips": [
+    "VHDL",
+    "Verilog",
+    "Xilinx",
+    "Lattice",
+    "Altera",
+    "pipelines",
+    "horloges multi-domaines",
+    "BRAM",
+    "liaisons série rapides",
+    "JESD204B/C",
+    "AURORA",
+    "DO-254",
+    "industrialisation"
+  ],
   "ledHero": true,
   "heroImage": "/src/assets/images/roles/jcdecaux-fpga/afficheur-new-york.jpg",
   "sections": [
@@ -23,17 +53,34 @@
       "heading": "Contexte.",
       "num": "§ 01 — Contexte",
       "paragraphs": [
-        { "lead": true, "html": "Le FPGA est le fil le plus ancien de mon parcours. Il commence en 2008 avec une IP <b>FlexRay</b> écrite en VHDL pendant mon stage de fin d'études, et il court jusqu'à aujourd'hui — avec, au milieu, sept années consacrées au logiciel et au produit qui n'ont rien effacé." },
-        { "html": "Quatre terrains, quatre exigences différentes : le <b>prototypage et l'industrialisation</b> en bureau d'études, l'<b>affichage urbain</b> à grande échelle, l'<b>industrie lourde</b> et le nucléaire, puis la <b>défense</b>. Des domaines sans grand rapport les uns avec les autres, mais qui posent au fond les mêmes questions." }
+        {
+          "lead": true,
+          "html": "Le FPGA est le fil le plus ancien de mon parcours. Il commence en 2008 avec une IP <b>FlexRay</b> écrite en VHDL pendant mon stage de fin d'études, et il court jusqu'à aujourd'hui — avec, au milieu, sept années consacrées au logiciel et au produit qui n'ont rien effacé."
+        },
+        {
+          "html": "Quatre terrains, quatre exigences différentes : le <b>prototypage et l'industrialisation</b> en bureau d'études, l'<b>affichage urbain</b> à grande échelle, l'<b>industrie lourde</b> et le nucléaire, puis la <b>défense</b>. Des domaines sans grand rapport les uns avec les autres, mais qui posent au fond les mêmes questions."
+        }
       ]
     },
     {
       "type": "rowlist",
       "rows": [
-        { "t": "2008 — 2012 · Safran Engineering Services", "d": "IP FlexRay sur Altera Cyclone III, modules d'interface FPGA pour SAGEM, traitement vidéo sur deux Virtex 4, banc « Iron Bird » pour Bombardier, premier projet sous processus DO-254." },
-        { "t": "2012 — 2013 · Viveris Technologies", "d": "Chaîne d'affichage vidéo FPGA reprise et optimisée chez JCDecaux ; quatre FPGA pour la rénovation de cartes de commande d'électrovannes en centrale nucléaire (Alstom Power)." },
-        { "t": "2014 — 2019 · JCDecaux", "d": "Architectures FPGA des matrices LED d'affichage urbain, sur plusieurs générations de cartes ; liaison monofil embarquée à 50 Mbps sur FPGA Lattice." },
-        { "t": "2025 — 2026 · Thales LAS", "d": "Liaisons série rapides d'un simulateur d'environnement électromagnétique : PCIe, AURORA sur fibre, JESD204B/JESD204C, DDR — et l'outillage qui va avec." }
+        {
+          "t": "2008 — 2012 · Safran Engineering Services",
+          "d": "IP FlexRay sur Altera Cyclone III, modules d'interface FPGA pour SAGEM, traitement vidéo sur deux Virtex 4, banc « Iron Bird » pour Bombardier, premier projet sous processus DO-254."
+        },
+        {
+          "t": "2012 — 2013 · Viveris Technologies",
+          "d": "Chaîne d'affichage vidéo FPGA reprise et optimisée chez JCDecaux ; quatre FPGA pour la rénovation de cartes de commande d'électrovannes en centrale nucléaire (Alstom Power)."
+        },
+        {
+          "t": "2014 — 2019 · JCDecaux",
+          "d": "Architectures FPGA des matrices LED d'affichage urbain, sur plusieurs générations de cartes ; liaison monofil embarquée à 50 Mbps sur FPGA Lattice."
+        },
+        {
+          "t": "2025 — 2026 · Thales LAS",
+          "d": "Liaisons série rapides d'un simulateur d'environnement électromagnétique : PCIe, AURORA sur fibre, JESD204B/JESD204C, DDR — et l'outillage qui va avec."
+        }
       ]
     },
     {
@@ -41,61 +88,95 @@
       "heading": "Le rôle — expert électronique numérique & FPGA.",
       "num": "§ 02 — Rôle",
       "paragraphs": [
-        { "html": "Mon rôle a toujours consisté à concevoir et faire évoluer des architectures FPGA capables de tenir une contrainte physique : un timing, un débit, une enveloppe de ressources. Il ne s'agit pas seulement de faire fonctionner une fonction, mais de maîtriser l'ensemble de la chaîne numérique — génération et décodage des trames, synchronisation temporelle, gestion des horloges, pipelines de données, occupation logique." },
-        { "html": "Chaque projet apportait ses spécificités, mais reposait sur des principes architecturaux communs. Cette répétition dans la diversité m'a permis de consolider une expertise profonde, orientée <b>robustesse</b> et <b>reproductibilité</b>." }
+        {
+          "html": "Mon rôle a toujours consisté à concevoir et faire évoluer des architectures FPGA capables de tenir une contrainte physique : un timing, un débit, une enveloppe de ressources. Il ne s'agit pas seulement de faire fonctionner une fonction, mais de maîtriser l'ensemble de la chaîne numérique — génération et décodage des trames, synchronisation temporelle, gestion des horloges, pipelines de données, occupation logique."
+        },
+        {
+          "html": "Chaque projet apportait ses spécificités, mais reposait sur des principes architecturaux communs. Cette répétition dans la diversité m'a permis de consolider une expertise profonde, orientée <b>robustesse</b> et <b>reproductibilité</b>."
+        }
       ]
     },
     {
       "type": "prose",
-      "heading": "Un exemple — la chaîne d'affichage LED.",
-      "num": "§ 03 — Anatomie",
+      "heading": "Le terrain le plus dense — l'affichage LED.",
+      "num": "§ 03 — Terrain",
       "paragraphs": [
-        { "html": "Les cinq ans passés chez JCDecaux sont la partie la plus dense de ce parcours FPGA, et la plus visible : des matrices LED déployées en milieu urbain, monochromes ou couleur, de tailles et de résolutions très variables, exposées en continu et dont la moindre défaillance se voit <em>littéralement, de loin</em>." },
-        { "html": "La chaîne numérique typique de ces produits donne une bonne idée de ce que recouvre le travail : six étages entre la trame entrante et la matrice pilotée, chacun avec ses contraintes propres." }
+        {
+          "html": "Les cinq ans passés chez JCDecaux sont la partie la plus dense de ce parcours FPGA, et la plus visible : des matrices LED déployées en milieu urbain, monochromes ou couleur, de tailles et de résolutions très variables, exposées en continu et dont la moindre défaillance se voit <em>littéralement, de loin</em>."
+        },
+        {
+          "html": "Le travail y couvre toute la chaîne numérique, de la trame vidéo entrante jusqu'au pilotage de la matrice : une succession d'étages où chacun impose ses contraintes de timing, de bande passante et de ressources, et où une approximation à un maillon se voit sur le produit fini."
+        }
       ]
-    },
-    {
-      "type": "pipeline",
-      "figLabel": "FIG. 02 · Pipeline FPGA — chaîne d'affichage LED",
-      "sub": "6 étages · pipelined",
-      "stages": [
-        { "num": "01 · SOURCE", "t": "Trame entrante", "d": "HDMI / SPI" },
-        { "num": "02 · DECODE", "t": "Découpage", "d": "lignes / pixels" },
-        { "num": "03 · BUFFER", "t": "Double buffer", "d": "BRAM" },
-        { "num": "04 · GAMMA", "t": "Correction γ", "d": "LUT couleur" },
-        { "num": "05 · TIMING", "t": "Horloges", "d": "domaines clk" },
-        { "num": "06 · DRIVE", "t": "Scan matrice", "d": "rows × cols" }
-      ],
-      "axis": ["← entrée vidéo", "traitement numérique", "sortie matrice LED →"]
     },
     {
       "type": "prose",
       "heading": "Variabilité, invariants.",
       "num": "§ 04 — Architecture",
       "paragraphs": [
-        { "html": "D'un terrain à l'autre, presque tout change : le domaine, la famille de FPGA, les protocoles, le niveau de process imposé, la taille de l'équipe. Un banc de test avionique sous DO-254 et un écran LED urbain n'ont, en apparence, rien en commun." },
-        { "html": "Et pourtant les problématiques fondamentales restent identiques : garantir un fonctionnement stable, avec un timing précis, dans des contraintes strictes de ressources et de coût industriel. Cette constance des invariants m'a conduit à développer des <span class=\"hl\">architectures modulaires et réutilisables</span>, quel que soit le domaine." }
+        {
+          "html": "D'un terrain à l'autre, presque tout change : le domaine, la famille de FPGA, les protocoles, le niveau de process imposé, la taille de l'équipe. Un banc de test avionique sous DO-254 et un écran LED urbain n'ont, en apparence, rien en commun."
+        },
+        {
+          "html": "Et pourtant les problématiques fondamentales restent identiques : garantir un fonctionnement stable, avec un timing précis, dans des contraintes strictes de ressources et de coût industriel. Cette constance des invariants m'a conduit à développer des <span class=\"hl\">architectures modulaires et réutilisables</span>, quel que soit le domaine."
+        }
       ]
     },
     {
       "type": "vimatrix",
       "varTitle": "Ce qui change.",
       "varItems": [
-        { "n": "δ.1", "html": "le domaine (avionique, transport, nucléaire, affichage, défense)" },
-        { "n": "δ.2", "html": "familles et générations de FPGA" },
-        { "n": "δ.3", "html": "protocoles (FlexRay, vidéo, JESD204B/C, AURORA, PCIe)" },
-        { "n": "δ.4", "html": "niveau de criticité et de process (DO-254…)" },
-        { "n": "δ.5", "html": "taille de l'équipe (seul, binôme, sept)" },
-        { "n": "δ.6", "html": "contraintes de coût et de série" }
+        {
+          "n": "δ.1",
+          "html": "le domaine (avionique, transport, nucléaire, affichage, défense)"
+        },
+        {
+          "n": "δ.2",
+          "html": "familles et générations de FPGA"
+        },
+        {
+          "n": "δ.3",
+          "html": "protocoles (FlexRay, vidéo, JESD204B/C, AURORA, PCIe)"
+        },
+        {
+          "n": "δ.4",
+          "html": "niveau de criticité et de process (DO-254…)"
+        },
+        {
+          "n": "δ.5",
+          "html": "taille de l'équipe (seul, binôme, sept)"
+        },
+        {
+          "n": "δ.6",
+          "html": "contraintes de coût et de série"
+        }
       ],
       "invTitle": "Ce qui ne change jamais.",
       "invItems": [
-        { "n": "i.1", "html": "précision du timing" },
-        { "n": "i.2", "html": "frugalité des ressources FPGA" },
-        { "n": "i.3", "html": "fiabilité terrain (24/7, années)" },
-        { "n": "i.4", "html": "maintenabilité long terme" },
-        { "n": "i.5", "html": "reproductibilité industrielle" },
-        { "n": "i.6", "html": "mesurer plutôt que supposer" }
+        {
+          "n": "i.1",
+          "html": "précision du timing"
+        },
+        {
+          "n": "i.2",
+          "html": "frugalité des ressources FPGA"
+        },
+        {
+          "n": "i.3",
+          "html": "fiabilité terrain (24/7, années)"
+        },
+        {
+          "n": "i.4",
+          "html": "maintenabilité long terme"
+        },
+        {
+          "n": "i.5",
+          "html": "reproductibilité industrielle"
+        },
+        {
+          "n": "i.6",
+          "html": "mesurer plutôt que supposer"
+        }
       ]
     },
     {
@@ -103,17 +184,49 @@
       "heading": "Contraintes fortes & arbitrages.",
       "num": "§ 05 — Trade-offs",
       "paragraphs": [
-        { "html": "Le développement FPGA impose des contraintes sévères, qui ont guidé l'ensemble de mes choix techniques. Voici les cinq qui reviennent sur chaque projet, avec, en marge, l'arbitrage que j'ai fini par adopter par défaut." }
+        {
+          "html": "Le développement FPGA impose des contraintes sévères, qui ont guidé l'ensemble de mes choix techniques. Voici les cinq qui reviennent sur chaque projet, avec, en marge, l'arbitrage que j'ai fini par adopter par défaut."
+        }
       ]
     },
     {
       "type": "constraints",
       "rows": [
-        { "id": "C-01", "head": "Timing & synchronisation", "desc": "Précision des horloges et stabilité des pipelines de traitement.", "arbK": "Arbitrage type", "arbV": "Domaines d'horloge isolés, FIFO inter-domaine systématique." },
-        { "id": "C-02", "head": "Bande passante", "desc": "Acheminer les flux de données sans goulot d'étranglement.", "arbK": "Arbitrage type", "arbV": "Double buffer + traitement parallèle plutôt que mono-pipeline." },
-        { "id": "C-03", "head": "Ressources FPGA", "desc": "Compromis qualité ↔ occupation logique permanent.", "arbK": "Arbitrage type", "arbV": "Réutilisation BRAM > LUT, fonctionnalités justifiées une à une." },
-        { "id": "C-04", "head": "Fiabilité terrain", "desc": "Fonctionnement continu pendant des années, sans intervention.", "arbK": "Arbitrage type", "arbV": "Watchdog matériel, recovery autonome, état restauré." },
-        { "id": "C-05", "head": "Maintenabilité", "desc": "Architecture compréhensible et évolutive pour les équipes futures.", "arbK": "Arbitrage type", "arbV": "Découpage fonctionnel clair, conventions de nommage strictes." }
+        {
+          "id": "C-01",
+          "head": "Timing & synchronisation",
+          "desc": "Précision des horloges et stabilité des pipelines de traitement.",
+          "arbK": "Arbitrage type",
+          "arbV": "Domaines d'horloge isolés, FIFO inter-domaine systématique."
+        },
+        {
+          "id": "C-02",
+          "head": "Bande passante",
+          "desc": "Acheminer les flux de données sans goulot d'étranglement.",
+          "arbK": "Arbitrage type",
+          "arbV": "Double buffer + traitement parallèle plutôt que mono-pipeline."
+        },
+        {
+          "id": "C-03",
+          "head": "Ressources FPGA",
+          "desc": "Compromis qualité ↔ occupation logique permanent.",
+          "arbK": "Arbitrage type",
+          "arbV": "Réutilisation BRAM > LUT, fonctionnalités justifiées une à une."
+        },
+        {
+          "id": "C-04",
+          "head": "Fiabilité terrain",
+          "desc": "Fonctionnement continu pendant des années, sans intervention.",
+          "arbK": "Arbitrage type",
+          "arbV": "Watchdog matériel, recovery autonome, état restauré."
+        },
+        {
+          "id": "C-05",
+          "head": "Maintenabilité",
+          "desc": "Architecture compréhensible et évolutive pour les équipes futures.",
+          "arbK": "Arbitrage type",
+          "arbV": "Découpage fonctionnel clair, conventions de nommage strictes."
+        }
       ]
     },
     {
@@ -121,18 +234,44 @@
       "heading": "Décisions techniques récurrentes.",
       "num": "§ 06 — Patterns",
       "paragraphs": [
-        { "html": "Mes décisions portent principalement sur la structuration des pipelines, la gestion fine des horloges et de leurs domaines, l'optimisation des flux pour limiter la consommation de ressources, la capacité à faire évoluer un design existant sans régression, et la clarté du découpage fonctionnel pour faciliter la maintenance." }
+        {
+          "html": "Mes décisions portent principalement sur la structuration des pipelines, la gestion fine des horloges et de leurs domaines, l'optimisation des flux pour limiter la consommation de ressources, la capacité à faire évoluer un design existant sans régression, et la clarté du découpage fonctionnel pour faciliter la maintenance."
+        }
       ]
     },
     {
       "type": "decisions",
       "items": [
-        { "num": "D-01 · Pipelines", "t": "Découpage en étages courts", "d": "Latence prévisible, FIFO inter-domaine, registres pipelinés à chaque étage." },
-        { "num": "D-02 · Horloges", "t": "CDC explicite et documenté", "d": "Aucune traversée implicite entre domaines, marquage des chemins faux." },
-        { "num": "D-03 · Mémoire", "t": "BRAM avant LUT, toujours", "d": "Tables & buffers en mémoire bloc, logique LUT réservée au combinatoire." },
-        { "num": "D-04 · Évolutivité", "t": "Paramètres au top-level", "d": "Génériques VHDL pour résolution, scan, profondeur — pas de magic numbers." },
-        { "num": "D-05 · Découpage", "t": "Un module = une responsabilité", "d": "Frontières alignées sur les rôles fonctionnels, pas sur les fichiers historiques." },
-        { "num": "D-06 · Test", "t": "Bancs de simu en pyramide", "d": "Tests unitaires par module, intégration, puis cosimulation hardware-in-the-loop." }
+        {
+          "num": "D-01 · Pipelines",
+          "t": "Découpage en étages courts",
+          "d": "Latence prévisible, FIFO inter-domaine, registres pipelinés à chaque étage."
+        },
+        {
+          "num": "D-02 · Horloges",
+          "t": "CDC explicite et documenté",
+          "d": "Aucune traversée implicite entre domaines, marquage des chemins faux."
+        },
+        {
+          "num": "D-03 · Mémoire",
+          "t": "BRAM avant LUT, toujours",
+          "d": "Tables & buffers en mémoire bloc, logique LUT réservée au combinatoire."
+        },
+        {
+          "num": "D-04 · Évolutivité",
+          "t": "Paramètres au top-level",
+          "d": "Génériques VHDL pour résolution, scan, profondeur — pas de magic numbers."
+        },
+        {
+          "num": "D-05 · Découpage",
+          "t": "Un module = une responsabilité",
+          "d": "Frontières alignées sur les rôles fonctionnels, pas sur les fichiers historiques."
+        },
+        {
+          "num": "D-06 · Test",
+          "t": "Bancs de simu en pyramide",
+          "d": "Tests unitaires par module, intégration, puis cosimulation hardware-in-the-loop."
+        }
       ]
     },
     {
@@ -140,7 +279,9 @@
       "heading": "",
       "num": "",
       "paragraphs": [
-        { "html": "Ces choix sont rarement spectaculaires, mais toujours guidés par une logique de <span class=\"hl\">pérennité industrielle</span>." }
+        {
+          "html": "Ces choix sont rarement spectaculaires, mais toujours guidés par une logique de <span class=\"hl\">pérennité industrielle</span>."
+        }
       ]
     },
     {
@@ -148,8 +289,13 @@
       "heading": "La pause, et le retour.",
       "num": "§ 07 — Retour",
       "paragraphs": [
-        { "lead": true, "html": "Entre 2019 et 2025, je n'ai pas touché un FPGA. Six ans de logiciel, d'architecture et de produit, chez Naept puis chez ID-1. Puis un an chez <b>Thales LAS</b>, sur le composant FPGA d'un simulateur d'environnement électromagnétique — <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">détaillé dans la fiche projet</a>." },
-        { "html": "La question qui se posait était simple : après sept ans d'écart, qu'est-ce qui revient ? Réponse : l'essentiel, et vite. Les réflexes de découpage, de timing, de frugalité étaient intacts. Ce qui a demandé du travail, c'est le neuf — des protocoles que je ne connaissais pas (<b>JESD204B/C</b>, <b>AURORA</b>), des outils qui avaient dix ans de plus, et une équipe de sept développeurs FPGA travaillant en méthode agile, là où mes expériences précédentes s'étaient faites seul ou à deux." }
+        {
+          "lead": true,
+          "html": "Entre 2019 et 2025, je n'ai pas touché un FPGA. Six ans de logiciel, d'architecture et de produit, chez Naept puis chez ID-1. Puis un an chez <b>Thales LAS</b>, sur le composant FPGA d'un simulateur d'environnement électromagnétique — <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">détaillé dans la fiche projet</a>."
+        },
+        {
+          "html": "La question qui se posait était simple : après sept ans d'écart, qu'est-ce qui revient ? Réponse : l'essentiel, et vite. Les réflexes de découpage, de timing, de frugalité étaient intacts. Ce qui a demandé du travail, c'est le neuf — des protocoles que je ne connaissais pas (<b>JESD204B/C</b>, <b>AURORA</b>), des outils qui avaient dix ans de plus, et une équipe de sept développeurs FPGA travaillant en méthode agile, là où mes expériences précédentes s'étaient faites seul ou à deux."
+        }
       ]
     },
     {
@@ -162,7 +308,9 @@
       "heading": "Une conviction remise en question.",
       "num": "§ 08 — Reset",
       "paragraphs": [
-        { "html": "Le plus intéressant a été de me faire contredire sur un sujet que je croyais réglé. J'étais arrivé convaincu qu'un reset doit être <b>activé de façon asynchrone et relâché de façon synchrone</b>. Le design en place était entièrement en reset synchrone. En creusant : sur un FPGA moderne, toutes les bascules sont initialisées au chargement de la configuration ; l'activation asynchrone n'apporte rien à un processus qui n'échantillonne qu'au front d'horloge ; et un reset synchrone est un signal comme un autre, que les outils analysent et contraignent sans surprise." }
+        {
+          "html": "Le plus intéressant a été de me faire contredire sur un sujet que je croyais réglé. J'étais arrivé convaincu qu'un reset doit être <b>activé de façon asynchrone et relâché de façon synchrone</b>. Le design en place était entièrement en reset synchrone. En creusant : sur un FPGA moderne, toutes les bascules sont initialisées au chargement de la configuration ; l'activation asynchrone n'apporte rien à un processus qui n'échantillonne qu'au front d'horloge ; et un reset synchrone est un signal comme un autre, que les outils analysent et contraignent sans surprise."
+        }
       ]
     },
     {
@@ -175,15 +323,30 @@
       "heading": "Apports & héritage dans mon parcours.",
       "num": "§ 09 — Héritage",
       "paragraphs": [
-        { "lead": true, "html": "Ce socle FPGA a profondément structuré mon approche de l'ingénierie. Il m'a appris trois choses qui orientent encore aujourd'hui mes décisions d'architecte." }
+        {
+          "lead": true,
+          "html": "Ce socle FPGA a profondément structuré mon approche de l'ingénierie. Il m'a appris trois choses qui orientent encore aujourd'hui mes décisions d'architecte."
+        }
       ]
     },
     {
       "type": "takeaway",
       "cards": [
-        { "n": "01", "t": "Les contraintes matérielles", "d": "…sont souvent des alliées pour concevoir des architectures simples et solides." },
-        { "n": "02", "t": "Un système que l'on ne peut pas rattraper", "d": "…impose un niveau d'exigence élevé — il n'y a pas de « presque OK »." },
-        { "n": "03", "t": "La rigueur dans le bas niveau", "d": "…conditionne la qualité de tout ce qui se construit par-dessus." }
+        {
+          "n": "01",
+          "t": "Les contraintes matérielles",
+          "d": "…sont souvent des alliées pour concevoir des architectures simples et solides."
+        },
+        {
+          "n": "02",
+          "t": "Un système que l'on ne peut pas rattraper",
+          "d": "…impose un niveau d'exigence élevé — il n'y a pas de « presque OK »."
+        },
+        {
+          "n": "03",
+          "t": "La rigueur dans le bas niveau",
+          "d": "…conditionne la qualité de tout ce qui se construit par-dessus."
+        }
       ]
     },
     {
@@ -196,7 +359,9 @@
       "heading": "Positionnement de la fiche.",
       "num": "§ 10 — Lecture",
       "paragraphs": [
-        { "html": "Cette fiche ne détaille pas chaque projet individuellement, mais rend lisible une expertise construite sur la <b>répétition de projets concrets, industriels et contraints</b>, étalés sur près de vingt ans. Elle constitue un socle technique fort, sur lequel se sont appuyés mes rôles ultérieurs en architecture logicielle, systèmes embarqués et conception de produits complets — et vers lequel je suis revenu sans difficulté après plusieurs années d'interruption." }
+        {
+          "html": "Cette fiche ne détaille pas chaque projet individuellement, mais rend lisible une expertise construite sur la <b>répétition de projets concrets, industriels et contraints</b>, étalés sur près de vingt ans. Elle constitue un socle technique fort, sur lequel se sont appuyés mes rôles ultérieurs en architecture logicielle, systèmes embarqués et conception de produits complets — et vers lequel je suis revenu sans difficulté après plusieurs années d'interruption."
+        }
       ]
     }
   ]

@@ -21,6 +21,10 @@ const maxItems = Math.max(...nodes.map((x) => x.items?.length ?? 0));
 const headH = 46;
 const itemH = 23;
 const boxH = headH + maxItems * itemH + 12;
+// Mono advances about 0.6em, so the longest item decides how large the item
+// type can be without spilling out of its box. Clamped, never silently clipped.
+const longestItem = Math.max(1, ...nodes.flatMap((x) => (x.items ?? []).map((i) => i.length)));
+const itemFont = Math.max(8.4, Math.min(10, (boxW - 46) / (longestItem * 0.601)));
 const topY = 10;
 const stub = 34;
 const busY = topY + boxH + stub;
@@ -28,7 +32,7 @@ const H = busY + 40;
 const xOf = (i: number) => PAD + i * (boxW + GAP);
 ---
 
-<div class="busd">
+<div class="busd" style={`--item-font:${itemFont.toFixed(2)}px`}>
   <div class="head">
     <span class="lbl">{figLabel}</span>
     <span class="lbl ref">{figRef}</span>
@@ -87,7 +91,7 @@ const xOf = (i: number) => PAD + i * (boxW + GAP);
   .busd :global(.name) {
     font-family: var(--sans); font-size: 14px; font-weight: 600; fill: var(--ink);
   }
-  .busd :global(.item-t) { font-size: 10px; fill: var(--ink-2); }
+  .busd :global(.item-t) { font-size: var(--item-font, 10px); fill: var(--ink-2); }
   .busd :global(.bus-lbl) {
     font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
     fill: var(--accent); font-weight: 500;
