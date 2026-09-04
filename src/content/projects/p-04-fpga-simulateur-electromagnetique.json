@@ -123,7 +123,7 @@
           { "num": "D-01 · Source", "t": "Une seule vérité", "d": "Un fichier de description par base de registres ; tout le reste est généré, jamais recopié." },
           { "num": "D-02 · Tests", "t": "Générés avec le design", "d": "Les bancs de test sortent de la même source que le RTL : ils ne peuvent pas diverger." },
           { "num": "D-03 · Mesure", "t": "Mesurer avant de conclure", "d": "Chaque liaison rapide est instrumentée sur cible ; pas de performance supposée." },
-          { "num": "D-04 · Reset", "t": "Synchrone, assumé", "d": "Sur FPGA moderne, un reset entièrement synchrone est plus simple et mieux supporté par les outils — <a href=\"/roles/r-04-thales-fpga-defense/\">voir la fiche rôle</a>." }
+          { "num": "D-04 · Reset", "t": "Synchrone, assumé", "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils qu'un relâchement resynchronisé." }
         ]
       },
       {

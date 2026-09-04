@@ -40,7 +40,6 @@
       "AXI-Lite"
     ],
     "links": [
-      { "label": "Rôle · R-04 — Développeur FPGA senior, défense", "href": "/roles/r-04-thales-fpga-defense/" },
       { "label": "Projet · P-04 — Composant FPGA, simulateur électromagnétique", "href": "/projets/p-04-fpga-simulateur-electromagnetique/" }
     ]
   },
