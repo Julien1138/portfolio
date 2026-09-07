@@ -4,7 +4,7 @@
 // nothing to license. Variants share the same dark panel and corner labels so
 // the set reads as one family, and the same drawing serves both a fiche
 // header and the smaller figure on an index card (`compact`).
-export type Variant = "anechoic" | "flexray" | "led" | "layers" | "measure" | "transmit" | "tooling";
+export type Variant = "anechoic" | "flexray" | "layers" | "measure" | "transmit" | "tooling";
 export interface Props {
   variant: Variant;
   compact?: boolean;
@@ -85,20 +85,6 @@ if (variant === "flexray") {
     `<path d="M0 ${axisY} H${W}" stroke="${shade(90)}" stroke-width="1" opacity="0.35"/>`
   );
   corners = ["BUS FLEXRAY", "ILLUSTRATION", "CYCLE STATIQUE + DYNAMIQUE", "P-00 · SAFRAN"];
-}
-
-if (variant === "led") {
-  // LED matrix, a band of it lit on a test pattern.
-  const cols = 60, rows = 14, cell = 12;
-  for (let y = 0; y < rows; y++)
-    for (let x = 0; x < cols; x++) {
-      const lit = (x * 31 + y * 17) % 11 === 0 || (x + y) % 23 === 0;
-      const band = y >= 4 && y <= 9;
-      p.push(
-        `<circle cx="${x * cell + cell / 2}" cy="${y * cell + cell / 2 + 34}" r="${lit ? (band ? 3.2 : 2.4) : 1.4}" fill="${lit ? (band ? "var(--accent)" : "var(--led-amber)") : "var(--led-dim)"}" opacity="${lit ? 0.95 : 0.42}"/>`
-      );
-    }
-  corners = ["MATRICE LED · 60 × 14", "ILLUSTRATION", "SCAN LIGNE PAR LIGNE", "R-00 · JCDECAUX"];
 }
 
 if (variant === "layers") {
