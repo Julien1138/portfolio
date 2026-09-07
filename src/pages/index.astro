@@ -12,9 +12,11 @@ import { getYearsOfExperience } from "../lib/experience";
 const years = getYearsOfExperience();
 
 const allProjects = await getCollection("projects");
-// The three most recent, matching the section heading. Recency is the whole
-// selection rule here, so no flag decides it.
-const featured = allProjects.sort((a, b) => b.data.order - a.data.order).slice(0, 3);
+// `featured` in the project fiches decides what appears here; the heading
+// below counts them, so flagging one more can never make it lie.
+const featured = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.order - a.data.order);
 
 const roles = (await getCollection("roles")).sort((a, b) => a.data.order - b.data.order);
 
@@ -90,7 +92,7 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
     </section>
 
     <section class="block" id="projects" style="padding-top: 56px;">
-      <SectionHead num="§ 02 — Projets" title="Sélection — 3 systèmes." kicker="cliquer pour le récit complet" />
+      <SectionHead num="§ 02 — Projets" title={`Sélection — ${featured.length} systèmes.`} kicker="cliquer pour le récit complet" />
       <div class="projects">
         {featured.map((p, i) => (
           <ProjectCardWide

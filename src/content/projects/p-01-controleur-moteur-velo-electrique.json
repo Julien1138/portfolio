@@ -6,7 +6,7 @@
   "period": "2017 — 2018",
   "yearStart": 2017,
   "order": 1,
-  "featured": true,
+  "featured": false,
   "variant": "default",
   "lede": "Développement complet du logiciel embarqué d'un contrôleur moteur pour vélo à assistance électrique urbain — <em>architecture temps réel, C++ embarqué, logique d'assistance sur mesure</em>, chez JCDecaux.",
   "chips": [
