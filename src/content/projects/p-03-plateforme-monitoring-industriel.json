@@ -141,7 +141,10 @@
         "num": "§ 05",
         "paragraphs": [
           {
-            "html": "Pour la supervision globale, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, déployée en interne chez ID-1 : collecte des données, configuration à distance, visualisation centralisée, alertes. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure à l'analyse."
+            "html": "Pour la supervision, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, hébergée sur les serveurs d'ID-1 et <span class=\"hl\">administrée en interne</span> — pas de service managé externe : collecte des données, configuration à distance, visualisation centralisée, alertes."
+          },
+          {
+            "html": "La web app de supervision est destinée aux <b>clients équipés d'un boîtier</b>, qui suivent ainsi le comportement de leurs machines dans le temps. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure sur site à l'analyse par l'exploitant."
           },
           {
             "html": "Les boîtiers remontent leurs mesures en <b>HTTP</b> vers le serveur, qui les stocke dans <b>InfluxDB</b> — une base de séries temporelles adaptée au volume et à la fréquence des relevés."
@@ -161,11 +164,11 @@
           },
           {
             "t": "Visualisation & alertes",
-            "d": "Web app centralisée pour la supervision et les alertes"
+            "d": "Web app de supervision destinée aux clients équipés"
           },
           {
             "t": "Déploiement",
-            "d": "Infrastructure serveur dockerisée, déployée en interne"
+            "d": "Infrastructure dockerisée, hébergée et administrée chez ID-1"
           }
         ]
       },
@@ -177,17 +180,17 @@
           {
             "lbl": "TERRAIN",
             "name": "Boîtier ID-1",
-            "sub": "boîtier autonome"
+            "sub": "sur la machine du client"
           },
           {
             "lbl": "SERVEUR",
-            "name": "Serveur interne",
-            "sub": "hébergé en interne"
+            "name": "Serveur ID-1",
+            "sub": "chez ID-1, auto-administré"
           },
           {
-            "lbl": "USAGE",
+            "lbl": "CLIENT",
             "name": "Supervision",
-            "sub": "web app centralisée"
+            "sub": "pour les clients équipés"
           }
         ],
         "edges": [

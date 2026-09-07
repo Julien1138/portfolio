@@ -47,13 +47,6 @@ const sectionSchema = z.discriminatedUnion("type", [
     arrows: z.array(z.string()),
   }),
   z.object({
-    type: z.literal("pipeline"),
-    figLabel: z.string(),
-    sub: z.string(),
-    stages: z.array(z.object({ num: z.string(), t: z.string(), d: z.string() })),
-    axis: z.tuple([z.string(), z.string(), z.string()]),
-  }),
-  z.object({
     type: z.literal("kpisBig"),
     items: z.array(kpiItem),
   }),

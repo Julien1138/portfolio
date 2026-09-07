@@ -5,7 +5,6 @@ import CodeBlock from "./CodeBlock.astro";
 import Split2 from "./Split2.astro";
 import RowList from "./RowList.astro";
 import ArchiDiagram from "./ArchiDiagram.astro";
-import PipelineDiagram from "./PipelineDiagram.astro";
 import LinkMap from "./LinkMap.astro";
 import ChainDiagram from "./ChainDiagram.astro";
 import BusDiagram from "./BusDiagram.astro";
@@ -37,8 +36,6 @@ const { sections } = Astro.props;
       return <RowList rows={s.rows} />;
     case "archi":
       return <ArchiDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} arrows={s.arrows} />;
-    case "pipeline":
-      return <PipelineDiagram figLabel={s.figLabel} sub={s.sub} stages={s.stages} axis={s.axis} />;
     case "chain":
       return (
         <ChainDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} edges={s.edges} branches={s.branches} />
