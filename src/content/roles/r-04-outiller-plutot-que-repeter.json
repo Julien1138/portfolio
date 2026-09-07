@@ -8,22 +8,53 @@
   "order": 4,
   "lede": "Quand une tâche se répète, ou qu'un système refuse de se laisser observer, je construis l'outil — <em>un réflexe présent sur chacun de mes postes, du banc de test FPGA à la génération de code</em>.",
   "metaStrip": [
-    { "k": "Contextes", "v": "Safran · JCDecaux · Naept · ID-1 · Thales" },
-    { "k": "Domaine", "v": "Outillage & automatisation" },
-    { "k": "Rôle", "v": "Concepteur d'outils", "accent": true },
-    { "k": "Étendue", "v": "2008 → 2026" },
-    { "k": "Lecture", "v": "~ 5 min" }
+    {
+      "k": "Contextes",
+      "v": "Safran · JCDecaux · Naept · ID-1 · Thales"
+    },
+    {
+      "k": "Domaine",
+      "v": "Outillage & automatisation"
+    },
+    {
+      "k": "Rôle",
+      "v": "Concepteur d'outils",
+      "accent": true
+    },
+    {
+      "k": "Étendue",
+      "v": "2008 → 2026"
+    },
+    {
+      "k": "Lecture",
+      "v": "~ 5 min"
+    }
   ],
-  "chips": ["Bancs de test", "Génération de code", "Instrumentation", "CI/CD", "Firmware OTA", "TCL", "Python", "C++ / Qt", "Docker", "Open source"],
-  "ledHero": false,
+  "chips": [
+    "Bancs de test",
+    "Génération de code",
+    "Instrumentation",
+    "CI/CD",
+    "Firmware OTA",
+    "TCL",
+    "Python",
+    "C++ / Qt",
+    "Docker",
+    "Open source"
+  ],
   "sections": [
     {
       "type": "prose",
       "heading": "Un réflexe, pas une mission.",
       "num": "§ 01 — Contexte",
       "paragraphs": [
-        { "lead": true, "html": "Aucun de mes postes ne s'intitulait « développeur d'outils ». Pourtant, à chacun d'eux, j'ai fini par en construire — parce qu'une tâche revenait trop souvent, parce qu'un système ne se laissait pas observer, ou parce que la même information était recopiée à trois endroits différents." },
-        { "html": "Cette fiche rassemble ce fil, présent de mon stage de fin d'études jusqu'à aujourd'hui. Il ne s'agit pas d'outillage pour l'outillage : à chaque fois, le déclencheur a été un problème concret qui coûtait du temps, ou un risque d'erreur qu'on ne pouvait pas se permettre." }
+        {
+          "lead": true,
+          "html": "Aucun de mes postes ne s'intitulait « développeur d'outils ». Pourtant, à chacun d'eux, j'ai fini par en construire — parce qu'une tâche revenait trop souvent, parce qu'un système ne se laissait pas observer, ou parce que la même information était recopiée à trois endroits différents."
+        },
+        {
+          "html": "Cette fiche rassemble ce fil, présent de mon stage de fin d'études jusqu'à aujourd'hui. Il ne s'agit pas d'outillage pour l'outillage : à chaque fois, le déclencheur a été un problème concret qui coûtait du temps, ou un risque d'erreur qu'on ne pouvait pas se permettre."
+        }
       ]
     },
     {
@@ -31,17 +62,33 @@
       "heading": "Voir ce qui est invisible.",
       "num": "§ 02 — Observer",
       "paragraphs": [
-        { "html": "La première famille d'outils sert à <b>observer</b>. Un bus série, un lien haute vitesse, un système embarqué en fonctionnement ne se laissent pas inspecter à l'œil nu : il faut construire l'instrument qui rend leur comportement lisible." },
-        { "html": "C'était l'objet de mon <a href=\"/projets/p-00-outil-flexray-safran/\">stage de fin d'études</a> — un outil d'espionnage et d'injection <b>FlexRay</b> sur FPGA, à une époque où les équipements du commerce étaient rares et coûteux. On retrouve la même logique dans le banc de test <b>« Iron Bird »</b> conçu pour un train chez Bombardier Transport, dans la messagerie de banc de test développée pour Thales, dans les outils PC de mise au point en <b>C++/Qt</b> chez JCDecaux, et, quinze ans après le FlexRay, dans les instruments de mesure que j'ai embarqués <b>à l'intérieur du FPGA</b> chez Thales LAS pour objectiver les performances des liaisons série rapides." }
+        {
+          "html": "La première famille d'outils sert à <b>observer</b>. Un bus série, un lien haute vitesse, un système embarqué en fonctionnement ne se laissent pas inspecter à l'œil nu : il faut construire l'instrument qui rend leur comportement lisible."
+        },
+        {
+          "html": "C'était l'objet de mon <a href=\"/projets/p-00-outil-flexray-safran/\">stage de fin d'études</a> — un outil d'espionnage et d'injection <b>FlexRay</b> sur FPGA, à une époque où les équipements du commerce étaient rares et coûteux. On retrouve la même logique dans le banc de test <b>« Iron Bird »</b> conçu pour un train chez Bombardier Transport, dans la messagerie de banc de test développée pour Thales, dans les outils PC de mise au point en <b>C++/Qt</b> chez JCDecaux, et, quinze ans après le FlexRay, dans les instruments de mesure que j'ai embarqués <b>à l'intérieur du FPGA</b> chez Thales LAS pour objectiver les performances des liaisons série rapides."
+        }
       ]
     },
     {
       "type": "rowlist",
       "rows": [
-        { "t": "2009 · Outil FlexRay sur FPGA", "d": "Espionnage, analyse et injection de trames pour bancs de test automobile — Safran Engineering Services." },
-        { "t": "2010 — 2012 · Bancs de test", "d": "Banc « Iron Bird » pour un train (Bombardier Transport), messagerie de banc de test (Thales)." },
-        { "t": "2014 — 2019 · Outils de mise au point", "d": "Outils PC en C++/Qt pour tester et régler les cartes d'affichage — liaisons RS422/485/232, JCDecaux." },
-        { "t": "2025 — 2026 · Instrumentation embarquée", "d": "Outils de mesure implantés dans le FPGA pour qualifier PCIe, AURORA, JESD204B/C — Thales LAS." }
+        {
+          "t": "2009 · Outil FlexRay sur FPGA",
+          "d": "Espionnage, analyse et injection de trames pour bancs de test automobile — Safran Engineering Services."
+        },
+        {
+          "t": "2010 — 2012 · Bancs de test",
+          "d": "Banc « Iron Bird » pour un train (Bombardier Transport), messagerie de banc de test (Thales)."
+        },
+        {
+          "t": "2014 — 2019 · Outils de mise au point",
+          "d": "Outils PC en C++/Qt pour tester et régler les cartes d'affichage — liaisons RS422/485/232, JCDecaux."
+        },
+        {
+          "t": "2025 — 2026 · Instrumentation embarquée",
+          "d": "Outils de mesure implantés dans le FPGA pour qualifier PCIe, AURORA, JESD204B/C — Thales LAS."
+        }
       ]
     },
     {
@@ -49,8 +96,12 @@
       "heading": "Ne pas écrire ce qui peut être généré.",
       "num": "§ 03 — Générer",
       "paragraphs": [
-        { "html": "La deuxième famille attaque un autre problème : la <b>recopie</b>. Dès qu'une même information vit à plusieurs endroits — dans le code matériel, dans le code logiciel, dans la documentation — elle finit par diverger. Ce n'est pas une hypothèse, c'est une certitude à l'échelle d'un projet qui dure." },
-        { "html": "Chez <b>Thales LAS</b>, ce problème se posait sur des milliers de registres répartis sur une dizaine de FPGA. En binôme avec un développeur logiciel, j'ai mis en place un atelier où tout part d'une <b>description unique</b> : le code matériel, son pendant logiciel, la documentation, les interconnexions et les bancs de test en sont dérivés automatiquement, en quelques secondes. J'y ai ajouté le versionnement et l'identification automatiques, pour qu'on sache toujours quelle version d'un composant on a en face de soi. Le détail est dans la <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">fiche projet</a>." }
+        {
+          "html": "La deuxième famille attaque un autre problème : la <b>recopie</b>. Dès qu'une même information vit à plusieurs endroits — dans le code matériel, dans le code logiciel, dans la documentation — elle finit par diverger. Ce n'est pas une hypothèse, c'est une certitude à l'échelle d'un projet qui dure."
+        },
+        {
+          "html": "Chez <b>Thales LAS</b>, ce problème se posait sur des milliers de registres répartis sur une dizaine de FPGA. En binôme avec un développeur logiciel, j'ai mis en place un atelier où tout part d'une <b>description unique</b> : le code matériel, son pendant logiciel, la documentation, les interconnexions et les bancs de test en sont dérivés automatiquement, en quelques secondes. J'y ai ajouté le versionnement et l'identification automatiques, pour qu'on sache toujours quelle version d'un composant on a en face de soi. Le détail est dans la <a href=\"/projets/p-04-fpga-simulateur-electromagnetique/\">fiche projet</a>."
+        }
       ]
     },
     {
@@ -58,10 +109,18 @@
       "heading": "Industrialiser le chemin jusqu'à la production.",
       "num": "§ 04 — Automatiser",
       "paragraphs": [
-        { "html": "La troisième famille concerne le trajet du code jusqu'à son usage réel. Chez <b>Naept</b>, j'ai conteneurisé l'ensemble du produit et mis en place un déploiement continu via GitLab CI, derrière un reverse-proxy Traefik." },
-        { "html": "Chez <b>ID-1</b>, j'ai installé l'intégration continue sur un environnement qui n'en avait pas — via Bitbucket, pour les applications web <b>comme pour le firmware des boîtiers ESP32</b>. Côté embarqué, la chaîne fait plus que compiler : elle exécute les tests, produit les binaires, <b>vérifie que la reprogrammation à distance fonctionne</b> sur la nouvelle version, et fabrique l'utilitaire de flashage des boîtiers neufs." },
-        { "html": "Ce dernier point est celui dont je suis le plus content. L'utilitaire est conçu pour être lancé par mon responsable, qui <span class=\"hl\">n'est pas du métier</span> : mettre un boîtier sortant de production dans son état de livraison ne demande plus de développeur. Une chaîne d'outillage qui s'arrête à la porte de l'équipe technique n'est qu'à moitié terminée." },
-        { "html": "Ce travail n'est jamais visible dans le produit fini. Il se mesure autrement : au nombre de fois où l'on peut livrer sans crainte, et au temps qu'on ne passe plus à refaire à la main une manipulation qu'on a déjà réussie." }
+        {
+          "html": "La troisième famille concerne le trajet du code jusqu'à son usage réel. Chez <b>Naept</b>, j'ai conteneurisé l'ensemble du produit et mis en place un déploiement continu via GitLab CI, derrière un reverse-proxy Traefik."
+        },
+        {
+          "html": "Chez <b>ID-1</b>, j'ai installé l'intégration continue sur un environnement qui n'en avait pas — via Bitbucket, pour les applications web <b>comme pour le firmware des boîtiers ESP32</b>. Côté embarqué, la chaîne fait plus que compiler : elle exécute les tests, produit les binaires, <b>vérifie que la reprogrammation à distance fonctionne</b> sur la nouvelle version, et fabrique l'utilitaire de flashage des boîtiers neufs."
+        },
+        {
+          "html": "Ce dernier point est celui dont je suis le plus content. L'utilitaire est conçu pour être lancé par mon responsable, qui <span class=\"hl\">n'est pas du métier</span> : mettre un boîtier sortant de production dans son état de livraison ne demande plus de développeur. Une chaîne d'outillage qui s'arrête à la porte de l'équipe technique n'est qu'à moitié terminée."
+        },
+        {
+          "html": "Ce travail n'est jamais visible dans le produit fini. Il se mesure autrement : au nombre de fois où l'on peut livrer sans crainte, et au temps qu'on ne passe plus à refaire à la main une manipulation qu'on a déjà réussie."
+        }
       ]
     },
     {
@@ -69,16 +128,34 @@
       "heading": "Rendre l'outil réutilisable par d'autres.",
       "num": "§ 05 — Partager",
       "paragraphs": [
-        { "html": "Quand l'outil dépasse mon besoin propre, il a vocation à sortir. Chez Naept, plusieurs briques développées pour le produit ont été publiées en <b>open source</b> — conversion ProseMirror ↔ HTML, contributions à PHPWord, Eloquent Sequence — parce qu'il n'y avait aucune raison que le problème soit résolu deux fois." }
+        {
+          "html": "Quand l'outil dépasse mon besoin propre, il a vocation à sortir. Chez Naept, plusieurs briques développées pour le produit ont été publiées en <b>open source</b> — conversion ProseMirror ↔ HTML, contributions à PHPWord, Eloquent Sequence — parce qu'il n'y avait aucune raison que le problème soit résolu deux fois."
+        }
       ]
     },
     {
       "type": "decisions",
       "items": [
-        { "num": "P-01 · Source unique", "t": "Une information, un endroit", "d": "Tout ce qui peut être dérivé l'est ; la recopie manuelle est traitée comme un défaut, pas comme une méthode." },
-        { "num": "P-02 · Mesurer", "t": "Observer avant de conclure", "d": "Un système qu'on ne peut pas instrumenter est un système sur lequel on n'a que des opinions." },
-        { "num": "P-03 · Proportion", "t": "L'outil doit coûter moins que le problème", "d": "Outiller ce qui se répète ou ce qui risque de casser, pas ce qui se fait une fois." },
-        { "num": "P-04 · Transmission", "t": "Un outil que je suis seul à savoir lancer", "d": "…n'est pas terminé. Documentation, intégration au flot existant, publication — ou, au mieux, un utilitaire qu'un non-développeur lance sans moi." }
+        {
+          "num": "P-01 · Source unique",
+          "t": "Une information, un endroit",
+          "d": "Tout ce qui peut être dérivé l'est ; la recopie manuelle est traitée comme un défaut, pas comme une méthode."
+        },
+        {
+          "num": "P-02 · Mesurer",
+          "t": "Observer avant de conclure",
+          "d": "Un système qu'on ne peut pas instrumenter est un système sur lequel on n'a que des opinions."
+        },
+        {
+          "num": "P-03 · Proportion",
+          "t": "L'outil doit coûter moins que le problème",
+          "d": "Outiller ce qui se répète ou ce qui risque de casser, pas ce qui se fait une fois."
+        },
+        {
+          "num": "P-04 · Transmission",
+          "t": "Un outil que je suis seul à savoir lancer",
+          "d": "…n'est pas terminé. Documentation, intégration au flot existant, publication — ou, au mieux, un utilitaire qu'un non-développeur lance sans moi."
+        }
       ]
     },
     {
@@ -86,8 +163,13 @@
       "heading": "Ce que cela dit de moi.",
       "num": "§ 06 — Bilan",
       "paragraphs": [
-        { "lead": true, "html": "Je supporte mal de refaire à la main quelque chose que j'ai déjà fait une fois, et encore moins de reposer sur une vérification humaine là où une machine serait plus fiable." },
-        { "html": "Ce réflexe a une conséquence directe sur ma façon de concevoir : je cherche tôt la représentation qui permettra de tout dériver ensuite, et je préfère investir quelques jours dans un outil plutôt que de payer indéfiniment le prix d'une tâche répétitive. C'est aussi, très concrètement, ce qui rend un projet supportable dans la durée pour ceux qui le reprendront." }
+        {
+          "lead": true,
+          "html": "Je supporte mal de refaire à la main quelque chose que j'ai déjà fait une fois, et encore moins de reposer sur une vérification humaine là où une machine serait plus fiable."
+        },
+        {
+          "html": "Ce réflexe a une conséquence directe sur ma façon de concevoir : je cherche tôt la représentation qui permettra de tout dériver ensuite, et je préfère investir quelques jours dans un outil plutôt que de payer indéfiniment le prix d'une tâche répétitive. C'est aussi, très concrètement, ce qui rend un projet supportable dans la durée pour ceux qui le reprendront."
+        }
       ]
     },
     {
@@ -95,5 +177,6 @@
       "body": "« Le bon moment pour construire l'outil, c'est la deuxième fois qu'on fait le travail à la main — pas la dixième. »",
       "sig": "— note d'auteur"
     }
-  ]
+  ],
+  "heroArt": "tooling"
 }

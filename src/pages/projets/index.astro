@@ -68,7 +68,8 @@ const filters = [
         <ProjectCardIndex
           href={`/projets/${p.id}/`}
           side={i % 2 === 0 ? "left" : "right"}
-          bigNum={String(i + 1).padStart(2, "0")}
+          bigNum={p.data.ref}
+          heroArt={p.data.heroArt}
           figTag={p.data.figTag}
           heroImage={p.data.heroImage}
           cornerLabel={p.data.cornerLabel}

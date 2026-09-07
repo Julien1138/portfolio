@@ -1,10 +1,12 @@
 ---
 import { Image } from "astro:assets";
+import HeroArt from "./HeroArt.astro";
 
 export interface Props {
   href: string;
   side: "left" | "right";
   bigNum: string;
+  heroArt?: string;
   figTag: string;
   heroImage?: string;
   cornerLabel: string;
@@ -19,7 +21,7 @@ export interface Props {
   tag: string; // filter tag, e.g. "iot"
   yearStart: number;
 }
-const { href, side, bigNum, figTag, heroImage, cornerLabel, ref, category, period, title, lede, kpis, chips, role, tag, yearStart } =
+const { href, side, bigNum, heroArt, figTag, heroImage, cornerLabel, ref, category, period, title, lede, kpis, chips, role, tag, yearStart } =
   Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -32,9 +34,11 @@ const resolved = heroImage ? images[heroImage]?.default : undefined;
 <li>
   <a href={href} class={`pcard ${side}`} data-tag={tag} data-category={category} data-year-start={yearStart}>
     <div class="fig">
-      <span class="bignum">{bigNum}</span>
+      <span class={`bignum ${heroArt && !resolved ? "on-art" : ""}`}>{bigNum}</span>
       {resolved ? (
         <Image src={resolved} alt={figTag} width={900} class="fig-photo" />
+      ) : heroArt ? (
+        <HeroArt variant={heroArt as any} compact />
       ) : (
         <div class="inner">
           <span class="tag">{figTag}</span>
@@ -126,15 +130,18 @@ const resolved = heroImage ? images[heroImage]?.default : undefined;
     top: 22px; left: 26px;
     font-family: var(--sans);
     font-weight: 800;
-    font-size: 96px;
+    font-size: 64px;
     line-height: 1;
     color: var(--ink);
     opacity: 0.10;
+    z-index: 1;
     letter-spacing: -0.05em;
     z-index: 1;
     pointer-events: none;
   }
   .pcard.right .fig .bignum { left: auto; right: 26px; }
+  /* On a dark generated illustration the ink number disappears. */
+  .pcard .fig .bignum.on-art { color: var(--paper); opacity: 0.22; }
   .pcard .fig .tag {
     font-family: var(--mono);
     font-size: 11px;
