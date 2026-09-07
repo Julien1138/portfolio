@@ -12,6 +12,8 @@ import { getYearsOfExperience } from "../lib/experience";
 const years = getYearsOfExperience();
 
 const allProjects = await getCollection("projects");
+// `featured` in the project fiches decides what appears here; the heading
+// below counts them, so flagging one more can never make it lie.
 const featured = allProjects
   .filter((p) => p.data.featured)
   .sort((a, b) => b.data.order - a.data.order);
@@ -90,7 +92,7 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
     </section>
 
     <section class="block" id="projects" style="padding-top: 56px;">
-      <SectionHead num="§ 02 — Projets" title="Sélection — 3 systèmes." kicker="cliquer pour le récit complet" />
+      <SectionHead num="§ 02 — Projets" title={`Sélection — ${featured.length} systèmes.`} kicker="cliquer pour le récit complet" />
       <div class="projects">
         {featured.map((p, i) => (
           <ProjectCardWide
@@ -99,6 +101,7 @@ const bomRows = (await getCollection("stack")).map((r) => r.data).filter((r) => 
             dark={p.data.variant === "dark"}
             figTag={p.data.figTag}
             heroImage={p.data.heroImage}
+            heroArt={p.data.heroArt}
             metaLeft={`${p.data.ref} · ${p.data.category}`}
             metaRight={`${p.data.period}${p.data.ongoing ? " · en cours" : ""}`}
             title={p.data.title}

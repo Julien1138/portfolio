@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProgressBar from "../../components/ProgressBar.astro";
 import MetaStrip from "../../components/MetaStrip.astro";
 import ChipRow from "../../components/ChipRow.astro";
-import LedHero from "../../components/LedHero.astro";
+import HeroArt from "../../components/HeroArt.astro";
 import PlaceholderFigure from "../../components/PlaceholderFigure.astro";
 import SectionRenderer from "../../components/blocks/SectionRenderer.astro";
 import RelatedGrid from "../../components/RelatedGrid.astro";
@@ -55,8 +55,8 @@ const allRoles = (await getCollection("roles")).sort((a, b) => a.data.order - b.
       <div class="hero-fig-wrap">
         <PlaceholderFigure tag={`fig. 1 · ${d.client} · ${d.domain}`} imagePath={d.heroImage} minHeight="240px" />
       </div>
-    ) : d.ledHero ? (
-      <LedHero />
+    ) : d.heroArt ? (
+      <HeroArt variant={d.heroArt} minHeight="260px" />
     ) : (
       <div class="hero-fig-wrap">
         <PlaceholderFigure tag={`fig. 1 · ${d.client} · ${d.domain}`} minHeight="240px" />

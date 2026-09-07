@@ -39,7 +39,6 @@
     "CI/CD",
     "OTA & flashage"
   ],
-  "ledHero": false,
   "sections": [
     {
       "type": "prose",
@@ -190,5 +189,6 @@
       "body": "« Sur des produits embarqués déployés à grande échelle, la fiabilité est centrale. Chaque retour terrain est coûteux, parfois impossible. Mon approche privilégie donc la simplicité, la robustesse et une vision globale du système, depuis le capteur jusqu'à l'exploitation distante. »",
       "sig": "— conviction personnelle"
     }
-  ]
+  ],
+  "heroArt": "measure"
 }

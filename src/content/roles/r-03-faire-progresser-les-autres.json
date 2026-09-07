@@ -39,7 +39,6 @@
     "Bonnes pratiques",
     "Onboarding"
   ],
-  "ledHero": false,
   "sections": [
     {
       "type": "prose",
@@ -147,5 +146,6 @@
       "body": "« Il faut se rappeler pourquoi on fait les choses pour que nos actions gardent du sens. »",
       "sig": "— une phrase que je répète souvent"
     }
-  ]
+  ],
+  "heroArt": "transmit"
 }

@@ -1,0 +1,265 @@
+---
+// Generated hero artwork, one variant per fiche. Everything is computed at
+// build time from deterministic geometry — no client JS, no photograph, and
+// nothing to license. Variants share the same dark panel and corner labels so
+// the set reads as one family, and the same drawing serves both a fiche
+// header and the smaller figure on an index card (`compact`).
+export type Variant = "anechoic" | "flexray" | "layers" | "measure" | "transmit" | "tooling";
+export interface Props {
+  variant: Variant;
+  compact?: boolean;
+  minHeight?: string;
+}
+const { variant, compact = false, minHeight = "320px" } = Astro.props;
+
+const W = 800;
+const H = 260;
+const p: string[] = [];
+let corners: [string, string, string, string] = ["", "", "", ""];
+
+const shade = (v: number) => `rgb(${v},${Math.round(v * 0.97)},${Math.round(v * 0.86)})`;
+
+if (variant === "anechoic") {
+  // Absorber field in perspective, with a wavefront damped as it enters it.
+  const rows = 11;
+  for (let r = 0; r < rows; r++) {
+    const t = r / (rows - 1);
+    const y = 44 + Math.pow(t, 1.55) * 196;
+    const w = 13 + t * 34;
+    const h = 17 + t * 40;
+    const dark = shade(Math.round(26 + t * 30));
+    const light = shade(Math.round(46 + t * 78));
+    const edge = `rgba(190,180,160,${(0.05 + t * 0.16).toFixed(2)})`;
+    for (let x = (r % 2) * (w / 2) - w; x < W + 30; x += w) {
+      const m = x + w / 2;
+      p.push(
+        `<path d="M${x.toFixed(1)} ${y.toFixed(1)} L${m.toFixed(1)} ${(y - h).toFixed(1)} L${m.toFixed(1)} ${y.toFixed(1)} z" fill="${light}"/>`,
+        `<path d="M${m.toFixed(1)} ${y.toFixed(1)} L${m.toFixed(1)} ${(y - h).toFixed(1)} L${(x + w).toFixed(1)} ${y.toFixed(1)} z" fill="${dark}"/>`,
+        `<path d="M${x.toFixed(1)} ${y.toFixed(1)} L${m.toFixed(1)} ${(y - h).toFixed(1)} L${(x + w).toFixed(1)} ${y.toFixed(1)}" fill="none" stroke="${edge}" stroke-width="0.8"/>`
+      );
+    }
+  }
+  for (const wv of [{ ph: 1.8, a: 26, w: 1.1, o: 0.3 }, { ph: 0.9, a: 40, w: 1.4, o: 0.45 }, { ph: 0, a: 54, w: 1.9, o: 0.8 }]) {
+    let d = "M0 150";
+    for (let x = 0; x <= W; x += 8) d += ` L${x} ${(150 + Math.sin(x / 26 + wv.ph) * wv.a * Math.exp(-x / 300)).toFixed(1)}`;
+    p.push(`<path d="${d}" fill="none" stroke="var(--accent)" stroke-width="${wv.w}" opacity="${wv.o}"/>`);
+  }
+  corners = ["CHAMBRE ANÉCHOÏQUE", "ILLUSTRATION", "ENVIRONNEMENT ÉLECTROMAGNÉTIQUE", "P-04 · THALES LAS"];
+}
+
+if (variant === "flexray") {
+  // Two communication cycles: a static segment of equal slots, then a
+  // dynamic segment of minislots. One frame is injected by the tool.
+  const axisY = 182;
+  const top = 84;
+  const slotH = 76;
+  const cycles = [40, 420];
+  cycles.forEach((x0, ci) => {
+    const slotW = 34;
+    for (let i = 0; i < 7; i++) {
+      const x = x0 + i * (slotW + 4);
+      const filled = [0, 1, 3, 4, 6].includes(i);
+      const injected = ci === 1 && i === 4;
+      const h = filled ? slotH : 18;
+      p.push(
+        `<rect x="${x}" y="${axisY - h}" width="${slotW}" height="${h}" fill="${injected ? "var(--accent)" : filled ? shade(74) : "none"}" fill-opacity="${injected ? 0.9 : filled ? 0.55 : 0}" stroke="${injected ? "var(--accent)" : shade(96)}" stroke-width="1" stroke-opacity="${filled || injected ? 0.9 : 0.35}"/>`
+      );
+    }
+    const dynX = x0 + 7 * (slotW + 4) + 12;
+    for (let i = 0; i < 16; i++) {
+      const x = dynX + i * 9;
+      const tall = [2, 3, 4, 9, 10].includes(i);
+      p.push(`<rect x="${x}" y="${axisY - (tall ? 44 : 12)}" width="5" height="${tall ? 44 : 12}" fill="${shade(72)}" fill-opacity="${tall ? 0.6 : 0.28}"/>`);
+    }
+    p.push(
+      `<text x="${x0}" y="${top - 14}" class="a-lbl">Segment statique</text>`,
+      `<text x="${dynX}" y="${top - 14}" class="a-lbl">Dynamique</text>`,
+      `<path d="M${x0} ${axisY + 16} H${dynX + 152}" stroke="${shade(70)}" stroke-width="1" opacity="0.5"/>`,
+      `<text x="${x0}" y="${axisY + 32}" class="a-sub">cycle ${ci + 1}</text>`
+    );
+  });
+  p.push(
+    `<path d="M${420 + 4 * 38 + 17} ${axisY + 40} V${axisY - 8}" stroke="var(--accent)" stroke-width="1.4"/>`,
+    `<path d="M${420 + 4 * 38 + 17 - 4.5} ${axisY - 2} l4.5 -9 l4.5 9 z" fill="var(--accent)"/>`,
+    `<text x="${420 + 4 * 38 + 26}" y="${axisY + 44}" class="a-acc">trame injectée</text>`,
+    `<path d="M0 ${axisY} H${W}" stroke="${shade(90)}" stroke-width="1" opacity="0.35"/>`
+  );
+  corners = ["BUS FLEXRAY", "ILLUSTRATION", "CYCLE STATIQUE + DYNAMIQUE", "P-00 · SAFRAN"];
+}
+
+if (variant === "layers") {
+  // Layered architecture: modules per layer, dependencies pointing one way.
+  const layers = ["INTERFACE", "MÉTIER", "SERVICES", "SOCLE"];
+  const counts = [4, 3, 4, 2];
+  const bandH = 36, gap = 12, x0 = 150, top0 = 44, wAvail = W - x0 - 40;
+  const centres: number[][] = [];
+  layers.forEach((name, li) => {
+    const y = top0 + li * (bandH + gap);
+    p.push(
+      `<text x="34" y="${y + 23}" class="a-lbl">${name}</text>`,
+      `<path d="M120 ${y + bandH / 2} H${x0 - 12}" stroke="${shade(70)}" stroke-width="1" opacity="0.4"/>`
+    );
+    const n = counts[li];
+    const bw = (wAvail - (n - 1) * 16) / n;
+    const row: number[] = [];
+    for (let i = 0; i < n; i++) {
+      const x = x0 + i * (bw + 16);
+      const key = li === 1 && i === 1;
+      p.push(
+        `<rect x="${x.toFixed(1)}" y="${y}" width="${bw.toFixed(1)}" height="${bandH}" fill="${key ? "var(--accent)" : shade(58)}" fill-opacity="${key ? 0.22 : 0.5}" stroke="${key ? "var(--accent)" : shade(96)}" stroke-width="1" stroke-opacity="${key ? 0.9 : 0.45}"/>`
+      );
+      row.push(x + bw / 2);
+    }
+    centres.push(row);
+  });
+  for (let li = 0; li < layers.length - 1; li++) {
+    const y1 = top0 + li * (bandH + gap) + bandH;
+    const y2 = top0 + (li + 1) * (bandH + gap);
+    centres[li].forEach((cx, i) => {
+      const target = centres[li + 1][Math.min(i, centres[li + 1].length - 1)];
+      p.push(
+        `<path d="M${cx.toFixed(1)} ${y1} C${cx.toFixed(1)} ${y1 + 9} ${target.toFixed(1)} ${y2 - 9} ${target.toFixed(1)} ${y2}" fill="none" stroke="${shade(88)}" stroke-width="1" opacity="0.45"/>`
+      );
+    });
+  }
+  corners = ["ARCHITECTURE EN COUCHES", "ILLUSTRATION", "DÉPENDANCES À SENS UNIQUE", "R-01"];
+}
+
+if (variant === "measure") {
+  // A physical quantity, sampled at a regular period and quantised.
+  const base = 210, amp = 62, mid = 132;
+  let curve = "M20 " + (mid + Math.sin(0) * amp).toFixed(1);
+  for (let x = 20; x <= W - 20; x += 6)
+    curve += ` L${x} ${(mid + Math.sin(x / 96) * amp * 0.7 + Math.sin(x / 31 + 1.2) * amp * 0.3).toFixed(1)}`;
+  p.push(`<path d="${curve}" fill="none" stroke="${shade(120)}" stroke-width="1.6" opacity="0.55"/>`);
+  const step = 34;
+  let stair = "";
+  for (let x = 20; x <= W - 20; x += step) {
+    const yv = mid + Math.sin(x / 96) * amp * 0.7 + Math.sin(x / 31 + 1.2) * amp * 0.3;
+    const q = Math.round(yv / 11) * 11;
+    stair += `${stair ? "L" : "M"}${x} ${q.toFixed(1)} L${x + step} ${q.toFixed(1)} `;
+    p.push(
+      `<path d="M${x} ${q.toFixed(1)} V${base}" stroke="var(--accent)" stroke-width="1" opacity="0.28"/>`,
+      `<circle cx="${x}" cy="${q.toFixed(1)}" r="3" fill="var(--accent)" opacity="0.95"/>`
+    );
+  }
+  p.push(
+    `<path d="${stair}" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity="0.75"/>`,
+    `<path d="M14 ${base} H${W - 14}" stroke="${shade(90)}" stroke-width="1" opacity="0.4"/>`,
+    `<text x="20" y="${base + 24}" class="a-sub">période d'échantillonnage constante</text>`
+  );
+  corners = ["MESURE ÉCHANTILLONNÉE", "ILLUSTRATION", "GRANDEUR PHYSIQUE → NUMÉRIQUE", "R-02"];
+}
+
+if (variant === "transmit") {
+  // One node, then what it reaches: knowledge spreading outward.
+  type Node = { x: number; y: number; d: number };
+  const nodes: Node[] = [{ x: 60, y: 130, d: 0 }];
+  const spread = [3, 3, 2];
+  let layer: Node[] = [nodes[0]];
+  spread.forEach((k, li) => {
+    const next: Node[] = [];
+    const dx = 180 - li * 26;
+    for (const n of layer) {
+      for (let i = 0; i < k; i++) {
+        const span = 96 / (li + 1);
+        const y = n.y + (i - (k - 1) / 2) * span;
+        if (y < 22 || y > 238) continue;
+        const child = { x: n.x + dx, y, d: li + 1 };
+        next.push(child);
+        p.push(
+          `<path d="M${n.x} ${n.y.toFixed(1)} C${(n.x + dx * 0.45).toFixed(1)} ${n.y.toFixed(1)} ${(n.x + dx * 0.55).toFixed(1)} ${y.toFixed(1)} ${child.x} ${y.toFixed(1)}" fill="none" stroke="${li === 0 ? "var(--accent)" : shade(96)}" stroke-width="${1.6 - li * 0.3}" opacity="${0.75 - li * 0.16}"/>`
+        );
+      }
+    }
+    nodes.push(...next);
+    layer = next;
+  });
+  for (const n of nodes)
+    p.push(
+      `<circle cx="${n.x}" cy="${n.y.toFixed(1)}" r="${6 - n.d * 1.1}" fill="${n.d === 0 ? "var(--accent)" : shade(120)}" opacity="${n.d === 0 ? 1 : 0.85 - n.d * 0.14}"/>`
+    );
+  corners = ["TRANSMISSION", "ILLUSTRATION", "CE QUE L'ON PASSE AUX AUTRES", "R-03"];
+}
+
+if (variant === "tooling") {
+  // One source, then everything stamped from it.
+  const gx = 250, cols = 11, rows = 6, cw = 48, ch = 32, gy = 34;
+  p.push(
+    `<rect x="60" y="102" width="104" height="60" fill="var(--accent)" fill-opacity="0.16" stroke="var(--accent)" stroke-width="1.4"/>`,
+    `<text x="112" y="128" class="a-acc" text-anchor="middle">source</text>`,
+    `<text x="112" y="146" class="a-sub" text-anchor="middle">unique</text>`
+  );
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++) {
+      const x = gx + c * cw, y = gy + r * ch;
+      const fade = Math.max(0.08, 0.62 - c * 0.05 - r * 0.02);
+      p.push(
+        `<rect x="${x}" y="${y}" width="${cw - 10}" height="${ch - 10}" fill="none" stroke="${shade(110)}" stroke-width="1" opacity="${fade.toFixed(2)}"/>`,
+        `<path d="M${x + 5} ${y + 8} H${x + cw - 19}" stroke="${shade(120)}" stroke-width="1.5" opacity="${(fade * 0.8).toFixed(2)}"/>`,
+        `<path d="M${x + 5} ${y + 15} H${x + cw - 25}" stroke="${shade(120)}" stroke-width="1.5" opacity="${(fade * 0.55).toFixed(2)}"/>`
+      );
+    }
+  for (let r = 0; r < rows; r++)
+    p.push(
+      `<path d="M164 132 C205 132 205 ${gy + r * ch + 11} ${gx} ${gy + r * ch + 11}" fill="none" stroke="var(--accent)" stroke-width="1.1" opacity="${(0.5 - r * 0.05).toFixed(2)}"/>`
+    );
+  corners = ["GÉNÉRATION", "ILLUSTRATION", "ÉCRIT UNE FOIS, PRODUIT N FOIS", "R-04"];
+}
+
+const inner = p.join("");
+---
+
+<div class={`heroart ${compact ? "compact" : ""}`} style={`min-height:${compact ? "auto" : minHeight}`} aria-hidden="true">
+  {!compact && (
+    <>
+      <span class="corner tl">{corners[0]}</span>
+      <span class="corner tr">{corners[1]}</span>
+      <span class="corner bl">{corners[2]}</span>
+      <span class="corner br">{corners[3]}</span>
+    </>
+  )}
+  <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio={compact ? "xMidYMid meet" : "xMidYMid slice"} set:html={inner} />
+</div>
+
+<style>
+  .heroart {
+    background: var(--led-bg);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    /* Stretch so `slice` actually fills the panel instead of leaving the
+       drawing floating in dark space when the panel is taller than it. */
+    align-items: stretch;
+  }
+  .heroart.compact { padding: 0; border: 0; height: 100%; align-items: center; }
+  .heroart svg { display: block; width: 100%; height: 100%; }
+  .heroart.compact svg { height: auto; }
+  .heroart :global(.a-lbl) {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; fill: var(--strip-muted); opacity: 0.75;
+  }
+  .heroart :global(.a-sub) {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em;
+    fill: var(--strip-muted); opacity: 0.6;
+  }
+  .heroart :global(.a-acc) {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; fill: var(--accent);
+  }
+  .heroart .corner {
+    position: absolute;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--strip-muted);
+    opacity: 0.7;
+  }
+  .heroart .corner.tl { top: 10px; left: 12px; }
+  .heroart .corner.tr { top: 10px; right: 12px; }
+  .heroart .corner.bl { bottom: 10px; left: 12px; }
+  .heroart .corner.br { bottom: 10px; right: 12px; }
+</style>

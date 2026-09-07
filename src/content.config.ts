@@ -179,9 +179,9 @@ const projects = defineCollection({
     // resolved at build time via import.meta.glob in ProjectFigure. Falls back
     // to the hatched PlaceholderFigure when absent.
     heroImage: z.string().optional(),
-    // Generated absorber-field hero, mirroring `ledHero` on roles — for a
-    // project whose own visuals cannot be published.
-    anechoicHero: z.boolean().default(false),
+    // Generated hero artwork, used when no photograph exists — on the fiche
+    // header and on the index card alike. See components/HeroArt.astro.
+    heroArt: z.enum(["anechoic", "flexray", "layers", "measure", "transmit", "tooling"]).optional(),
     deepDive: z
       .object({
         metaTop: z.string(),
@@ -209,7 +209,7 @@ const roles = defineCollection({
     lede: z.string(),
     metaStrip: z.array(metaCell).length(5),
     chips: z.array(z.string()),
-    ledHero: z.boolean().default(false),
+    heroArt: z.enum(["anechoic", "flexray", "layers", "measure", "transmit", "tooling"]).optional(),
     heroImage: z.string().optional(),
     sections: z.array(sectionSchema).default([]),
   }),
