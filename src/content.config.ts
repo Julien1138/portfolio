@@ -47,15 +47,84 @@ const sectionSchema = z.discriminatedUnion("type", [
     arrows: z.array(z.string()),
   }),
   z.object({
-    type: z.literal("pipeline"),
-    figLabel: z.string(),
-    sub: z.string(),
-    stages: z.array(z.object({ num: z.string(), t: z.string(), d: z.string() })),
-    axis: z.tuple([z.string(), z.string(), z.string()]),
-  }),
-  z.object({
     type: z.literal("kpisBig"),
     items: z.array(kpiItem),
+  }),
+  z.object({
+    // Directed chain — stages left to right, each edge carrying its own
+    // protocol and direction, with an optional branch off the main line.
+    type: z.literal("chain"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    stages: z.array(
+      z.object({
+        lbl: z.string(),
+        name: z.string(),
+        sub: z.string().optional(),
+        items: z.array(z.string()).optional(),
+      })
+    ),
+    edges: z.array(
+      z.object({
+        label: z.string(),
+        // Caption for the return direction; drawn as its own arrow.
+        back: z.string().optional(),
+        dir: z.enum(["right", "left", "both"]).optional(),
+      })
+    ),
+    branches: z
+      .array(
+        z.object({
+          from: z.number(),
+          lbl: z.string(),
+          name: z.string(),
+          sub: z.string().optional(),
+          dashed: z.boolean().optional(),
+        })
+      )
+      .optional(),
+  }),
+  z.object({
+    // Shared medium — every node taps the same bus instead of relaying down
+    // a chain.
+    type: z.literal("bus"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    busLabel: z.string(),
+    busSub: z.string().optional(),
+    nodes: z.array(
+      z.object({ lbl: z.string(), name: z.string(), items: z.array(z.string()).optional() })
+    ),
+  }),
+  z.object({
+    // Interconnect map — one component at the centre, its links leaving by
+    // the face they use. Endpoints sharing a face are spread along it.
+    type: z.literal("linkmap"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    centerName: z.string(),
+    centerSub: z.string().optional(),
+    links: z.array(
+      z.object({
+        side: z.enum(["left", "right", "top", "bottom"]),
+        protocol: z.string(),
+        target: z.string(),
+        targetSub: z.string().optional(),
+        dashed: z.boolean().optional(),
+      })
+    ),
+  }),
+  z.object({
+    // Generation fan — one source description, every artefact derived from
+    // it, all feeding the same targets.
+    type: z.literal("genfan"),
+    figLabel: z.string(),
+    figRef: z.string(),
+    sourceLabel: z.string(),
+    sourceFormat: z.string(),
+    outputs: z.array(z.string()),
+    targetLabel: z.string(),
+    targetSub: z.string().optional(),
   }),
   z.object({
     type: z.literal("vimatrix"),
@@ -110,6 +179,9 @@ const projects = defineCollection({
     // resolved at build time via import.meta.glob in ProjectFigure. Falls back
     // to the hatched PlaceholderFigure when absent.
     heroImage: z.string().optional(),
+    // Generated absorber-field hero, mirroring `ledHero` on roles — for a
+    // project whose own visuals cannot be published.
+    anechoicHero: z.boolean().default(false),
     deepDive: z
       .object({
         metaTop: z.string(),

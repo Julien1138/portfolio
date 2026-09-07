@@ -23,7 +23,7 @@
     "Python"
   ],
   "role": "Équipe de 7 · liaisons & outillage",
-  "figTag": "fig. P-04 · composant FPGA, liaisons & registres",
+  "figTag": "fig. P-04 · champ d'absorbants, environnement simulé",
   "cornerLabel": "P-04 / FPGA",
   "deepDive": {
     "metaTop": "P-04 · FPGA · 2025 — 2026 · Thales LAS",
@@ -51,9 +51,9 @@
         "v": "~ 5 min"
       }
     ],
-    "heroFigTag": "fig. 1 · composant FPGA, liaisons & registres",
+    "heroFigTag": "fig. 1 · environnement électromagnétique simulé",
     "figCaptionRef": "fig. 1",
-    "figCaptionText": "Vue de principe du composant FPGA — liaisons série rapides vers le logiciel hôte, les autres cartes et les composants de conversion analogique/numérique ; bases de registres générées depuis une source unique. Visuels réels non diffusables.",
+    "figCaptionText": "Champ d'absorbants stylisé — illustration du type d'environnement simulé ; l'onde s'amortit en pénétrant le champ. Les visuels du programme ne sont pas diffusables.",
     "sections": [
       {
         "type": "prose",
@@ -70,41 +70,41 @@
         ]
       },
       {
-        "type": "archi",
-        "figLabel": "fig. 2 · le composant FPGA et ses interlocuteurs",
-        "figRef": "P-04.ARCH",
-        "stages": [
+        "type": "linkmap",
+        "figLabel": "fig. 2 · le composant et ses interlocuteurs",
+        "figRef": "P-04.LIENS",
+        "centerName": "FPGA",
+        "centerSub": "Virtex UltraScale+",
+        "links": [
           {
-            "lbl": "HÔTE",
-            "name": "Logiciel de pilotage",
-            "items": [
-              "Code de pilotage généré",
-              "Documentation générée",
-              "Même source que le FPGA"
-            ]
+            "side": "left",
+            "protocol": "PCIe",
+            "target": "Logiciel hôte",
+            "targetSub": "pilotage & mesures"
           },
           {
-            "lbl": "FPGA",
-            "name": "Virtex UltraScale+ (× ~10)",
-            "items": [
-              "Crossbars AXI-Lite",
-              "Bases de registres",
-              "DDR · AURORA fibre entre cartes"
-            ]
+            "side": "top",
+            "protocol": "AURORA · fibre",
+            "target": "Cartes voisines",
+            "dashed": true
           },
           {
-            "lbl": "RF",
-            "name": "Conversion analogique/numérique",
-            "items": [
-              "JESD204B",
-              "JESD204C",
-              "Deux composants distincts"
-            ]
+            "side": "right",
+            "protocol": "JESD204B",
+            "target": "Conversion A/N",
+            "targetSub": "composant 1"
+          },
+          {
+            "side": "right",
+            "protocol": "JESD204C",
+            "target": "Conversion A/N",
+            "targetSub": "composant 2"
+          },
+          {
+            "side": "bottom",
+            "protocol": "DDR",
+            "target": "Mémoire"
           }
-        ],
-        "arrows": [
-          "PCIe",
-          "JESD204B / C"
         ]
       },
       {
@@ -163,46 +163,20 @@
         ]
       },
       {
-        "type": "pipeline",
-        "figLabel": "fig. 3 · de la description unique au FPGA testé",
-        "sub": "6 sorties · une source",
-        "stages": [
-          {
-            "num": "01 · SOURCE",
-            "t": "Description",
-            "d": "XML unique"
-          },
-          {
-            "num": "02 · FPGA",
-            "t": "Bases de registres",
-            "d": "VHDL"
-          },
-          {
-            "num": "03 · LOGICIEL",
-            "t": "Code de pilotage",
-            "d": "même source"
-          },
-          {
-            "num": "04 · DOC",
-            "t": "Documentation",
-            "d": "toujours à jour"
-          },
-          {
-            "num": "05 · CROSSBAR",
-            "t": "Crossbars & connexions",
-            "d": "AXI-Lite"
-          },
-          {
-            "num": "06 · TESTS",
-            "t": "Bancs de test",
-            "d": "générés avec le design"
-          }
+        "type": "genfan",
+        "figLabel": "fig. 3 · une description, tout ce qui en découle",
+        "figRef": "P-04.GEN",
+        "sourceLabel": "Description",
+        "sourceFormat": "XML",
+        "outputs": [
+          "VHDL · bases de registres",
+          "Code de pilotage — logiciel",
+          "Documentation",
+          "Crossbars & connexions",
+          "Bancs de test"
         ],
-        "axis": [
-          "← une source unique",
-          "génération automatique",
-          "FPGA, logiciel & doc alignés →"
-        ]
+        "targetLabel": "~ 10",
+        "targetSub": "cibles FPGA"
       },
       {
         "type": "kpisBig",
@@ -255,7 +229,7 @@
           {
             "num": "D-04 · Reset",
             "t": "Synchrone, assumé",
-            "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils — <a href=\"/roles/r-00-jcdecaux-fpga/\">une conviction revue sur ce projet</a>."
+            "d": "Sur un FPGA moderne, un reset entièrement synchrone est plus simple, plus sûr et mieux supporté par les outils. Une conviction revue sur ce projet."
           }
         ]
       },
@@ -268,7 +242,7 @@
             "html": "Les liaisons sont en place et mesurées ; l'atelier sert à l'ensemble des cibles du programme et a fait disparaître une classe entière d'erreurs de recopie, ainsi que la dérive entre FPGA, logiciel et documentation. Le temps gagné à chaque nouvelle carte s'est reporté sur ce qui compte vraiment : la mise au point des liens eux-mêmes."
           },
           {
-            "html": "Rien de spectaculaire dans le principe — <span class=\"hl\">une source unique, tout le reste généré</span> — mais une valeur qui se mesure directement à l'échelle du système et à la rigueur qu'il exige."
+            "html": "Rien de spectaculaire dans le principe — <span class=\"hl\">une source unique, tout le reste généré</span> — mais une valeur qui se mesure directement à l'échelle du système et à la rigueur qu'il exige. Ce projet marque aussi mon retour au FPGA après plusieurs années : ce fil-là est raconté dans la <a href=\"/roles/r-00-expert-fpga/\">fiche rôle</a>."
           }
         ]
       },
@@ -290,5 +264,6 @@
         ]
       }
     ]
-  }
+  },
+  "anechoicHero": true
 }

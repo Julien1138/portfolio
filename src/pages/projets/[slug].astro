@@ -6,6 +6,7 @@ import BreadcrumbNav from "../../components/BreadcrumbNav.astro";
 import MetaStrip from "../../components/MetaStrip.astro";
 import ChipRow from "../../components/ChipRow.astro";
 import PlaceholderFigure from "../../components/PlaceholderFigure.astro";
+import AnechoicHero from "../../components/AnechoicHero.astro";
 import SectionRenderer from "../../components/blocks/SectionRenderer.astro";
 
 export async function getStaticPaths() {
@@ -51,7 +52,11 @@ const dd = d.deepDive;
     </header>
 
     <div class="hero-fig-wrap">
-      <PlaceholderFigure tag={dd ? dd.heroFigTag : d.figTag} imagePath={d.heroImage} minHeight="320px" />
+      {d.anechoicHero && !d.heroImage ? (
+        <AnechoicHero />
+      ) : (
+        <PlaceholderFigure tag={dd ? dd.heroFigTag : d.figTag} imagePath={d.heroImage} minHeight="320px" />
+      )}
       {dd && (
         <p class="fig-caption">
           <span class="ref">{dd.figCaptionRef}</span>

@@ -58,9 +58,16 @@
         "heading": "Carte blanche, après l'audit",
         "num": "§ 01",
         "paragraphs": [
-          { "lead": true, "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-02-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles." },
-          { "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps." },
-          { "html": "Cette fois, <span class=\"hl\">carte blanche</span> pour tout repenser, du silicium à l'interface. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z." }
+          {
+            "lead": true,
+            "html": "Il y a des projets qui marquent une étape. Celui-ci en fait partie. Après une première mission de <a href=\"/projets/p-02-reprise-prototype-boitier-mesure/\">reprise du prototype existant</a> chez <b>ID-1</b>, l'audit électronique que j'avais réalisé avait débouché sur un cahier des charges clair : il fallait repenser entièrement le boîtier de mesure, pensé pour équiper des machines thermodynamiques industrielles."
+          },
+          {
+            "html": "L'idée, lancée par mon responsable, était aussi simple qu'ambitieuse : pouvoir <b>anticiper les pannes</b>, <b>analyser les comportements utilisateurs</b>, et <b>optimiser la maintenance</b> en étudiant les variables physiques — température, pression, consommation — dans le temps."
+          },
+          {
+            "html": "Cette fois, <span class=\"hl\">carte blanche</span> pour tout repenser, du silicium à l'interface. Seul dans un premier temps, puis épaulé par un apprenti, j'ai pu concevoir une solution complète, de A à Z."
+          }
         ]
       },
       {
@@ -134,7 +141,10 @@
         "num": "§ 05",
         "paragraphs": [
           {
-            "html": "Pour la supervision globale, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, déployée en interne chez ID-1 : collecte des données, configuration à distance, visualisation centralisée, alertes. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure à l'analyse."
+            "html": "Pour la supervision, j'ai mis en place une infrastructure serveur <b>dockerisée</b>, hébergée sur les serveurs d'ID-1 et <span class=\"hl\">administrée en interne</span> — pas de service managé externe : collecte des données, configuration à distance, visualisation centralisée, alertes."
+          },
+          {
+            "html": "La web app de supervision est destinée aux <b>clients équipés d'un boîtier</b>, qui suivent ainsi le comportement de leurs machines dans le temps. L'écosystème logiciel couvre tout le cycle de vie du produit, de la mesure sur site à l'analyse par l'exploitant."
           },
           {
             "html": "Les boîtiers remontent leurs mesures en <b>HTTP</b> vers le serveur, qui les stocke dans <b>InfluxDB</b> — une base de séries temporelles adaptée au volume et à la fréquence des relevés."
@@ -154,50 +164,54 @@
           },
           {
             "t": "Visualisation & alertes",
-            "d": "Web app centralisée pour la supervision et les alertes"
+            "d": "Web app de supervision destinée aux clients équipés"
           },
           {
             "t": "Déploiement",
-            "d": "Infrastructure serveur dockerisée, déployée en interne"
+            "d": "Infrastructure dockerisée, hébergée et administrée chez ID-1"
           }
         ]
       },
       {
-        "type": "archi",
-        "figLabel": "fig. 3 · architecture — du boîtier à la supervision",
+        "type": "chain",
+        "figLabel": "fig. 3 · du boîtier à la supervision",
         "figRef": "P-03.ARCH",
         "stages": [
           {
-            "lbl": "EDGE",
+            "lbl": "TERRAIN",
             "name": "Boîtier ID-1",
-            "items": [
-              "ESP32-S3 · C++",
-              "Mesure ratio. de précision",
-              "UI locale Vue.js"
-            ]
+            "sub": "sur la machine du client"
           },
           {
-            "lbl": "INGESTION",
-            "name": "Serveur interne",
-            "items": [
-              "Réception HTTP",
-              "InfluxDB",
-              "Docker"
-            ]
+            "lbl": "SERVEUR",
+            "name": "Serveur ID-1",
+            "sub": "chez ID-1, auto-administré"
           },
           {
-            "lbl": "APPLICATION",
+            "lbl": "CLIENT",
             "name": "Supervision",
-            "items": [
-              "Web app centralisée",
-              "Configuration à distance",
-              "Alertes"
-            ]
+            "sub": "pour les clients équipés"
           }
         ],
-        "arrows": [
-          "HTTP",
-          "HTTP"
+        "edges": [
+          {
+            "label": "HTTP · mesures",
+            "back": "config & firmware",
+            "dir": "both"
+          },
+          {
+            "label": "HTTP",
+            "dir": "right"
+          }
+        ],
+        "branches": [
+          {
+            "from": 0,
+            "lbl": "Wi-Fi · sans internet",
+            "name": "Technicien sur site",
+            "sub": "relevé, réglage et diagnostic",
+            "dashed": true
+          }
         ]
       },
       {

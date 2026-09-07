@@ -5,7 +5,10 @@ import CodeBlock from "./CodeBlock.astro";
 import Split2 from "./Split2.astro";
 import RowList from "./RowList.astro";
 import ArchiDiagram from "./ArchiDiagram.astro";
-import PipelineDiagram from "./PipelineDiagram.astro";
+import LinkMap from "./LinkMap.astro";
+import ChainDiagram from "./ChainDiagram.astro";
+import BusDiagram from "./BusDiagram.astro";
+import GenFan from "./GenFan.astro";
 import KpisBig from "./KpisBig.astro";
 import VIMatrix from "./VIMatrix.astro";
 import Constraints from "./Constraints.astro";
@@ -33,8 +36,22 @@ const { sections } = Astro.props;
       return <RowList rows={s.rows} />;
     case "archi":
       return <ArchiDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} arrows={s.arrows} />;
-    case "pipeline":
-      return <PipelineDiagram figLabel={s.figLabel} sub={s.sub} stages={s.stages} axis={s.axis} />;
+    case "chain":
+      return (
+        <ChainDiagram figLabel={s.figLabel} figRef={s.figRef} stages={s.stages} edges={s.edges} branches={s.branches} />
+      );
+    case "bus":
+      return (
+        <BusDiagram figLabel={s.figLabel} figRef={s.figRef} busLabel={s.busLabel} busSub={s.busSub} nodes={s.nodes} />
+      );
+    case "linkmap":
+      return (
+        <LinkMap figLabel={s.figLabel} figRef={s.figRef} centerName={s.centerName} centerSub={s.centerSub} links={s.links} />
+      );
+    case "genfan":
+      return (
+        <GenFan figLabel={s.figLabel} figRef={s.figRef} sourceLabel={s.sourceLabel} sourceFormat={s.sourceFormat} outputs={s.outputs} targetLabel={s.targetLabel} targetSub={s.targetSub} />
+      );
     case "kpisBig":
       return <KpisBig items={s.items} />;
     case "vimatrix":

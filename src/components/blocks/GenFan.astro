@@ -1,0 +1,101 @@
+---
+// Generation fan: one source description on the left, every artefact derived
+// from it on the right, all feeding the same set of targets. Inline SVG so
+// the drawing follows the theme tokens.
+export interface Props {
+  figLabel: string;
+  figRef: string;
+  sourceLabel: string;
+  sourceFormat: string;
+  outputs: string[];
+  targetLabel: string;
+  targetSub?: string;
+}
+const { figLabel, figRef, sourceLabel, sourceFormat, outputs, targetLabel, targetSub } = Astro.props;
+
+const W = 800;
+const rowH = 44;
+const gap = 10;
+const n = outputs.length;
+const H = n * rowH + (n - 1) * gap + 24;
+const mid = H / 2;
+const hub = { x: 212, y: mid };
+const col = { x: 320, w: 286 };
+const rows = outputs.map((label, i) => ({ label, y: 12 + i * (rowH + gap) }));
+---
+
+<div class="genfan">
+  <div class="head">
+    <span class="lbl">{figLabel}</span>
+    <span class="lbl ref">{figRef}</span>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={figLabel}>
+    <rect x="20" y={mid - 32} width="128" height="64" class="bx src" />
+    <text x="84" y={mid - 6} class="t-node" text-anchor="middle">{sourceLabel}</text>
+    <text x="84" y={mid + 15} class="t-fmt" text-anchor="middle">{sourceFormat}</text>
+    <path d={`M148 ${mid} H${hub.x - 6}`} class="ln-a" />
+    <circle cx={hub.x} cy={hub.y} r="5.5" class="hub" />
+    {rows.map((r) => (
+      <path
+        d={`M${hub.x + 5} ${mid} C${col.x - 46} ${mid} ${col.x - 46} ${r.y + rowH / 2} ${col.x} ${r.y + rowH / 2}`}
+        class="ln"
+      />
+    ))}
+    {rows.map((r) => (
+      <>
+        <rect x={col.x} y={r.y} width={col.w} height={rowH} class="bx" />
+        <text x={col.x + 16} y={r.y + rowH / 2 + 4} class="t-out">{r.label}</text>
+        <path d={`M${col.x + col.w} ${r.y + rowH / 2} H${col.x + col.w + 46}`} class="ln-t" />
+      </>
+    ))}
+    <path d={`M${col.x + col.w + 46} ${rows[0].y + rowH / 2} V${rows[n - 1].y + rowH / 2}`} class="ln-t" />
+    <path d={`M${col.x + col.w + 46} ${mid} H${W - 130}`} class="ln-a" />
+    <path d={`M${W - 138} ${mid - 5} l9 5 -9 5`} class="ln-a" />
+    <rect x={W - 128} y={mid - 32} width="108" height="64" class="bx" />
+    <text x={W - 74} y={mid - 6} class="t-node" text-anchor="middle">{targetLabel}</text>
+    {targetSub && <text x={W - 74} y={mid + 15} class="t-fmt tgt" text-anchor="middle">{targetSub}</text>}
+  </svg>
+</div>
+
+<style>
+  .genfan {
+    margin-top: 20px;
+    max-width: var(--maxw);
+    padding: 26px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .genfan .head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .genfan .head .lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .genfan .head .ref { color: var(--accent); }
+  .genfan svg { display: block; width: 100%; height: auto; }
+  .genfan :global(.ln) { stroke: var(--ink-2); stroke-width: 1.2; fill: none; }
+  .genfan :global(.ln-a) { stroke: var(--accent); stroke-width: 1.6; fill: none; }
+  .genfan :global(.ln-t) { stroke: var(--rule-2); stroke-width: 1; fill: none; }
+  .genfan :global(.hub) { fill: var(--accent); }
+  .genfan :global(.bx) { fill: var(--paper-2); stroke: var(--rule-2); stroke-width: 1; }
+  .genfan :global(.bx.src) { stroke: var(--ink-2); stroke-width: 1.3; }
+  .genfan :global(text) { font-family: var(--mono); }
+  .genfan :global(.t-node) {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    fill: var(--ink); font-weight: 600;
+  }
+  .genfan :global(.t-fmt) {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    fill: var(--accent); font-weight: 500;
+  }
+  .genfan :global(.t-fmt.tgt) { fill: var(--ink-soft); font-weight: 400; }
+  .genfan :global(.t-out) {
+    font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; fill: var(--ink-2);
+  }
+  @media (max-width: 700px) { .genfan { padding: 16px; } }
+</style>
